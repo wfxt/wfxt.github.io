@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>wfxt</title>
 <meta name="description" content="温故而知新" />
-<link rel="shortcut icon" href="https://wfxt.github.io//favicon.ico?v=1575376036500">
+<link rel="shortcut icon" href="https://wfxt.github.io//favicon.ico?v=1575380206750">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -24,7 +24,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://wfxt.github.io/">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://wfxt.github.io//images/avatar.png?v=1575376036500" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://wfxt.github.io//images/avatar.png?v=1575380206750" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">wfxt</h1>
       </div>
@@ -81,14 +81,14 @@
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
         <h1 class="text-3xl font-bold lg:mt-16">练习</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2019-12-03 / 1 min read
+          2019-12-03 / 3 min read
         </div>
         
           <img class="post-feature-image rounded-lg mx-auto my-4" src="https://wfxt.github.io//post-images/lian-xi.jpg" alt="">
         
         <div class="post-content yue">
-          <p><b>（2011年预赛题) </b>由键盘输入一个自然数Ｎ（1≤N≤9），要求程序在屏幕上输出如下图形。</p>
-<!-- more -->
+          <!-- more -->
+<h3>（2011年预赛题)</h3>由键盘输入一个自然数Ｎ（1≤N≤9），要求程序在屏幕上输出如下图形。
 <p>Ｎ＝１时：　　　　　　　　Ｎ＝３时：　　　　　　　Ｎ＝４时：<br>
 　　１　　　　　　　　　　　　１１１１１　　　　　　　１１１１１１１<br>
 　　　　　　　　　　　　　　　１２２２１　　　　　　　１２２２２２１<br>
@@ -125,6 +125,61 @@ int main()
 	}
 }
 
+</code></pre>
+<h3>思考题</h3>
+E代表数字0到9中的偶数数字，O代表奇数数字，请还原下列乘式。
+<pre>
+  E E O  	        2 8 5
+×   O O 	答案    × 3 9
+ —————–		        —————
+ E O E O   	      2 5 6 5
+  E O O             8 5 5
+ ——————      	    ————–
+O O O O O 	     1 1 1 1 5
+</pre>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main()
+{
+	int flag = 0;
+	int e[5] = { 0,2,4,6,8 };
+	int o[5] = { 1,3,5,7,9 };
+	for (int i = 0; i &lt; 5; i++)  // 被乘数的百位
+	{
+		for (int j = 0; j &lt; 5; j++)  // 被乘数的十位
+			for (int k = 0; k &lt; 5; k++)  // 被乘数的个位
+			{
+				for (int x = 0; x &lt; 5; x++)  // 乘数的个位
+				{
+					int x1 = o[x] * (e[i] * 100 + e[j] * 10 + o[k]);  // EOEO
+					if (x1 % 2 == 1 &amp;&amp; x1 / 10 % 2 == 0 &amp;&amp; x1 / 100 % 2 == 1 &amp;&amp; x1 / 1000 % 2 == 0)
+						flag = 1;
+					if (flag)
+					{
+						flag = 0;
+						for (int y = 0; y &lt; 5; y++)  // 乘数的十位
+						{
+							int y1 = o[y] * (e[i] * 100 + e[j] * 10 + o[k]);  // EOO
+							if (y1 % 2 == 1 &amp;&amp; y1 / 10 % 2 == 1 &amp;&amp; y1 / 100 % 2 == 0)
+								flag = 1;
+							if (flag)
+							{
+								flag = 0;
+								int res1 = (e[i] * 100 + e[j] * 10 + o[k]) * (o[y] * 10 + o[x]);
+								if (res1 % 2 == 1 &amp;&amp; res1 / 10 % 2 == 1 &amp;&amp; res1 / 100 % 2 == 1 &amp;&amp; res1 / 1000 % 2 == 1 &amp;&amp; res1 / 10000 % 2 == 1)
+									flag = 1;
+								if (flag)
+									cout &lt;&lt; e[i] * 100 + e[j] * 10 + o[k] &lt;&lt; &quot;*&quot; &lt;&lt; o[y] * 10 + o[x] &lt;&lt; &quot; = &quot; &lt;&lt; (e[i] * 100 + e[j] * 10 + o[k]) * (o[y] * 10 + o[x]);
+							}
+						}
+					}
+				}
+			}
+	}
+}
+
+// 285*39 = 11115
 </code></pre>
 
         </div>
