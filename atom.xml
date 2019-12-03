@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wfxt.github.io/</id>
-    <title>Gridea</title>
-    <updated>2019-12-03T12:26:38.053Z</updated>
+    <title>wfxt</title>
+    <updated>2019-12-03T12:26:54.846Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wfxt.github.io/"/>
     <link rel="self" href="https://wfxt.github.io//atom.xml"/>
     <subtitle>温故而知新</subtitle>
     <logo>https://wfxt.github.io//images/avatar.png</logo>
     <icon>https://wfxt.github.io//favicon.ico</icon>
-    <rights>All rights reserved 2019, Gridea</rights>
+    <rights>All rights reserved 2019, wfxt</rights>
     <entry>
         <title type="html"><![CDATA[练习]]></title>
         <id>https://wfxt.github.io//post/lian-xi</id>
