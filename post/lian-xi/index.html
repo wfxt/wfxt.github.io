@@ -31,29 +31,9 @@
       
         <div class="animated fadeInLeft" style="animation-delay: 0.4s">
           <p class="my-4 text-gray-600 font-light hidden lg:block">
-            温故而知新
+            文章目录
           </p>
-          <div class="animated fadeInLeft social-container hidden lg:block" style="animation-delay: 0.6s">
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
+          <div class="toc-container hidden lg:block">
             
           </div>
         </div>
@@ -98,35 +78,76 @@
 </div>
 <div class="mask" onclick="closeMenu()">
 </div>
-      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4">
-        <h2 class="text-lg text-gray-700 mb-8">
-          <i class="remixicon-bookmark-line"></i> Gridea
-        </h2>
-        
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${0 * 0.2}s` }">
-    
-      <a href="https://wfxt.github.io//post/hello-gridea" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
-        <div class="post-feature-image lazy w-full h-56 h-32 md:w-56 md:h-40" data-bg="'https://wfxt.github.io//post-images/hello-gridea.png'">
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">练习</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-12-03 / 1 min read
         </div>
-      </a>
-    
-    <div class="content">
-      <a href="https://wfxt.github.io//post/hello-gridea">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">Hello Gridea</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
-        <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+        
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://wfxt.github.io//post-images/lian-xi.jpg" alt="">
+        
+        <div class="post-content yue">
+          <p><b>（2011年预赛题) </b>由键盘输入一个自然数Ｎ（1≤N≤9），要求程序在屏幕上输出如下图形。</p>
+<!-- more -->
+<p>Ｎ＝１时：　　　　　　　　Ｎ＝３时：　　　　　　　Ｎ＝４时：<br>
+　　１　　　　　　　　　　　　１１１１１　　　　　　　１１１１１１１<br>
+　　　　　　　　　　　　　　　１２２２１　　　　　　　１２２２２２１<br>
+　　　　　　　　　　　　　　　１２３２１　　　　　　　１２３３３２１<br>
+　　　　　　　　　　　　　　　１２２２１　　　　　　　１２３４３２１<br>
+　　　　　　　　　　　　　　　１１１１１　　　　　　　１２３３３２１<br>
+　　　　　　　　　　　　　　　　　　　　　　　　　　　１２２２２２１<br>
+　　　　　　　　　　　　　　　　　　　　　　　　　　　１１１１１１１<br>
+　　<em>注：应保证Ｎ在图形中只出现一次，且在中心。</em></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
 
-      </div>
-      <div class="text-gray-400 text-sm font-light">2018-12-12 / 2 min read</div>
-    </div>
-  </section>
+int main()
+{
+	int n = 0;
+	cout &lt;&lt; &quot;输入【1,9】的数： &quot;;
+	int a[20][20];
+	cin &gt;&gt; n;
+	for (int i = 0; i &lt; n; i++)
+	{
+		for(int row=i;row&lt;=2*n-2-i;row++)
+			for (int col = i; col &lt;= 2 * n - 2 - i; col++)
+			{
+				a[row][col] = i + 1;
+			}
+	}
+	
+	// 输出
+	for (int i = 0; i &lt; 2*n-1; i++)
+	{
+		for (int j = 0; j &lt; 2*n-1; j++)
+			cout &lt;&lt; a[i][j] &lt;&lt; &quot; &quot;;
+		cout &lt;&lt; endl;
+	}
+}
 
-        <div class="pagination-container animated fadeIn">
-  
-  
-</div>
+</code></pre>
+
+        </div>
+
+        
+
+
+        <div class="flex justify-between py-8">
+          
+
+          
+            <div class="next-post">
+              <a href="https://wfxt.github.io//post/hello-gridea">
+                <h3 class="post-title">
+                  Hello Gridea
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
 
       </div>
     </div>
