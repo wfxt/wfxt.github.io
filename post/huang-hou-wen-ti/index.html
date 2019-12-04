@@ -31,29 +31,9 @@
       
         <div class="animated fadeInLeft" style="animation-delay: 0.4s">
           <p class="my-4 text-gray-600 font-light hidden lg:block">
-            温故而知新
+            文章目录
           </p>
-          <div class="animated fadeInLeft social-container hidden lg:block" style="animation-delay: 0.6s">
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
+          <div class="toc-container hidden lg:block">
             
           </div>
         </div>
@@ -98,68 +78,130 @@
 </div>
 <div class="mask" onclick="closeMenu()">
 </div>
-      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4">
-        <h2 class="text-lg text-gray-700 mb-8">
-          <i class="remixicon-archive-line"></i> 文章归档
-        </h2>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">皇后问题</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-12-04 / 3 min read
+        </div>
+        
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/10/12/8-queens.png" alt="">
+        
+        <div class="post-content yue">
+          <p><a herf="https://leetcode-cn.com/problems/n-queens-ii/" style="text-decoration:none;">N皇后II</a><br>
+问题描述：给定一个整数 n，返回 n 皇后不同的解决方案的数量。</p>
+<p>官方的解法一用C++不容易复现，而且对角线判断还有更加节省空间的解法。但是核心思想都是一样的。<br>
+下面讲述的是一种比较容易实现已读的cpp写法。<br>
+<br/><br>
+<em>注意：在写c++的时候，一定要注意传的是引用！</em><br>
+总结的一个溯回的模板：</p>
+<pre><code class="language-python">what we should do in this case
+continue or do somehting?
+for i in range(n):
+    choice_list.append(i)
+    backtrace(choice_list)
+    choice_list.pop()
+</code></pre>
+<p>这这道题，我们的backtrace可以这么写<br>
+在这里我们把count当作形参是为了增加移植性</p>
+<pre><code class="language-cpp">void backtrace(int n, vector&lt;int&gt;&amp; cols, int&amp; count)  // 注意传引用
+{
+	if (!is_vaild(n, cols)) return;  // 非法，溯回
+	if (cols.size() == n)
+	{
+		count++;
+		return;  // 若n个放完了，count+1并且溯回
+	}
+	// 若合法且还没放完
+	for (int i = 0; i &lt; n; i++)
+	{
+		cols.push_back(i);  //现在这行放在i列能否能行
+		backtrace(n, cols, count);  //递归
+		cols.pop_back();  //判断完这列之后再判断下一列，先把这列给弹出来
+	}
+}
+</code></pre>
+<p>完整的代码如下</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+using namespace std;
+
+bool is_vaild(int n, vector&lt;int&gt;&amp; cols)
+{
+	if (cols.size() &lt;= 1)
+		return true;  //如果只有一个元素那肯定能行
+	int row = cols.size() - 1;  //获取当前处理的行数
+	int col = cols.back();  //获取当前处理的列数，返回而不删除
+	for (int curr_row = 0; curr_row &lt; row; curr_row++)
+	{
+		int curr_col = cols[curr_row];
+		//如果头上，或者delta_x=delta_y即对角线
+		if (curr_col == col || abs(curr_col - col) == abs(curr_row - row))
+			return false;
+	}
+	return true;
+}
+
+void backtrace(int n, vector&lt;int&gt;&amp; cols, int&amp; count)  // 注意传引用
+{
+	if (!is_vaild(n, cols)) return;  // 非法，溯回
+	if (cols.size() == n)
+	{
+		count++;
+		return;  // 若n个放完了，count+1并且溯回
+	}
+	// 若合法且还没放完
+	for (int i = 0; i &lt; n; i++)
+	{
+		cols.push_back(i);  //现在这行放在i列能否能行
+		backtrace(n, cols, count);  //递归
+		cols.pop_back();  //判断完这列之后再判断下一列，先把这列给弹出来
+	}
+}
+
+int totalNQueens(int n) {
+	vector&lt;int&gt; cols;  // 小标i所对应的值得意思是第i+1行所占有的为第几列
+	int count = 0;
+	backtrace(n, cols, count);
+	return count;
+}
+
+int main()
+{
+	int n, res;
+	cout &lt;&lt; &quot;input: &quot;;
+	cin &gt;&gt; n;
+	cout &lt;&lt; totalNQueens(n) &lt;&lt; endl;
+}
+
+</code></pre>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wfxt.github.io//tag/T622aDOxj">
+            <span class="flex-auto">algorithm</span>
+          </a>
         
 
-        <div class="archives-container">
+
+        <div class="flex justify-between py-8">
           
-            <h2 class="text-gray-600 py-4 animated fadeIn">
-              <i class="remixicon-map-pin-time-line"></i>
-              2019
-            </h2>
-            
-              
-                <a href="https://wfxt.github.io//post/huang-hou-wen-ti" class="post">
-                  <h2 class="inline-block font-bold text-lg post-title animated fadeIn">
-                    皇后问题
-                  </h2>
-                </a>
-                <div class="text-sm font-light mt-3 mb-6 text-gray-400 animated fadeInDown" style="animation-delay: 0.4s">2019-12-04</div>
-              
-            
-              
-                <a href="https://wfxt.github.io//post/lian-xi" class="post">
-                  <h2 class="inline-block font-bold text-lg post-title animated fadeIn">
-                    练习
-                  </h2>
-                </a>
-                <div class="text-sm font-light mt-3 mb-6 text-gray-400 animated fadeInDown" style="animation-delay: 0.4s">2019-12-03</div>
-              
-            
-              
-            
+
           
-            <h2 class="text-gray-600 py-4 animated fadeIn">
-              <i class="remixicon-map-pin-time-line"></i>
-              2018
-            </h2>
-            
-              
-            
-              
-            
-              
-                <a href="https://wfxt.github.io//post/hello-gridea" class="post">
-                  <h2 class="inline-block font-bold text-lg post-title animated fadeIn">
-                    Hello Gridea
-                  </h2>
-                </a>
-                <div class="text-sm font-light mt-3 mb-6 text-gray-400 animated fadeInDown" style="animation-delay: 0.4s">2018-12-12</div>
-              
-            
+            <div class="next-post">
+              <a href="https://wfxt.github.io//post/lian-xi">
+                <h3 class="post-title">
+                  练习
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
           
         </div>
 
-        <div>
-          <div class="pagination-container animated fadeIn">
-  
-  
-</div>
+        
 
-        </div>
       </div>
     </div>
 
