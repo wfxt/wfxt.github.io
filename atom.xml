@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wfxt.github.io/</id>
     <title>wfxt</title>
-    <updated>2019-12-04T12:48:02.271Z</updated>
+    <updated>2019-12-04T12:49:09.388Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wfxt.github.io/"/>
     <link rel="self" href="https://wfxt.github.io//atom.xml"/>
@@ -16,8 +16,7 @@
         <link href="https://wfxt.github.io//post/huang-hou-wen-ti">
         </link>
         <updated>2019-12-04T12:19:02.000Z</updated>
-        <content type="html"><![CDATA[<!-- more -->
-<p><a herf="https://leetcode-cn.com/problems/n-queens-ii/" style="text-decoration:none;">N皇后II</a><br>
+        <content type="html"><![CDATA[<p><a herf="https://leetcode-cn.com/problems/n-queens-ii/" style="text-decoration:none;">N皇后II</a><br>
 问题描述：给定一个整数 n，返回 n 皇后不同的解决方案的数量。</p>
 <p>官方的解法一用C++不容易复现，而且对角线判断还有更加节省空间的解法。但是核心思想都是一样的。<br>
 下面讲述的是一种比较容易实现已读的cpp写法。<br>
