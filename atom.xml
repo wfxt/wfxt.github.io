@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wfxt.github.io/</id>
     <title>wfxt</title>
-    <updated>2019-12-04T12:49:09.388Z</updated>
+    <updated>2019-12-06T06:23:19.250Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wfxt.github.io/"/>
     <link rel="self" href="https://wfxt.github.io//atom.xml"/>
@@ -10,6 +10,133 @@
     <logo>https://wfxt.github.io//images/avatar.png</logo>
     <icon>https://wfxt.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, wfxt</rights>
+    <entry>
+        <title type="html"><![CDATA[PTA Mars Numbers]]></title>
+        <id>https://wfxt.github.io//post/pta-mars-numbers</id>
+        <link href="https://wfxt.github.io//post/pta-mars-numbers">
+        </link>
+        <updated>2019-12-05T16:20:04.000Z</updated>
+        <content type="html"><![CDATA[<p><a href = "https://pintia.cn/problem-sets/994805342720868352/problems/994805367156883456" style="text-decoration:none;" >题目</a></p>
+<pre style="background-color:white;">
+People on Mars count their numbers with base <b>13</b>:
+
+Zero on Earth is called "tret" on Mars.
+The numbers 1 to 12 on Earth is called "jan, feb, mar, apr, may, jun, jly, aug, sep, oct, nov, dec" on Mars, respectively.
+For the next higher digit, Mars people name the 12 numbers as "tam, hel, maa, huh, tou, kes, hei, elo, syy, lok, mer, jou", respectively.
+For examples, the number 29 on Earth is called "hel mar" on Mars; and "elo nov" on Mars corresponds to 115 on Earth. In order to help communication between people from these two planets, you are supposed to write a program for mutual translation between Earth and Mars number systems.
+
+Input Specification:
+Each input file contains one test case. For each case, the first line contains a positive integer N (<100). Then N lines follow, each contains a number in [0, 169), given either in the form of an Earth number, or that of Mars.
+
+Output Specification:
+For each number, print in a line the corresponding number in the other language.
+
+<em>Sample Input:</em>
+4
+29
+5
+elo nov
+tam
+
+<em>Sample Output:</em>
+hel mar
+may
+115
+13
+</pre>
+<br/>
+<p><b>代码不难，需要注意一下几点：</b><br/></p>
+<ul>
+<li>那个数组，一定一定不要打错了！<br/></li>
+<li>13进制，不是12进制！<br/></li>
+<li>需要注意13 26 39只需要输出高位即可，低位的0不需要输出<br/></li>
+<li>关于判断数字，不要拿长度啊，111的长度也是3呀<br/><br>
+<br/></li>
+</ul>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+string high[12] = { &quot;tam&quot;, &quot;hel&quot;, &quot;maa&quot;, &quot;huh&quot;, &quot;tou&quot;, &quot;kes&quot;, &quot;hei&quot;, &quot;elo&quot;, &quot;syy&quot;, &quot;lok&quot;, &quot;mer&quot;, &quot;jou&quot; };
+string low[13] = { &quot;tret&quot;, &quot;jan&quot;, &quot;feb&quot;, &quot;mar&quot;, &quot;apr&quot;, &quot;may&quot;, &quot;jun&quot;, &quot;jly&quot;, &quot;aug&quot;, &quot;sep&quot;, &quot;oct&quot;, &quot;nov&quot;, &quot;dec&quot; };
+
+string change(string ori)
+{
+	string res=&quot;&quot;;
+	int sum = 0;
+	// 若是数字
+	if (ori[0]&lt;='9' &amp;&amp; ori[0]&gt;='0')
+	{
+		int num = atoi(ori.c_str());
+		int h = num / 13 - 1;  // 是13进制不是12进制
+		int l = num % 13;
+		if (h == -1)
+			res += low[l];
+		else
+		{
+			if (num % 13 != 0) {
+				res.append(high[h]);
+				res.append(&quot; &quot;);
+				res.append(low[l]);
+			}
+			else
+				res.append(high[h]);
+		}
+	}
+
+	// 若是火星文
+	if(ori.size() &gt;= 3)
+	{
+		// 如果只有3位
+		if (ori.size() &lt;= 4) {
+			for (int i = 0; i &lt; 13; i++)
+			{
+				if (ori == low[i])
+					res.append(to_string(i));
+			}
+			// 只有高位，是乘，不是加
+			if (res == &quot;&quot;)
+			{
+				for (int i = 0; i &lt; 12; i++)
+				{
+					if (ori == high[i])
+						res.append(to_string((i+1) * 13));  // 都说是13进制啦
+				}
+			}
+		}
+		else {
+			string hh, ll;
+			hh = ori.substr(0, 3);
+			ll = ori.substr(4, 3);
+			for (int i = 0; i &lt; 12; i++)
+				if (hh == high[i])
+					sum += (i + 1) * 13;
+			for (int i = 0; i &lt; 13; i++)
+				if (ll == low[i])
+					sum += i;
+			res = to_string(sum); 
+		}
+	}
+	//cout &lt;&lt; res &lt;&lt; endl;
+	return res;
+}
+
+int main() {
+	int n = 0;
+	string input[100];
+	cin &gt;&gt; n;
+	getchar();
+	for (int i = 0; i &lt; n; i++)
+		getline(cin, input[i]);
+	for (int i = 0; i &lt; n; i++)
+		cout &lt;&lt; change(input[i]) &lt;&lt; endl;
+
+	system(&quot;pause&quot;);
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[皇后问题]]></title>
         <id>https://wfxt.github.io//post/huang-hou-wen-ti</id>
@@ -153,7 +280,7 @@ int main()
 </code></pre>
 <h3>思考题</h3>
 E代表数字0到9中的偶数数字，O代表奇数数字，请还原下列乘式。
-<pre>
+<pre style="background-color:white;">
   E E O  	        2 8 5
 ×   O O 	答案    × 3 9
  —————–		        —————

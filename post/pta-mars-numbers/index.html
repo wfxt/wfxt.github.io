@@ -17,7 +17,7 @@
 
   </head>
   <body>
-    <div class="main px-4 flex flex-col lg:flex-row">
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
       <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
   <div class="lg:sticky top-0">
     <div class="sidebar-content">
@@ -31,29 +31,9 @@
       
         <div class="animated fadeInLeft" style="animation-delay: 0.4s">
           <p class="my-4 text-gray-600 font-light hidden lg:block">
-            温故而知新
+            文章目录
           </p>
-          <div class="animated fadeInLeft social-container hidden lg:block" style="animation-delay: 0.6s">
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
+          <div class="toc-container hidden lg:block">
             
           </div>
         </div>
@@ -98,96 +78,157 @@
 </div>
 <div class="mask" onclick="closeMenu()">
 </div>
-      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4">
-        <h2 class="latest-article text-lg text-gray-700 mb-8">
-          <i class="remixicon-article-line"></i>
-          最新文章
-        </h2>
-        
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${0 * 0.2}s` }">
-    
-      <a href="https://wfxt.github.io//post/pta-mars-numbers" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
-        <div class="post-feature-image lazy w-full h-56 h-32 md:w-56 md:h-40" data-bg="'https://wfxt.github.io//post-images/pta-mars-numbers.jpg'">
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">PTA Mars Numbers</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-12-06 / 1 min read
         </div>
-      </a>
-    
-    <div class="content">
-      <a href="https://wfxt.github.io//post/pta-mars-numbers">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">PTA Mars Numbers</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
         
-      </div>
-      <div class="text-gray-400 text-sm font-light">2019-12-06 / 1 min read</div>
-    </div>
-  </section>
-
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${1 * 0.2}s` }">
-    
-      <a href="https://wfxt.github.io//post/huang-hou-wen-ti" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
-        <div class="post-feature-image lazy w-full h-56 h-32 md:w-56 md:h-40" data-bg="'https://wfxt.github.io//post-images/huang-hou-wen-ti.png'">
-        </div>
-      </a>
-    
-    <div class="content">
-      <a href="https://wfxt.github.io//post/huang-hou-wen-ti">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">皇后问题</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://wfxt.github.io//post-images/pta-mars-numbers.jpg" alt="">
         
-      </div>
-      <div class="text-gray-400 text-sm font-light">2019-12-04 / 3 min read</div>
-    </div>
-  </section>
+        <div class="post-content yue">
+          <p><a href = "https://pintia.cn/problem-sets/994805342720868352/problems/994805367156883456" style="text-decoration:none;" >题目</a></p>
+<pre style="background-color:white;">
+People on Mars count their numbers with base <b>13</b>:
 
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${2 * 0.2}s` }">
-    
-      <a href="https://wfxt.github.io//post/lian-xi" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
-        <div class="post-feature-image lazy w-full h-56 h-32 md:w-56 md:h-40" data-bg="'https://wfxt.github.io//post-images/lian-xi.jpg'">
+Zero on Earth is called "tret" on Mars.
+The numbers 1 to 12 on Earth is called "jan, feb, mar, apr, may, jun, jly, aug, sep, oct, nov, dec" on Mars, respectively.
+For the next higher digit, Mars people name the 12 numbers as "tam, hel, maa, huh, tou, kes, hei, elo, syy, lok, mer, jou", respectively.
+For examples, the number 29 on Earth is called "hel mar" on Mars; and "elo nov" on Mars corresponds to 115 on Earth. In order to help communication between people from these two planets, you are supposed to write a program for mutual translation between Earth and Mars number systems.
+
+Input Specification:
+Each input file contains one test case. For each case, the first line contains a positive integer N (<100). Then N lines follow, each contains a number in [0, 169), given either in the form of an Earth number, or that of Mars.
+
+Output Specification:
+For each number, print in a line the corresponding number in the other language.
+
+<em>Sample Input:</em>
+4
+29
+5
+elo nov
+tam
+
+<em>Sample Output:</em>
+hel mar
+may
+115
+13
+</pre>
+<br/>
+<p><b>代码不难，需要注意一下几点：</b><br/></p>
+<ul>
+<li>那个数组，一定一定不要打错了！<br/></li>
+<li>13进制，不是12进制！<br/></li>
+<li>需要注意13 26 39只需要输出高位即可，低位的0不需要输出<br/></li>
+<li>关于判断数字，不要拿长度啊，111的长度也是3呀<br/><br>
+<br/></li>
+</ul>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+string high[12] = { &quot;tam&quot;, &quot;hel&quot;, &quot;maa&quot;, &quot;huh&quot;, &quot;tou&quot;, &quot;kes&quot;, &quot;hei&quot;, &quot;elo&quot;, &quot;syy&quot;, &quot;lok&quot;, &quot;mer&quot;, &quot;jou&quot; };
+string low[13] = { &quot;tret&quot;, &quot;jan&quot;, &quot;feb&quot;, &quot;mar&quot;, &quot;apr&quot;, &quot;may&quot;, &quot;jun&quot;, &quot;jly&quot;, &quot;aug&quot;, &quot;sep&quot;, &quot;oct&quot;, &quot;nov&quot;, &quot;dec&quot; };
+
+string change(string ori)
+{
+	string res=&quot;&quot;;
+	int sum = 0;
+	// 若是数字
+	if (ori[0]&lt;='9' &amp;&amp; ori[0]&gt;='0')
+	{
+		int num = atoi(ori.c_str());
+		int h = num / 13 - 1;  // 是13进制不是12进制
+		int l = num % 13;
+		if (h == -1)
+			res += low[l];
+		else
+		{
+			if (num % 13 != 0) {
+				res.append(high[h]);
+				res.append(&quot; &quot;);
+				res.append(low[l]);
+			}
+			else
+				res.append(high[h]);
+		}
+	}
+
+	// 若是火星文
+	if(ori.size() &gt;= 3)
+	{
+		// 如果只有3位
+		if (ori.size() &lt;= 4) {
+			for (int i = 0; i &lt; 13; i++)
+			{
+				if (ori == low[i])
+					res.append(to_string(i));
+			}
+			// 只有高位，是乘，不是加
+			if (res == &quot;&quot;)
+			{
+				for (int i = 0; i &lt; 12; i++)
+				{
+					if (ori == high[i])
+						res.append(to_string((i+1) * 13));  // 都说是13进制啦
+				}
+			}
+		}
+		else {
+			string hh, ll;
+			hh = ori.substr(0, 3);
+			ll = ori.substr(4, 3);
+			for (int i = 0; i &lt; 12; i++)
+				if (hh == high[i])
+					sum += (i + 1) * 13;
+			for (int i = 0; i &lt; 13; i++)
+				if (ll == low[i])
+					sum += i;
+			res = to_string(sum); 
+		}
+	}
+	//cout &lt;&lt; res &lt;&lt; endl;
+	return res;
+}
+
+int main() {
+	int n = 0;
+	string input[100];
+	cin &gt;&gt; n;
+	getchar();
+	for (int i = 0; i &lt; n; i++)
+		getline(cin, input[i]);
+	for (int i = 0; i &lt; n; i++)
+		cout &lt;&lt; change(input[i]) &lt;&lt; endl;
+
+	system(&quot;pause&quot;);
+}
+</code></pre>
+
         </div>
-      </a>
-    
-    <div class="content">
-      <a href="https://wfxt.github.io//post/lian-xi">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">练习</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
+
         
-      </div>
-      <div class="text-gray-400 text-sm font-light">2019-12-03 / 4 min read</div>
-    </div>
-  </section>
 
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${3 * 0.2}s` }">
-    
-      <a href="https://wfxt.github.io//post/hello-gridea" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
-        <div class="post-feature-image lazy w-full h-56 h-32 md:w-56 md:h-40" data-bg="'https://wfxt.github.io//post-images/hello-gridea.png'">
-        </div>
-      </a>
-    
-    <div class="content">
-      <a href="https://wfxt.github.io//post/hello-gridea">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">Hello Gridea</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
-        <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
 
-      </div>
-      <div class="text-gray-400 text-sm font-light">2018-12-12 / 2 min read</div>
-    </div>
-  </section>
+        <div class="flex justify-between py-8">
+          
 
-        <div class="read-more">
+          
+            <div class="next-post">
+              <a href="https://wfxt.github.io//post/huang-hou-wen-ti">
+                <h3 class="post-title">
+                  皇后问题
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
           
         </div>
-        <div class="index-page">
-          <div class="pagination-container animated fadeIn">
-  
-  
-</div>
 
-        </div>
+        
+
       </div>
     </div>
 
