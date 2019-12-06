@@ -79,140 +79,49 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">练习</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">PAT(Top Level)1018 Subnumbers</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2019-12-03 / 4 min read
+          2019-12-06 / 2 min read
         </div>
         
-          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://wfxt.github.io//post-images/lian-xi.jpg" alt="">
-        
         <div class="post-content yue">
-          <!-- more -->
-<h3>（2011年预赛题)</h3>由键盘输入一个自然数Ｎ（1≤N≤9），要求程序在屏幕上输出如下图形。
-<p>Ｎ＝１时：　　　　　　　　Ｎ＝３时：　　　　　　　Ｎ＝４时：<br>
-　　１　　　　　　　　　　　　１１１１１　　　　　　　１１１１１１１<br>
-　　　　　　　　　　　　　　　１２２２１　　　　　　　１２２２２２１<br>
-　　　　　　　　　　　　　　　１２３２１　　　　　　　１２３３３２１<br>
-　　　　　　　　　　　　　　　１２２２１　　　　　　　１２３４３２１<br>
-　　　　　　　　　　　　　　　１１１１１　　　　　　　１２３３３２１<br>
-　　　　　　　　　　　　　　　　　　　　　　　　　　　１２２２２２１<br>
-　　　　　　　　　　　　　　　　　　　　　　　　　　　１１１１１１１<br>
-　　<em>注：应保证Ｎ在图形中只出现一次，且在中心。</em></p>
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-using namespace std;
-
-int main()
-{
-	int n = 0;
-	cout &lt;&lt; &quot;输入【1,9】的数： &quot;;
-	int a[20][20];
-	cin &gt;&gt; n;
-	for (int i = 0; i &lt; n; i++)
-	{
-		for(int row=i;row&lt;=2*n-2-i;row++)
-			for (int col = i; col &lt;= 2 * n - 2 - i; col++)
-			{
-				a[row][col] = i + 1;
-			}
-	}
-	
-	// 输出
-	for (int i = 0; i &lt; 2*n-1; i++)
-	{
-		for (int j = 0; j &lt; 2*n-1; j++)
-			cout &lt;&lt; a[i][j] &lt;&lt; &quot; &quot;;
-		cout &lt;&lt; endl;
-	}
-}
-
-</code></pre>
-<h3>思考题</h3>
-E代表数字0到9中的偶数数字，O代表奇数数字，请还原下列乘式。
-<pre style="background-color:white;">
-  E E O  	        2 8 5
-×   O O 	答案    × 3 9
- —————–		        —————
- E O E O   	      2 5 6 5
-  E O O             8 5 5
- ——————      	    ————–
-O O O O O 	     1 1 1 1 5
-</pre>
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-using namespace std;
-
-int main()
-{
-	int flag = 0;
-	int e[5] = { 0,2,4,6,8 };
-	int o[5] = { 1,3,5,7,9 };
-	for (int i = 0; i &lt; 5; i++)  // 被乘数的百位
-	{
-		for (int j = 0; j &lt; 5; j++)  // 被乘数的十位
-			for (int k = 0; k &lt; 5; k++)  // 被乘数的个位
-			{
-				for (int x = 0; x &lt; 5; x++)  // 乘数的个位
-				{
-					int x1 = o[x] * (e[i] * 100 + e[j] * 10 + o[k]);  // EOEO
-					if (x1 % 2 == 1 &amp;&amp; x1 / 10 % 2 == 0 &amp;&amp; x1 / 100 % 2 == 1 &amp;&amp; x1 / 1000 % 2 == 0)
-						flag = 1;
-					if (flag)
-					{
-						flag = 0;
-						for (int y = 0; y &lt; 5; y++)  // 乘数的十位
-						{
-							int y1 = o[y] * (e[i] * 100 + e[j] * 10 + o[k]);  // EOO
-							if (y1 % 2 == 1 &amp;&amp; y1 / 10 % 2 == 1 &amp;&amp; y1 / 100 % 2 == 0)
-								flag = 1;
-							if (flag)
-							{
-								flag = 0;
-								int res1 = (e[i] * 100 + e[j] * 10 + o[k]) * (o[y] * 10 + o[x]);
-								if (res1 % 2 == 1 &amp;&amp; res1 / 10 % 2 == 1 &amp;&amp; res1 / 100 % 2 == 1 &amp;&amp; res1 / 1000 % 2 == 1 &amp;&amp; res1 / 10000 % 2 == 1)
-									flag = 1;
-								if (flag)
-									cout &lt;&lt; e[i] * 100 + e[j] * 10 + o[k] &lt;&lt; &quot;*&quot; &lt;&lt; o[y] * 10 + o[x] &lt;&lt; &quot; = &quot; &lt;&lt; (e[i] * 100 + e[j] * 10 + o[k]) * (o[y] * 10 + o[x]);
-							}
-						}
-					}
-				}
-			}
-	}
-}
-
-// 285*39 = 11115
-</code></pre>
-<br/>
-<h3>高精度算法</h3>
-输入两个整数a和b，输出这两个整数的和。a和b都不超过100位。
-<br/>
-<em>注意:a,b的取值范围</em>
-代码
+          <p>Given a positive integer N, let us define a subnumber of N as a consecutive number of digits NOT starting with 0. For example if N=1021, it has 7 subnumbers, namely, 1, 10, 102, 1021, 2, 21 and 1 (again). Here is your task: please calculate the sum of all the subnumbers of N. For 1021, the sum is 1+10+102+1021+2+21+1 = 1158. Since the result may be very large, output the answer modulo 1000000007 (109+7) please.<br>
+<br/><br>
+Input Specification:<br>
+Each input file contains one test case, which gives the integer N (0&lt;N&lt;10100000) in a line.<br>
+<br/><br>
+Output Specification:<br>
+Print in a line the sum of all N's subnumbers (modulo 1000000007).<br>
+<br/><br>
+Sample Input:<br>
+1234567890123456789<br>
+Sample Output:<br>
+332876913<br>
+<img src="https://wfxt.github.io//post-images/1575622768946.jpg" alt="Subnumber"><br>
+通过上图容易总结出规律，用容器可以很好的将其实现。</p>
+<!-- more -->
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;string&gt;
-#include &lt;algorithm&gt;
+#include &lt;vector&gt;
 using namespace std;
 
-int main()
-{
-	string a, b;
-	int xa[500] = {}, xb[500] = {}, sum[500] = {};
-	cin &gt;&gt; a &gt;&gt; b;
-	for (int i = 0;i &lt; a.length(); i++)  // 下标0为最高位
-		xa[i] = a[a.length() - 1 - i] - '0';  // 反过来，让下标0为个数
-	for (int i = 0; i &lt; b.length(); i++)
-		xb[i] = b[b.length() - 1 - i] - '0';
-	int len = max(a.length(), b.length());
-	for (int i = 0; i &lt; len; i++)
-		sum[i] = xa[i] + xb[i];
-	for (int i = 0; i &lt; len; i++)
+int main() {
+	string s;
+	cin &gt;&gt; s;
+	long long ans = 0, sum = 0, mod = 1000000007;
+	vector&lt;long long&gt;v(s.size(), 1);
+	for (int i = v.size() - 2; i &gt;= 0; --i)//计算每一位对应的所要乘的因子
+		v[i] = (v[i + 1] * 10 + 1) % mod;
+	for (int i = v.size() - 1; i &gt;= 0; --i)//从低位向高位进行相乘并加和
 	{
-		sum[i + 1] += sum[i] / 10;  // 加低位向高位的进位
-		sum[i] = sum[i] % 10;
+		if (s[i] != '0') {  //Can't be omitted, otherwise an extra sum will be added
+			sum += v[i] * (s[i] - '0');
+			ans = (ans + sum) % mod;
+		}
 	}
-	if (sum[len])  // 如果最高位进位了
-		cout &lt;&lt; sum[len];
-	for (int i = len - 1; i &gt;= 0; i--)  // 从后往前，从最高位开始输出(因为前面反过来了)
-		cout &lt;&lt; sum[i];
+	printf(&quot;%lld&quot;, ans);
+	system(&quot;pause&quot;);
+	return 0;
 }
 </code></pre>
 
@@ -223,21 +132,12 @@ int main()
 
         <div class="flex justify-between py-8">
           
-            <div class="prev-post">
-              <a href="https://wfxt.github.io//post/huang-hou-wen-ti">
-                <h3 class="post-title">
-                  <i class="remixicon-arrow-left-line"></i>
-                  皇后问题
-                </h3>
-              </a>
-            </div>
-          
 
           
             <div class="next-post">
-              <a href="https://wfxt.github.io//post/hello-gridea">
+              <a href="https://wfxt.github.io//post/pta-mars-numbers">
                 <h3 class="post-title">
-                  Hello Gridea
+                  PTA Mars Numbers
                   <i class="remixicon-arrow-right-line"></i>
                 </h3>
               </a>

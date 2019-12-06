@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wfxt.github.io/</id>
     <title>wfxt</title>
-    <updated>2019-12-06T06:31:15.872Z</updated>
+    <updated>2019-12-06T09:00:46.230Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wfxt.github.io/"/>
     <link rel="self" href="https://wfxt.github.io//atom.xml"/>
@@ -10,6 +10,68 @@
     <logo>https://wfxt.github.io//images/avatar.png</logo>
     <icon>https://wfxt.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, wfxt</rights>
+    <entry>
+        <title type="html"><![CDATA[PAT(Top Level)1018 Subnumbers]]></title>
+        <id>https://wfxt.github.io//post/pattop-level1018-subnumbers</id>
+        <link href="https://wfxt.github.io//post/pattop-level1018-subnumbers">
+        </link>
+        <updated>2019-12-06T08:50:34.000Z</updated>
+        <summary type="html"><![CDATA[<p>Given a positive integer N, let us define a subnumber of N as a consecutive number of digits NOT starting with 0. For example if N=1021, it has 7 subnumbers, namely, 1, 10, 102, 1021, 2, 21 and 1 (again). Here is your task: please calculate the sum of all the subnumbers of N. For 1021, the sum is 1+10+102+1021+2+21+1 = 1158. Since the result may be very large, output the answer modulo 1000000007 (109+7) please.<br>
+<br/><br>
+Input Specification:<br>
+Each input file contains one test case, which gives the integer N (0&lt;N&lt;10100000) in a line.<br>
+<br/><br>
+Output Specification:<br>
+Print in a line the sum of all N's subnumbers (modulo 1000000007).<br>
+<br/><br>
+Sample Input:<br>
+1234567890123456789<br>
+Sample Output:<br>
+332876913<br>
+<img src="https://wfxt.github.io//post-images/1575622768946.jpg" alt="Subnumber"><br>
+通过上图容易总结出规律，用容器可以很好的将其实现。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Given a positive integer N, let us define a subnumber of N as a consecutive number of digits NOT starting with 0. For example if N=1021, it has 7 subnumbers, namely, 1, 10, 102, 1021, 2, 21 and 1 (again). Here is your task: please calculate the sum of all the subnumbers of N. For 1021, the sum is 1+10+102+1021+2+21+1 = 1158. Since the result may be very large, output the answer modulo 1000000007 (109+7) please.<br>
+<br/><br>
+Input Specification:<br>
+Each input file contains one test case, which gives the integer N (0&lt;N&lt;10100000) in a line.<br>
+<br/><br>
+Output Specification:<br>
+Print in a line the sum of all N's subnumbers (modulo 1000000007).<br>
+<br/><br>
+Sample Input:<br>
+1234567890123456789<br>
+Sample Output:<br>
+332876913<br>
+<img src="https://wfxt.github.io//post-images/1575622768946.jpg" alt="Subnumber"><br>
+通过上图容易总结出规律，用容器可以很好的将其实现。</p>
+<!-- more -->
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int main() {
+	string s;
+	cin &gt;&gt; s;
+	long long ans = 0, sum = 0, mod = 1000000007;
+	vector&lt;long long&gt;v(s.size(), 1);
+	for (int i = v.size() - 2; i &gt;= 0; --i)//计算每一位对应的所要乘的因子
+		v[i] = (v[i + 1] * 10 + 1) % mod;
+	for (int i = v.size() - 1; i &gt;= 0; --i)//从低位向高位进行相乘并加和
+	{
+		if (s[i] != '0') {  //Can't be omitted, otherwise an extra sum will be added
+			sum += v[i] * (s[i] - '0');
+			ans = (ans + sum) % mod;
+		}
+	}
+	printf(&quot;%lld&quot;, ans);
+	system(&quot;pause&quot;);
+	return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[PTA Mars Numbers]]></title>
         <id>https://wfxt.github.io//post/pta-mars-numbers</id>
