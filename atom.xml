@@ -2,14 +2,23 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wfxt.github.io/</id>
     <title>wfxt</title>
-    <updated>2019-12-06T09:08:29.377Z</updated>
+    <updated>2020-06-23T18:46:42.821Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wfxt.github.io/"/>
     <link rel="self" href="https://wfxt.github.io//atom.xml"/>
     <subtitle>温故而知新</subtitle>
     <logo>https://wfxt.github.io//images/avatar.png</logo>
     <icon>https://wfxt.github.io//favicon.ico</icon>
-    <rights>All rights reserved 2019, wfxt</rights>
+    <rights>All rights reserved 2020, wfxt</rights>
+    <entry>
+        <title type="html"><![CDATA[滑动窗口]]></title>
+        <id>https://wfxt.github.io//post/hua-dong-chuang-kou</id>
+        <link href="https://wfxt.github.io//post/hua-dong-chuang-kou">
+        </link>
+        <updated>2020-06-23T18:45:30.000Z</updated>
+        <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://wfxt.github.io//post-images/1592937979137.gif" alt=""></figure>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[PAT(Top Level)1018 Subnumbers]]></title>
         <id>https://wfxt.github.io//post/pattop-level1018-subnumbers</id>
