@@ -216,7 +216,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-06-14 20:06:11 / Modified: 20:11:34" itemprop="dateCreated datePublished" datetime="2022-06-14T20:06:11+08:00">2022-06-14</time>
+      <time title="Created: 2022-06-14 20:06:11 / Modified: 20:16:36" itemprop="dateCreated datePublished" datetime="2022-06-14T20:06:11+08:00">2022-06-14</time>
     </span>
 
   
@@ -258,7 +258,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">a</span> <span class="operator">=</span> <span class="string">&quot;a&quot;</span>;</span><br><span class="line"><span class="keyword">final</span> <span class="type">String</span> <span class="variable">b</span> <span class="operator">=</span> <span class="string">&quot;b&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">ab1</span> <span class="operator">=</span> <span class="string">&quot;ab&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">ab2</span> <span class="operator">=</span> a + b;</span><br><span class="line"><span class="type">String</span> <span class="variable">ab3</span> <span class="operator">=</span> a + <span class="string">&quot;b&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">ab4</span> <span class="operator">=</span> <span class="string">&quot;a&quot;</span> + b;</span><br><span class="line"><span class="type">String</span> <span class="variable">ab5</span> <span class="operator">=</span> <span class="string">&quot;a&quot;</span> + <span class="string">&quot;b&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">ab6</span> <span class="operator">=</span> <span class="string">&quot;a&quot;</span> + <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;b&quot;</span>);</span><br><span class="line"></span><br><span class="line">System.out.println(ab1 == ab2); <span class="comment">//false</span></span><br><span class="line">System.out.println(ab1 == ab3); <span class="comment">//false</span></span><br><span class="line">System.out.println(ab2 == ab3); <span class="comment">//false</span></span><br><span class="line">System.out.println(ab1 == ab4); <span class="comment">//true</span></span><br><span class="line">System.out.println(ab2 == ab4); <span class="comment">//false</span></span><br><span class="line">System.out.println(ab3 == ab4); <span class="comment">//false</span></span><br><span class="line">System.out.println(ab1 == ab5); <span class="comment">//true</span></span><br><span class="line">System.out.println(ab1 == ab6); <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>注意：new创建的字符串对象不会进入字符还串池</p>
+<p>注意：new创建的字符串对象不会进入字符串池</p>
 </blockquote>
 
       
