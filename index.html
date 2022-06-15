@@ -248,7 +248,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-06-15 17:44:10 / Modified: 18:21:37" itemprop="dateCreated datePublished" datetime="2022-06-15T17:44:10+08:00">2022-06-15</time>
+      <time title="Created: 2022-06-15 17:44:10 / Modified: 18:34:29" itemprop="dateCreated datePublished" datetime="2022-06-15T17:44:10+08:00">2022-06-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -303,19 +303,21 @@
 <p><strong>具体操作：</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- user1用户只能在localhost这个IP登录mysql服务器</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">&#x27;user1&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;123&#x27;</span>;</span><br><span class="line"><span class="comment">-- user2用户可以在任何电脑上登录mysql服务器</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">&#x27;user2&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;123&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
-<h2 id="1-2-授权用户"><a href="#1-2-授权用户" class="headerlink" title="1.2 授权用户"></a>1.2 授权用户</h2><p>用户创建之后，基本没什么权限！需要给用户授权<br><img src="MySQL_Day3/imgs/DCL02.png"></p>
+<h2 id="1-2-授权用户"><a href="#1-2-授权用户" class="headerlink" title="1.2 授权用户"></a>1.2 授权用户</h2><p>用户创建之后，基本没什么权限！需要给用户授权</p>
+
+
 <p><strong>授权格式</strong>：<br><code>GRANT 权限1, 权限2... ON 数据库名.表名 TO &#39;用户名&#39;@&#39;主机名&#39;;</code><br><strong>关键字说明</strong>：<br>​      1. <code>GRANT</code> 授权关键字<br>​      2. 授予用户的权限，如<code>SELECT</code>，<code>INSERT</code>，<code>UPDATE</code>等。如果要授予所的权限则使用<code>ALL</code><br>​      3. <code>数据库名.表名</code>：该用户可以操作哪个数据库的哪些表。如果要授予该用户对所有数据库和表的相应操作权限则可用*表示，如<code>*.*</code><br>​      4. <code>&#39;用户名&#39;@&#39;主机名&#39;</code>: 给哪个用户授权</p>
 <p><strong>具体操作：</strong></p>
 <ol>
 <li><p>给user1用户分配对test这个数据库操作的权限</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">CREATE</span>,<span class="keyword">ALTER</span>,<span class="keyword">DROP</span>,<span class="keyword">INSERT</span>,<span class="keyword">UPDATE</span>,<span class="keyword">DELETE</span>,<span class="keyword">SELECT</span> <span class="keyword">ON</span> test.<span class="operator">*</span> <span class="keyword">TO</span> <span class="string">&#x27;user1&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
-<p><img src="MySQL_Day3/imgs/DCL03.png"></p>
+<p><img src="/MySQL_Day3/imgs/DCL03.png"></p>
 </li>
 <li><p>给user2用户分配对所有数据库操作的权限</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> <span class="keyword">ON</span> <span class="operator">*</span>.<span class="operator">*</span> <span class="keyword">TO</span> <span class="string">&#x27;user2&#x27;</span>@<span class="string">&#x27;%&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
-<p><img src="MySQL_Day3/imgs/DCL04.png"></p>
+<p><img src="/MySQL_Day3/imgs/DCL04.png"></p>
 </li>
 </ol>
 <h2 id="1-3-撤销授权"><a href="#1-3-撤销授权" class="headerlink" title="1.3 撤销授权"></a>1.3 撤销授权</h2><p><code>REVOKE  权限1, 权限2... ON 数据库.表名 FROM &#39;用户名&#39;@&#39;主机名&#39;;</code></p>
@@ -324,7 +326,7 @@
 <li><p>撤销user1用户对test操作的权限</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span> <span class="keyword">ALL</span> <span class="keyword">ON</span> test.<span class="operator">*</span> <span class="keyword">FROM</span> <span class="string">&#x27;user1&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
-<p><img src="MySQL_Day3/imgs/DCL05.png"></p>
+<p><img src="/MySQL_Day3/imgs/DCL05.png"></p>
 </li>
 </ul>
 <h2 id="1-4-查看权限"><a href="#1-4-查看权限" class="headerlink" title="1.4 查看权限"></a>1.4 查看权限</h2><p><code>SHOW GRANTS FOR &#39;用户名&#39;@&#39;主机名&#39;;</code><br><strong>具体操作：</strong></p>
@@ -332,7 +334,7 @@
 <li><p>查看user1用户的权限</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> GRANTS <span class="keyword">FOR</span> <span class="string">&#x27;user1&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
-<p><img src="MySQL_Day3/imgs/DCL06.png"></p>
+<p><img src="/MySQL_Day3/imgs/DCL06.png"></p>
 </li>
 </ul>
 <h2 id="1-5-删除用户"><a href="#1-5-删除用户" class="headerlink" title="1.5 删除用户"></a>1.5 删除用户</h2><p><code>DROP USER &#39;用户名&#39;@&#39;主机名&#39;;</code><br><strong>具体操作：</strong></p>
@@ -348,7 +350,7 @@
    <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`<span class="keyword">set</span> password <span class="keyword">for</span> <span class="string">&#x27;user1&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> <span class="operator">=</span> password(<span class="string">&#x27;666666&#x27;</span>);`</span><br></pre></td></tr></table></figure>
 
 <h1 id="第二章-JDBC概述"><a href="#第二章-JDBC概述" class="headerlink" title="第二章  JDBC概述"></a>第二章  JDBC概述</h1><h2 id="2-1-JDBC概述"><a href="#2-1-JDBC概述" class="headerlink" title="2.1 JDBC概述"></a>2.1 JDBC概述</h2><p>Java DataBase Connectivity （Java对数据库的连接技术）。Java程序数据都是临时存储，保证数据不丢失，将数据存储在数据库。数据库是不可能让用户直接操作的，提供以Java的形态操作数据库了。必须要学习JDBC技术</p>
-<p><img src="MySQL_Day3/imgs/1.png"></p>
+<p><img src="/MySQL_Day3/imgs/1.png"></p>
 <ul>
 <li><p>数据库的驱动程序（Driver）</p>
 <ul>
@@ -367,7 +369,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="MySQL_Day3/imgs/2.png"></p>
+<p><img src="/MySQL_Day3/imgs/2.png"></p>
 <h2 id="2-2-JDBC相关类和接口"><a href="#2-2-JDBC相关类和接口" class="headerlink" title="2.2 JDBC相关类和接口"></a>2.2 JDBC相关类和接口</h2><ul>
 <li><code>java.sql.DriverManager</code> 管理数据库驱动程序</li>
 <li><code>java.sql.Connection</code>接口：表示连接到数据库的对象</li>
@@ -395,36 +397,35 @@
 <ul>
 <li>连接地址错了</li>
 </ul>
-<p><img src="MySQL_Day3/imgs/3.png"></p>
+<p><img src="/MySQL_Day3/imgs/3.png"></p>
 <ul>
 <li>端口号和上面出现的错误是一样的</li>
 <li>数据库名写错</li>
 </ul>
-<p><img src="MySQL_Day3/imgs/4.png"></p>
+<p><img src="/MySQL_Day3/imgs/4.png"></p>
 <ul>
 <li>登录数据库用户名或者密码错误</li>
 </ul>
-<p><img src="MySQL_Day3/imgs/5.png"></p>
+<p><img src="/MySQL_Day3/imgs/5.png"></p>
 <ul>
 <li>SQL语句中的表名错误</li>
 </ul>
-<p><img src="MySQL_Day3/imgs/6.png"></p>
+<p><img src="/MySQL_Day3/imgs/6.png"></p>
 <ul>
 <li>SQL语句的语法错误</li>
 </ul>
-<p><img src="MySQL_Day3/imgs/7.png"></p>
+<p><img src="/MySQL_Day3/imgs/7.png"></p>
 <ul>
 <li>SQL语句中数据表的字段和值不对应</li>
 </ul>
-<p><img src="MySQL_Day3/imgs/8.png"></p>
+<p><img src="/MySQL_Day3/imgs/8.png"></p>
 <ul>
 <li>数据表字段名写错</li>
 </ul>
-<p><img src="MySQL_Day3/imgs/9.png"></p>
+<p><img src="/MySQL_Day3/imgs/9.png"></p>
 </li>
-</ul>
-<ul>
-<li>驱动程序的重复注册</li>
+<li><p>驱动程序的重复注册</p>
+</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 数据库驱动注册，重复问题</span></span><br><span class="line"><span class="comment"> * 导致驱动重复被注册，浪费内存</span></span><br><span class="line"><span class="comment"> * 驱动包中 Driver类的源码</span></span><br><span class="line"><span class="comment"> * 自己new对象，源码中static代码块，也new对象</span></span><br><span class="line"><span class="comment"> * 避免驱动的重复注册问题，new一次</span></span><br><span class="line"><span class="comment"> * 使用反射技术实现，将Driver类加载到内存</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">register</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    Class.forName(<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);</span><br><span class="line">    <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;jdbc:mysql://localhost:3306/mydb2&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">user</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">    <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> DriverManager.getConnection(url,user,password);</span><br><span class="line">    System.out.println(<span class="string">&quot;con = &quot;</span> + con);</span><br><span class="line">    con.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -456,18 +457,18 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 自定义的工具类：数据库操作的重复进行抽取</span></span><br><span class="line"><span class="comment"> * 抽取到方法中，直接调用即可</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JdbcUtils</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span>  String driver;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span>  String url;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span>  String user;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span>  String password;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 工具类：获取数据库连接的四大基本信息，通过读取配置文件</span></span><br><span class="line"><span class="comment">     * 读取配置文件操作，就执行一次，静态代码块</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//获取当前类的加载器</span></span><br><span class="line">            <span class="type">ClassLoader</span> <span class="variable">classLoader</span> <span class="operator">=</span> JdbcUtils.class.getClassLoader();</span><br><span class="line">            <span class="comment">//类加载器获取IO流，输入流，自动从src下读取文件</span></span><br><span class="line">            <span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> classLoader.getResourceAsStream(<span class="string">&quot;db.properties&quot;</span>);</span><br><span class="line">            <span class="comment">//集合键值对</span></span><br><span class="line">            <span class="type">Properties</span> <span class="variable">prop</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">            prop.load(in);</span><br><span class="line">            <span class="comment">//取出集合中的键值对</span></span><br><span class="line">            driver = prop.getProperty(<span class="string">&quot;driver&quot;</span>);<span class="comment">//驱动类名</span></span><br><span class="line">            url = prop.getProperty(<span class="string">&quot;url&quot;</span>);<span class="comment">//数据库连接地址</span></span><br><span class="line">            user = prop.getProperty(<span class="string">&quot;user&quot;</span>);<span class="comment">//数据库登录用户名</span></span><br><span class="line">            password = prop.getProperty(<span class="string">&quot;password&quot;</span>);<span class="comment">//登录数据库密码</span></span><br><span class="line">            <span class="comment">//注册驱动程序</span></span><br><span class="line">            Class.forName(driver);</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception ex)&#123;</span><br><span class="line">            ex.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 定义方法：保存共性代码</span></span><br><span class="line"><span class="comment">     * 要求可以连接数据库</span></span><br><span class="line"><span class="comment">     * 返回数据库的连接对象Connection接口实现类</span></span><br><span class="line"><span class="comment">     * 方法没有调用过类中的非静态成员，可以定义为静态方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Connection <span class="title function_">getConnection</span><span class="params">()</span><span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="comment">//获取数据库连接对象</span></span><br><span class="line">        <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> DriverManager.getConnection(url,user,password);</span><br><span class="line">        <span class="keyword">return</span> con;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//定义方法释放资源,连接对象，SQL执行对象，结果集对象</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">close</span><span class="params">(ResultSet rs, Statement stat,Connection con)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (rs != <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                rs.close();</span><br><span class="line">            &#125;<span class="keyword">catch</span> (SQLException ex)&#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (stat != <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                stat.close();</span><br><span class="line">            &#125;<span class="keyword">catch</span> (SQLException ex)&#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (con != <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                con.close();</span><br><span class="line">            &#125;<span class="keyword">catch</span> (SQLException ex)&#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="2-7-lombok插件"><a href="#2-7-lombok插件" class="headerlink" title="2.7 lombok插件"></a>2.7 lombok插件</h2><p>lombok插件班助我们生成get/set方法的</p>
+<h2 id="2-7-lombok插件"><a href="#2-7-lombok插件" class="headerlink" title="2.7 lombok插件"></a>2.7 lombok插件</h2><p>lombok插件班助我们生成get&#x2F;set方法的</p>
 <ul>
 <li>安装插件 – 连接网络</li>
 </ul>
-<p><img src="MySQL_Day3/imgs/10.png"></p>
-<p><img src="MySQL_Day3/imgs/11.png" alt="11"></p>
+<p><img src="/MySQL_Day3/imgs/10.png"></p>
+<p><img src="/MySQL_Day3/imgs/11.png" alt="11"></p>
 <ul>
 <li>添加lombok.jar包</li>
 <li>开启IDEA的注解编译开关</li>
 </ul>
-<p><img src="MySQL_Day3/imgs/12.png"></p>
-<h2 id="2-8-查询数据表存储JavaBean"><a href="#2-8-查询数据表存储JavaBean" class="headerlink" title="2.8 查询数据表存储JavaBean"></a>2.8 查询数据表存储JavaBean</h2><p><img src="MySQL_Day3/imgs/13.png"></p>
+<p><img src="/MySQL_Day3/imgs/12.png"></p>
+<h2 id="2-8-查询数据表存储JavaBean"><a href="#2-8-查询数据表存储JavaBean" class="headerlink" title="2.8 查询数据表存储JavaBean"></a>2.8 查询数据表存储JavaBean</h2><p><img src="/MySQL_Day3/imgs/13.png"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  查询数据表，每行数据存储JavaBean对象Product</span></span><br><span class="line"><span class="comment">     *  出现14个Product对象，存储List集合</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">selectJavaBean</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="comment">//定义需要的操作数据库的对象</span></span><br><span class="line">    <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">Statement</span> <span class="variable">stat</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="comment">//工具类获取连接对象</span></span><br><span class="line">        con = JdbcUtils.getConnection();</span><br><span class="line">        <span class="comment">//连接对象con，获取执行对象</span></span><br><span class="line">        stat = con.createStatement();</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;select * from product&quot;</span>;</span><br><span class="line">        <span class="comment">//执行查询语句，返回结果集对象</span></span><br><span class="line">        rs = stat.executeQuery(sql);</span><br><span class="line">        <span class="comment">//创建集合对象</span></span><br><span class="line">        List&lt;Product&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="comment">//循环遍历查询结果集</span></span><br><span class="line">        <span class="keyword">while</span> (rs.next())&#123;</span><br><span class="line">            <span class="comment">//rs.next()方法返回true，有一行结果集，对应一个JavaBean对象</span></span><br><span class="line">            <span class="type">Product</span> <span class="variable">product</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Product</span>();</span><br><span class="line">            <span class="comment">//取出查询结果集中的字段值，存储在javaBean对象中</span></span><br><span class="line">            product.setPid( rs.getInt(<span class="string">&quot;pid&quot;</span>) );</span><br><span class="line">            product.setPname( rs.getString(<span class="string">&quot;pname&quot;</span>) );</span><br><span class="line">            product.setPrice( rs.getDouble(<span class="string">&quot;price&quot;</span>) );</span><br><span class="line">            product.setNum( rs.getInt(<span class="string">&quot;num&quot;</span>) );</span><br><span class="line">            product.setCno( rs.getInt(<span class="string">&quot;cno&quot;</span>) );</span><br><span class="line">            <span class="comment">//JavaBean对象存储集合</span></span><br><span class="line">            list.add(product);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//遍历集合</span></span><br><span class="line">        <span class="keyword">for</span> (Product p : list)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;p = &quot;</span> + p);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">catch</span> (Exception ex)&#123;</span><br><span class="line">        ex.printStackTrace();</span><br><span class="line">    &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="comment">//释放资源</span></span><br><span class="line">        JdbcUtils.close(rs,stat,con);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="第三章-PreparedStatement接口"><a href="#第三章-PreparedStatement接口" class="headerlink" title="第三章 PreparedStatement接口"></a>第三章 PreparedStatement接口</h1><h2 id="3-1-SQL注入攻击"><a href="#3-1-SQL注入攻击" class="headerlink" title="3.1 SQL注入攻击"></a>3.1 SQL注入攻击</h2><p>利用数据库SQL语句（“漏洞”）的问题进行攻击，造成数据的丢失，数据的泄露。</p>
@@ -598,7 +599,7 @@
 
 <p>由代码结果我们可以知道，采用new创建的字符串对象不进入字符串池。而通过字符串相加，由于都是静态字符串，故会添加到字符串池，但若其中含有对象，(如f中的e)则不会进入字符串池。  </p>
 <p>字符串一旦进入字符串池中，就会先查找池中有无此对象。如果有此对象，则让对象引用指向此对象。如果无此对象，则先创建此对象，再让对象引用指向此对象。    </p>
-<p>掌握以上知识，对于equals和==也有了进一步的理解。显然，在定义变量的时候赋值，如果赋值的是静态的字符串，就会执行进入字符串池的操作，如果池中含有该字符串，则返回引用。     </p>
+<p>掌握以上知识，对于equals和&#x3D;&#x3D;也有了进一步的理解。显然，在定义变量的时候赋值，如果赋值的是静态的字符串，就会执行进入字符串池的操作，如果池中含有该字符串，则返回引用。     </p>
 <hr>
 <h2 id="String和final"><a href="#String和final" class="headerlink" title="String和final"></a>String和final</h2><p>final可以修饰类，方法和变量，并且被修饰的类或方法，被final修饰的类不能被继承，即它不能拥有自己的子类，被final修饰的方法不能被重写， final修饰的变量，无论是类属性、对象属性、形参还是局部变量，都需要进行初始化操作。首先我们都知道，String的源码本身就被final修饰，但是final修饰的String代表了String的不可继承性，final修饰的char[]代表了被存储的数据不可更改性。但是，虽然final代表了不可变，但仅仅是引用地址不可变，并不代表了数组本身不会变。  </p>
 <p>在String前<strong>再</strong>加一个final是固定了它的指引，让他不会再指向别的地址。当加上final以后，这个值其实就已经在常量池中存在了，当调用这个变量时会把这个变量时，程序会把它<strong>当成一个常量</strong>来对待，请看如下代码。</p>
@@ -709,19 +710,19 @@
 </ul>
 </li>
 <li><blockquote>
-<p>公式：m=(当前页数 - 1) * 每页显示的条数</p>
+<p>公式：m&#x3D;(当前页数 - 1) * 每页显示的条数</p>
 </blockquote>
 </li>
 <li><p>总数据量有多少： select count(1) from 表名</p>
 </li>
-<li><p>总页数：总数据量 / 每页显示条数，向上取整</p>
+<li><p>总页数：总数据量 &#x2F; 每页显示条数，向上取整</p>
 </li>
 </ul>
-<p><img src="imgs/1.png"></p>
+<p><img src="/imgs/1.png"></p>
 <h1 id="第一章-数据库三范式"><a href="#第一章-数据库三范式" class="headerlink" title="第一章 数据库三范式"></a>第一章 数据库三范式</h1><p>好的数据库设计对数据的存储性能和后期的程序开发，都会产生重要的影响。建立科学的，规范的数据库就需要满足一些规则来优化数据的设计和存储，这些规则就称为范式。</p>
 <h2 id="1-1-第一范式-确保每列保持原子性"><a href="#1-1-第一范式-确保每列保持原子性" class="headerlink" title="1.1 第一范式: 确保每列保持原子性"></a>1.1 第一范式: <strong>确保每列保持原子性</strong></h2><p>第一范（1NF）式是最基本的范式。如果数据库表中的所有字段值都是不可分解的原子值，就说明该数据库表满足了第一范式。</p>
 <p>第一范式的合理遵循需要根据系统的实际需求来定。比如某些数据库系统中需要用到“地址”这个属性，本来直接将“地址”属性设计成一个数据库表的字段就行。但是如果系统经常会访问“地址”属性中的“城市”部分，那么就非要将“地址”这个属性重新拆分为省份、城市、详细地址等多个部分进行存储，这样在对地址中某一部分操作的时候将非常方便。这样设计才算满足了数据库的第一范式，如下表所示。</p>
-<p><img src="imgs/tu_11.png"></p>
+<p><img src="/imgs/tu_11.png"></p>
 <p>如果不遵守第一范式，查询出数据还需要进一步处理（查询不方便）。遵守第一范式，需要什么字段的数据就查询什么数据（方便查询）</p>
 <h2 id="1-2-第二范式-确保表中的每行都能唯一区分"><a href="#1-2-第二范式-确保表中的每行都能唯一区分" class="headerlink" title="1.2 第二范式: 确保表中的每行都能唯一区分"></a>1.2 第二范式: <strong>确保表中的每行都能唯一区分</strong></h2><p>第二范式（2NF)第二范式（2NF）是在第一范式（1NF）的基础上建立起来的，即满足第二范式（2NF）必须先满足第一范式（1NF）。第二范式（2NF）要求数据库表中的每个实例或行必须可以被惟一的区分。为实现区分通常需要为表加上一个列，以存储各个实例的惟一标识。</p>
 <h2 id="1-3-第三范式-3NF-非主键字段不能相互依赖"><a href="#1-3-第三范式-3NF-非主键字段不能相互依赖" class="headerlink" title="1.3 第三范式: 3NF:非主键字段不能相互依赖"></a>1.3 第三范式: <strong>3NF:非主键字段不能相互依赖</strong></h2><p>比如student表，班级编号受人员编号的影响，如果在这个表中再插入班级的班主任、数学老师等信息，你们觉得这样合适吗？肯定不合适，因为学生有多个，这样就会造成班级有多个，那么每个班级的班主任、数学老师都会出现多条数据，而我们理想中的效果应该是一条班级信息对应一个班主任和数学老师，这样更易于我们理解，</p>
@@ -845,7 +846,7 @@
 
 <p>集合：并集，交集，子集</p>
 <blockquote>
-<p>查询不出现乘积，带有条件，主表的主键=从表的外键</p>
+<p>查询不出现乘积，带有条件，主表的主键&#x3D;从表的外键</p>
 </blockquote>
 <h2 id="4-3-内连接查询"><a href="#4-3-内连接查询" class="headerlink" title="4.3 内连接查询"></a>4.3 内连接查询</h2><ul>
 <li>隐式内连接查询公式：</li>
@@ -966,7 +967,7 @@
 <p>可以存储数据的仓库就是数据库。记事本，Excel存储数据不可行的。数据库虽然是持久化的，但是对于数据的操作很不方便，数据不能共享。数据库软件:按照特定格式存储数据，实现数据的简单操作，实现数据的共享，实时更新。</p>
 <p>数据库软件分类：关系型数据库，非关系型数据库</p>
 <h2 id="1-2-MySQL概述"><a href="#1-2-MySQL概述" class="headerlink" title="1.2  MySQL概述"></a>1.2  MySQL概述</h2><p>MySQL<strong>是一种开放源代码的关系型数据库管理系统，开发者为瑞典MySQL AB公司。在2008年1月16号被Sun公司收购。而2009年,SUN又被Oracle收购。目前 MySQL被广泛地应用在Internet上的中小型网站中。由于其</strong>体积小、速度快、总体拥有成本低，尤其是开放源码这一特点，使得很多互联网公司选择了MySQL作为网站数据库（Facebook, Twitter, YouTube，阿里的蚂蚁金服，去哪儿，魅族，百度外卖，腾讯）。</p>
-<p><img src="imgs/1557377559776.png" alt="1557377559776"></p>
+<p><img src="/imgs/1557377559776.png" alt="1557377559776"></p>
 <h2 id="1-3-DBMS"><a href="#1-3-DBMS" class="headerlink" title="1.3 DBMS"></a>1.3 DBMS</h2><ul>
 <li>什么是数据库管理系统</li>
 </ul>
@@ -987,25 +988,25 @@
 <li><p>安装MySQL</p>
 </li>
 </ul>
-<p><img src="imgs/1.png"></p>
-<p><img src="imgs/2.png" alt="2"></p>
-<p><img src="imgs/3.png" alt="3"></p>
-<p><img src="imgs/4.png" alt="4"></p>
-<p><img src="imgs/5.png" alt="5"></p>
-<p><img src="imgs/6.png" alt="6"></p>
-<p><img src="imgs/7.png" alt="7"></p>
-<p><img src="imgs/8.png" alt="8"></p>
-<p><img src="imgs/9.png" alt="9"></p>
-<p><img src="imgs/10.png" alt="10"></p>
-<p><img src="imgs/11.png" alt="11"></p>
-<p><img src="imgs/12.png" alt="12"></p>
-<p><img src="imgs/13.png" alt="13"></p>
-<p><img src="imgs/14.png" alt="14"></p>
-<p><img src="imgs/15.png" alt="15"></p>
+<p><img src="/imgs/1.png"></p>
+<p><img src="/imgs/2.png" alt="2"></p>
+<p><img src="/imgs/3.png" alt="3"></p>
+<p><img src="/imgs/4.png" alt="4"></p>
+<p><img src="/imgs/5.png" alt="5"></p>
+<p><img src="/imgs/6.png" alt="6"></p>
+<p><img src="/imgs/7.png" alt="7"></p>
+<p><img src="/imgs/8.png" alt="8"></p>
+<p><img src="/imgs/9.png" alt="9"></p>
+<p><img src="/imgs/10.png" alt="10"></p>
+<p><img src="/imgs/11.png" alt="11"></p>
+<p><img src="/imgs/12.png" alt="12"></p>
+<p><img src="/imgs/13.png" alt="13"></p>
+<p><img src="/imgs/14.png" alt="14"></p>
+<p><img src="/imgs/15.png" alt="15"></p>
 <blockquote>
 <p>打开命令行：MySQL80 command Line ： 输入密码回车</p>
 </blockquote>
-<p><img src="imgs/16.png"></p>
+<p><img src="/imgs/16.png"></p>
 <h2 id="1-5-安装依赖"><a href="#1-5-安装依赖" class="headerlink" title="1.5 安装依赖"></a>1.5 安装依赖</h2><p>安装MySQL提示，缺少软件vc++2019版本.点击安装，自动联网下载（速度慢）</p>
 <p>VC_redist.x64软件安装包</p>
 <h1 id="第二章-MySQL的使用"><a href="#第二章-MySQL的使用" class="headerlink" title="第二章 MySQL的使用"></a>第二章 MySQL的使用</h1><h2 id="2-1-MySQL服务的启动"><a href="#2-1-MySQL服务的启动" class="headerlink" title="2.1 MySQL服务的启动"></a>2.1 MySQL服务的启动</h2><h2 id="2-2-MySQL命令行"><a href="#2-2-MySQL命令行" class="headerlink" title="2.2 MySQL命令行"></a>2.2 MySQL命令行</h2><p>建议配置环境变量：配置到MySQL安装目录下的bin</p>
@@ -1029,7 +1030,7 @@
 <p>MySQL的关键字和函数名等不区分大小写，但是对于数据值是否区分大小写，和字符集与校对规则有关。</p>
 </blockquote>
 <p>（2）命名时：尽量使用26个英文字母大小写，数字0-9，下划线，不要使用其他符号</p>
-<p>（3）建议不要使用mysql的关键字等来作为表名、字段名等，如果不小心使用，请在SQL语句中使用`（飘号）引起来     </p>
+<p>（3）建议不要使用mysql的关键字等来作为表名、字段名等，如果不小心使用，请在SQL语句中使用&#96;（飘号）引起来 	</p>
 <p>（4）数据库和表名、字段名等对象名中间不要包含空格</p>
 <p>（5）同一个mysql软件中，数据库不能同名，同一个库中，表不能重名，同一个表中，字段不能重名</p>
 <p>（6）标点符号：</p>
@@ -1040,7 +1041,7 @@
 <blockquote>
 <p>单行注释：#注释内容</p>
 <p>单行注释：–空格注释内容    其中–后面的空格必须有</p>
-<p>多行注释：/* 注释内容 */</p>
+<p>多行注释：&#x2F;* 注释内容 *&#x2F;</p>
 </blockquote>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#以下两句是一样的，不区分大小写</span><br><span class="line">show databases;</span><br><span class="line">SHOW DATABASES;</span><br><span class="line"></span><br><span class="line">#创建表格</span><br><span class="line">#create table student info(...); #表名错误，因为表名有空格</span><br><span class="line">create table student_info(...); </span><br><span class="line"></span><br><span class="line">#其中name使用``飘号，因为name和系统关键字或系统函数名等预定义标识符重名了。</span><br><span class="line">CREATE TABLE t_stu(</span><br><span class="line">    id INT,</span><br><span class="line">    `name` VARCHAR(20)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">select id as &quot;编号&quot;, `name` as &quot;姓名&quot; from t_stu; #起别名时，as都可以省略</span><br><span class="line">select id as 编号, `name` as 姓名 from t_stu; #如果字段别名中没有空格，那么可以省略&quot;&quot;</span><br><span class="line">select id as 编 号, `name` as 姓 名 from t_stu; #错误，如果字段别名中有空格，那么不能省略&quot;&quot;</span><br></pre></td></tr></table></figure>
 
@@ -1063,7 +1064,7 @@
 
 
 
-<h1 id="第五章-DDL操作表"><a href="#第五章-DDL操作表" class="headerlink" title="第五章-DDL操作表"></a>第五章-DDL操作表</h1><h2 id="5-1-创建表"><a href="#5-1-创建表" class="headerlink" title="5.1 创建表"></a>5.1 创建表</h2><p><img src="imgs/17.png"></p>
+<h1 id="第五章-DDL操作表"><a href="#第五章-DDL操作表" class="headerlink" title="第五章-DDL操作表"></a>第五章-DDL操作表</h1><h2 id="5-1-创建表"><a href="#5-1-创建表" class="headerlink" title="5.1 创建表"></a>5.1 创建表</h2><p><img src="/imgs/17.png"></p>
 <h3 id="5-1-1-语法"><a href="#5-1-1-语法" class="headerlink" title="5.1.1 语法"></a>5.1.1 语法</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> 数据表名(</span><br><span class="line">    字段名<span class="number">1</span> 数据类型 [约束],</span><br><span class="line">    字段名<span class="number">2</span> 数据类型 [约束],</span><br><span class="line">    字段名<span class="number">3</span> 数据类型 [约束]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
 <blockquote>
@@ -1072,7 +1073,7 @@
 <h3 id="5-1-2-类型"><a href="#5-1-2-类型" class="headerlink" title="5.1.2 类型"></a>5.1.2 类型</h3><h4 id="5-1-2-1-数值类型"><a href="#5-1-2-1-数值类型" class="headerlink" title="5.1.2.1 数值类型"></a>5.1.2.1 数值类型</h4><ul>
 <li>整型系列：xxxInt</li>
 </ul>
-<p><img src="imgs/1560933629123.png" alt="1560933629123"></p>
+<p><img src="/imgs/1560933629123.png" alt="1560933629123"></p>
 <ul>
 <li>浮点型系列：float,double（或real)</li>
 </ul>
@@ -1090,23 +1091,23 @@
 <blockquote>
 <p>注意一下每一种日期时间的表示范围</p>
 </blockquote>
-<p><img src="imgs/1560933691657.png" alt="1560933691657"></p>
+<p><img src="/imgs/1560933691657.png" alt="1560933691657"></p>
 <p>timestamp和datetime的区别：</p>
 <ul>
 <li>timestamp范围比较小</li>
 <li>timestamp和时区有关<ul>
 <li>show variables like ‘time_zone’;</li>
-<li>set time_zone = ‘+8:00’;</li>
+<li>set time_zone &#x3D; ‘+8:00’;</li>
 </ul>
 </li>
 <li>timestamp受MySQL版本和服务器的SQLMode影响很大</li>
 <li>表中的第一个非空的timestamp字段如果插入和更新为NULL则会自动设置为系统时间</li>
 </ul>
-<p><img src="imgs/image-20200406171844833.png" alt="image-20200406171844833"></p>
-<p><img src="imgs/image-20200406171900814.png" alt="image-20200406171900814"></p>
+<p><img src="/imgs/image-20200406171844833.png" alt="image-20200406171844833"></p>
+<p><img src="/imgs/image-20200406171900814.png" alt="image-20200406171900814"></p>
 <h4 id="5-1-2-3-字符串类型"><a href="#5-1-2-3-字符串类型" class="headerlink" title="5.1.2.3 字符串类型"></a>5.1.2.3 字符串类型</h4><p>MySQL中提供了多种对字符数据的存储类型，不同的版本可能有所差异。常见的有：</p>
 <p>char,varchar，xxtext，binary，varbinary，xxblob，enum，set等等</p>
-<p><img src="imgs/image-20200406180437224.png" alt="image-20200406180437224"></p>
+<p><img src="/imgs/image-20200406180437224.png" alt="image-20200406180437224"></p>
 <ul>
 <li>字符串类型char,varchar(M)</li>
 </ul>
@@ -1149,7 +1150,7 @@
 
 
 <h1 id="第六章-DML操作表记录-增删改【重点】"><a href="#第六章-DML操作表记录-增删改【重点】" class="headerlink" title="第六章-DML操作表记录-增删改【重点】"></a>第六章-DML操作表记录-增删改【重点】</h1><ul>
-<li>准备工作: 创建一张商品表(商品id,商品名称,商品价格,商品数量.) </li>
+<li>准备工作: 创建一张商品表(商品id,商品名称,商品价格,商品数量.)</li>
 </ul>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> product(</span><br><span class="line">	pid <span class="type">int</span> <span class="keyword">primary</span> key auto_increment,</span><br><span class="line">	pname <span class="type">varchar</span>(<span class="number">40</span>),</span><br><span class="line">	price <span class="keyword">double</span>,</span><br><span class="line">	num <span class="type">int</span>,</span><br><span class="line">    cid <span class="type">int</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 
@@ -1159,7 +1160,7 @@
 </ul>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 数据表插入数据，保证字段和值得对应，数值除了数字外，其他类型，写单引号</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> 表名(字段名<span class="number">1</span>,字段名<span class="number">2</span>,字段名<span class="number">3</span>) <span class="keyword">values</span> (值<span class="number">1</span>,值<span class="number">2</span>,值<span class="number">3</span>)</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> product(pid,pname,price,num,cid) <span class="keyword">VALUES</span> (<span class="number">1</span>,<span class="string">&#x27;苹果手机14&#x27;</span>,<span class="number">15999</span>,<span class="number">1000</span>,<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
 
-<p><img src="imgs/18.png"></p>
+<p><img src="/imgs/18.png"></p>
 <ul>
 <li>插入数据的格式二：insert into</li>
 </ul>
@@ -1217,7 +1218,7 @@
 <h2 id="7-3-条件查询"><a href="#7-3-条件查询" class="headerlink" title="7.3 条件查询"></a>7.3 条件查询</h2><ul>
 <li><p>SQL语句的运算符</p>
 <ul>
-<li>比较运算符：=，&lt; , &gt; , &lt;= , &gt;= , &lt;&gt;不等于，MySQL支持 !=</li>
+<li>比较运算符：&#x3D;，&lt; , &gt; , &lt;&#x3D; , &gt;&#x3D; , &lt;&gt;不等于，MySQL支持 !&#x3D;</li>
 <li>逻辑运算符：and 与，or 或 ，not 取反</li>
 <li>区间范围运算符：between…and</li>
 <li>模糊运算符：like</li>
@@ -1262,7 +1263,7 @@
 
 <h2 id="7-4-排序查询"><a href="#7-4-排序查询" class="headerlink" title="7.4 排序查询"></a>7.4 排序查询</h2><ul>
 <li>升序排序： order by 字段名 asc (asc可以不写，默认就是升序)</li>
-<li>降序排序： order by 字段名 desc 要写的 </li>
+<li>降序排序： order by 字段名 desc 要写的</li>
 </ul>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 升序排序： order by 字段名 asc (asc可以不写，默认就是升序)</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> product <span class="keyword">ORDER</span> <span class="keyword">BY</span> price </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 降序排序： order by 字段名 desc 要写的 </span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> product <span class="keyword">ORDER</span> <span class="keyword">BY</span> price <span class="keyword">DESC</span> </span><br></pre></td></tr></table></figure>
 
@@ -1302,7 +1303,7 @@
 <h2 id="7-6-分组查询"><a href="#7-6-分组查询" class="headerlink" title="7.6 分组查询"></a>7.6 分组查询</h2><ul>
 <li>分组统计关键字  group by  字段名</li>
 </ul>
-<p><img src="imgs/19.png"></p>
+<p><img src="/imgs/19.png"></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询商品表，按照cid分类字段，相同的为一组，统计每组价格总和</span></span><br><span class="line"><span class="comment">-- 按照cid字段分组</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">SUM</span>(price),cid <span class="keyword">FROM</span> product <span class="keyword">GROUP</span> <span class="keyword">BY</span> cid</span><br></pre></td></tr></table></figure>
 
 <ul>
@@ -1432,7 +1433,7 @@
 <ul>
 <li>引导类加载器 BootClassLoader<ul>
 <li>引导类的加载器，负责加载JDK的核心类库</li>
-<li>存储位置：jdk安装目录/jre/lib/rt.jar  (常用的类，字符串，集合，IO，日期)</li>
+<li>存储位置：jdk安装目录&#x2F;jre&#x2F;lib&#x2F;rt.jar  (常用的类，字符串，集合，IO，日期)</li>
 </ul>
 </li>
 </ul>
@@ -1444,7 +1445,7 @@
 <ul>
 <li>扩展类的加载器 ExtClassLoader<ul>
 <li>扩展类的加载器，负责加载JDK的扩展类库</li>
-<li>存储位置：jdk安装目录/jre/lib/ext</li>
+<li>存储位置：jdk安装目录&#x2F;jre&#x2F;lib&#x2F;ext</li>
 </ul>
 </li>
 </ul>
@@ -1471,27 +1472,29 @@
 <li>保证每个加载器履行自己的职责</li>
 <li>保证每个类只能被加载一次</li>
 </ul>
-<p><img src="images/1.png"></p>
+<p><img src="/images/1.png"></p>
 <blockquote>
 <p>类加载器，将class文件加载到内存后，加载器会为class文件创建一个对象</p>
 </blockquote>
 <h1 id="第二章-反射-Reflect"><a href="#第二章-反射-Reflect" class="headerlink" title="第二章 反射 Reflect"></a>第二章 反射 Reflect</h1><h2 id="2-1-反射的概念"><a href="#2-1-反射的概念" class="headerlink" title="2.1 反射的概念"></a>2.1 反射的概念</h2><p>反射概念：程序的运行时期，对于任何一个类（class文件），都能动态的获取出该类成员，并执行该类的成员。</p>
 <p>比喻：反射就是在做一个class文件的解剖，看出是解剖人。</p>
 <p>解剖类需要手术刀，刀是一个类的class文件对象（字节码文件对象），（类加载器创建）</p>
-<p><img src="images/2.png"></p>
+<p><img src="/images/2.png"></p>
 <h2 id="2-2-class文件对象的获取"><a href="#2-2-class文件对象的获取" class="headerlink" title="2.2 class文件对象的获取"></a>2.2 class文件对象的获取</h2><ul>
 <li><p>通过对象获取</p>
 <ul>
 <li>java.lang.Object类定义方法 getClass()</li>
 <li>方法的返回值Class类型，一切都是对象，class文件也是对象，任何对象都是由类产生的，class文件对象是由Class类产生的，获取class文件对象，就是获取Class类的对象</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取Person.class文件对象的方式</span></span><br><span class="line"><span class="comment">     * 对象调用方法 getClass()获取</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">demo1</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">    <span class="type">Class</span> <span class="variable">cla</span> <span class="operator">=</span> person.getClass();</span><br><span class="line">    System.out.println(<span class="string">&quot;cla = &quot;</span> + cla);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取Person.class文件对象的方式</span></span><br><span class="line"><span class="comment">     * 对象调用方法 getClass()获取</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">demo1</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">    <span class="type">Class</span> <span class="variable">cla</span> <span class="operator">=</span> person.getClass();</span><br><span class="line">    System.out.println(<span class="string">&quot;cla = &quot;</span> + cla);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>通过类名获取</p>
 <ul>
 <li>任何一个数据类型（基本和引用），都会具有静态的成员，名字就是class</li>
 <li>静态属性class，获取到该类的class文件对象</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 任何一个数据类型（基本和引用），都会具有静态的成员，名字就是class</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">demo02</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">Class</span> <span class="variable">cla</span> <span class="operator">=</span> Person.class;</span><br><span class="line">    System.out.println(<span class="string">&quot;cla = &quot;</span> + cla);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 任何一个数据类型（基本和引用），都会具有静态的成员，名字就是class</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">demo02</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">Class</span> <span class="variable">cla</span> <span class="operator">=</span> Person.class;</span><br><span class="line">    System.out.println(<span class="string">&quot;cla = &quot;</span> + cla);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>通过Class类静态方法获取</p>
 <ul>
 <li>Class类静态方法：forName(“字符串的类名”)</li>
@@ -1783,19 +1786,19 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * FileUtils类，文件夹复制</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">testCopyDir</span><span class="params">()</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="type">File</span> <span class="variable">src</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;d:/a&quot;</span>);</span><br><span class="line">        <span class="type">File</span> <span class="variable">dest</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;e:/&quot;</span>);</span><br><span class="line">        FileUtils.copyDirectoryToDirectory(src,dest);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * IOUtils文件的复制</span></span><br><span class="line"><span class="comment">     * 处理异常</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">testCopy</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            fis = <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;d:/1.avi&quot;</span>);</span><br><span class="line">            fos = <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;e:/1.avi&quot;</span>);</span><br><span class="line">            <span class="comment">//调用IOUtils静态方法copyt</span></span><br><span class="line">            IOUtils.copy(fis,fos);</span><br><span class="line">        &#125;<span class="keyword">catch</span> (IOException ex)&#123;</span><br><span class="line">            ex.printStackTrace();</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="comment">//释放在资源悄悄的关闭</span></span><br><span class="line">            IOUtils.closeQuietly(fis);</span><br><span class="line">            IOUtils.closeQuietly(fos);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="第三章-计算机网络通信概述"><a href="#第三章-计算机网络通信概述" class="headerlink" title="第三章 计算机网络通信概述"></a>第三章 计算机网络通信概述</h1><h2 id="3-1-软件结构"><a href="#3-1-软件结构" class="headerlink" title="3.1 软件结构"></a>3.1 软件结构</h2><p>使用Java语言做软件开发的，软件 = 数据 + 逻辑计算  </p>
-<p><img src="images/1_cs.jpg"></p>
-<p><img src="images/2_bs.jpg" alt="2_bs"></p>
-<h2 id="3-2-网络通信模型"><a href="#3-2-网络通信模型" class="headerlink" title="3.2 网络通信模型"></a>3.2 网络通信模型</h2><p><img src="images/3_tcp_ip.jpg"></p>
+<h1 id="第三章-计算机网络通信概述"><a href="#第三章-计算机网络通信概述" class="headerlink" title="第三章 计算机网络通信概述"></a>第三章 计算机网络通信概述</h1><h2 id="3-1-软件结构"><a href="#3-1-软件结构" class="headerlink" title="3.1 软件结构"></a>3.1 软件结构</h2><p>使用Java语言做软件开发的，软件 &#x3D; 数据 + 逻辑计算  </p>
+<p><img src="/images/1_cs.jpg"></p>
+<p><img src="/images/2_bs.jpg" alt="2_bs"></p>
+<h2 id="3-2-网络通信模型"><a href="#3-2-网络通信模型" class="headerlink" title="3.2 网络通信模型"></a>3.2 网络通信模型</h2><p><img src="/images/3_tcp_ip.jpg"></p>
 <ul>
-<li>TCP/IP协议中的四层分别是应用层、传输层、网络层和链路层，每层分别负责不同的通信功能。<br>链路层：链路层是用于定义物理传输通道，通常是对某些网络连接设备的驱动协议，例如针对光纤、网线提供的驱动。</li>
-<li>网络层：网络层是整个TCP/IP协议的核心，它主要用于将传输的数据进行分组，将分组数据发送到目标计算机或者网络。而IP协议是一种非常重要的协议。IP（internet protocal）又称为互联网协议。IP的责任就是把数据从源传送到目的地。它在源地址和目的地址之间传送一种称之为数据包的东西，它还提供对数据大小的重新组装功能，以适应不同网络对包大小的要求。</li>
+<li>TCP&#x2F;IP协议中的四层分别是应用层、传输层、网络层和链路层，每层分别负责不同的通信功能。<br>链路层：链路层是用于定义物理传输通道，通常是对某些网络连接设备的驱动协议，例如针对光纤、网线提供的驱动。</li>
+<li>网络层：网络层是整个TCP&#x2F;IP协议的核心，它主要用于将传输的数据进行分组，将分组数据发送到目标计算机或者网络。而IP协议是一种非常重要的协议。IP（internet protocal）又称为互联网协议。IP的责任就是把数据从源传送到目的地。它在源地址和目的地址之间传送一种称之为数据包的东西，它还提供对数据大小的重新组装功能，以适应不同网络对包大小的要求。</li>
 <li>传输层：主要使网络程序进行通信，在进行网络通信时，可以采用TCP协议，也可以采用UDP协议。TCP（Transmission Control Protocol）协议，即传输控制协议，是一种面向连接的、可靠的、基于字节流的传输层通信协议。UDP(User Datagram Protocol，用户数据报协议)：是一个无连接的传输层协议、提供面向事务的简单不可靠的信息传送服务。</li>
 <li>应用层：主要负责应用程序的协议，例如HTTP协议、FTP协议、SNMP（简单网络管理协议）、SMTP（简单邮件传输协议）和POP3（Post Office Protocol 3的简称,即邮局协议的第3个版）等。</li>
 </ul>
 <h2 id="3-3-网络通信三要素"><a href="#3-3-网络通信三要素" class="headerlink" title="3.3 网络通信三要素"></a>3.3 网络通信三要素</h2><h3 id="3-3-1-IP地址"><a href="#3-3-1-IP地址" class="headerlink" title="3.3.1 IP地址"></a>3.3.1 IP地址</h3><p>每个接入互联网的就计算机，就会自动获取到一个唯一的标识，就是IP地址。通过IP地址可以在互联网中准则定位到一台计算机。ipconfig</p>
 <ul>
-<li><p>IPV4：    </p>
+<li><p>IPV4：	</p>
 <ul>
 <li>采用4个数字段表示IP地址，每个数段的值0-255</li>
 <li>111.120.220.233  每个数字段大小是1个字节，最高位不是符号，是数字位</li>
@@ -1843,14 +1846,14 @@
 <li>面向连接协议，网络连接的速度慢</li>
 <li>通信双方要三次握手确认连接</li>
 </ul>
-<p><img src="images/4_tcp.jpg"></p>
+<p><img src="/images/4_tcp.jpg"></p>
 </li>
 </ul>
 <h1 id="第四章-TCP协议网络通信"><a href="#第四章-TCP协议网络通信" class="headerlink" title="第四章 TCP协议网络通信"></a>第四章 TCP协议网络通信</h1><h2 id="4-1-客户端和服务器"><a href="#4-1-客户端和服务器" class="headerlink" title="4.1 客户端和服务器"></a>4.1 客户端和服务器</h2><ul>
 <li>客户端Client：从其他的机器上获取数据</li>
 <li>服务端Server：可以为其他的机器提供共享数据</li>
 </ul>
-<p><img src="images/6.jpg"></p>
+<p><img src="/images/6.jpg"></p>
 <ul>
 <li><code>java.net.Socket</code> 客户端的程序</li>
 <li><code>java.net.ServerSocket</code> 服务器端的程序</li>
@@ -1858,8 +1861,8 @@
 <h2 id="4-2-网络通信中的IO流对象"><a href="#4-2-网络通信中的IO流对象" class="headerlink" title="4.2 网络通信中的IO流对象"></a>4.2 网络通信中的IO流对象</h2><blockquote>
 <p>客户端程序和服务器程序通过网络连接成功。数据传输依靠IO流对象实现</p>
 </blockquote>
-<p><img src="images/5_%E7%AE%80%E5%8D%95%E9%80%9A%E4%BF%A1.jpg"></p>
-<p><img src="images/7.jpg" alt="7"></p>
+<p><img src="/images/5_%E7%AE%80%E5%8D%95%E9%80%9A%E4%BF%A1.jpg"></p>
+<p><img src="/images/7.jpg" alt="7"></p>
 <h2 id="4-3-TCP协议客户端程序"><a href="#4-3-TCP协议客户端程序" class="headerlink" title="4.3 TCP协议客户端程序"></a>4.3 TCP协议客户端程序</h2><ul>
 <li><p><code>java.net.Socket</code></p>
 <ul>
@@ -1891,10 +1894,10 @@
 </ul>
 </li>
 </ul>
-<p><img src="images/8.jpg"></p>
+<p><img src="/images/8.jpg"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 实现TCP服务器端</span></span><br><span class="line"><span class="comment"> * 实现步骤：</span></span><br><span class="line"><span class="comment"> *  1：创建服务器连接对象ServerSocket ，开的端口</span></span><br><span class="line"><span class="comment"> *  2：调用服务器连接对象的方法 accept() 等待客户端连接</span></span><br><span class="line"><span class="comment"> *      并获取客户端的连接对象Socket</span></span><br><span class="line"><span class="comment"> *  3：Socket对象获取IO流</span></span><br><span class="line"><span class="comment"> *     字节输入流：读取客户端的数据</span></span><br><span class="line"><span class="comment"> *     字节输出流：向客户端写入数据</span></span><br><span class="line"><span class="comment"> *  4：资源释放</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  192.168.19.39</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TCPServer</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="comment">//1：创建服务器连接对象ServerSocket ，开的端口</span></span><br><span class="line">        <span class="type">ServerSocket</span> <span class="variable">server</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ServerSocket</span>(<span class="number">8888</span>);</span><br><span class="line">        <span class="comment">// 2：调用服务器连接对象的方法 accept() 等待客户端连接</span></span><br><span class="line">        <span class="comment">//accept()方法返回Socket对象</span></span><br><span class="line">        <span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> server.accept();</span><br><span class="line">        <span class="comment">//获取客户端IP地址的方法</span></span><br><span class="line">        System.out.println(socket.getLocalAddress().getHostAddress());</span><br><span class="line">        <span class="comment">//3：Socket对象获取IO流</span></span><br><span class="line">        <span class="comment">//获取字节输入流，读取客户端的数据</span></span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> socket.getInputStream();</span><br><span class="line">        <span class="comment">//定义字节数组</span></span><br><span class="line">        <span class="type">byte</span>[] bytes = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">16</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> in.read(bytes);</span><br><span class="line">        <span class="comment">//数组转成字符串输出</span></span><br><span class="line">        System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(bytes,<span class="number">0</span>,len));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取字节输出流，数据写向客户端</span></span><br><span class="line">        <span class="type">OutputStream</span> <span class="variable">out</span> <span class="operator">=</span> socket.getOutputStream();</span><br><span class="line">        out.write(<span class="string">&quot;收到,谢谢!!&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4：资源释放</span></span><br><span class="line">        socket.close();</span><br><span class="line">        server.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="4-5-文件上传"><a href="#4-5-文件上传" class="headerlink" title="4.5 文件上传"></a>4.5 文件上传</h2><p><img src="images/9.jpg"></p>
+<h2 id="4-5-文件上传"><a href="#4-5-文件上传" class="headerlink" title="4.5 文件上传"></a>4.5 文件上传</h2><p><img src="/images/9.jpg"></p>
 <blockquote>
 <p>程序运行之后不停止的问题：造成原因是字节输入流的方法read()导致</p>
 <p>客户端read()方法读取图片，遇到文件结束符，循环结束不再读取</p>
@@ -1916,7 +1919,7 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 实现文件上传服务器端</span></span><br><span class="line"><span class="comment"> * 实现步骤：</span></span><br><span class="line"><span class="comment"> * 1： 创建ServerSocket对象，打开端口</span></span><br><span class="line"><span class="comment"> * 2： 调用方法accept() 等待客户端连接，获取客户端连接对象</span></span><br><span class="line"><span class="comment"> * 3： 客户端对象Socket获取字节输入流，读取客户端发送来的字节数组</span></span><br><span class="line"><span class="comment"> * 4： 服务器端创建文件夹 e:/myPicture</span></span><br><span class="line"><span class="comment"> * 5:  创建字节输出流 FileOutputStream</span></span><br><span class="line"><span class="comment"> * 6:  读取字节输出，FileOutputStream流数组保存在文件夹中</span></span><br><span class="line"><span class="comment"> * 7:  客户端对象获取字节输出流</span></span><br><span class="line"><span class="comment"> * 8： 上传成功写回客户端</span></span><br><span class="line"><span class="comment"> * 9： 释放资源</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TCPServer</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="comment">//1： 创建ServerSocket对象，打开端口</span></span><br><span class="line">        <span class="type">ServerSocket</span> <span class="variable">server</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ServerSocket</span>(<span class="number">8888</span>);</span><br><span class="line">        <span class="comment">//2： 调用方法accept() 等待客户端连接，获取客户端连接对象</span></span><br><span class="line">        <span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> server.accept();</span><br><span class="line">        <span class="comment">//3： 客户端对象Socket获取字节输入流，读取客户端发送来的字节数组</span></span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> socket.getInputStream();</span><br><span class="line">        <span class="comment">//4： 服务器端创建文件夹 e:/myPicture</span></span><br><span class="line">        <span class="type">File</span> <span class="variable">uploadDir</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;e:/myPicture&quot;</span>);</span><br><span class="line">        <span class="comment">//判断目录是否存在，不存在创建</span></span><br><span class="line">        <span class="keyword">if</span> (!uploadDir.exists())</span><br><span class="line">            uploadDir.mkdirs();</span><br><span class="line">        <span class="comment">//5:  创建字节输出流 FileOutputStream</span></span><br><span class="line">        <span class="comment">//写入图片（字节数组）数据，完整的路径和文件名</span></span><br><span class="line">        <span class="comment">//上传的目录e:/myPicture，文件名组成一个File对象</span></span><br><span class="line">        <span class="comment">//上传文件重命名+atguigu+随机数+毫秒值+随机数转十六进制</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">fileName</span> <span class="operator">=</span> <span class="string">&quot;atguigu&quot;</span>+<span class="keyword">new</span> <span class="title class_">Random</span>().nextInt(<span class="number">10000000</span>)</span><br><span class="line">                +System.currentTimeMillis()+Integer.toHexString(<span class="keyword">new</span> <span class="title class_">Random</span>().nextInt(<span class="number">10000000</span>))+<span class="string">&quot;.jpg&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="type">File</span> <span class="variable">uploadFile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(uploadDir,fileName);</span><br><span class="line">        <span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(uploadFile);</span><br><span class="line">        <span class="comment">//6:  读取字节输出，FileOutputStream流数组保存在文件夹中</span></span><br><span class="line">        <span class="type">byte</span>[] bytes = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> <span class="number">0</span> ;</span><br><span class="line">        <span class="keyword">while</span> ( (len = in.read(bytes)) != -<span class="number">1</span>)&#123;</span><br><span class="line">            fos.write(bytes,<span class="number">0</span>,len);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;!!!!!!!!!!!!!!!!!&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//7:  客户端对象获取字节输出流</span></span><br><span class="line">        <span class="type">OutputStream</span> <span class="variable">out</span> <span class="operator">=</span> socket.getOutputStream();</span><br><span class="line">        <span class="comment">// 8： 上传成功写回客户端</span></span><br><span class="line">        out.write(<span class="string">&quot;上传成功&quot;</span>.getBytes());</span><br><span class="line">        <span class="comment">//9： 释放资源</span></span><br><span class="line">        fos.close();</span><br><span class="line">        socket.close();</span><br><span class="line">        server.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="images/10.jpg"></p>
+<p><img src="/images/10.jpg"></p>
 <h2 id="4-6-文件上传多线程"><a href="#4-6-文件上传多线程" class="headerlink" title="4.6 文件上传多线程"></a>4.6 文件上传多线程</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class TCPServer &#123;</span><br><span class="line">    public static void main(String[] args) throws IOException &#123;</span><br><span class="line">        //1： 创建ServerSocket对象，打开端口</span><br><span class="line">        ServerSocket server = new ServerSocket(8888);</span><br><span class="line">        while (true) &#123;</span><br><span class="line">            //2： 调用方法accept() 等待客户端连接，获取客户端连接对象</span><br><span class="line">            Socket socket = server.accept();</span><br><span class="line">            //accept()获取到客户端连接对象，启动线程</span><br><span class="line">            //一个用户，一个线程</span><br><span class="line">            MyRunnable my = new MyRunnable(socket);</span><br><span class="line">            new Thread(my).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * TCP协议，图片上传的客户端</span><br><span class="line"> * 实现步骤：</span><br><span class="line"> *  1：创建Socket对象，连接服务器</span><br><span class="line"> *  2：创建FileInputStream流，读取数据源图片 ly.jpg</span><br><span class="line"> *  3: Socket对象获取字节输出流 OutputStream 读取到的图片，写到服务器</span><br><span class="line"> *  4：字节流读取图片，存储字节数组，字节输出流，字节数组写服务器</span><br><span class="line"> *  5：Socket对象获取字节输入流 InputStream</span><br><span class="line"> *  6: 读取服务器回来的上传成功</span><br><span class="line"> *  7：释放资源</span><br><span class="line"> */</span><br><span class="line">public class TCPClient &#123;</span><br><span class="line">    public static void main(String[] args) throws IOException &#123;</span><br><span class="line">        //1：创建Socket对象，连接服务器</span><br><span class="line">        Socket socket = new Socket(&quot;127.0.0.1&quot;,8888);</span><br><span class="line">        //2：创建FileInputStream流，读取数据源图片 ly.jpg</span><br><span class="line">        FileInputStream fis = new FileInputStream(&quot;d:/ly.jpg&quot;);</span><br><span class="line">        //3: Socket对象获取字节输出流 OutputStream 读取到的图片，写到服务器</span><br><span class="line">        OutputStream out = socket.getOutputStream();</span><br><span class="line">        //4：字节流读取图片，存储字节数组，字节输出流，字节数组写服务器</span><br><span class="line">        byte[] bytes = new byte[1024];</span><br><span class="line">        int len = 0 ;</span><br><span class="line">        while ( (len = fis.read(bytes)) != -1)&#123;</span><br><span class="line">            out.write(bytes,0,len);</span><br><span class="line">        &#125;</span><br><span class="line">        //socket对象方法，写终止序列</span><br><span class="line">        socket.shutdownOutput();</span><br><span class="line"></span><br><span class="line">        // 5：Socket对象获取字节输入流 InputStream</span><br><span class="line">        InputStream in = socket.getInputStream();</span><br><span class="line">        //6: 读取服务器回来的上传成功</span><br><span class="line">        len = in.read(bytes);</span><br><span class="line">        System.out.println(&quot;服务器说：：&quot;+new String(bytes,0,len));</span><br><span class="line">        //7：释放资源</span><br><span class="line">        fis.close();</span><br><span class="line">        socket.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -2067,7 +2070,7 @@
 </li>
 </ul>
 <blockquote>
-<p>String s = “你”  是哪个编码表存储，底层char[]数组  char c = ‘你’ </p>
+<p>String s &#x3D; “你”  是哪个编码表存储，底层char[]数组  char c &#x3D; ‘你’ </p>
 </blockquote>
 <h2 id="2-2-转换流OutputStreamWriter"><a href="#2-2-转换流OutputStreamWriter" class="headerlink" title="2.2 转换流OutputStreamWriter"></a>2.2 转换流OutputStreamWriter</h2><ul>
 <li><p><code>java.io.OutputStreamWriter</code>继承Writer</p>
@@ -2128,9 +2131,9 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *构造方法：传递字节输入流 FileInputStream</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * - 创建使用默认字符编码的，指定的编码表，构造方法的第二个参数指定编码表</span></span><br><span class="line"><span class="comment"> * - 读取gbk文件，指定的编码必须是gbk</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">readGBK</span><span class="params">()</span> <span class="keyword">throws</span> IOException&#123;</span><br><span class="line">    <span class="comment">//创建字节输入流，绑定数据源文件</span></span><br><span class="line">    <span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;e:/gbk.txt&quot;</span>);</span><br><span class="line">    <span class="comment">//创建转换流对象，构造方法执行编码表GBK</span></span><br><span class="line">    <span class="type">InputStreamReader</span> <span class="variable">isr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(fis,<span class="string">&quot;GBK&quot;</span>);</span><br><span class="line">    <span class="comment">//定义字符数组</span></span><br><span class="line">    <span class="type">char</span>[] chars = <span class="keyword">new</span> <span class="title class_">char</span>[<span class="number">1024</span>];<span class="comment">// 1024长度，内存是几2KB</span></span><br><span class="line">    <span class="comment">//int变量，保存read方法的返回值</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> ( (i=isr.read(chars)) != -<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="comment">//字符数组转成字符串输出</span></span><br><span class="line">        System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(chars,<span class="number">0</span>,i));</span><br><span class="line">    &#125;</span><br><span class="line">    isr.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>总结：Java中字符流 = 编码表 + 字节流 组合出来。读写文件的还是字节流，拿字节查询编码表而已。IDEA下默认是UTF-8. 无论以后是不是使用IDEA开发，保证读和写使用一个编码表就可以</p>
+<p>总结：Java中字符流 &#x3D; 编码表 + 字节流 组合出来。读写文件的还是字节流，拿字节查询编码表而已。IDEA下默认是UTF-8. 无论以后是不是使用IDEA开发，保证读和写使用一个编码表就可以</p>
 </blockquote>
-<p><img src="images/1.png"></p>
+<p><img src="/images/1.png"></p>
 </li>
 </ul>
 <h2 id="2-5-字符流的便捷类"><a href="#2-5-字符流的便捷类" class="headerlink" title="2.5 字符流的便捷类"></a>2.5 字符流的便捷类</h2><ul>
@@ -2256,7 +2259,7 @@
 <li>读取对象的方法：Object readObject() 读取对象，返回Object类型</li>
 </ul>
 <blockquote>
-<p>Object obj =  ois.readObject(); 会抛出一个异常 ， ClassNotFoundException</p>
+<p>Object obj &#x3D;  ois.readObject(); 会抛出一个异常 ， ClassNotFoundException</p>
 <p>反序列化需要对象的class文件支持，没有class文件，就出现类找不到异常</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ObjectInputStream对象反序列化</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">readObj</span><span class="params">()</span> <span class="keyword">throws</span> IOException, ClassNotFoundException &#123;</span><br><span class="line">    <span class="comment">//字节输入流，绑定数据源文件，必须是序列化文件</span></span><br><span class="line">    <span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;person.txt&quot;</span>);</span><br><span class="line">    <span class="comment">//创建反序列化流，构造方法，传递fis字节流</span></span><br><span class="line">    <span class="type">ObjectInputStream</span> <span class="variable">ois</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(fis);</span><br><span class="line">    <span class="comment">//调用ois对象的方法readObject()读取对象</span></span><br><span class="line">    <span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span>  ois.readObject();</span><br><span class="line">    System.out.println(<span class="string">&quot;obj = &quot;</span> + obj);</span><br><span class="line">    ois.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -2272,7 +2275,7 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Exception in thread <span class="string">&quot;main&quot;</span> java.io.InvalidClassException: com.atguigu.object.Person; local <span class="keyword">class</span> <span class="title class_">incompatible</span>: stream <span class="type">classdesc</span> <span class="variable">serialVersionUID</span> <span class="operator">=</span> -<span class="number">5016735515273745116</span>, local <span class="keyword">class</span> <span class="title class_">serialVersionUID</span> = <span class="number">2088067583452562291</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><img src="images/3.png"></p>
+<p><img src="/images/3.png"></p>
 <blockquote>
 <p>即使修改了源码，在不影响实现功能的前提下，直接反序列化成功</p>
 <p>解决办法：不让javac计算序列化，我们自己定义</p>
