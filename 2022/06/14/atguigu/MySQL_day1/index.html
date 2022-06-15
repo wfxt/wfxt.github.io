@@ -23,48 +23,48 @@
     <meta name="description" content="学习目标  能够理解数据库的概念  能够安装MySQL数据库  能够启动,关闭及登录MySQL  能够使用SQL语句操作数据库  能够使用SQL语句操作表结构  能够使用SQL语句进行数据的添加修改和删除的操作  能够使用SQL语句添加约束  使用select语句进行数据查询  第一章 数据库概述1.1 数据库概述 什么是数据库（DataBase）  可以存储数据的仓库就是数据库。记事本，Exce">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL安装及基础">
-<meta property="og:url" content="http://example.com/2022/06/14/MySQL_day1/index.html">
+<meta property="og:url" content="http://example.com/2022/06/14/atguigu/MySQL_day1/index.html">
 <meta property="og:site_name" content="Alcander&#39;s Blog">
 <meta property="og:description" content="学习目标  能够理解数据库的概念  能够安装MySQL数据库  能够启动,关闭及登录MySQL  能够使用SQL语句操作数据库  能够使用SQL语句操作表结构  能够使用SQL语句进行数据的添加修改和删除的操作  能够使用SQL语句添加约束  使用select语句进行数据查询  第一章 数据库概述1.1 数据库概述 什么是数据库（DataBase）  可以存储数据的仓库就是数据库。记事本，Exce">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/06/14/MySQL_day1/imgs/1557377559776.png">
-<meta property="og:image" content="http://example.com/2022/06/14/MySQL_day1/imgs/1.png">
-<meta property="og:image" content="http://example.com/2022/06/14/MySQL_day1/imgs/2.png">
-<meta property="og:image" content="http://example.com/2022/06/14/MySQL_day1/imgs/3.png">
-<meta property="og:image" content="http://example.com/2022/06/14/MySQL_day1/imgs/4.png">
-<meta property="og:image" content="http://example.com/2022/06/14/MySQL_day1/imgs/5.png">
-<meta property="og:image" content="http://example.com/2022/06/14/MySQL_day1/imgs/6.png">
-<meta property="og:image" content="http://example.com/2022/06/14/MySQL_day1/imgs/7.png">
-<meta property="og:image" content="http://example.com/2022/06/14/MySQL_day1/imgs/8.png">
-<meta property="og:image" content="http://example.com/2022/06/14/MySQL_day1/imgs/9.png">
-<meta property="og:image" content="http://example.com/2022/06/14/MySQL_day1/imgs/10.png">
-<meta property="og:image" content="http://example.com/2022/06/14/MySQL_day1/imgs/11.png">
-<meta property="og:image" content="http://example.com/2022/06/14/MySQL_day1/imgs/12.png">
-<meta property="og:image" content="http://example.com/2022/06/14/MySQL_day1/imgs/13.png">
-<meta property="og:image" content="http://example.com/2022/06/14/MySQL_day1/imgs/14.png">
-<meta property="og:image" content="http://example.com/2022/06/14/MySQL_day1/imgs/15.png">
-<meta property="og:image" content="http://example.com/2022/06/14/MySQL_day1/imgs/16.png">
-<meta property="og:image" content="http://example.com/2022/06/14/MySQL_day1/imgs/17.png">
-<meta property="og:image" content="http://example.com/2022/06/14/MySQL_day1/imgs/1560933629123.png">
-<meta property="og:image" content="http://example.com/2022/06/14/MySQL_day1/imgs/1560933691657.png">
-<meta property="og:image" content="http://example.com/2022/06/14/MySQL_day1/imgs/image-20200406171844833.png">
-<meta property="og:image" content="http://example.com/2022/06/14/MySQL_day1/imgs/image-20200406171900814.png">
-<meta property="og:image" content="http://example.com/2022/06/14/MySQL_day1/imgs/image-20200406180437224.png">
-<meta property="og:image" content="http://example.com/2022/06/14/MySQL_day1/imgs/18.png">
-<meta property="og:image" content="http://example.com/2022/06/14/MySQL_day1/imgs/19.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/MySQL_day1/imgs/1557377559776.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/MySQL_day1/imgs/1.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/MySQL_day1/imgs/2.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/MySQL_day1/imgs/3.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/MySQL_day1/imgs/4.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/MySQL_day1/imgs/5.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/MySQL_day1/imgs/6.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/MySQL_day1/imgs/7.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/MySQL_day1/imgs/8.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/MySQL_day1/imgs/9.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/MySQL_day1/imgs/10.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/MySQL_day1/imgs/11.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/MySQL_day1/imgs/12.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/MySQL_day1/imgs/13.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/MySQL_day1/imgs/14.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/MySQL_day1/imgs/15.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/MySQL_day1/imgs/16.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/MySQL_day1/imgs/17.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/MySQL_day1/imgs/1560933629123.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/MySQL_day1/imgs/1560933691657.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/MySQL_day1/imgs/image-20200406171844833.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/MySQL_day1/imgs/image-20200406171900814.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/MySQL_day1/imgs/image-20200406180437224.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/MySQL_day1/imgs/18.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/MySQL_day1/imgs/19.png">
 <meta property="article:published_time" content="2022-06-14T01:38:24.671Z">
 <meta property="article:modified_time" content="2022-06-14T12:42:52.343Z">
 <meta property="article:author" content="wfxt">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/06/14/MySQL_day1/imgs/1557377559776.png">
+<meta name="twitter:image" content="http://example.com/2022/06/14/atguigu/MySQL_day1/imgs/1557377559776.png">
 
 
-<link rel="canonical" href="http://example.com/2022/06/14/MySQL_day1/">
+<link rel="canonical" href="http://example.com/2022/06/14/atguigu/MySQL_day1/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/06/14/MySQL_day1/","path":"2022/06/14/MySQL_day1/","title":"MySQL安装及基础"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/06/14/atguigu/MySQL_day1/","path":"2022/06/14/atguigu/MySQL_day1/","title":"MySQL安装及基础"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>MySQL安装及基础 | Alcander's Blog</title>
@@ -251,7 +251,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/14/MySQL_day1/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/14/atguigu/MySQL_day1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Alcander-2.jpg">
@@ -689,12 +689,12 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/06/14/day22_reflect/" rel="prev" title="day22 反射">
+                <a href="/2022/06/14/atguigu/day22_reflect/" rel="prev" title="day22 反射">
                   <i class="fa fa-chevron-left"></i> day22 反射
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/06/14/MySQL_day2/" rel="next" title="MySQL day2">
+                <a href="/2022/06/14/atguigu/MySQL_day2/" rel="next" title="MySQL day2">
                   MySQL day2 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
@@ -749,7 +749,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wfxt","repo":"Hexo-Comment","client_id":"9571f738aa8205b6319e","client_secret":"b956a9a1348b28f9c848905778cd299e9d1da68a","admin_user":"wfxt","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"59989fc016e5351165eb5c4f930f5712"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wfxt","repo":"Hexo-Comment","client_id":"9571f738aa8205b6319e","client_secret":"b956a9a1348b28f9c848905778cd299e9d1da68a","admin_user":"wfxt","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"358a55a04d90dcd450be071ef3ac4643"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>

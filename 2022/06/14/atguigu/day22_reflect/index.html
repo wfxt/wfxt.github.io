@@ -23,24 +23,24 @@
     <meta name="description" content="day22 反射注解 教学目标  了解反射的概念  了解类的加时机  了解类加载器  掌握获取Class对象的三种方式  能够运用反射获取类型的详细信息  能够运用反射动态创建对象  能够运用反射动态获取成员变量并使用  能够运用反射动态获取成员方法并使用  能够自定义注解  理解元注解的作用  能够运用反射读取注解    第一章 类的加载器1.1 类的加载时机写程序编写.java的源文件，jav">
 <meta property="og:type" content="article">
 <meta property="og:title" content="day22 反射">
-<meta property="og:url" content="http://example.com/2022/06/14/day22_reflect/index.html">
+<meta property="og:url" content="http://example.com/2022/06/14/atguigu/day22_reflect/index.html">
 <meta property="og:site_name" content="Alcander&#39;s Blog">
 <meta property="og:description" content="day22 反射注解 教学目标  了解反射的概念  了解类的加时机  了解类加载器  掌握获取Class对象的三种方式  能够运用反射获取类型的详细信息  能够运用反射动态创建对象  能够运用反射动态获取成员变量并使用  能够运用反射动态获取成员方法并使用  能够自定义注解  理解元注解的作用  能够运用反射读取注解    第一章 类的加载器1.1 类的加载时机写程序编写.java的源文件，jav">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/06/14/day22_reflect/images/1.png">
-<meta property="og:image" content="http://example.com/2022/06/14/day22_reflect/images/2.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/day22_reflect/images/1.png">
+<meta property="og:image" content="http://example.com/2022/06/14/atguigu/day22_reflect/images/2.png">
 <meta property="article:published_time" content="2022-06-14T01:38:24.665Z">
 <meta property="article:modified_time" content="2022-06-14T12:42:42.802Z">
 <meta property="article:author" content="wfxt">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/06/14/day22_reflect/images/1.png">
+<meta name="twitter:image" content="http://example.com/2022/06/14/atguigu/day22_reflect/images/1.png">
 
 
-<link rel="canonical" href="http://example.com/2022/06/14/day22_reflect/">
+<link rel="canonical" href="http://example.com/2022/06/14/atguigu/day22_reflect/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/06/14/day22_reflect/","path":"2022/06/14/day22_reflect/","title":"day22 反射"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/06/14/atguigu/day22_reflect/","path":"2022/06/14/atguigu/day22_reflect/","title":"day22 反射"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>day22 反射 | Alcander's Blog</title>
@@ -227,7 +227,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/14/day22_reflect/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/14/atguigu/day22_reflect/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Alcander-2.jpg">
@@ -529,12 +529,12 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/06/14/day21-network/" rel="prev" title="day21 网络编程">
+                <a href="/2022/06/14/atguigu/day21-network/" rel="prev" title="day21 网络编程">
                   <i class="fa fa-chevron-left"></i> day21 网络编程
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/06/14/MySQL_day1/" rel="next" title="MySQL安装及基础">
+                <a href="/2022/06/14/atguigu/MySQL_day1/" rel="next" title="MySQL安装及基础">
                   MySQL安装及基础 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
@@ -589,7 +589,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wfxt","repo":"Hexo-Comment","client_id":"9571f738aa8205b6319e","client_secret":"b956a9a1348b28f9c848905778cd299e9d1da68a","admin_user":"wfxt","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"4118548964b275da61241c496037d5e2"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wfxt","repo":"Hexo-Comment","client_id":"9571f738aa8205b6319e","client_secret":"b956a9a1348b28f9c848905778cd299e9d1da68a","admin_user":"wfxt","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"767fb906e1a9ff1c99931cd5be08c167"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
