@@ -27,29 +27,30 @@
 <meta property="og:site_name" content="Alcander&#39;s Blog">
 <meta property="og:description" content="MySQL_Day3 学习目标  能够使用DCL语言创建账户并授权  理解JDBC的概念  理解JDBC驱动的作用  使用JDBC技术实现CRUD  能够自定义JDBC连接工具类  能够防止SQL注入攻击  能够说出PreparedStatement接口的特点    子查询有两个查询语句A和B，B查询的查询结果，结果作为A查询的条件来使用，B就是A的子查询 123456# 先查询分类找，根据分类的">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/MySQL_Day3/imgs/DCL03.png">
-<meta property="og:image" content="http://example.com/MySQL_Day3/imgs/DCL04.png">
-<meta property="og:image" content="http://example.com/MySQL_Day3/imgs/DCL05.png">
-<meta property="og:image" content="http://example.com/MySQL_Day3/imgs/DCL06.png">
-<meta property="og:image" content="http://example.com/MySQL_Day3/imgs/1.png">
-<meta property="og:image" content="http://example.com/MySQL_Day3/imgs/2.png">
-<meta property="og:image" content="http://example.com/MySQL_Day3/imgs/3.png">
-<meta property="og:image" content="http://example.com/MySQL_Day3/imgs/4.png">
-<meta property="og:image" content="http://example.com/MySQL_Day3/imgs/5.png">
-<meta property="og:image" content="http://example.com/MySQL_Day3/imgs/6.png">
-<meta property="og:image" content="http://example.com/MySQL_Day3/imgs/7.png">
-<meta property="og:image" content="http://example.com/MySQL_Day3/imgs/8.png">
-<meta property="og:image" content="http://example.com/MySQL_Day3/imgs/9.png">
-<meta property="og:image" content="http://example.com/MySQL_Day3/imgs/10.png">
-<meta property="og:image" content="http://example.com/MySQL_Day3/imgs/11.png">
-<meta property="og:image" content="http://example.com/MySQL_Day3/imgs/12.png">
-<meta property="og:image" content="http://example.com/MySQL_Day3/imgs/13.png">
+<meta property="og:image" content="http://example.com/images/MySQL_Day3/imgs/DCL02.png">
+<meta property="og:image" content="http://example.com/images/MySQL_Day3/imgs/DCL03.png">
+<meta property="og:image" content="http://example.com/images/MySQL_Day3/imgs/DCL04.png">
+<meta property="og:image" content="http://example.com/images/MySQL_Day3/imgs/DCL05.png">
+<meta property="og:image" content="http://example.com/images/MySQL_Day3/imgs/DCL06.png">
+<meta property="og:image" content="http://example.com/images/MySQL_Day3/imgs/1.png">
+<meta property="og:image" content="http://example.com/images/MySQL_Day3/imgs/2.png">
+<meta property="og:image" content="http://example.com/images/MySQL_Day3/imgs/3.png">
+<meta property="og:image" content="http://example.com/images/MySQL_Day3/imgs/4.png">
+<meta property="og:image" content="http://example.com/images/MySQL_Day3/imgs/5.png">
+<meta property="og:image" content="http://example.com/images/MySQL_Day3/imgs/6.png">
+<meta property="og:image" content="http://example.com/images/MySQL_Day3/imgs/7.png">
+<meta property="og:image" content="http://example.com/images/MySQL_Day3/imgs/8.png">
+<meta property="og:image" content="http://example.com/images/MySQL_Day3/imgs/9.png">
+<meta property="og:image" content="http://example.com/images/MySQL_Day3/imgs/10.png">
+<meta property="og:image" content="http://example.com/images/MySQL_Day3/imgs/11.png">
+<meta property="og:image" content="http://example.com/images/MySQL_Day3/imgs/12.png">
+<meta property="og:image" content="http://example.com/images/MySQL_Day3/imgs/13.png">
 <meta property="article:published_time" content="2022-06-15T09:44:10.098Z">
-<meta property="article:modified_time" content="2022-06-15T10:34:29.452Z">
+<meta property="article:modified_time" content="2022-06-15T11:22:37.359Z">
 <meta property="article:author" content="wfxt">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/MySQL_Day3/imgs/DCL03.png">
+<meta name="twitter:image" content="http://example.com/images/MySQL_Day3/imgs/DCL02.png">
 
 
 <link rel="canonical" href="http://example.com/2022/06/15/atguigu/MySQL_Day3/">
@@ -273,7 +274,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-06-15 17:44:10 / Modified: 18:34:29" itemprop="dateCreated datePublished" datetime="2022-06-15T17:44:10+08:00">2022-06-15</time>
+      <time title="Created: 2022-06-15 17:44:10 / Modified: 19:22:37" itemprop="dateCreated datePublished" datetime="2022-06-15T17:44:10+08:00">2022-06-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -297,13 +298,13 @@
     <div class="post-body" itemprop="articleBody">
         <h1 id="MySQL-Day3"><a href="#MySQL-Day3" class="headerlink" title="MySQL_Day3"></a>MySQL_Day3</h1><ul>
 <li>学习目标<ul>
-<li><input disabled="" type="checkbox"> 能够使用DCL语言创建账户并授权</li>
-<li><input disabled="" type="checkbox"> 理解JDBC的概念</li>
-<li><input disabled="" type="checkbox"> 理解JDBC驱动的作用</li>
-<li><input disabled="" type="checkbox"> 使用JDBC技术实现CRUD</li>
-<li><input disabled="" type="checkbox"> 能够自定义JDBC连接工具类</li>
-<li><input disabled="" type="checkbox"> 能够防止SQL注入攻击</li>
-<li><input disabled="" type="checkbox"> 能够说出PreparedStatement接口的特点</li>
+<li><input disabled type="checkbox"> 能够使用DCL语言创建账户并授权</li>
+<li><input disabled type="checkbox"> 理解JDBC的概念</li>
+<li><input disabled type="checkbox"> 理解JDBC驱动的作用</li>
+<li><input disabled type="checkbox"> 使用JDBC技术实现CRUD</li>
+<li><input disabled type="checkbox"> 能够自定义JDBC连接工具类</li>
+<li><input disabled type="checkbox"> 能够防止SQL注入攻击</li>
+<li><input disabled type="checkbox"> 能够说出PreparedStatement接口的特点</li>
 </ul>
 </li>
 </ul>
@@ -328,21 +329,19 @@
 <p><strong>具体操作：</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- user1用户只能在localhost这个IP登录mysql服务器</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">&#x27;user1&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;123&#x27;</span>;</span><br><span class="line"><span class="comment">-- user2用户可以在任何电脑上登录mysql服务器</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">&#x27;user2&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;123&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
-<h2 id="1-2-授权用户"><a href="#1-2-授权用户" class="headerlink" title="1.2 授权用户"></a>1.2 授权用户</h2><p>用户创建之后，基本没什么权限！需要给用户授权</p>
-
-
+<h2 id="1-2-授权用户"><a href="#1-2-授权用户" class="headerlink" title="1.2 授权用户"></a>1.2 授权用户</h2><p>用户创建之后，基本没什么权限！需要给用户授权<br><img src="/images/MySQL_Day3/imgs/DCL02.png"></p>
 <p><strong>授权格式</strong>：<br><code>GRANT 权限1, 权限2... ON 数据库名.表名 TO &#39;用户名&#39;@&#39;主机名&#39;;</code><br><strong>关键字说明</strong>：<br>​      1. <code>GRANT</code> 授权关键字<br>​      2. 授予用户的权限，如<code>SELECT</code>，<code>INSERT</code>，<code>UPDATE</code>等。如果要授予所的权限则使用<code>ALL</code><br>​      3. <code>数据库名.表名</code>：该用户可以操作哪个数据库的哪些表。如果要授予该用户对所有数据库和表的相应操作权限则可用*表示，如<code>*.*</code><br>​      4. <code>&#39;用户名&#39;@&#39;主机名&#39;</code>: 给哪个用户授权</p>
 <p><strong>具体操作：</strong></p>
 <ol>
 <li><p>给user1用户分配对test这个数据库操作的权限</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">CREATE</span>,<span class="keyword">ALTER</span>,<span class="keyword">DROP</span>,<span class="keyword">INSERT</span>,<span class="keyword">UPDATE</span>,<span class="keyword">DELETE</span>,<span class="keyword">SELECT</span> <span class="keyword">ON</span> test.<span class="operator">*</span> <span class="keyword">TO</span> <span class="string">&#x27;user1&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/MySQL_Day3/imgs/DCL03.png"></p>
+<p><img src="/images/MySQL_Day3/imgs/DCL03.png"></p>
 </li>
 <li><p>给user2用户分配对所有数据库操作的权限</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> <span class="keyword">ON</span> <span class="operator">*</span>.<span class="operator">*</span> <span class="keyword">TO</span> <span class="string">&#x27;user2&#x27;</span>@<span class="string">&#x27;%&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/MySQL_Day3/imgs/DCL04.png"></p>
+<p><img src="/images/MySQL_Day3/imgs/DCL04.png"></p>
 </li>
 </ol>
 <h2 id="1-3-撤销授权"><a href="#1-3-撤销授权" class="headerlink" title="1.3 撤销授权"></a>1.3 撤销授权</h2><p><code>REVOKE  权限1, 权限2... ON 数据库.表名 FROM &#39;用户名&#39;@&#39;主机名&#39;;</code></p>
@@ -351,7 +350,7 @@
 <li><p>撤销user1用户对test操作的权限</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span> <span class="keyword">ALL</span> <span class="keyword">ON</span> test.<span class="operator">*</span> <span class="keyword">FROM</span> <span class="string">&#x27;user1&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/MySQL_Day3/imgs/DCL05.png"></p>
+<p><img src="/images/MySQL_Day3/imgs/DCL05.png"></p>
 </li>
 </ul>
 <h2 id="1-4-查看权限"><a href="#1-4-查看权限" class="headerlink" title="1.4 查看权限"></a>1.4 查看权限</h2><p><code>SHOW GRANTS FOR &#39;用户名&#39;@&#39;主机名&#39;;</code><br><strong>具体操作：</strong></p>
@@ -359,7 +358,7 @@
 <li><p>查看user1用户的权限</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> GRANTS <span class="keyword">FOR</span> <span class="string">&#x27;user1&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/MySQL_Day3/imgs/DCL06.png"></p>
+<p><img src="/images/MySQL_Day3/imgs/DCL06.png"></p>
 </li>
 </ul>
 <h2 id="1-5-删除用户"><a href="#1-5-删除用户" class="headerlink" title="1.5 删除用户"></a>1.5 删除用户</h2><p><code>DROP USER &#39;用户名&#39;@&#39;主机名&#39;;</code><br><strong>具体操作：</strong></p>
@@ -375,7 +374,7 @@
    <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`<span class="keyword">set</span> password <span class="keyword">for</span> <span class="string">&#x27;user1&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> <span class="operator">=</span> password(<span class="string">&#x27;666666&#x27;</span>);`</span><br></pre></td></tr></table></figure>
 
 <h1 id="第二章-JDBC概述"><a href="#第二章-JDBC概述" class="headerlink" title="第二章  JDBC概述"></a>第二章  JDBC概述</h1><h2 id="2-1-JDBC概述"><a href="#2-1-JDBC概述" class="headerlink" title="2.1 JDBC概述"></a>2.1 JDBC概述</h2><p>Java DataBase Connectivity （Java对数据库的连接技术）。Java程序数据都是临时存储，保证数据不丢失，将数据存储在数据库。数据库是不可能让用户直接操作的，提供以Java的形态操作数据库了。必须要学习JDBC技术</p>
-<p><img src="/MySQL_Day3/imgs/1.png"></p>
+<p><img src="/images/MySQL_Day3/imgs/1.png"></p>
 <ul>
 <li><p>数据库的驱动程序（Driver）</p>
 <ul>
@@ -394,7 +393,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="/MySQL_Day3/imgs/2.png"></p>
+<p><img src="/images/MySQL_Day3/imgs/2.png"></p>
 <h2 id="2-2-JDBC相关类和接口"><a href="#2-2-JDBC相关类和接口" class="headerlink" title="2.2 JDBC相关类和接口"></a>2.2 JDBC相关类和接口</h2><ul>
 <li><code>java.sql.DriverManager</code> 管理数据库驱动程序</li>
 <li><code>java.sql.Connection</code>接口：表示连接到数据库的对象</li>
@@ -422,32 +421,32 @@
 <ul>
 <li>连接地址错了</li>
 </ul>
-<p><img src="/MySQL_Day3/imgs/3.png"></p>
+<p><img src="/images/MySQL_Day3/imgs/3.png"></p>
 <ul>
 <li>端口号和上面出现的错误是一样的</li>
 <li>数据库名写错</li>
 </ul>
-<p><img src="/MySQL_Day3/imgs/4.png"></p>
+<p><img src="/images/MySQL_Day3/imgs/4.png"></p>
 <ul>
 <li>登录数据库用户名或者密码错误</li>
 </ul>
-<p><img src="/MySQL_Day3/imgs/5.png"></p>
+<p><img src="/images/MySQL_Day3/imgs/5.png"></p>
 <ul>
 <li>SQL语句中的表名错误</li>
 </ul>
-<p><img src="/MySQL_Day3/imgs/6.png"></p>
+<p><img src="/images/MySQL_Day3/imgs/6.png"></p>
 <ul>
 <li>SQL语句的语法错误</li>
 </ul>
-<p><img src="/MySQL_Day3/imgs/7.png"></p>
+<p><img src="/images/MySQL_Day3/imgs/7.png"></p>
 <ul>
 <li>SQL语句中数据表的字段和值不对应</li>
 </ul>
-<p><img src="/MySQL_Day3/imgs/8.png"></p>
+<p><img src="/images/MySQL_Day3/imgs/8.png"></p>
 <ul>
 <li>数据表字段名写错</li>
 </ul>
-<p><img src="/MySQL_Day3/imgs/9.png"></p>
+<p><img src="/images/MySQL_Day3/imgs/9.png"></p>
 </li>
 <li><p>驱动程序的重复注册</p>
 </li>
@@ -486,14 +485,14 @@
 <ul>
 <li>安装插件 – 连接网络</li>
 </ul>
-<p><img src="/MySQL_Day3/imgs/10.png"></p>
-<p><img src="/MySQL_Day3/imgs/11.png" alt="11"></p>
+<p><img src="/images/MySQL_Day3/imgs/10.png"></p>
+<p><img src="/images/MySQL_Day3/imgs/11.png" alt="11"></p>
 <ul>
 <li>添加lombok.jar包</li>
 <li>开启IDEA的注解编译开关</li>
 </ul>
-<p><img src="/MySQL_Day3/imgs/12.png"></p>
-<h2 id="2-8-查询数据表存储JavaBean"><a href="#2-8-查询数据表存储JavaBean" class="headerlink" title="2.8 查询数据表存储JavaBean"></a>2.8 查询数据表存储JavaBean</h2><p><img src="/MySQL_Day3/imgs/13.png"></p>
+<p><img src="/images/MySQL_Day3/imgs/12.png"></p>
+<h2 id="2-8-查询数据表存储JavaBean"><a href="#2-8-查询数据表存储JavaBean" class="headerlink" title="2.8 查询数据表存储JavaBean"></a>2.8 查询数据表存储JavaBean</h2><p><img src="/images/MySQL_Day3/imgs/13.png"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  查询数据表，每行数据存储JavaBean对象Product</span></span><br><span class="line"><span class="comment">     *  出现14个Product对象，存储List集合</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">selectJavaBean</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="comment">//定义需要的操作数据库的对象</span></span><br><span class="line">    <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">Statement</span> <span class="variable">stat</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="comment">//工具类获取连接对象</span></span><br><span class="line">        con = JdbcUtils.getConnection();</span><br><span class="line">        <span class="comment">//连接对象con，获取执行对象</span></span><br><span class="line">        stat = con.createStatement();</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;select * from product&quot;</span>;</span><br><span class="line">        <span class="comment">//执行查询语句，返回结果集对象</span></span><br><span class="line">        rs = stat.executeQuery(sql);</span><br><span class="line">        <span class="comment">//创建集合对象</span></span><br><span class="line">        List&lt;Product&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="comment">//循环遍历查询结果集</span></span><br><span class="line">        <span class="keyword">while</span> (rs.next())&#123;</span><br><span class="line">            <span class="comment">//rs.next()方法返回true，有一行结果集，对应一个JavaBean对象</span></span><br><span class="line">            <span class="type">Product</span> <span class="variable">product</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Product</span>();</span><br><span class="line">            <span class="comment">//取出查询结果集中的字段值，存储在javaBean对象中</span></span><br><span class="line">            product.setPid( rs.getInt(<span class="string">&quot;pid&quot;</span>) );</span><br><span class="line">            product.setPname( rs.getString(<span class="string">&quot;pname&quot;</span>) );</span><br><span class="line">            product.setPrice( rs.getDouble(<span class="string">&quot;price&quot;</span>) );</span><br><span class="line">            product.setNum( rs.getInt(<span class="string">&quot;num&quot;</span>) );</span><br><span class="line">            product.setCno( rs.getInt(<span class="string">&quot;cno&quot;</span>) );</span><br><span class="line">            <span class="comment">//JavaBean对象存储集合</span></span><br><span class="line">            list.add(product);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//遍历集合</span></span><br><span class="line">        <span class="keyword">for</span> (Product p : list)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;p = &quot;</span> + p);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">catch</span> (Exception ex)&#123;</span><br><span class="line">        ex.printStackTrace();</span><br><span class="line">    &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="comment">//释放资源</span></span><br><span class="line">        JdbcUtils.close(rs,stat,con);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="第三章-PreparedStatement接口"><a href="#第三章-PreparedStatement接口" class="headerlink" title="第三章 PreparedStatement接口"></a>第三章 PreparedStatement接口</h1><h2 id="3-1-SQL注入攻击"><a href="#3-1-SQL注入攻击" class="headerlink" title="3.1 SQL注入攻击"></a>3.1 SQL注入攻击</h2><p>利用数据库SQL语句（“漏洞”）的问题进行攻击，造成数据的丢失，数据的泄露。</p>
