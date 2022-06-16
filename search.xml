@@ -3,8 +3,10 @@
   <entry>
     <title>Hello World</title>
     <url>/2022/06/14/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3>
+    <div id="aplayer-IibSMDKu" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="2597489971" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="true" data-mutex="false" data-listmaxheight="340px" data-preload="none" data-theme="#ad7a86"></div>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
@@ -19,207 +21,9 @@
 ]]></content>
   </entry>
   <entry>
-    <title>MySQL day2</title>
-    <url>/2022/06/14/atguigu/MySQL_day2/</url>
-    <content><![CDATA[<h2 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h2><ul>
-<li><input disabled type="checkbox"> 了解数据表设计三范式</li>
-<li><input disabled type="checkbox"> 能够创建主键约束</li>
-<li><input disabled type="checkbox"> 能够创建唯一约束</li>
-<li><input disabled type="checkbox"> 能够创建外键约束</li>
-<li><input disabled type="checkbox"> 建立一对多关系</li>
-<li><input disabled type="checkbox"> 能够建立多对多关系</li>
-<li><input disabled type="checkbox"> 能够使用内连接查询</li>
-<li><input disabled type="checkbox"> 能够使用左外连接查询</li>
-<li><input disabled type="checkbox"> 能够使用右外连接查询</li>
-<li><input disabled type="checkbox"> 能够使用子查询</li>
-</ul>
-<h1 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h1><p>数据表中数据非常多，查询出现的结果集也很多，计算机的显示屏毕竟大小是有限，如果一个屏幕显示不完整数据，进行分页显示。</p>
-<p>SQL语句实现对数据的分页查询：MySQL提供关键字 limit,使用方式 limit m,n</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 0 数据表中数据的开始索引 ，从0开始，1000查询只显示1000条</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> product LIMIT <span class="number">0</span>,<span class="number">1000</span>;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>limit 关键字参数</p>
-<ul>
-<li>m : 数据表的开始索引</li>
-<li>n：每次查询要显示的条数</li>
-</ul>
-</li>
-<li><blockquote>
-<p>公式：m&#x3D;(当前页数 - 1) * 每页显示的条数</p>
-</blockquote>
-</li>
-<li><p>总数据量有多少： select count(1) from 表名</p>
-</li>
-<li><p>总页数：总数据量 &#x2F; 每页显示条数，向上取整</p>
-</li>
-</ul>
-<p><img src="/images/MySQL_day2/1.png"></p>
-<h1 id="第一章-数据库三范式"><a href="#第一章-数据库三范式" class="headerlink" title="第一章 数据库三范式"></a>第一章 数据库三范式</h1><p>好的数据库设计对数据的存储性能和后期的程序开发，都会产生重要的影响。建立科学的，规范的数据库就需要满足一些规则来优化数据的设计和存储，这些规则就称为范式。</p>
-<h2 id="1-1-第一范式-确保每列保持原子性"><a href="#1-1-第一范式-确保每列保持原子性" class="headerlink" title="1.1 第一范式: 确保每列保持原子性"></a>1.1 第一范式: <strong>确保每列保持原子性</strong></h2><p>第一范（1NF）式是最基本的范式。如果数据库表中的所有字段值都是不可分解的原子值，就说明该数据库表满足了第一范式。</p>
-<p>第一范式的合理遵循需要根据系统的实际需求来定。比如某些数据库系统中需要用到“地址”这个属性，本来直接将“地址”属性设计成一个数据库表的字段就行。但是如果系统经常会访问“地址”属性中的“城市”部分，那么就非要将“地址”这个属性重新拆分为省份、城市、详细地址等多个部分进行存储，这样在对地址中某一部分操作的时候将非常方便。这样设计才算满足了数据库的第一范式，如下表所示。</p>
-<p><img src="/images/MySQL_day2/tu_11.png"></p>
-<p>如果不遵守第一范式，查询出数据还需要进一步处理（查询不方便）。遵守第一范式，需要什么字段的数据就查询什么数据（方便查询）</p>
-<h2 id="1-2-第二范式-确保表中的每行都能唯一区分"><a href="#1-2-第二范式-确保表中的每行都能唯一区分" class="headerlink" title="1.2 第二范式: 确保表中的每行都能唯一区分"></a>1.2 第二范式: <strong>确保表中的每行都能唯一区分</strong></h2><p>第二范式（2NF)第二范式（2NF）是在第一范式（1NF）的基础上建立起来的，即满足第二范式（2NF）必须先满足第一范式（1NF）。第二范式（2NF）要求数据库表中的每个实例或行必须可以被惟一的区分。为实现区分通常需要为表加上一个列，以存储各个实例的惟一标识。</p>
-<h2 id="1-3-第三范式-3NF-非主键字段不能相互依赖"><a href="#1-3-第三范式-3NF-非主键字段不能相互依赖" class="headerlink" title="1.3 第三范式: 3NF:非主键字段不能相互依赖"></a>1.3 第三范式: <strong>3NF:非主键字段不能相互依赖</strong></h2><p>比如student表，班级编号受人员编号的影响，如果在这个表中再插入班级的班主任、数学老师等信息，你们觉得这样合适吗？肯定不合适，因为学生有多个，这样就会造成班级有多个，那么每个班级的班主任、数学老师都会出现多条数据，而我们理想中的效果应该是一条班级信息对应一个班主任和数学老师，这样更易于我们理解，</p>
-<h1 id="第二章-约束"><a href="#第二章-约束" class="headerlink" title="第二章 约束"></a>第二章 约束</h1><h2 id="2-1-主键约束-primary-key"><a href="#2-1-主键约束-primary-key" class="headerlink" title="2.1 主键约束 primary key"></a>2.1 主键约束 primary key</h2><p>数据表中的一个字段，可以设置为主键，该列的数据不能空值，数据必须保证是唯一性。每个数据表都应该有一个主键约束，一个数据表只能设置一个主键</p>
-<ul>
-<li>创建主键约束的方式一：创建数据表的时候</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建主键约束的方式一：创建数据表的时候</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> person(</span><br><span class="line">   id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">   firstname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   lastname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   address <span class="type">VARCHAR</span>(<span class="number">50</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>创建主键约束的方式二：在数据表的约束区域创建</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建主键约束的方式二：在数据表的约束区域创建</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> person(</span><br><span class="line">   id <span class="type">INT</span> ,</span><br><span class="line">   firstname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   lastname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   address <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   #约束区域，创建主键约束</span><br><span class="line">   <span class="keyword">CONSTRAINT</span> <span class="keyword">PRIMARY</span> KEY (id)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>创建主键约束的方式三：使用修改表结构创建</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 修改表结构，添加主键约束</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> person <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> <span class="keyword">PRIMARY</span> KEY(id)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>删除主键约束</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 修改表结构，删除主键约束</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> person <span class="keyword">DROP</span> <span class="keyword">PRIMARY</span> KEY</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>主键自动增长</li>
-</ul>
-<p>只有设置为主键的字段，数据类型必须是整数，实现数据的自动增长，而且数据一旦使用过，就不会再使用了：关键字 auto_increment</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 设置主键数据的自动增长</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> person(</span><br><span class="line">   id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">   firstname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   lastname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   address <span class="type">VARCHAR</span>(<span class="number">50</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>好处：开发人员，不再维护该字段</p>
-<p>弊端：不适应现在的互联网发展，被雪花算法取代</p>
-</blockquote>
-<ul>
-<li>delete删除，truncate摧毁数据<ul>
-<li>delete删除数据，但是不影响主键自动增长</li>
-<li>truncate摧毁数据，摧毁数据表，并重建，自动增长从新开始</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">TRUNCATE</span> <span class="keyword">TABLE</span> product;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-2-唯一约束-unique"><a href="#2-2-唯一约束-unique" class="headerlink" title="2.2 唯一约束 unique"></a>2.2 唯一约束 unique</h2><p>被设置唯一约束的字段，值必须保证唯一性</p>
-<ul>
-<li>创建唯一约束的方式一：创建数据表直接创建</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建唯一约束的方式一：创建数据表直接创建</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> person(</span><br><span class="line">   id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">   #添加唯一约束</span><br><span class="line">   firstname <span class="type">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">UNIQUE</span>,</span><br><span class="line">   lastname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   address <span class="type">VARCHAR</span>(<span class="number">50</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>主键不能重复，唯一约束也不能重复。主键作用就是区分数据唯一性，不能和表中的业务数据相关联。主键不能是业务逻辑数据</p>
-</blockquote>
-<ul>
-<li>创建唯一约束的方式二：创建数据表的约束区域</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建唯一约束的方式二：创建数据表的约束区域</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> person(</span><br><span class="line">   id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">   firstname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   lastname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   address <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   #约束区域，添加唯一约束</span><br><span class="line">   <span class="keyword">CONSTRAINT</span> uk_firstname <span class="keyword">UNIQUE</span>(firstname)</span><br><span class="line">);</span><br><span class="line"><span class="comment">-- uk_firstname 约束名可以有，也可以没有，不写约束名，就是列名</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>创建唯一约束的方式三：修改表结构</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建唯一约束</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> person <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> <span class="keyword">UNIQUE</span>(firstname)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>删除唯一约束</li>
-</ul>
-<p>数据列中的唯一约束，保证数据的唯一性的，凡是具有唯一性的数据，MySQL认为这个列会被频繁的做查询，MySQL数据库自作主张，为这个列创建了索引，提高这个列的查询性能。删除唯一约束要删除索引</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="keyword">drop</span> index 约束名(无约束名就是列名)</span><br><span class="line"><span class="comment">-- 删除唯一约束</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> person <span class="keyword">DROP</span> INDEX firstname</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-3-非空约束-not-null"><a href="#2-3-非空约束-not-null" class="headerlink" title="2.3 非空约束 not null"></a>2.3 非空约束 not null</h2><p>数据字段设置非空约束，该字段的值不能写入null</p>
-<ul>
-<li>创建非空约束的方式一：创建数据表直接创建</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建非空约束的方式一：创建数据表直接创建</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> person(</span><br><span class="line">   id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">   firstname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   lastname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   #address设置非空约束</span><br><span class="line">   address <span class="type">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>创建非空约束的方式二：修改表结构</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 修改表结构，删除非空约束</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> person MODIFY address <span class="type">VARCHAR</span>(<span class="number">50</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改表结构，添加非空约束</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> person MODIFY address <span class="type">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-4-默认约束-default"><a href="#2-4-默认约束-default" class="headerlink" title="2.4 默认约束 default"></a>2.4 默认约束 default</h2><p>数据表的字段设置默认约束，字段会产生默认值，不写入该字段的值，采用默认值。</p>
-<ul>
-<li>创建默认约束的方式一：创建数据表直接创建</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建默认约束的方式一：创建数据表直接创建</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> person(</span><br><span class="line">   id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">   firstname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   lastname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   #address设置默认约束</span><br><span class="line">   address <span class="type">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="string">&#x27;深圳市&#x27;</span></span><br><span class="line">);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>删除默认约束：修改表结构</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 删除默认约束：修改表结构</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> person MODIFY address <span class="type">VARCHAR</span>(<span class="number">50</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 添加默认约束：修改表结构</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> person MODIFY address <span class="type">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="string">&#x27;广州市&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="2-5-外键约束-foreign-key"><a href="#2-5-外键约束-foreign-key" class="headerlink" title="2.5 外键约束 foreign key"></a>2.5 外键约束 foreign key</h2><ul>
-<li>创建外键约束方式一：修改表结构</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 从表 <span class="keyword">add</span> <span class="keyword">constraint</span> [约束名] <span class="keyword">foreign</span> key(从表的外键字段名)</span><br><span class="line"><span class="keyword">references</span> 主表(主表的主键字段名)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> score <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> fk_score_sid <span class="keyword">FOREIGN</span> KEY(sid)</span><br><span class="line"><span class="keyword">REFERENCES</span> student(id);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>创建外键约束方式二：创建数据表的时候创建（从表）</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建外键约束方式二：创建数据表的时候创建（从表）</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> score(</span><br><span class="line">  id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">  score <span class="keyword">DOUBLE</span>,</span><br><span class="line">  sid <span class="type">INT</span>,</span><br><span class="line">  #数据表的约束区域创建外键约束</span><br><span class="line">  <span class="keyword">CONSTRAINT</span> fk_score_sid <span class="keyword">FOREIGN</span> KEY(sid) <span class="keyword">REFERENCES</span> student(id)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>删除外键约束：修改表结构</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 修改表结构，删除外键约束            约束名</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> score <span class="keyword">DROP</span> <span class="keyword">FOREIGN</span> KEY fk_score_sid</span><br></pre></td></tr></table></figure>
-
-<h1 id="第三章-多表间关系"><a href="#第三章-多表间关系" class="headerlink" title="第三章 多表间关系"></a>第三章 多表间关系</h1><h2 id="3-1-一对多关系"><a href="#3-1-一对多关系" class="headerlink" title="3.1 一对多关系"></a>3.1 一对多关系</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建外键约束 product从表外键是cno字段，主表的主键是category表的cid字段</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> product <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> fk_product_cno <span class="keyword">FOREIGN</span> KEY (cno)</span><br><span class="line"><span class="keyword">REFERENCES</span> category(cid);</span><br><span class="line"><span class="comment">-- 添加商品数据，错误的</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> product <span class="keyword">VALUES</span>(<span class="keyword">NULL</span>,<span class="string">&#x27;矿泉水&#x27;</span>,<span class="number">2.5</span>,<span class="number">100</span>,<span class="number">4</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-2-多对多关系"><a href="#3-2-多对多关系" class="headerlink" title="3.2 多对多关系"></a>3.2 多对多关系</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  数据表订单</span></span><br><span class="line"><span class="comment">  主键，创建时间，订单金额，订单状态</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">table</span> orders(</span><br><span class="line">  oid <span class="type">int</span> <span class="keyword">PRIMARY</span> key AUTO_INCREMENT,</span><br><span class="line">  ordertime datetime,</span><br><span class="line">  ordertotal <span class="keyword">double</span>,</span><br><span class="line">  orderstatus <span class="type">int</span> </span><br><span class="line">);</span><br><span class="line"><span class="comment">-- 订单表添加数据</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> orders <span class="keyword">values</span>(<span class="keyword">null</span>,now(),<span class="number">23010</span>,<span class="number">0</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> orders <span class="keyword">values</span>(<span class="keyword">null</span>,now(),<span class="number">18012.5</span>,<span class="number">0</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> orders <span class="keyword">values</span>(<span class="keyword">null</span>,now(),<span class="number">3000010</span>,<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 中间表，订单和商品的中间表，维护关系的</span></span><br><span class="line"><span class="comment">-- 只有2个字段，都是外键</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> product_orders(</span><br><span class="line">  pid <span class="type">int</span>,</span><br><span class="line">  oid <span class="type">int</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 中间表创建外键约束，商品表pid关联</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> product_orders <span class="keyword">add</span> <span class="keyword">CONSTRAINT</span> fk_product_orders_pid <span class="keyword">FOREIGN</span> key(pid)</span><br><span class="line"><span class="keyword">REFERENCES</span> product(pid);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 中间表创建外键约束，订单表oid关联</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> product_orders <span class="keyword">add</span> <span class="keyword">CONSTRAINT</span> fk_product_orders_oid <span class="keyword">FOREIGN</span> key(oid)</span><br><span class="line"><span class="keyword">REFERENCES</span> orders(oid);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 中间表添加测试数据</span></span><br><span class="line"><span class="comment">-- 1号：电脑，Iphone7,咖啡</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product_orders <span class="keyword">values</span>(<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product_orders <span class="keyword">values</span>(<span class="number">3</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product_orders <span class="keyword">values</span>(<span class="number">9</span>,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 2号：电脑，咖啡，矿泉水</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product_orders <span class="keyword">values</span>(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product_orders <span class="keyword">values</span>(<span class="number">9</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product_orders <span class="keyword">values</span>(<span class="number">10</span>,<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 3号：法拉利，咖啡</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product_orders <span class="keyword">values</span>(<span class="number">11</span>,<span class="number">3</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product_orders <span class="keyword">values</span>(<span class="number">9</span>,<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 中间表添加错误数据，不存在的商品</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product_orders <span class="keyword">values</span>(<span class="number">15</span>,<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 中间表添加错误数据，不存在的订单</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product_orders <span class="keyword">values</span>(<span class="number">1</span>,<span class="number">20</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="第四章-多表关联查询"><a href="#第四章-多表关联查询" class="headerlink" title="第四章 多表关联查询"></a>第四章 多表关联查询</h1><p>多表关联查询是使用一条SQL语句，将关联的多张表的数据查询出来</p>
-<h2 id="4-1-环境准备"><a href="#4-1-环境准备" class="headerlink" title="4.1 环境准备"></a>4.1 环境准备</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建一张分类表(类别id,类别名称.备注:类别id为主键并且自动增长)</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> category(</span><br><span class="line">		cid <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY auto_increment,</span><br><span class="line">		cname <span class="type">VARCHAR</span>(<span class="number">40</span>)</span><br><span class="line">);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> category <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;手机数码&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> category <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;食物&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> category <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;鞋靴箱包&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建一张商品表(商品id,商品名称,商品价格,商品数量,类别.备注:商品id为主键并且自动增长)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> product(</span><br><span class="line">		pid <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY auto_increment,</span><br><span class="line">		pname <span class="type">VARCHAR</span>(<span class="number">40</span>),</span><br><span class="line">		price <span class="keyword">DOUBLE</span>,</span><br><span class="line">		num <span class="type">INT</span>,</span><br><span class="line">		cno <span class="type">INT</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;苹果电脑&#x27;</span>,<span class="number">18000</span>,<span class="number">10</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;iPhone8s&#x27;</span>,<span class="number">5500</span>,<span class="number">100</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;iPhone7&#x27;</span>,<span class="number">5000</span>,<span class="number">100</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;iPhone6s&#x27;</span>,<span class="number">4500</span>,<span class="number">1000</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;iPhone6&#x27;</span>,<span class="number">3800</span>,<span class="number">200</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;iPhone5s&#x27;</span>,<span class="number">2000</span>,<span class="number">10</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;iPhone4s&#x27;</span>,<span class="number">18000</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;方便面&#x27;</span>,<span class="number">4.5</span>,<span class="number">1000</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;咖啡&#x27;</span>,<span class="number">10</span>,<span class="number">100</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;矿泉水&#x27;</span>,<span class="number">2.5</span>,<span class="number">100</span>,<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;法拉利&#x27;</span>,<span class="number">3000000</span>,<span class="number">50</span>,<span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 给 商品表添加外键</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> product <span class="keyword">ADD</span> <span class="keyword">FOREIGN</span> KEY(cno) <span class="keyword">REFERENCES</span> t_category(cid);</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>查询公式：select 字段名 from 表A,表B</p>
-</blockquote>
-<h2 id="4-2-笛卡尔积"><a href="#4-2-笛卡尔积" class="headerlink" title="4.2 笛卡尔积"></a>4.2 笛卡尔积</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> category,product</span><br><span class="line"><span class="comment">-- 查询后的结果集，导致2个数据表的每行数据相乘，结果是错误的</span></span><br></pre></td></tr></table></figure>
-
-<p>集合：并集，交集，子集</p>
-<blockquote>
-<p>查询不出现乘积，带有条件，主表的主键&#x3D;从表的外键</p>
-</blockquote>
-<h2 id="4-3-内连接查询"><a href="#4-3-内连接查询" class="headerlink" title="4.3 内连接查询"></a>4.3 内连接查询</h2><ul>
-<li>隐式内连接查询公式：</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> 表名.字段名,表名字段名 <span class="keyword">from</span> 表A,表B</span><br><span class="line"><span class="keyword">where</span> 表名.主键字段<span class="operator">=</span>表名.外键字段名</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- select 表名.字段名,表名字段名 from 表A,表B</span></span><br><span class="line"><span class="comment">-- where 表名.主键字段=表名.外键字段名</span></span><br><span class="line"><span class="keyword">select</span> category.cid,category.cname,product.pid,product.pname,product.price,</span><br><span class="line">product.num,product.cno <span class="keyword">from</span> category,product <span class="keyword">where</span>  category.cid <span class="operator">=</span> product.cno ;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 简化写法，使用重命名，减少代码的书写</span></span><br><span class="line"><span class="keyword">select</span> c.cid,c.cname,p.pid,p.pname,p.price,</span><br><span class="line">p.num,p.cno <span class="keyword">from</span> category c,product p <span class="keyword">where</span>  c.cid <span class="operator">=</span> p.cno ;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>显示式内连接查询公式：</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> 表名.字段名,表名字段名 <span class="keyword">from</span> 表A <span class="keyword">inner</span> <span class="keyword">join</span>  表B</span><br><span class="line"><span class="keyword">where</span> 表名.主键字段<span class="operator">=</span>表名.外键字段名</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-4-外连接查询"><a href="#4-4-外连接查询" class="headerlink" title="4.4 外连接查询"></a>4.4 外连接查询</h2><ul>
-<li>左外连接：left outer join 条件是on</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"># 外连接查询，左外连接</span><br><span class="line"># 商品分类，左连接商品表</span><br><span class="line"><span class="keyword">select</span> c.cid,c.cname,p.pid,p.pname,p.price,p.num,p.cno</span><br><span class="line"><span class="keyword">from</span> category c <span class="keyword">left</span> <span class="keyword">outer</span> <span class="keyword">join</span> product p</span><br><span class="line"><span class="keyword">on</span> c.cid <span class="operator">=</span> p.cno</span><br><span class="line"><span class="comment">-- 左外连接：左侧数据表，数据表必须全部显示，写在右边的表没有此数据的，补充null</span></span><br><span class="line"></span><br><span class="line">#商品表，左连接商品分类</span><br><span class="line"><span class="keyword">select</span> c.cid,c.cname,p.pid,p.pname,p.price,p.num,p.cno</span><br><span class="line"><span class="keyword">from</span> product p <span class="keyword">left</span> <span class="keyword">outer</span> <span class="keyword">join</span> category c</span><br><span class="line"><span class="keyword">on</span> c.cid <span class="operator">=</span> p.cno</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>右外连接:：right outer join 条件是on</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"># 外连接查询，左外连接</span><br><span class="line"># 商品分类，左连接商品表</span><br><span class="line"><span class="keyword">select</span> c.cid,c.cname,p.pid,p.pname,p.price,p.num,p.cno</span><br><span class="line"><span class="keyword">from</span> category c <span class="keyword">left</span> <span class="keyword">outer</span> <span class="keyword">join</span> product p</span><br><span class="line"><span class="keyword">on</span> c.cid <span class="operator">=</span> p.cno;</span><br><span class="line"><span class="comment">-- 左外连接：左侧数据表，数据表必须全部显示，写在右边的表没有此数据的，补充null</span></span><br><span class="line"></span><br><span class="line">#商品表，左连接商品分类</span><br><span class="line"><span class="keyword">select</span> c.cid,c.cname,p.pid,p.pname,p.price,p.num,p.cno</span><br><span class="line"><span class="keyword">from</span> product p <span class="keyword">left</span> <span class="keyword">outer</span> <span class="keyword">join</span> category c</span><br><span class="line"><span class="keyword">on</span> c.cid <span class="operator">=</span> p.cno;</span><br><span class="line"></span><br><span class="line">#商品分类，右连接商品表</span><br><span class="line"><span class="keyword">select</span> c.cid,c.cname,p.pid,p.pname,p.price,p.num,p.cno</span><br><span class="line"><span class="keyword">from</span> category c <span class="keyword">right</span> <span class="keyword">outer</span> <span class="keyword">join</span> product p</span><br><span class="line"><span class="keyword">on</span> c.cid <span class="operator">=</span> p.cno;</span><br><span class="line"></span><br><span class="line">#商品表，右连接分类表</span><br><span class="line"><span class="keyword">select</span> c.cid,c.cname,p.pid,p.pname,p.price,p.num,p.cno</span><br><span class="line"><span class="keyword">from</span> product p <span class="keyword">right</span> <span class="keyword">outer</span> <span class="keyword">join</span> category c</span><br><span class="line"><span class="keyword">on</span> c.cid <span class="operator">=</span> p.cno;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>左连接和右连接，某种写法下，查询的结果是一样的，选择其中的一个来使用，左外连接的人是最多的</p>
-</blockquote>
-<h1 id="第四章-子查询"><a href="#第四章-子查询" class="headerlink" title="第四章 子查询"></a>第四章 子查询</h1>]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySQL day3</title>
     <url>/2022/06/15/atguigu/MySQL_Day3/</url>
-    <content><![CDATA[<h1 id="MySQL-Day3"><a href="#MySQL-Day3" class="headerlink" title="MySQL_Day3"></a>MySQL_Day3</h1><ul>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="MySQL-Day3"><a href="#MySQL-Day3" class="headerlink" title="MySQL_Day3"></a>MySQL_Day3</h1><ul>
 <li>学习目标<ul>
 <li><input disabled type="checkbox"> 能够使用DCL语言创建账户并授权</li>
 <li><input disabled type="checkbox"> 理解JDBC的概念</li>
@@ -457,7 +261,7 @@
   <entry>
     <title>MySQL安装及基础</title>
     <url>/2022/06/14/atguigu/MySQL_day1/</url>
-    <content><![CDATA[<h2 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h2><ul>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h2><ul>
 <li><input disabled type="checkbox"> 能够理解数据库的概念</li>
 <li><input disabled type="checkbox"> 能够安装MySQL数据库</li>
 <li><input disabled type="checkbox"> 能够启动,关闭及登录MySQL</li>
@@ -838,7 +642,7 @@
   <entry>
     <title>day15 多线程</title>
     <url>/2022/06/14/atguigu/day15_Thread/</url>
-    <content><![CDATA[<h1 id="day15-多线程"><a href="#day15-多线程" class="headerlink" title="day15. 多线程"></a>day15. 多线程</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">课前回顾:</span><br><span class="line"> <span class="number">1.</span>包装类:基本类型对应的引用数据类型</span><br><span class="line">   a.装箱:将基本类型转成对应的包装类</span><br><span class="line">     构造:</span><br><span class="line">       Integer(<span class="type">int</span> i)   Integer(String s)</span><br><span class="line">     方法:</span><br><span class="line">       valueOf(<span class="type">int</span> i)   valueOf(String s)</span><br><span class="line">   b.拆箱:将包装类转成对应的基本数据类型</span><br><span class="line">     intValue()</span><br><span class="line">   c.基本类型和String之间的转换</span><br><span class="line">     基本类型-&gt;String:+    valueOf(<span class="type">int</span> i)</span><br><span class="line">     String-&gt;基本类型:parseXXX(String s)</span><br><span class="line">   d.笔试题:</span><br><span class="line">     <span class="type">Integer</span> <span class="variable">i1</span> <span class="operator">=</span> <span class="number">200</span></span><br><span class="line">     <span class="type">Integer</span> <span class="variable">i2</span> <span class="operator">=</span> <span class="number">200</span></span><br><span class="line">     i1==i2-&gt;<span class="literal">false</span></span><br><span class="line"> <span class="number">2.</span>多线程:</span><br><span class="line">   a.进程:进入到内存执行的应用程序</span><br><span class="line">   b.线程:进程中的一个执行单元-&gt;CPU和内存之间开辟的通道</span><br><span class="line">   c.CPU调度:</span><br><span class="line">     分时调度</span><br><span class="line">     抢占式调度:java程序</span><br><span class="line">   d.主线程:CPU和内存之间为main方法开辟的通道</span><br><span class="line"> <span class="number">3.</span>创建线程<span class="number">3</span>种方式:</span><br><span class="line">   a.继承Thread</span><br><span class="line">     定义一个类,继承Thraed</span><br><span class="line">     重写run方法-&gt;设置线程任务</span><br><span class="line">     创建对象,调用start方法,开启线程,jvm会自动执行run方法</span><br><span class="line">   b.实现Runnable</span><br><span class="line">     定义一个实现类,实现Runnable</span><br><span class="line">     重写run方法,设置线程任务</span><br><span class="line">     创建实现类对象,将对象封装到Thread中</span><br><span class="line">     调用start方法</span><br><span class="line">   c.匿名内部类:</span><br><span class="line">     <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">Runnable</span>()&#123;</span><br><span class="line">         重写run方法</span><br><span class="line">     &#125;).start()</span><br><span class="line"> <span class="number">4.</span>问题:</span><br><span class="line">   为啥在run方法中不能<span class="keyword">throws</span> 异常?因为Thread中的或者Runnable中的run方法没有<span class="keyword">throws</span>,重写之后就不能<span class="keyword">throws</span>,</span><br><span class="line"> <span class="number">5.</span>同步代码块</span><br><span class="line">   a.<span class="keyword">synchronized</span>(锁对象)&#123;</span><br><span class="line">        可能出现线程安全的代码</span><br><span class="line">     &#125;</span><br><span class="line"> <span class="number">6.</span>同步方法:</span><br><span class="line">   a.普通的:<span class="built_in">this</span></span><br><span class="line">     修饰符 <span class="keyword">synchronized</span> 返回值类型 方法名(参数)&#123;</span><br><span class="line">         方法体</span><br><span class="line">          <span class="keyword">return</span> 结果</span><br><span class="line">     &#125;</span><br><span class="line">   b.静态的:当前类.class</span><br><span class="line">     修饰符 <span class="keyword">static</span> <span class="keyword">synchronized</span> 返回值类型 方法名(参数)&#123;</span><br><span class="line">         方法体</span><br><span class="line">          <span class="keyword">return</span> 结果</span><br><span class="line">     &#125;</span><br><span class="line">  <span class="number">7.</span>死锁:锁嵌套</span><br><span class="line">  <span class="number">8.</span>单例:保证一个类产生一个对象</span><br><span class="line">    a.饿汉式:<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">new</span>对象</span><br><span class="line">       </span><br><span class="line">    b.懒汉式:先不<span class="keyword">new</span>对象,什么时候使用,调用方法,此方法再<span class="keyword">new</span>,返回</span><br><span class="line">            <span class="keyword">if</span>(对象==<span class="literal">null</span>)&#123;</span><br><span class="line">                同步&#123;</span><br><span class="line">                  <span class="keyword">if</span>(对象==<span class="literal">null</span>)&#123;</span><br><span class="line">                    <span class="keyword">new</span>对象   </span><br><span class="line">                  &#125;</span><br><span class="line">                   </span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            返回对象</span><br><span class="line">    c.注意:构造私有,对象私有静态,提供一个方法返回对象</span><br><span class="line"></span><br><span class="line">今日重点:</span><br><span class="line">  <span class="number">1.</span>会使用wait和notify方法</span><br><span class="line">  <span class="number">2.</span>知道sleep和wait的区别</span><br><span class="line">  <span class="number">3.</span>会使用Lock锁实现同步</span><br><span class="line">  <span class="number">4.</span>会使用线程池</span><br><span class="line">  <span class="number">5.</span>会使用Callable接口</span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="day15-多线程"><a href="#day15-多线程" class="headerlink" title="day15. 多线程"></a>day15. 多线程</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">课前回顾:</span><br><span class="line"> <span class="number">1.</span>包装类:基本类型对应的引用数据类型</span><br><span class="line">   a.装箱:将基本类型转成对应的包装类</span><br><span class="line">     构造:</span><br><span class="line">       Integer(<span class="type">int</span> i)   Integer(String s)</span><br><span class="line">     方法:</span><br><span class="line">       valueOf(<span class="type">int</span> i)   valueOf(String s)</span><br><span class="line">   b.拆箱:将包装类转成对应的基本数据类型</span><br><span class="line">     intValue()</span><br><span class="line">   c.基本类型和String之间的转换</span><br><span class="line">     基本类型-&gt;String:+    valueOf(<span class="type">int</span> i)</span><br><span class="line">     String-&gt;基本类型:parseXXX(String s)</span><br><span class="line">   d.笔试题:</span><br><span class="line">     <span class="type">Integer</span> <span class="variable">i1</span> <span class="operator">=</span> <span class="number">200</span></span><br><span class="line">     <span class="type">Integer</span> <span class="variable">i2</span> <span class="operator">=</span> <span class="number">200</span></span><br><span class="line">     i1==i2-&gt;<span class="literal">false</span></span><br><span class="line"> <span class="number">2.</span>多线程:</span><br><span class="line">   a.进程:进入到内存执行的应用程序</span><br><span class="line">   b.线程:进程中的一个执行单元-&gt;CPU和内存之间开辟的通道</span><br><span class="line">   c.CPU调度:</span><br><span class="line">     分时调度</span><br><span class="line">     抢占式调度:java程序</span><br><span class="line">   d.主线程:CPU和内存之间为main方法开辟的通道</span><br><span class="line"> <span class="number">3.</span>创建线程<span class="number">3</span>种方式:</span><br><span class="line">   a.继承Thread</span><br><span class="line">     定义一个类,继承Thraed</span><br><span class="line">     重写run方法-&gt;设置线程任务</span><br><span class="line">     创建对象,调用start方法,开启线程,jvm会自动执行run方法</span><br><span class="line">   b.实现Runnable</span><br><span class="line">     定义一个实现类,实现Runnable</span><br><span class="line">     重写run方法,设置线程任务</span><br><span class="line">     创建实现类对象,将对象封装到Thread中</span><br><span class="line">     调用start方法</span><br><span class="line">   c.匿名内部类:</span><br><span class="line">     <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">Runnable</span>()&#123;</span><br><span class="line">         重写run方法</span><br><span class="line">     &#125;).start()</span><br><span class="line"> <span class="number">4.</span>问题:</span><br><span class="line">   为啥在run方法中不能<span class="keyword">throws</span> 异常?因为Thread中的或者Runnable中的run方法没有<span class="keyword">throws</span>,重写之后就不能<span class="keyword">throws</span>,</span><br><span class="line"> <span class="number">5.</span>同步代码块</span><br><span class="line">   a.<span class="keyword">synchronized</span>(锁对象)&#123;</span><br><span class="line">        可能出现线程安全的代码</span><br><span class="line">     &#125;</span><br><span class="line"> <span class="number">6.</span>同步方法:</span><br><span class="line">   a.普通的:<span class="built_in">this</span></span><br><span class="line">     修饰符 <span class="keyword">synchronized</span> 返回值类型 方法名(参数)&#123;</span><br><span class="line">         方法体</span><br><span class="line">          <span class="keyword">return</span> 结果</span><br><span class="line">     &#125;</span><br><span class="line">   b.静态的:当前类.class</span><br><span class="line">     修饰符 <span class="keyword">static</span> <span class="keyword">synchronized</span> 返回值类型 方法名(参数)&#123;</span><br><span class="line">         方法体</span><br><span class="line">          <span class="keyword">return</span> 结果</span><br><span class="line">     &#125;</span><br><span class="line">  <span class="number">7.</span>死锁:锁嵌套</span><br><span class="line">  <span class="number">8.</span>单例:保证一个类产生一个对象</span><br><span class="line">    a.饿汉式:<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">new</span>对象</span><br><span class="line">       </span><br><span class="line">    b.懒汉式:先不<span class="keyword">new</span>对象,什么时候使用,调用方法,此方法再<span class="keyword">new</span>,返回</span><br><span class="line">            <span class="keyword">if</span>(对象==<span class="literal">null</span>)&#123;</span><br><span class="line">                同步&#123;</span><br><span class="line">                  <span class="keyword">if</span>(对象==<span class="literal">null</span>)&#123;</span><br><span class="line">                    <span class="keyword">new</span>对象   </span><br><span class="line">                  &#125;</span><br><span class="line">                   </span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            返回对象</span><br><span class="line">    c.注意:构造私有,对象私有静态,提供一个方法返回对象</span><br><span class="line"></span><br><span class="line">今日重点:</span><br><span class="line">  <span class="number">1.</span>会使用wait和notify方法</span><br><span class="line">  <span class="number">2.</span>知道sleep和wait的区别</span><br><span class="line">  <span class="number">3.</span>会使用Lock锁实现同步</span><br><span class="line">  <span class="number">4.</span>会使用线程池</span><br><span class="line">  <span class="number">5.</span>会使用Callable接口</span><br></pre></td></tr></table></figure>
 
 <h1 id="第一章-线程状态"><a href="#第一章-线程状态" class="headerlink" title="第一章.线程状态"></a>第一章.线程状态</h1><h2 id="1-线程状态介绍"><a href="#1-线程状态介绍" class="headerlink" title="1.线程状态介绍"></a>1.线程状态介绍</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">当线程被创建并启动以后，它既不是一启动就进入了执行状态，也不是一直处于执行状态。在线程的生命周期中，有几种状态呢？在API中java.lang.Thread.State这个枚举中给出了六种线程状态：</span><br><span class="line">这里先列出各个线程状态发生的条件，下面将会对每种状态进行详细解析。</span><br></pre></td></tr></table></figure>
 
@@ -1008,9 +812,207 @@
       </tags>
   </entry>
   <entry>
+    <title>MySQL day2</title>
+    <url>/2022/06/14/atguigu/MySQL_day2/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h2><ul>
+<li><input disabled type="checkbox"> 了解数据表设计三范式</li>
+<li><input disabled type="checkbox"> 能够创建主键约束</li>
+<li><input disabled type="checkbox"> 能够创建唯一约束</li>
+<li><input disabled type="checkbox"> 能够创建外键约束</li>
+<li><input disabled type="checkbox"> 建立一对多关系</li>
+<li><input disabled type="checkbox"> 能够建立多对多关系</li>
+<li><input disabled type="checkbox"> 能够使用内连接查询</li>
+<li><input disabled type="checkbox"> 能够使用左外连接查询</li>
+<li><input disabled type="checkbox"> 能够使用右外连接查询</li>
+<li><input disabled type="checkbox"> 能够使用子查询</li>
+</ul>
+<h1 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h1><p>数据表中数据非常多，查询出现的结果集也很多，计算机的显示屏毕竟大小是有限，如果一个屏幕显示不完整数据，进行分页显示。</p>
+<p>SQL语句实现对数据的分页查询：MySQL提供关键字 limit,使用方式 limit m,n</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 0 数据表中数据的开始索引 ，从0开始，1000查询只显示1000条</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> product LIMIT <span class="number">0</span>,<span class="number">1000</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>limit 关键字参数</p>
+<ul>
+<li>m : 数据表的开始索引</li>
+<li>n：每次查询要显示的条数</li>
+</ul>
+</li>
+<li><blockquote>
+<p>公式：m&#x3D;(当前页数 - 1) * 每页显示的条数</p>
+</blockquote>
+</li>
+<li><p>总数据量有多少： select count(1) from 表名</p>
+</li>
+<li><p>总页数：总数据量 &#x2F; 每页显示条数，向上取整</p>
+</li>
+</ul>
+<p><img src="/images/MySQL_day2/1.png"></p>
+<h1 id="第一章-数据库三范式"><a href="#第一章-数据库三范式" class="headerlink" title="第一章 数据库三范式"></a>第一章 数据库三范式</h1><p>好的数据库设计对数据的存储性能和后期的程序开发，都会产生重要的影响。建立科学的，规范的数据库就需要满足一些规则来优化数据的设计和存储，这些规则就称为范式。</p>
+<h2 id="1-1-第一范式-确保每列保持原子性"><a href="#1-1-第一范式-确保每列保持原子性" class="headerlink" title="1.1 第一范式: 确保每列保持原子性"></a>1.1 第一范式: <strong>确保每列保持原子性</strong></h2><p>第一范（1NF）式是最基本的范式。如果数据库表中的所有字段值都是不可分解的原子值，就说明该数据库表满足了第一范式。</p>
+<p>第一范式的合理遵循需要根据系统的实际需求来定。比如某些数据库系统中需要用到“地址”这个属性，本来直接将“地址”属性设计成一个数据库表的字段就行。但是如果系统经常会访问“地址”属性中的“城市”部分，那么就非要将“地址”这个属性重新拆分为省份、城市、详细地址等多个部分进行存储，这样在对地址中某一部分操作的时候将非常方便。这样设计才算满足了数据库的第一范式，如下表所示。</p>
+<p><img src="/images/MySQL_day2/tu_11.png"></p>
+<p>如果不遵守第一范式，查询出数据还需要进一步处理（查询不方便）。遵守第一范式，需要什么字段的数据就查询什么数据（方便查询）</p>
+<h2 id="1-2-第二范式-确保表中的每行都能唯一区分"><a href="#1-2-第二范式-确保表中的每行都能唯一区分" class="headerlink" title="1.2 第二范式: 确保表中的每行都能唯一区分"></a>1.2 第二范式: <strong>确保表中的每行都能唯一区分</strong></h2><p>第二范式（2NF)第二范式（2NF）是在第一范式（1NF）的基础上建立起来的，即满足第二范式（2NF）必须先满足第一范式（1NF）。第二范式（2NF）要求数据库表中的每个实例或行必须可以被惟一的区分。为实现区分通常需要为表加上一个列，以存储各个实例的惟一标识。</p>
+<h2 id="1-3-第三范式-3NF-非主键字段不能相互依赖"><a href="#1-3-第三范式-3NF-非主键字段不能相互依赖" class="headerlink" title="1.3 第三范式: 3NF:非主键字段不能相互依赖"></a>1.3 第三范式: <strong>3NF:非主键字段不能相互依赖</strong></h2><p>比如student表，班级编号受人员编号的影响，如果在这个表中再插入班级的班主任、数学老师等信息，你们觉得这样合适吗？肯定不合适，因为学生有多个，这样就会造成班级有多个，那么每个班级的班主任、数学老师都会出现多条数据，而我们理想中的效果应该是一条班级信息对应一个班主任和数学老师，这样更易于我们理解，</p>
+<h1 id="第二章-约束"><a href="#第二章-约束" class="headerlink" title="第二章 约束"></a>第二章 约束</h1><h2 id="2-1-主键约束-primary-key"><a href="#2-1-主键约束-primary-key" class="headerlink" title="2.1 主键约束 primary key"></a>2.1 主键约束 primary key</h2><p>数据表中的一个字段，可以设置为主键，该列的数据不能空值，数据必须保证是唯一性。每个数据表都应该有一个主键约束，一个数据表只能设置一个主键</p>
+<ul>
+<li>创建主键约束的方式一：创建数据表的时候</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建主键约束的方式一：创建数据表的时候</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> person(</span><br><span class="line">   id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">   firstname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   lastname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   address <span class="type">VARCHAR</span>(<span class="number">50</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建主键约束的方式二：在数据表的约束区域创建</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建主键约束的方式二：在数据表的约束区域创建</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> person(</span><br><span class="line">   id <span class="type">INT</span> ,</span><br><span class="line">   firstname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   lastname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   address <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   #约束区域，创建主键约束</span><br><span class="line">   <span class="keyword">CONSTRAINT</span> <span class="keyword">PRIMARY</span> KEY (id)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建主键约束的方式三：使用修改表结构创建</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 修改表结构，添加主键约束</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> person <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> <span class="keyword">PRIMARY</span> KEY(id)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>删除主键约束</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 修改表结构，删除主键约束</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> person <span class="keyword">DROP</span> <span class="keyword">PRIMARY</span> KEY</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>主键自动增长</li>
+</ul>
+<p>只有设置为主键的字段，数据类型必须是整数，实现数据的自动增长，而且数据一旦使用过，就不会再使用了：关键字 auto_increment</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 设置主键数据的自动增长</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> person(</span><br><span class="line">   id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">   firstname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   lastname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   address <span class="type">VARCHAR</span>(<span class="number">50</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>好处：开发人员，不再维护该字段</p>
+<p>弊端：不适应现在的互联网发展，被雪花算法取代</p>
+</blockquote>
+<ul>
+<li>delete删除，truncate摧毁数据<ul>
+<li>delete删除数据，但是不影响主键自动增长</li>
+<li>truncate摧毁数据，摧毁数据表，并重建，自动增长从新开始</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">TRUNCATE</span> <span class="keyword">TABLE</span> product;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2-唯一约束-unique"><a href="#2-2-唯一约束-unique" class="headerlink" title="2.2 唯一约束 unique"></a>2.2 唯一约束 unique</h2><p>被设置唯一约束的字段，值必须保证唯一性</p>
+<ul>
+<li>创建唯一约束的方式一：创建数据表直接创建</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建唯一约束的方式一：创建数据表直接创建</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> person(</span><br><span class="line">   id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">   #添加唯一约束</span><br><span class="line">   firstname <span class="type">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">UNIQUE</span>,</span><br><span class="line">   lastname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   address <span class="type">VARCHAR</span>(<span class="number">50</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>主键不能重复，唯一约束也不能重复。主键作用就是区分数据唯一性，不能和表中的业务数据相关联。主键不能是业务逻辑数据</p>
+</blockquote>
+<ul>
+<li>创建唯一约束的方式二：创建数据表的约束区域</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建唯一约束的方式二：创建数据表的约束区域</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> person(</span><br><span class="line">   id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">   firstname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   lastname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   address <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   #约束区域，添加唯一约束</span><br><span class="line">   <span class="keyword">CONSTRAINT</span> uk_firstname <span class="keyword">UNIQUE</span>(firstname)</span><br><span class="line">);</span><br><span class="line"><span class="comment">-- uk_firstname 约束名可以有，也可以没有，不写约束名，就是列名</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建唯一约束的方式三：修改表结构</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建唯一约束</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> person <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> <span class="keyword">UNIQUE</span>(firstname)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>删除唯一约束</li>
+</ul>
+<p>数据列中的唯一约束，保证数据的唯一性的，凡是具有唯一性的数据，MySQL认为这个列会被频繁的做查询，MySQL数据库自作主张，为这个列创建了索引，提高这个列的查询性能。删除唯一约束要删除索引</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="keyword">drop</span> index 约束名(无约束名就是列名)</span><br><span class="line"><span class="comment">-- 删除唯一约束</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> person <span class="keyword">DROP</span> INDEX firstname</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3-非空约束-not-null"><a href="#2-3-非空约束-not-null" class="headerlink" title="2.3 非空约束 not null"></a>2.3 非空约束 not null</h2><p>数据字段设置非空约束，该字段的值不能写入null</p>
+<ul>
+<li>创建非空约束的方式一：创建数据表直接创建</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建非空约束的方式一：创建数据表直接创建</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> person(</span><br><span class="line">   id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">   firstname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   lastname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   #address设置非空约束</span><br><span class="line">   address <span class="type">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建非空约束的方式二：修改表结构</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 修改表结构，删除非空约束</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> person MODIFY address <span class="type">VARCHAR</span>(<span class="number">50</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改表结构，添加非空约束</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> person MODIFY address <span class="type">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-4-默认约束-default"><a href="#2-4-默认约束-default" class="headerlink" title="2.4 默认约束 default"></a>2.4 默认约束 default</h2><p>数据表的字段设置默认约束，字段会产生默认值，不写入该字段的值，采用默认值。</p>
+<ul>
+<li>创建默认约束的方式一：创建数据表直接创建</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建默认约束的方式一：创建数据表直接创建</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> person(</span><br><span class="line">   id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">   firstname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   lastname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">   #address设置默认约束</span><br><span class="line">   address <span class="type">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="string">&#x27;深圳市&#x27;</span></span><br><span class="line">);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>删除默认约束：修改表结构</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 删除默认约束：修改表结构</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> person MODIFY address <span class="type">VARCHAR</span>(<span class="number">50</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 添加默认约束：修改表结构</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> person MODIFY address <span class="type">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="string">&#x27;广州市&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-5-外键约束-foreign-key"><a href="#2-5-外键约束-foreign-key" class="headerlink" title="2.5 外键约束 foreign key"></a>2.5 外键约束 foreign key</h2><ul>
+<li>创建外键约束方式一：修改表结构</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 从表 <span class="keyword">add</span> <span class="keyword">constraint</span> [约束名] <span class="keyword">foreign</span> key(从表的外键字段名)</span><br><span class="line"><span class="keyword">references</span> 主表(主表的主键字段名)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> score <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> fk_score_sid <span class="keyword">FOREIGN</span> KEY(sid)</span><br><span class="line"><span class="keyword">REFERENCES</span> student(id);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建外键约束方式二：创建数据表的时候创建（从表）</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建外键约束方式二：创建数据表的时候创建（从表）</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> score(</span><br><span class="line">  id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">  score <span class="keyword">DOUBLE</span>,</span><br><span class="line">  sid <span class="type">INT</span>,</span><br><span class="line">  #数据表的约束区域创建外键约束</span><br><span class="line">  <span class="keyword">CONSTRAINT</span> fk_score_sid <span class="keyword">FOREIGN</span> KEY(sid) <span class="keyword">REFERENCES</span> student(id)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>删除外键约束：修改表结构</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 修改表结构，删除外键约束            约束名</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> score <span class="keyword">DROP</span> <span class="keyword">FOREIGN</span> KEY fk_score_sid</span><br></pre></td></tr></table></figure>
+
+<h1 id="第三章-多表间关系"><a href="#第三章-多表间关系" class="headerlink" title="第三章 多表间关系"></a>第三章 多表间关系</h1><h2 id="3-1-一对多关系"><a href="#3-1-一对多关系" class="headerlink" title="3.1 一对多关系"></a>3.1 一对多关系</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建外键约束 product从表外键是cno字段，主表的主键是category表的cid字段</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> product <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> fk_product_cno <span class="keyword">FOREIGN</span> KEY (cno)</span><br><span class="line"><span class="keyword">REFERENCES</span> category(cid);</span><br><span class="line"><span class="comment">-- 添加商品数据，错误的</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> product <span class="keyword">VALUES</span>(<span class="keyword">NULL</span>,<span class="string">&#x27;矿泉水&#x27;</span>,<span class="number">2.5</span>,<span class="number">100</span>,<span class="number">4</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-2-多对多关系"><a href="#3-2-多对多关系" class="headerlink" title="3.2 多对多关系"></a>3.2 多对多关系</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  数据表订单</span></span><br><span class="line"><span class="comment">  主键，创建时间，订单金额，订单状态</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">table</span> orders(</span><br><span class="line">  oid <span class="type">int</span> <span class="keyword">PRIMARY</span> key AUTO_INCREMENT,</span><br><span class="line">  ordertime datetime,</span><br><span class="line">  ordertotal <span class="keyword">double</span>,</span><br><span class="line">  orderstatus <span class="type">int</span> </span><br><span class="line">);</span><br><span class="line"><span class="comment">-- 订单表添加数据</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> orders <span class="keyword">values</span>(<span class="keyword">null</span>,now(),<span class="number">23010</span>,<span class="number">0</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> orders <span class="keyword">values</span>(<span class="keyword">null</span>,now(),<span class="number">18012.5</span>,<span class="number">0</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> orders <span class="keyword">values</span>(<span class="keyword">null</span>,now(),<span class="number">3000010</span>,<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 中间表，订单和商品的中间表，维护关系的</span></span><br><span class="line"><span class="comment">-- 只有2个字段，都是外键</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> product_orders(</span><br><span class="line">  pid <span class="type">int</span>,</span><br><span class="line">  oid <span class="type">int</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 中间表创建外键约束，商品表pid关联</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> product_orders <span class="keyword">add</span> <span class="keyword">CONSTRAINT</span> fk_product_orders_pid <span class="keyword">FOREIGN</span> key(pid)</span><br><span class="line"><span class="keyword">REFERENCES</span> product(pid);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 中间表创建外键约束，订单表oid关联</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> product_orders <span class="keyword">add</span> <span class="keyword">CONSTRAINT</span> fk_product_orders_oid <span class="keyword">FOREIGN</span> key(oid)</span><br><span class="line"><span class="keyword">REFERENCES</span> orders(oid);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 中间表添加测试数据</span></span><br><span class="line"><span class="comment">-- 1号：电脑，Iphone7,咖啡</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product_orders <span class="keyword">values</span>(<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product_orders <span class="keyword">values</span>(<span class="number">3</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product_orders <span class="keyword">values</span>(<span class="number">9</span>,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 2号：电脑，咖啡，矿泉水</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product_orders <span class="keyword">values</span>(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product_orders <span class="keyword">values</span>(<span class="number">9</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product_orders <span class="keyword">values</span>(<span class="number">10</span>,<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 3号：法拉利，咖啡</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product_orders <span class="keyword">values</span>(<span class="number">11</span>,<span class="number">3</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product_orders <span class="keyword">values</span>(<span class="number">9</span>,<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 中间表添加错误数据，不存在的商品</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product_orders <span class="keyword">values</span>(<span class="number">15</span>,<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 中间表添加错误数据，不存在的订单</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product_orders <span class="keyword">values</span>(<span class="number">1</span>,<span class="number">20</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="第四章-多表关联查询"><a href="#第四章-多表关联查询" class="headerlink" title="第四章 多表关联查询"></a>第四章 多表关联查询</h1><p>多表关联查询是使用一条SQL语句，将关联的多张表的数据查询出来</p>
+<h2 id="4-1-环境准备"><a href="#4-1-环境准备" class="headerlink" title="4.1 环境准备"></a>4.1 环境准备</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建一张分类表(类别id,类别名称.备注:类别id为主键并且自动增长)</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> category(</span><br><span class="line">		cid <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY auto_increment,</span><br><span class="line">		cname <span class="type">VARCHAR</span>(<span class="number">40</span>)</span><br><span class="line">);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> category <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;手机数码&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> category <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;食物&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> category <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;鞋靴箱包&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建一张商品表(商品id,商品名称,商品价格,商品数量,类别.备注:商品id为主键并且自动增长)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> product(</span><br><span class="line">		pid <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY auto_increment,</span><br><span class="line">		pname <span class="type">VARCHAR</span>(<span class="number">40</span>),</span><br><span class="line">		price <span class="keyword">DOUBLE</span>,</span><br><span class="line">		num <span class="type">INT</span>,</span><br><span class="line">		cno <span class="type">INT</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;苹果电脑&#x27;</span>,<span class="number">18000</span>,<span class="number">10</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;iPhone8s&#x27;</span>,<span class="number">5500</span>,<span class="number">100</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;iPhone7&#x27;</span>,<span class="number">5000</span>,<span class="number">100</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;iPhone6s&#x27;</span>,<span class="number">4500</span>,<span class="number">1000</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;iPhone6&#x27;</span>,<span class="number">3800</span>,<span class="number">200</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;iPhone5s&#x27;</span>,<span class="number">2000</span>,<span class="number">10</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;iPhone4s&#x27;</span>,<span class="number">18000</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;方便面&#x27;</span>,<span class="number">4.5</span>,<span class="number">1000</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;咖啡&#x27;</span>,<span class="number">10</span>,<span class="number">100</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;矿泉水&#x27;</span>,<span class="number">2.5</span>,<span class="number">100</span>,<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="keyword">null</span>,<span class="string">&#x27;法拉利&#x27;</span>,<span class="number">3000000</span>,<span class="number">50</span>,<span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 给 商品表添加外键</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> product <span class="keyword">ADD</span> <span class="keyword">FOREIGN</span> KEY(cno) <span class="keyword">REFERENCES</span> t_category(cid);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>查询公式：select 字段名 from 表A,表B</p>
+</blockquote>
+<h2 id="4-2-笛卡尔积"><a href="#4-2-笛卡尔积" class="headerlink" title="4.2 笛卡尔积"></a>4.2 笛卡尔积</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> category,product</span><br><span class="line"><span class="comment">-- 查询后的结果集，导致2个数据表的每行数据相乘，结果是错误的</span></span><br></pre></td></tr></table></figure>
+
+<p>集合：并集，交集，子集</p>
+<blockquote>
+<p>查询不出现乘积，带有条件，主表的主键&#x3D;从表的外键</p>
+</blockquote>
+<h2 id="4-3-内连接查询"><a href="#4-3-内连接查询" class="headerlink" title="4.3 内连接查询"></a>4.3 内连接查询</h2><ul>
+<li>隐式内连接查询公式：</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> 表名.字段名,表名字段名 <span class="keyword">from</span> 表A,表B</span><br><span class="line"><span class="keyword">where</span> 表名.主键字段<span class="operator">=</span>表名.外键字段名</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- select 表名.字段名,表名字段名 from 表A,表B</span></span><br><span class="line"><span class="comment">-- where 表名.主键字段=表名.外键字段名</span></span><br><span class="line"><span class="keyword">select</span> category.cid,category.cname,product.pid,product.pname,product.price,</span><br><span class="line">product.num,product.cno <span class="keyword">from</span> category,product <span class="keyword">where</span>  category.cid <span class="operator">=</span> product.cno ;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 简化写法，使用重命名，减少代码的书写</span></span><br><span class="line"><span class="keyword">select</span> c.cid,c.cname,p.pid,p.pname,p.price,</span><br><span class="line">p.num,p.cno <span class="keyword">from</span> category c,product p <span class="keyword">where</span>  c.cid <span class="operator">=</span> p.cno ;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>显示式内连接查询公式：</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> 表名.字段名,表名字段名 <span class="keyword">from</span> 表A <span class="keyword">inner</span> <span class="keyword">join</span>  表B</span><br><span class="line"><span class="keyword">where</span> 表名.主键字段<span class="operator">=</span>表名.外键字段名</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-4-外连接查询"><a href="#4-4-外连接查询" class="headerlink" title="4.4 外连接查询"></a>4.4 外连接查询</h2><ul>
+<li>左外连接：left outer join 条件是on</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"># 外连接查询，左外连接</span><br><span class="line"># 商品分类，左连接商品表</span><br><span class="line"><span class="keyword">select</span> c.cid,c.cname,p.pid,p.pname,p.price,p.num,p.cno</span><br><span class="line"><span class="keyword">from</span> category c <span class="keyword">left</span> <span class="keyword">outer</span> <span class="keyword">join</span> product p</span><br><span class="line"><span class="keyword">on</span> c.cid <span class="operator">=</span> p.cno</span><br><span class="line"><span class="comment">-- 左外连接：左侧数据表，数据表必须全部显示，写在右边的表没有此数据的，补充null</span></span><br><span class="line"></span><br><span class="line">#商品表，左连接商品分类</span><br><span class="line"><span class="keyword">select</span> c.cid,c.cname,p.pid,p.pname,p.price,p.num,p.cno</span><br><span class="line"><span class="keyword">from</span> product p <span class="keyword">left</span> <span class="keyword">outer</span> <span class="keyword">join</span> category c</span><br><span class="line"><span class="keyword">on</span> c.cid <span class="operator">=</span> p.cno</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>右外连接:：right outer join 条件是on</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"># 外连接查询，左外连接</span><br><span class="line"># 商品分类，左连接商品表</span><br><span class="line"><span class="keyword">select</span> c.cid,c.cname,p.pid,p.pname,p.price,p.num,p.cno</span><br><span class="line"><span class="keyword">from</span> category c <span class="keyword">left</span> <span class="keyword">outer</span> <span class="keyword">join</span> product p</span><br><span class="line"><span class="keyword">on</span> c.cid <span class="operator">=</span> p.cno;</span><br><span class="line"><span class="comment">-- 左外连接：左侧数据表，数据表必须全部显示，写在右边的表没有此数据的，补充null</span></span><br><span class="line"></span><br><span class="line">#商品表，左连接商品分类</span><br><span class="line"><span class="keyword">select</span> c.cid,c.cname,p.pid,p.pname,p.price,p.num,p.cno</span><br><span class="line"><span class="keyword">from</span> product p <span class="keyword">left</span> <span class="keyword">outer</span> <span class="keyword">join</span> category c</span><br><span class="line"><span class="keyword">on</span> c.cid <span class="operator">=</span> p.cno;</span><br><span class="line"></span><br><span class="line">#商品分类，右连接商品表</span><br><span class="line"><span class="keyword">select</span> c.cid,c.cname,p.pid,p.pname,p.price,p.num,p.cno</span><br><span class="line"><span class="keyword">from</span> category c <span class="keyword">right</span> <span class="keyword">outer</span> <span class="keyword">join</span> product p</span><br><span class="line"><span class="keyword">on</span> c.cid <span class="operator">=</span> p.cno;</span><br><span class="line"></span><br><span class="line">#商品表，右连接分类表</span><br><span class="line"><span class="keyword">select</span> c.cid,c.cname,p.pid,p.pname,p.price,p.num,p.cno</span><br><span class="line"><span class="keyword">from</span> product p <span class="keyword">right</span> <span class="keyword">outer</span> <span class="keyword">join</span> category c</span><br><span class="line"><span class="keyword">on</span> c.cid <span class="operator">=</span> p.cno;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>左连接和右连接，某种写法下，查询的结果是一样的，选择其中的一个来使用，左外连接的人是最多的</p>
+</blockquote>
+<h1 id="第四章-子查询"><a href="#第四章-子查询" class="headerlink" title="第四章 子查询"></a>第四章 子查询</h1>]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>day20 IO流对象</title>
     <url>/2022/06/14/atguigu/day20_IO/</url>
-    <content><![CDATA[<h1 id="day20-IO流对象"><a href="#day20-IO流对象" class="headerlink" title="day20 IO流对象"></a>day20 IO流对象</h1><ul>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="day20-IO流对象"><a href="#day20-IO流对象" class="headerlink" title="day20 IO流对象"></a>day20 IO流对象</h1><ul>
 <li>教学目标<ul>
 <li><input disabled type="checkbox"> 能够使用缓冲流复制文件</li>
 <li><input disabled type="checkbox"> 能够使用转换流读取指定编码的文本文件</li>
@@ -1299,7 +1301,7 @@
   <entry>
     <title>day21 网络编程</title>
     <url>/2022/06/14/atguigu/day21-network/</url>
-    <content><![CDATA[<h1 id="day21-网络编程"><a href="#day21-网络编程" class="headerlink" title="day21 网络编程"></a>day21 网络编程</h1><ul>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="day21-网络编程"><a href="#day21-网络编程" class="headerlink" title="day21 网络编程"></a>day21 网络编程</h1><ul>
 <li>教学目标<ul>
 <li><input disabled type="checkbox"> 软件架构CS／BS</li>
 <li><input disabled type="checkbox"> 了解网络通信协议参考模型</li>
@@ -1522,23 +1524,9 @@
       </tags>
   </entry>
   <entry>
-    <title>String的一些比较问题</title>
-    <url>/2022/06/15/2022/06/git_problem/</url>
-    <content><![CDATA[<h1 id="Hexo-deploy-fail"><a href="#Hexo-deploy-fail" class="headerlink" title="Hexo deploy fail"></a>Hexo deploy fail</h1><ol>
-<li><p>进入姘居管理器，选择Windows凭据，讲里面的git删掉。</p>
-</li>
-<li><p>若1之后还不行，试一下下面命令后重新部署。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global http.sslVerify &quot;false&quot;</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>day22 反射</title>
     <url>/2022/06/14/atguigu/day22_reflect/</url>
-    <content><![CDATA[<h1 id="day22-反射注解"><a href="#day22-反射注解" class="headerlink" title="day22 反射注解"></a>day22 反射注解</h1><ul>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="day22-反射注解"><a href="#day22-反射注解" class="headerlink" title="day22 反射注解"></a>day22 反射注解</h1><ul>
 <li>教学目标<ul>
 <li><input disabled type="checkbox"> 了解反射的概念</li>
 <li><input disabled type="checkbox"> 了解类的加时机</li>
@@ -1785,7 +1773,7 @@
   <entry>
     <title>String的一些比较问题</title>
     <url>/2022/06/14/2022/06/String_intern_final/</url>
-    <content><![CDATA[<h2 id="String与intern方法"><a href="#String与intern方法" class="headerlink" title="String与intern方法"></a>String与intern方法</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str1</span> <span class="operator">=</span> <span class="string">&quot;a&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="string">&quot;b&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str3</span> <span class="operator">=</span> <span class="string">&quot;ab&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str4</span> <span class="operator">=</span> str1 + str2;</span><br><span class="line"><span class="type">String</span> <span class="variable">str5</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;ab&quot;</span>);</span><br><span class="line"> </span><br><span class="line">System.out.println(str5.equals(str3));</span><br><span class="line">System.out.println(str5 == str3);</span><br><span class="line">System.out.println(str5.intern() == str3);</span><br><span class="line">System.out.println(str5.intern() == str4);</span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="String与intern方法"><a href="#String与intern方法" class="headerlink" title="String与intern方法"></a>String与intern方法</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str1</span> <span class="operator">=</span> <span class="string">&quot;a&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="string">&quot;b&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str3</span> <span class="operator">=</span> <span class="string">&quot;ab&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str4</span> <span class="operator">=</span> str1 + str2;</span><br><span class="line"><span class="type">String</span> <span class="variable">str5</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;ab&quot;</span>);</span><br><span class="line"> </span><br><span class="line">System.out.println(str5.equals(str3));</span><br><span class="line">System.out.println(str5 == str3);</span><br><span class="line">System.out.println(str5.intern() == str3);</span><br><span class="line">System.out.println(str5.intern() == str4);</span><br></pre></td></tr></table></figure>
 
 <p>得到的结果是</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="literal">true</span></span><br><span class="line"><span class="literal">false</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line"><span class="literal">false</span></span><br></pre></td></tr></table></figure>
@@ -1822,6 +1810,20 @@
       </categories>
       <tags>
         <tag>面试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>String的一些比较问题</title>
+    <url>/2022/06/15/2022/06/git_problem/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="Hexo-deploy-fail"><a href="#Hexo-deploy-fail" class="headerlink" title="Hexo deploy fail"></a>Hexo deploy fail</h1><ol>
+<li><p>进入姘居管理器，选择Windows凭据，讲里面的git删掉。</p>
+</li>
+<li><p>若1之后还不行，试一下下面命令后重新部署。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global http.sslVerify &quot;false&quot;</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
       </tags>
   </entry>
 </search>
