@@ -400,6 +400,244 @@
       </tags>
   </entry>
   <entry>
+    <title>MySQL day3</title>
+    <url>/2022/06/15/atguigu/MySQL_Day3/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="MySQL-Day3"><a href="#MySQL-Day3" class="headerlink" title="MySQL_Day3"></a>MySQL_Day3</h1><ul>
+<li>学习目标<ul>
+<li><input disabled type="checkbox"> 能够使用DCL语言创建账户并授权</li>
+<li><input disabled type="checkbox"> 理解JDBC的概念</li>
+<li><input disabled type="checkbox"> 理解JDBC驱动的作用</li>
+<li><input disabled type="checkbox"> 使用JDBC技术实现CRUD</li>
+<li><input disabled type="checkbox"> 能够自定义JDBC连接工具类</li>
+<li><input disabled type="checkbox"> 能够防止SQL注入攻击</li>
+<li><input disabled type="checkbox"> 能够说出PreparedStatement接口的特点</li>
+</ul>
+</li>
+</ul>
+<h1 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h1><p>有两个查询语句A和B，B查询的查询结果，结果作为A查询的条件来使用，B就是A的子查询</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"># 先查询分类找，根据分类的名字，找分类对应的id值</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> category <span class="keyword">WHERE</span> cname <span class="operator">=</span> <span class="string">&#x27;食物&#x27;</span>;</span><br><span class="line"></span><br><span class="line">#查询商品，条件可以是分类表查询的结果   先执行()里面的查询，子查询</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> product <span class="keyword">WHERE</span> cno <span class="operator">=</span> (<span class="keyword">SELECT</span> cid <span class="keyword">FROM</span> category <span class="keyword">WHERE</span> cname <span class="operator">=</span> <span class="string">&#x27;食物&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  查询商品信息表</span></span><br><span class="line"><span class="comment">  查询所有食品类的和手机数码的</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> category <span class="keyword">WHERE</span> cname <span class="operator">=</span> <span class="string">&#x27;食物&#x27;</span> <span class="keyword">OR</span> cname <span class="operator">=</span> <span class="string">&#x27;手机数码&#x27;</span>;</span><br><span class="line"></span><br><span class="line">#当子查询的结果，多余一行，条件不能是<span class="operator">=</span>，应该使用<span class="keyword">in</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> product <span class="keyword">WHERE</span> cno  <span class="keyword">IN</span> </span><br><span class="line">(<span class="keyword">SELECT</span> cid <span class="keyword">FROM</span> category <span class="keyword">WHERE</span> cname <span class="operator">=</span> <span class="string">&#x27;食物&#x27;</span> <span class="keyword">OR</span> cname <span class="operator">=</span> <span class="string">&#x27;手机数码&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="第一章-DCL语句"><a href="#第一章-DCL语句" class="headerlink" title="第一章 DCL语句"></a>第一章 DCL语句</h1><p>我们现在默认使用的都是root用户，超级管理员，拥有全部的权限。但是，一个公司里面的数据库服务器上面可能同时运行着很多个项目的数据库。所以，我们应该可以根据不同的项目建立不同的用户，分配不同的权限来管理和维护数据库。</p>
+<h2 id="1-1-创建用户"><a href="#1-1-创建用户" class="headerlink" title="1.1 创建用户"></a>1.1 创建用户</h2><p><code>CREATE USER &#39;用户名&#39;@&#39;主机名&#39; IDENTIFIED BY &#39;密码&#39;;</code><br><strong>关键字说明：</strong></p>
+<ol>
+<li><p><code>用户名</code>：将创建的用户名</p>
+<pre><code>  2. `主机名`：指定该用户在哪个主机上可以登陆，如果是本地用户可用localhost，如果想让该用户可以从任意远程主机登陆，可以使用通配符%
+</code></pre>
+<ol start="3">
+<li><code>密码</code>：该用户的登陆密码，密码可以为空，如果为空则l该用户可以不需要密码登陆服务器</li>
+</ol>
+</li>
+</ol>
+<p><strong>具体操作：</strong></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- user1用户只能在localhost这个IP登录mysql服务器</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">&#x27;user1&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;123&#x27;</span>;</span><br><span class="line"><span class="comment">-- user2用户可以在任何电脑上登录mysql服务器</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">&#x27;user2&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;123&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-2-授权用户"><a href="#1-2-授权用户" class="headerlink" title="1.2 授权用户"></a>1.2 授权用户</h2><p>用户创建之后，基本没什么权限！需要给用户授权<br><img src="/images/MySQL_Day3/imgs/DCL02.png"></p>
+<p><strong>授权格式</strong>：<br><code>GRANT 权限1, 权限2... ON 数据库名.表名 TO &#39;用户名&#39;@&#39;主机名&#39;;</code><br><strong>关键字说明</strong>：<br>​      1. <code>GRANT</code> 授权关键字<br>​      2. 授予用户的权限，如<code>SELECT</code>，<code>INSERT</code>，<code>UPDATE</code>等。如果要授予所的权限则使用<code>ALL</code><br>​      3. <code>数据库名.表名</code>：该用户可以操作哪个数据库的哪些表。如果要授予该用户对所有数据库和表的相应操作权限则可用*表示，如<code>*.*</code><br>​      4. <code>&#39;用户名&#39;@&#39;主机名&#39;</code>: 给哪个用户授权</p>
+<p><strong>具体操作：</strong></p>
+<ol>
+<li><p>给user1用户分配对test这个数据库操作的权限</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">CREATE</span>,<span class="keyword">ALTER</span>,<span class="keyword">DROP</span>,<span class="keyword">INSERT</span>,<span class="keyword">UPDATE</span>,<span class="keyword">DELETE</span>,<span class="keyword">SELECT</span> <span class="keyword">ON</span> test.<span class="operator">*</span> <span class="keyword">TO</span> <span class="string">&#x27;user1&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/MySQL_Day3/imgs/DCL03.png"></p>
+</li>
+<li><p>给user2用户分配对所有数据库操作的权限</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> <span class="keyword">ON</span> <span class="operator">*</span>.<span class="operator">*</span> <span class="keyword">TO</span> <span class="string">&#x27;user2&#x27;</span>@<span class="string">&#x27;%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/MySQL_Day3/imgs/DCL04.png"></p>
+</li>
+</ol>
+<h2 id="1-3-撤销授权"><a href="#1-3-撤销授权" class="headerlink" title="1.3 撤销授权"></a>1.3 撤销授权</h2><p><code>REVOKE  权限1, 权限2... ON 数据库.表名 FROM &#39;用户名&#39;@&#39;主机名&#39;;</code></p>
+<p><strong>具体操作：</strong></p>
+<ul>
+<li><p>撤销user1用户对test操作的权限</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span> <span class="keyword">ALL</span> <span class="keyword">ON</span> test.<span class="operator">*</span> <span class="keyword">FROM</span> <span class="string">&#x27;user1&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/MySQL_Day3/imgs/DCL05.png"></p>
+</li>
+</ul>
+<h2 id="1-4-查看权限"><a href="#1-4-查看权限" class="headerlink" title="1.4 查看权限"></a>1.4 查看权限</h2><p><code>SHOW GRANTS FOR &#39;用户名&#39;@&#39;主机名&#39;;</code><br><strong>具体操作：</strong></p>
+<ul>
+<li><p>查看user1用户的权限</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> GRANTS <span class="keyword">FOR</span> <span class="string">&#x27;user1&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/MySQL_Day3/imgs/DCL06.png"></p>
+</li>
+</ul>
+<h2 id="1-5-删除用户"><a href="#1-5-删除用户" class="headerlink" title="1.5 删除用户"></a>1.5 删除用户</h2><p><code>DROP USER &#39;用户名&#39;@&#39;主机名&#39;;</code><br><strong>具体操作：</strong></p>
+<ul>
+<li><p>删除user2</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">USER</span> <span class="string">&#x27;user2&#x27;</span>@<span class="string">&#x27;%&#x27;</span>;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="1-6-修改普通用户密码"><a href="#1-6-修改普通用户密码" class="headerlink" title="1.6 修改普通用户密码"></a>1.6 修改普通用户密码</h2><p><code>set password for &#39;用户名&#39;@&#39;主机名&#39; = password(&#39;新密码&#39;);</code></p>
+<blockquote>
+<p>注意：需要在登陆MySQL的情况下操作。</p>
+</blockquote>
+<p><strong>具体操作：</strong></p>
+   <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">`<span class="keyword">set</span> password <span class="keyword">for</span> <span class="string">&#x27;user1&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> <span class="operator">=</span> password(<span class="string">&#x27;666666&#x27;</span>);`</span><br></pre></td></tr></table></figure>
+
+<h1 id="第二章-JDBC概述"><a href="#第二章-JDBC概述" class="headerlink" title="第二章  JDBC概述"></a>第二章  JDBC概述</h1><h2 id="2-1-JDBC概述"><a href="#2-1-JDBC概述" class="headerlink" title="2.1 JDBC概述"></a>2.1 JDBC概述</h2><p>Java DataBase Connectivity （Java对数据库的连接技术）。Java程序数据都是临时存储，保证数据不丢失，将数据存储在数据库。数据库是不可能让用户直接操作的，提供以Java的形态操作数据库了。必须要学习JDBC技术</p>
+<p><img src="/images/MySQL_Day3/imgs/1.png"></p>
+<ul>
+<li><p>数据库的驱动程序（Driver）</p>
+<ul>
+<li><p>sun公司推出数据库开发的API</p>
+</li>
+<li><p>API都是接口，就是称为规范</p>
+</li>
+<li><p>实现类都是数据库厂家提供，就是驱动程序</p>
+</li>
+<li><blockquote>
+<p>面向接口的编程思想：使用Sun的就接口，调用驱动的实现类</p>
+</blockquote>
+</li>
+<li><p>驱动程序提供jar包</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/MySQL_Day3/imgs/2.png"></p>
+<h2 id="2-2-JDBC相关类和接口"><a href="#2-2-JDBC相关类和接口" class="headerlink" title="2.2 JDBC相关类和接口"></a>2.2 JDBC相关类和接口</h2><ul>
+<li><code>java.sql.DriverManager</code> 管理数据库驱动程序</li>
+<li><code>java.sql.Connection</code>接口：表示连接到数据库的对象</li>
+<li><code>java.sql.Statement</code>接口：用于执行SQL语句的对象</li>
+<li><code>java.sql.ResultSet</code>接口：接口对象表示查询数据的结果集</li>
+</ul>
+<blockquote>
+<p>接口的实现类，全部在数据库的驱动jar包中</p>
+</blockquote>
+<h2 id="2-3-JDBC使用步骤"><a href="#2-3-JDBC使用步骤" class="headerlink" title="2.3 JDBC使用步骤"></a>2.3 JDBC使用步骤</h2><ol>
+<li>注册驱动程序</li>
+<li>网络获取Java和数据库连接</li>
+<li>获取SQL语句的执行对象</li>
+<li>执行SQL语句–SQL语句是字符串形式</li>
+<li>处理查询的结果集</li>
+<li>释放资源</li>
+</ol>
+<h2 id="2-4-JDBC实现数据表CRUD操作"><a href="#2-4-JDBC实现数据表CRUD操作" class="headerlink" title="2.4 JDBC实现数据表CRUD操作"></a>2.4 JDBC实现数据表CRUD操作</h2><ul>
+<li>实现insert新增数据</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 新增product表的数据</span></span><br><span class="line"><span class="comment">   * 1. 注册驱动程序</span></span><br><span class="line"><span class="comment">   * 2. 网络获取Java和数据库连接</span></span><br><span class="line"><span class="comment">   * 3. 获取SQL语句的执行对象</span></span><br><span class="line"><span class="comment">   * 4. 执行SQL语句--SQL语句是字符串形式</span></span><br><span class="line"><span class="comment">   * 5. 处理查询的结果集</span></span><br><span class="line"><span class="comment">   * 6. 释放资源</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="meta">@Test</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">insertProduct</span><span class="params">()</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">      <span class="comment">//1. 注册驱动程序：告知JVM，使用哪个数据库的驱动程序</span></span><br><span class="line">      <span class="comment">//DriverManager类静态方法：static void registerDriver(Driver d)</span></span><br><span class="line">      <span class="comment">//参数Driver是接口，传递实现类对象，实现类在数据库的驱动jar包</span></span><br><span class="line">      DriverManager.registerDriver(<span class="keyword">new</span> <span class="title class_">Driver</span>());</span><br><span class="line">      <span class="comment">//2. 网络获取Java和数据库连接:DriverManager类静态方法 getConnection()</span></span><br><span class="line">      <span class="comment">//static Connection getConnection(String url,String user,String password)</span></span><br><span class="line">      <span class="comment">//返回值是Connection接口的实现类：代表数据库的连接对象</span></span><br><span class="line">      <span class="comment">//参数url:连接数据库的网络地址  连接方式:数据库厂商名://数据库服务器IP:端口号/要连接的数据库名</span></span><br><span class="line">      <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;jdbc:mysql://localhost:3306/mydb2&quot;</span>;</span><br><span class="line">      <span class="type">String</span> <span class="variable">user</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">      <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">      <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> DriverManager.getConnection(url,user,password);</span><br><span class="line"></span><br><span class="line">      <span class="comment">//3. 获取SQL语句的执行对象，获取接口Statement的实现类对象</span></span><br><span class="line">      <span class="comment">//连接对象con的方法Statement createStatement()获取接口实现类的对象</span></span><br><span class="line">      <span class="type">Statement</span> <span class="variable">stat</span> <span class="operator">=</span> con.createStatement();</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 4. 执行SQL语句--SQL语句是字符串形式</span></span><br><span class="line">      <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;insert into product values(null,&#x27;饼干&#x27;,3.99,199,2)&quot;</span>;</span><br><span class="line">      <span class="comment">//stat是负责执行SQL语句的对象</span></span><br><span class="line">      <span class="comment">//stat对象的方法 int executeUpdate(String sql) 执行SQL语句</span></span><br><span class="line">      <span class="type">int</span> <span class="variable">row</span> <span class="operator">=</span> stat.executeUpdate(sql);<span class="comment">//返回操作成功的行数</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">//5. 处理查询的结果集</span></span><br><span class="line">      System.out.println(<span class="string">&quot;row = &quot;</span> + row);</span><br><span class="line"></span><br><span class="line">      <span class="comment">//6. 释放资源</span></span><br><span class="line">      stat.close();</span><br><span class="line">      con.close();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>常见的错误</p>
+<ul>
+<li>连接地址错了</li>
+</ul>
+<p><img src="/images/MySQL_Day3/imgs/3.png"></p>
+<ul>
+<li>端口号和上面出现的错误是一样的</li>
+<li>数据库名写错</li>
+</ul>
+<p><img src="/images/MySQL_Day3/imgs/4.png"></p>
+<ul>
+<li>登录数据库用户名或者密码错误</li>
+</ul>
+<p><img src="/images/MySQL_Day3/imgs/5.png"></p>
+<ul>
+<li>SQL语句中的表名错误</li>
+</ul>
+<p><img src="/images/MySQL_Day3/imgs/6.png"></p>
+<ul>
+<li>SQL语句的语法错误</li>
+</ul>
+<p><img src="/images/MySQL_Day3/imgs/7.png"></p>
+<ul>
+<li>SQL语句中数据表的字段和值不对应</li>
+</ul>
+<p><img src="/images/MySQL_Day3/imgs/8.png"></p>
+<ul>
+<li>数据表字段名写错</li>
+</ul>
+<p><img src="/images/MySQL_Day3/imgs/9.png"></p>
+</li>
+<li><p>驱动程序的重复注册</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 数据库驱动注册，重复问题</span></span><br><span class="line"><span class="comment"> * 导致驱动重复被注册，浪费内存</span></span><br><span class="line"><span class="comment"> * 驱动包中 Driver类的源码</span></span><br><span class="line"><span class="comment"> * 自己new对象，源码中static代码块，也new对象</span></span><br><span class="line"><span class="comment"> * 避免驱动的重复注册问题，new一次</span></span><br><span class="line"><span class="comment"> * 使用反射技术实现，将Driver类加载到内存</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">register</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    Class.forName(<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);</span><br><span class="line">    <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;jdbc:mysql://localhost:3306/mydb2&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">user</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">    <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> DriverManager.getConnection(url,user,password);</span><br><span class="line">    System.out.println(<span class="string">&quot;con = &quot;</span> + con);</span><br><span class="line">    con.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>实现update更新数据</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 实现数据表的更新</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">updateProduct</span><span class="params">()</span><span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    <span class="comment">//注册驱动</span></span><br><span class="line">    Class.forName(<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);</span><br><span class="line">    <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;jdbc:mysql://localhost:3306/mydb2&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">user</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">    <span class="comment">//获取数据库连接对象</span></span><br><span class="line">    <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> DriverManager.getConnection(url,user,password);</span><br><span class="line">    <span class="comment">//获取SQL语句执行对象</span></span><br><span class="line">    <span class="type">Statement</span> <span class="variable">stat</span> <span class="operator">=</span> con.createStatement();</span><br><span class="line">    <span class="comment">//拼写update语句</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;update product set pname = &#x27;压缩饼干&#x27;,price = 10.99,num = 88 where pid = 14&quot;</span>;</span><br><span class="line">    <span class="comment">//执行SQL语句，stat对象的方法 executeUpdate</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">row</span> <span class="operator">=</span> stat.executeUpdate(sql);</span><br><span class="line">    System.out.println(<span class="string">&quot;row = &quot;</span> + row);</span><br><span class="line">    <span class="comment">//释放资源</span></span><br><span class="line">    stat.close();</span><br><span class="line">    con.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>实现update数据删除</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 实现数据表的删除</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deleteProduct</span><span class="params">()</span><span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    <span class="comment">//注册驱动</span></span><br><span class="line">    Class.forName(<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);</span><br><span class="line">    <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;jdbc:mysql://localhost:3306/mydb2&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">user</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">    <span class="comment">//获取数据库连接对象</span></span><br><span class="line">    <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> DriverManager.getConnection(url,user,password);</span><br><span class="line">    <span class="comment">//获取SQL语句执行对象</span></span><br><span class="line">    <span class="type">Statement</span> <span class="variable">stat</span> <span class="operator">=</span> con.createStatement();</span><br><span class="line">    <span class="comment">//拼写delete语句</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;delete from product where pid = 11&quot;</span>;</span><br><span class="line">    <span class="comment">//执行SQL语句，stat对象的方法 executeUpdate</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">row</span> <span class="operator">=</span> stat.executeUpdate(sql);</span><br><span class="line">    System.out.println(<span class="string">&quot;row = &quot;</span> + row);</span><br><span class="line">    <span class="comment">//释放资源</span></span><br><span class="line">    stat.close();</span><br><span class="line">    con.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>实现数据查询</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">selectProduct</span><span class="params">()</span><span class="keyword">throws</span> Exception&#123;</span><br><span class="line">       <span class="comment">//注册驱动</span></span><br><span class="line">       Class.forName(<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);</span><br><span class="line">       <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;jdbc:mysql://localhost:3306/mydb2&quot;</span>;</span><br><span class="line">       <span class="type">String</span> <span class="variable">user</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">       <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">       <span class="comment">//获取数据库连接对象</span></span><br><span class="line">       <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> DriverManager.getConnection(url,user,password);</span><br><span class="line">       <span class="comment">//获取SQL语句执行对象</span></span><br><span class="line">       <span class="type">Statement</span> <span class="variable">stat</span> <span class="operator">=</span> con.createStatement();</span><br><span class="line">       <span class="comment">//拼写查询语句</span></span><br><span class="line">       <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;select * from product &quot;</span>;</span><br><span class="line">       <span class="comment">//执行查询语句 stat执行SQL语句对象，方法 executeQuery(String sql);</span></span><br><span class="line">       <span class="comment">//方法 ResultSet executeQuery() 返回查询的结果集，是接口ResultSet的实现类</span></span><br><span class="line">       <span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> stat.executeQuery(sql);</span><br><span class="line">       <span class="comment">//rs查询结果集对象方法  boolean  next() 判断查询的结果是否有下一个</span></span><br><span class="line">       <span class="comment">//next()方法看成  集合迭代器的方法hasNext()</span></span><br><span class="line">       <span class="keyword">while</span> ( rs.next() )&#123;</span><br><span class="line">           <span class="comment">//rs结果集对象的方法 getXXX(String 字段名)获取字段的值</span></span><br><span class="line">           <span class="comment">//XXX数据类型</span></span><br><span class="line">           <span class="type">int</span> <span class="variable">pid</span> <span class="operator">=</span> rs.getInt(<span class="string">&quot;pid&quot;</span>);</span><br><span class="line">           <span class="type">String</span> <span class="variable">pname</span> <span class="operator">=</span> rs.getString(<span class="string">&quot;pname&quot;</span>);</span><br><span class="line">           <span class="type">double</span> <span class="variable">price</span> <span class="operator">=</span> rs.getDouble(<span class="string">&quot;price&quot;</span>);</span><br><span class="line">           <span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> rs.getInt(<span class="string">&quot;num&quot;</span>);</span><br><span class="line">           <span class="type">int</span> <span class="variable">cno</span> <span class="operator">=</span> rs.getInt(<span class="string">&quot;cno&quot;</span>);</span><br><span class="line">           System.out.println(pid+<span class="string">&quot;\t&quot;</span>+pname+<span class="string">&quot;\t&quot;</span>+price+<span class="string">&quot;\t&quot;</span>+num+<span class="string">&quot;\t&quot;</span>+cno);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">//资源释放</span></span><br><span class="line">       rs.close();</span><br><span class="line">       stat.close();</span><br><span class="line">       con.close();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-6-自定义JDBC工具类"><a href="#2-6-自定义JDBC工具类" class="headerlink" title="2.6 自定义JDBC工具类"></a>2.6 自定义JDBC工具类</h2><p>JDBC程序开发都是模板，出现大量的重复性程序，重复的程序建议写一次。共性抽取技术，将我们所有的重复性代码抽取到一个类的方法中，如果使用调用即可！</p>
+<ul>
+<li>最初的工具类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 自定义的工具类：数据库操作的重复进行抽取</span></span><br><span class="line"><span class="comment"> * 抽取到方法中，直接调用即可</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JdbcUtils</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 定义方法：保存共性代码</span></span><br><span class="line"><span class="comment">     * 要求可以连接数据库</span></span><br><span class="line"><span class="comment">     * 返回数据库的连接对象Connection接口实现类</span></span><br><span class="line"><span class="comment">     * 方法没有调用过类中的非静态成员，可以定义为静态方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Connection <span class="title function_">getConnection</span><span class="params">()</span><span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="comment">//注册驱动</span></span><br><span class="line">        Class.forName(<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;jdbc:mysql://localhost:3306/mydb2&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">user</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">        <span class="comment">//获取数据库连接对象</span></span><br><span class="line">        <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> DriverManager.getConnection(url,user,password);</span><br><span class="line">        <span class="keyword">return</span> con;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//定义方法释放资源,连接对象，SQL执行对象，结果集对象</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">close</span><span class="params">(ResultSet rs, Statement stat,Connection con)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (rs != <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                rs.close();</span><br><span class="line">            &#125;<span class="keyword">catch</span> (SQLException ex)&#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (stat != <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                stat.close();</span><br><span class="line">            &#125;<span class="keyword">catch</span> (SQLException ex)&#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (con != <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                con.close();</span><br><span class="line">            &#125;<span class="keyword">catch</span> (SQLException ex)&#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>优化后的读取配置文件的工具类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 自定义的工具类：数据库操作的重复进行抽取</span></span><br><span class="line"><span class="comment"> * 抽取到方法中，直接调用即可</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JdbcUtils</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span>  String driver;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span>  String url;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span>  String user;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span>  String password;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 工具类：获取数据库连接的四大基本信息，通过读取配置文件</span></span><br><span class="line"><span class="comment">     * 读取配置文件操作，就执行一次，静态代码块</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//获取当前类的加载器</span></span><br><span class="line">            <span class="type">ClassLoader</span> <span class="variable">classLoader</span> <span class="operator">=</span> JdbcUtils.class.getClassLoader();</span><br><span class="line">            <span class="comment">//类加载器获取IO流，输入流，自动从src下读取文件</span></span><br><span class="line">            <span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> classLoader.getResourceAsStream(<span class="string">&quot;db.properties&quot;</span>);</span><br><span class="line">            <span class="comment">//集合键值对</span></span><br><span class="line">            <span class="type">Properties</span> <span class="variable">prop</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">            prop.load(in);</span><br><span class="line">            <span class="comment">//取出集合中的键值对</span></span><br><span class="line">            driver = prop.getProperty(<span class="string">&quot;driver&quot;</span>);<span class="comment">//驱动类名</span></span><br><span class="line">            url = prop.getProperty(<span class="string">&quot;url&quot;</span>);<span class="comment">//数据库连接地址</span></span><br><span class="line">            user = prop.getProperty(<span class="string">&quot;user&quot;</span>);<span class="comment">//数据库登录用户名</span></span><br><span class="line">            password = prop.getProperty(<span class="string">&quot;password&quot;</span>);<span class="comment">//登录数据库密码</span></span><br><span class="line">            <span class="comment">//注册驱动程序</span></span><br><span class="line">            Class.forName(driver);</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception ex)&#123;</span><br><span class="line">            ex.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 定义方法：保存共性代码</span></span><br><span class="line"><span class="comment">     * 要求可以连接数据库</span></span><br><span class="line"><span class="comment">     * 返回数据库的连接对象Connection接口实现类</span></span><br><span class="line"><span class="comment">     * 方法没有调用过类中的非静态成员，可以定义为静态方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Connection <span class="title function_">getConnection</span><span class="params">()</span><span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="comment">//获取数据库连接对象</span></span><br><span class="line">        <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> DriverManager.getConnection(url,user,password);</span><br><span class="line">        <span class="keyword">return</span> con;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//定义方法释放资源,连接对象，SQL执行对象，结果集对象</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">close</span><span class="params">(ResultSet rs, Statement stat,Connection con)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (rs != <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                rs.close();</span><br><span class="line">            &#125;<span class="keyword">catch</span> (SQLException ex)&#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (stat != <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                stat.close();</span><br><span class="line">            &#125;<span class="keyword">catch</span> (SQLException ex)&#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (con != <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                con.close();</span><br><span class="line">            &#125;<span class="keyword">catch</span> (SQLException ex)&#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-7-lombok插件"><a href="#2-7-lombok插件" class="headerlink" title="2.7 lombok插件"></a>2.7 lombok插件</h2><p>lombok插件班助我们生成get&#x2F;set方法的</p>
+<ul>
+<li>安装插件 – 连接网络</li>
+</ul>
+<p><img src="/images/MySQL_Day3/imgs/10.png"></p>
+<p><img src="/images/MySQL_Day3/imgs/11.png" alt="11"></p>
+<ul>
+<li>添加lombok.jar包</li>
+<li>开启IDEA的注解编译开关</li>
+</ul>
+<p><img src="/images/MySQL_Day3/imgs/12.png"></p>
+<h2 id="2-8-查询数据表存储JavaBean"><a href="#2-8-查询数据表存储JavaBean" class="headerlink" title="2.8 查询数据表存储JavaBean"></a>2.8 查询数据表存储JavaBean</h2><p><img src="/images/MySQL_Day3/imgs/13.png"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  查询数据表，每行数据存储JavaBean对象Product</span></span><br><span class="line"><span class="comment">     *  出现14个Product对象，存储List集合</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">selectJavaBean</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="comment">//定义需要的操作数据库的对象</span></span><br><span class="line">    <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">Statement</span> <span class="variable">stat</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="comment">//工具类获取连接对象</span></span><br><span class="line">        con = JdbcUtils.getConnection();</span><br><span class="line">        <span class="comment">//连接对象con，获取执行对象</span></span><br><span class="line">        stat = con.createStatement();</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;select * from product&quot;</span>;</span><br><span class="line">        <span class="comment">//执行查询语句，返回结果集对象</span></span><br><span class="line">        rs = stat.executeQuery(sql);</span><br><span class="line">        <span class="comment">//创建集合对象</span></span><br><span class="line">        List&lt;Product&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="comment">//循环遍历查询结果集</span></span><br><span class="line">        <span class="keyword">while</span> (rs.next())&#123;</span><br><span class="line">            <span class="comment">//rs.next()方法返回true，有一行结果集，对应一个JavaBean对象</span></span><br><span class="line">            <span class="type">Product</span> <span class="variable">product</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Product</span>();</span><br><span class="line">            <span class="comment">//取出查询结果集中的字段值，存储在javaBean对象中</span></span><br><span class="line">            product.setPid( rs.getInt(<span class="string">&quot;pid&quot;</span>) );</span><br><span class="line">            product.setPname( rs.getString(<span class="string">&quot;pname&quot;</span>) );</span><br><span class="line">            product.setPrice( rs.getDouble(<span class="string">&quot;price&quot;</span>) );</span><br><span class="line">            product.setNum( rs.getInt(<span class="string">&quot;num&quot;</span>) );</span><br><span class="line">            product.setCno( rs.getInt(<span class="string">&quot;cno&quot;</span>) );</span><br><span class="line">            <span class="comment">//JavaBean对象存储集合</span></span><br><span class="line">            list.add(product);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//遍历集合</span></span><br><span class="line">        <span class="keyword">for</span> (Product p : list)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;p = &quot;</span> + p);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">catch</span> (Exception ex)&#123;</span><br><span class="line">        ex.printStackTrace();</span><br><span class="line">    &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="comment">//释放资源</span></span><br><span class="line">        JdbcUtils.close(rs,stat,con);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="第三章-PreparedStatement接口"><a href="#第三章-PreparedStatement接口" class="headerlink" title="第三章 PreparedStatement接口"></a>第三章 PreparedStatement接口</h1><h2 id="3-1-SQL注入攻击"><a href="#3-1-SQL注入攻击" class="headerlink" title="3.1 SQL注入攻击"></a>3.1 SQL注入攻击</h2><p>利用数据库SQL语句（“漏洞”）的问题进行攻击，造成数据的丢失，数据的泄露。</p>
+<p>用户登录功能：数据库是查询功能</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    <span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">    <span class="type">String</span> <span class="variable">username</span> <span class="operator">=</span> sc.nextLine();</span><br><span class="line">    <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> sc.nextLine();</span><br><span class="line">    <span class="comment">//获取连接对象</span></span><br><span class="line">    <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> JdbcUtils.getConnection();</span><br><span class="line">    <span class="comment">//获取SQL语句执行对象</span></span><br><span class="line">    <span class="type">Statement</span> <span class="variable">stat</span> <span class="operator">=</span> con.createStatement();</span><br><span class="line">    <span class="comment">//拼写登录查询sql</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;select * from user where username=&#x27;&quot;</span>+username+<span class="string">&quot;&#x27; and password=&#x27;&quot;</span>+password+<span class="string">&quot;&#x27; &quot;</span>;</span><br><span class="line">    <span class="comment">//sql = select * from user where username=&#x27;fghjk&#x27; and password=&#x27;dtfytguhji or 1=1&#x27;</span></span><br><span class="line">    <span class="comment">//sql = select * from user where username=&#x27;dfghjk&#x27; and password=&#x27;fghj&#x27; or &#x27;1=1&#x27;</span></span><br><span class="line">    <span class="comment">//sql = select * from user where username=&#x27;dsfg&#x27; and password=&#x27;sdfg&#x27; or&#x27;1=1&#x27;</span></span><br><span class="line">    System.out.println(<span class="string">&quot;sql = &quot;</span> + sql);</span><br><span class="line">    <span class="comment">//执行查询语句，获取结果集对象</span></span><br><span class="line">    <span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> stat.executeQuery(sql);</span><br><span class="line">    <span class="keyword">while</span> (rs.next())&#123;</span><br><span class="line">        <span class="comment">//取出每个字段的值</span></span><br><span class="line">        System.out.println(rs.getString(<span class="string">&quot;username&quot;</span>)+<span class="string">&quot;  &quot;</span>+rs.getString(<span class="string">&quot;password&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    JdbcUtils.close(rs,stat,con);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-2-SQL语句预编译功能"><a href="#3-2-SQL语句预编译功能" class="headerlink" title="3.2 SQL语句预编译功能"></a>3.2 SQL语句预编译功能</h2><ul>
+<li><code>java.sql.PreparedStatement</code>接口<ul>
+<li>接口继承Statement接口</li>
+<li>PreparedStatement：将SQL语句预编译，并存储在自己的对象中，反复高效执行<ul>
+<li>高效的前提：SQL必须是select，多次执行的SQL语句必须是一个</li>
+<li>防止注入攻击</li>
+<li>执行SQL语句，推荐使用子接口：PreparedStatement</li>
+</ul>
+</li>
+<li>父接口Statement实现类对象: con.createStatement() 获取</li>
+<li>子接口PreparedStatement实现类对象：con.prepareStatement(String sql)</li>
+</ul>
+</li>
+<li>子接口PreparedStatement实现数据新增</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Jdbc添加数据</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">insertProduct</span><span class="params">()</span><span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    <span class="comment">//工具类，获取连接对象</span></span><br><span class="line">    <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> JdbcUtils.getConnection();</span><br><span class="line">    <span class="comment">//拼写新增的SQL语句</span></span><br><span class="line">    <span class="comment">//PreparedStatement接口执行SQL语句，所有的参数不能直接写出</span></span><br><span class="line">    <span class="comment">//所有的参数，写？占位符</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;insert into product values(?,?,?,?,?)&quot;</span>;</span><br><span class="line">    <span class="comment">//连接对象con的方法 prepareStatement(sql)返回接口PreparedStatement的实现类</span></span><br><span class="line">    <span class="type">PreparedStatement</span> <span class="variable">pst</span> <span class="operator">=</span>  con.prepareStatement(sql);</span><br><span class="line">    <span class="comment">//设置SQL语句问号占位符的实际参数</span></span><br><span class="line">    <span class="comment">//pst SQL语句的执行对象方法 setObject(int 第几个问号，Object 实际值)</span></span><br><span class="line">    pst.setObject(<span class="number">1</span>,<span class="literal">null</span>);</span><br><span class="line">    pst.setObject(<span class="number">2</span>,<span class="string">&quot;华为meta&quot;</span>);</span><br><span class="line">    pst.setObject(<span class="number">3</span>,<span class="number">19999.99</span>);</span><br><span class="line">    pst.setObject(<span class="number">4</span>,<span class="number">55</span>);</span><br><span class="line">    pst.setObject(<span class="number">5</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="comment">//执行SQL</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">row</span> <span class="operator">=</span> pst.executeUpdate();</span><br><span class="line">    System.out.println(<span class="string">&quot;row = &quot;</span> + row);</span><br><span class="line">    <span class="comment">//释放资源</span></span><br><span class="line">    JdbcUtils.close(<span class="literal">null</span>,pst,con);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>子接口PreparedStatement实现数据查询</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Jdbc数据查询，每行数据存储JavaBean对象</span></span><br><span class="line"><span class="comment"> * 多个JavaBean对象存储集合</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title function_">selectJavaBean</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//工具类，获取连接对象</span></span><br><span class="line">    <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> JdbcUtils.getConnection();</span><br><span class="line">    <span class="comment">//拼写查询SQL语句，SQL语句中没有参数，不要写？站位符</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;select * from product&quot;</span>;</span><br><span class="line">    <span class="comment">//获取子接口实现类的对象</span></span><br><span class="line">    <span class="type">PreparedStatement</span> <span class="variable">pst</span> <span class="operator">=</span> con.prepareStatement(sql);</span><br><span class="line">    <span class="comment">//不需要设置？占位符的实际参数</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//执行SQL，查询获取结果集对象</span></span><br><span class="line">    <span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> pst.executeQuery();</span><br><span class="line">    List&lt;Product&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    <span class="comment">//循环遍历查询结果集</span></span><br><span class="line">    <span class="keyword">while</span> (rs.next())&#123;</span><br><span class="line">        <span class="comment">//rs.next()方法返回true，有一行结果集，对应一个JavaBean对象</span></span><br><span class="line">        <span class="type">Product</span> <span class="variable">product</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Product</span>();</span><br><span class="line">        <span class="comment">//取出查询结果集中的字段值，存储在javaBean对象中</span></span><br><span class="line">        product.setPid( rs.getInt(<span class="string">&quot;pid&quot;</span>) );</span><br><span class="line">        product.setPname( rs.getString(<span class="string">&quot;pname&quot;</span>) );</span><br><span class="line">        product.setPrice( rs.getDouble(<span class="string">&quot;price&quot;</span>) );</span><br><span class="line">        product.setNum( rs.getInt(<span class="string">&quot;num&quot;</span>) );</span><br><span class="line">        product.setCno( rs.getInt(<span class="string">&quot;cno&quot;</span>) );</span><br><span class="line">        <span class="comment">//JavaBean对象存储集合</span></span><br><span class="line">        list.add(product);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//遍历集合</span></span><br><span class="line">    <span class="keyword">for</span> (Product p : list)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;p = &quot;</span> + p);</span><br><span class="line">    &#125;</span><br><span class="line">    JdbcUtils.close(rs,pst,con);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-3-实现数据的批量写入"><a href="#3-3-实现数据的批量写入" class="headerlink" title="3.3 实现数据的批量写入"></a>3.3 实现数据的批量写入</h2>]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MySQL day2</title>
     <url>/2022/06/14/atguigu/MySQL_day2/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h2><ul>
@@ -770,6 +1008,231 @@
       </tags>
   </entry>
   <entry>
+    <title>day21 网络编程</title>
+    <url>/2022/06/14/atguigu/day21-network/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="day21-网络编程"><a href="#day21-网络编程" class="headerlink" title="day21 网络编程"></a>day21 网络编程</h1><ul>
+<li>教学目标<ul>
+<li><input disabled type="checkbox"> 软件架构CS／BS</li>
+<li><input disabled type="checkbox"> 了解网络通信协议参考模型</li>
+<li><input disabled type="checkbox"> 能够理解IP地址和端口号的作用</li>
+<li><input disabled type="checkbox"> 能够在程序中表示IP地址和端口号</li>
+<li><input disabled type="checkbox"> 能够说出TCP协议的特点</li>
+<li><input disabled type="checkbox"> 了解基于Socket的TCP网络编程</li>
+</ul>
+</li>
+</ul>
+<h1 id="第一章-Properties集合"><a href="#第一章-Properties集合" class="headerlink" title="第一章 Properties集合"></a>第一章 Properties集合</h1><h2 id="1-1-Properties类的回顾"><a href="#1-1-Properties类的回顾" class="headerlink" title="1.1 Properties类的回顾"></a>1.1 Properties类的回顾</h2><p>是集合，存储键值对的集合，继承父类Hashtable，是线程安全的集合。能够和IO流对象结合使用，实现数据的持久化。Properties设计失败的类：不能使用多态</p>
+<blockquote>
+<p>作用是配置文件(config)：本质上就是文本文件，保存数据，数据将会改变我们程序的执行结果！！</p>
+</blockquote>
+<h2 id="1-2-方法load"><a href="#1-2-方法load" class="headerlink" title="1.2 方法load"></a>1.2 方法load</h2><p>Properties类的方法load(输入流)，传递流对象必须是输入流，字节字符都可以。作用是从流中获取配置文件的数据，数据保存在集合中</p>
+<p>配置文件必须是键值对：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">k=v  数据不能是中文</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="comment">//字节输入流，读取配置文件</span></span><br><span class="line">    <span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;day21/config.properties&quot;</span>);</span><br><span class="line">    <span class="comment">//创建集合对象</span></span><br><span class="line">    <span class="type">Properties</span> <span class="variable">prop</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">    <span class="comment">//集合对象的方法load，传递字节输入流</span></span><br><span class="line">    prop.load(fis);</span><br><span class="line">    <span class="comment">//load方法执行后，文件中的键值对，达到集合！！</span></span><br><span class="line">    System.out.println(<span class="string">&quot;prop = &quot;</span> + prop);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">name</span>=<span class="string">zhangsan</span></span><br><span class="line"><span class="attr">age</span>=<span class="string">25</span></span><br><span class="line"><span class="attr">address</span>=<span class="string">shenzhenshi</span></span><br><span class="line"><span class="attr">email</span>=<span class="string">1234567@qq.com</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>后面的课程：数据库，JavaWeb 都使用配置文件</p>
+</blockquote>
+<h1 id="第二章-CommonsIO使用"><a href="#第二章-CommonsIO使用" class="headerlink" title="第二章 CommonsIO使用"></a>第二章 CommonsIO使用</h1><ul>
+<li><p>第三方软件公司</p>
+<ul>
+<li>第一方是Java技术的版权方法，Oracle</li>
+<li>第二方是我们开发人员自己</li>
+<li>除了第一和第二之外的都是第三方</li>
+</ul>
+</li>
+<li><p>美国的软件基金会（阿帕奇 Apache）</p>
+<ul>
+<li>全球的技术的顶尖高手</li>
+<li>开发了很多的软件，都是免费，开源码</li>
+<li>微软，Orale，IBM 赞助</li>
+<li><a href="http://www.apache.org/">www.apache.org</a></li>
+</ul>
+</li>
+<li><p>jar包- java Archive(归档)</p>
+<ul>
+<li>就是一种压缩包</li>
+<li>压缩包里面都是class文件</li>
+<li>commons-io-2.11.0.jar 应用文件</li>
+</ul>
+</li>
+<li><p>使用jar包三步</p>
+<ul>
+<li>模块中创建文件夹，名字必须是 lib</li>
+<li>jar文件复制到lib下</li>
+<li>lib目录上鼠标右键 – add as Lib  –&gt; OK</li>
+</ul>
+</li>
+<li><p>IOUtils类方法全静态</p>
+<ul>
+<li>closeQuietly(任意的流对象) 释放资源的方法，悄悄的释放，处理异常</li>
+<li>copy(字节输入流，字节输出流)</li>
+</ul>
+</li>
+<li><p>FileUtils类静态方法</p>
+<ul>
+<li>copyDirectoryToDirectory</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * FileUtils类，文件夹复制</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">testCopyDir</span><span class="params">()</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="type">File</span> <span class="variable">src</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;d:/a&quot;</span>);</span><br><span class="line">        <span class="type">File</span> <span class="variable">dest</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;e:/&quot;</span>);</span><br><span class="line">        FileUtils.copyDirectoryToDirectory(src,dest);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * IOUtils文件的复制</span></span><br><span class="line"><span class="comment">     * 处理异常</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">testCopy</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            fis = <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;d:/1.avi&quot;</span>);</span><br><span class="line">            fos = <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;e:/1.avi&quot;</span>);</span><br><span class="line">            <span class="comment">//调用IOUtils静态方法copyt</span></span><br><span class="line">            IOUtils.copy(fis,fos);</span><br><span class="line">        &#125;<span class="keyword">catch</span> (IOException ex)&#123;</span><br><span class="line">            ex.printStackTrace();</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="comment">//释放在资源悄悄的关闭</span></span><br><span class="line">            IOUtils.closeQuietly(fis);</span><br><span class="line">            IOUtils.closeQuietly(fos);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="第三章-计算机网络通信概述"><a href="#第三章-计算机网络通信概述" class="headerlink" title="第三章 计算机网络通信概述"></a>第三章 计算机网络通信概述</h1><h2 id="3-1-软件结构"><a href="#3-1-软件结构" class="headerlink" title="3.1 软件结构"></a>3.1 软件结构</h2><p>使用Java语言做软件开发的，软件 &#x3D; 数据 + 逻辑计算  </p>
+<p><img src="/images/1_cs.jpg"></p>
+<p><img src="/images/2_bs.jpg" alt="2_bs"></p>
+<h2 id="3-2-网络通信模型"><a href="#3-2-网络通信模型" class="headerlink" title="3.2 网络通信模型"></a>3.2 网络通信模型</h2><p><img src="/images/3_tcp_ip.jpg"></p>
+<ul>
+<li>TCP&#x2F;IP协议中的四层分别是应用层、传输层、网络层和链路层，每层分别负责不同的通信功能。<br>链路层：链路层是用于定义物理传输通道，通常是对某些网络连接设备的驱动协议，例如针对光纤、网线提供的驱动。</li>
+<li>网络层：网络层是整个TCP&#x2F;IP协议的核心，它主要用于将传输的数据进行分组，将分组数据发送到目标计算机或者网络。而IP协议是一种非常重要的协议。IP（internet protocal）又称为互联网协议。IP的责任就是把数据从源传送到目的地。它在源地址和目的地址之间传送一种称之为数据包的东西，它还提供对数据大小的重新组装功能，以适应不同网络对包大小的要求。</li>
+<li>传输层：主要使网络程序进行通信，在进行网络通信时，可以采用TCP协议，也可以采用UDP协议。TCP（Transmission Control Protocol）协议，即传输控制协议，是一种面向连接的、可靠的、基于字节流的传输层通信协议。UDP(User Datagram Protocol，用户数据报协议)：是一个无连接的传输层协议、提供面向事务的简单不可靠的信息传送服务。</li>
+<li>应用层：主要负责应用程序的协议，例如HTTP协议、FTP协议、SNMP（简单网络管理协议）、SMTP（简单邮件传输协议）和POP3（Post Office Protocol 3的简称,即邮局协议的第3个版）等。</li>
+</ul>
+<h2 id="3-3-网络通信三要素"><a href="#3-3-网络通信三要素" class="headerlink" title="3.3 网络通信三要素"></a>3.3 网络通信三要素</h2><h3 id="3-3-1-IP地址"><a href="#3-3-1-IP地址" class="headerlink" title="3.3.1 IP地址"></a>3.3.1 IP地址</h3><p>每个接入互联网的就计算机，就会自动获取到一个唯一的标识，就是IP地址。通过IP地址可以在互联网中准则定位到一台计算机。ipconfig</p>
+<ul>
+<li><p>IPV4：	</p>
+<ul>
+<li>采用4个数字段表示IP地址，每个数段的值0-255</li>
+<li>111.120.220.233  每个数字段大小是1个字节，最高位不是符号，是数字位</li>
+<li>192.168开头，局域网的专用IP地址</li>
+<li>127.0.0.1 本机回环地址，也可以写作单词 localhost</li>
+</ul>
+</li>
+<li><p>IPV6：</p>
+<ul>
+<li>采用8个数字段表示IP地址，每个数字段的值0-F</li>
+<li>2001:0DB8:0000:0023:0008:0800:200C:417A</li>
+<li>WindowsXP 不支持V6</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-3-2-端口号port"><a href="#3-3-2-端口号port" class="headerlink" title="3.3.2 端口号port"></a>3.3.2 端口号port</h3><p>物理端口：电源，USB，Type-C</p>
+<p>逻辑端口：网络应用程序在操作系统中的逻辑数字标识（只能被占用一次），操作系统中的端口号是1-65535个</p>
+<ul>
+<li>常用的端口号<ul>
+<li>80  浏览器HTTP协议访问服务器的端口  <a href="http://www.baidu.com/">http://www.baidu.com:80</a></li>
+<li>443 浏览器HTTPS协议访问服务器的端口  <a href="https://www.baidu.com/">https://www.baidu.com:443</a></li>
+<li>1521 Oracle数据库端口号</li>
+<li>3306 MySQL数据库端口号</li>
+<li>8080 Tomcat 服务器端口号</li>
+<li>6379 Redis数据库端口号</li>
+<li>5672 RabbitMQ端口号</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-3-3-通信协议"><a href="#3-3-3-通信协议" class="headerlink" title="3.3.3 通信协议"></a>3.3.3 通信协议</h3><p>计算机接入到互联网，对数据传递进行了规则。比喻为现在的交通法</p>
+<ul>
+<li><p>UDP协议</p>
+<ul>
+<li>用户数据报协议</li>
+<li>面向无连接协议，通信双方数据传递之前，不需要建立网络连接</li>
+<li>不安全的协议，丢失数据（丢包）</li>
+<li>每次发送的数据限制在64KB之内</li>
+</ul>
+</li>
+<li><p>TCP协议</p>
+<ul>
+<li>传输控制协议</li>
+<li>面向连接的协议，通信双方必须建立好网络连接</li>
+<li>安全的可靠协议，适合于大数据传输</li>
+<li>面向连接协议，网络连接的速度慢</li>
+<li>通信双方要三次握手确认连接</li>
+</ul>
+<p><img src="/images/4_tcp.jpg"></p>
+</li>
+</ul>
+<h1 id="第四章-TCP协议网络通信"><a href="#第四章-TCP协议网络通信" class="headerlink" title="第四章 TCP协议网络通信"></a>第四章 TCP协议网络通信</h1><h2 id="4-1-客户端和服务器"><a href="#4-1-客户端和服务器" class="headerlink" title="4.1 客户端和服务器"></a>4.1 客户端和服务器</h2><ul>
+<li>客户端Client：从其他的机器上获取数据</li>
+<li>服务端Server：可以为其他的机器提供共享数据</li>
+</ul>
+<p><img src="/images/6.jpg"></p>
+<ul>
+<li><code>java.net.Socket</code> 客户端的程序</li>
+<li><code>java.net.ServerSocket</code> 服务器端的程序</li>
+</ul>
+<h2 id="4-2-网络通信中的IO流对象"><a href="#4-2-网络通信中的IO流对象" class="headerlink" title="4.2 网络通信中的IO流对象"></a>4.2 网络通信中的IO流对象</h2><blockquote>
+<p>客户端程序和服务器程序通过网络连接成功。数据传输依靠IO流对象实现</p>
+</blockquote>
+<p><img src="/images/5_%E7%AE%80%E5%8D%95%E9%80%9A%E4%BF%A1.jpg"></p>
+<p><img src="/images/7.jpg" alt="7"></p>
+<h2 id="4-3-TCP协议客户端程序"><a href="#4-3-TCP协议客户端程序" class="headerlink" title="4.3 TCP协议客户端程序"></a>4.3 TCP协议客户端程序</h2><ul>
+<li><p><code>java.net.Socket</code></p>
+<ul>
+<li><p>客户端连接对象</p>
+</li>
+<li><p>构造方法：Socket(String 服务器端的IP,int 端口号)</p>
+</li>
+<li><blockquote>
+<p>只要new了，对象就会通过IP地址连接服务器，如果没有服务器程序，报错了</p>
+</blockquote>
+</li>
+<li><p>OutputStream getOutputStream() 获取字节输出流，将数据写向服务器</p>
+</li>
+<li><p>InputStream getInputStream() 获取字节输入流，读取服务器回来的数据</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 实现TCP协议的客户端</span></span><br><span class="line"><span class="comment"> * 实现步骤：</span></span><br><span class="line"><span class="comment"> *  1：new Socket() 连接服务器</span></span><br><span class="line"><span class="comment"> *  2：Socket对象获取字节输出流，写向服务器</span></span><br><span class="line"><span class="comment"> *  3: Socket对象获取字节输入流，读取服务器回来的数据</span></span><br><span class="line"><span class="comment"> *  4: 资源释放</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TCPClient</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="comment">//1：new Socket() 连接服务器</span></span><br><span class="line">        <span class="comment">//构造方法传递服务器的IP，端口号</span></span><br><span class="line">        <span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Socket</span>(<span class="string">&quot;127.0.0.1&quot;</span>,<span class="number">8888</span>);</span><br><span class="line">        <span class="comment">//2：Socket对象获取字节输出流，写向服务器</span></span><br><span class="line">        <span class="type">OutputStream</span> <span class="variable">out</span> <span class="operator">=</span>  socket.getOutputStream();</span><br><span class="line">        <span class="comment">//out流写数据  String类的方法getBytes() 字符串转成字节数组</span></span><br><span class="line">        out.write(<span class="string">&quot;你好服务器!&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3: Socket对象获取字节输入流，读取服务器回来的数据</span></span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> socket.getInputStream();</span><br><span class="line">        <span class="comment">//定义字节数组</span></span><br><span class="line">        <span class="type">byte</span>[] bytes = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">15</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> in.read(bytes);</span><br><span class="line">        System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(bytes,<span class="number">0</span>,len));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4释放资源</span></span><br><span class="line">        socket.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-4-TCP协议服务器程序"><a href="#4-4-TCP协议服务器程序" class="headerlink" title="4.4 TCP协议服务器程序"></a>4.4 TCP协议服务器程序</h2><ul>
+<li><code>java.net.ServerSocket</code><ul>
+<li>服务器连接对象</li>
+<li>构造方法：ServerSocket(int 端口号)</li>
+<li>accept() 获取客户端的连接对象Socket（客户端的信息，IP，机器名。。。）</li>
+<li>客户端的Socket对象获取IO流</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/8.jpg"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 实现TCP服务器端</span></span><br><span class="line"><span class="comment"> * 实现步骤：</span></span><br><span class="line"><span class="comment"> *  1：创建服务器连接对象ServerSocket ，开的端口</span></span><br><span class="line"><span class="comment"> *  2：调用服务器连接对象的方法 accept() 等待客户端连接</span></span><br><span class="line"><span class="comment"> *      并获取客户端的连接对象Socket</span></span><br><span class="line"><span class="comment"> *  3：Socket对象获取IO流</span></span><br><span class="line"><span class="comment"> *     字节输入流：读取客户端的数据</span></span><br><span class="line"><span class="comment"> *     字节输出流：向客户端写入数据</span></span><br><span class="line"><span class="comment"> *  4：资源释放</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  192.168.19.39</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TCPServer</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="comment">//1：创建服务器连接对象ServerSocket ，开的端口</span></span><br><span class="line">        <span class="type">ServerSocket</span> <span class="variable">server</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ServerSocket</span>(<span class="number">8888</span>);</span><br><span class="line">        <span class="comment">// 2：调用服务器连接对象的方法 accept() 等待客户端连接</span></span><br><span class="line">        <span class="comment">//accept()方法返回Socket对象</span></span><br><span class="line">        <span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> server.accept();</span><br><span class="line">        <span class="comment">//获取客户端IP地址的方法</span></span><br><span class="line">        System.out.println(socket.getLocalAddress().getHostAddress());</span><br><span class="line">        <span class="comment">//3：Socket对象获取IO流</span></span><br><span class="line">        <span class="comment">//获取字节输入流，读取客户端的数据</span></span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> socket.getInputStream();</span><br><span class="line">        <span class="comment">//定义字节数组</span></span><br><span class="line">        <span class="type">byte</span>[] bytes = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">16</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> in.read(bytes);</span><br><span class="line">        <span class="comment">//数组转成字符串输出</span></span><br><span class="line">        System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(bytes,<span class="number">0</span>,len));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取字节输出流，数据写向客户端</span></span><br><span class="line">        <span class="type">OutputStream</span> <span class="variable">out</span> <span class="operator">=</span> socket.getOutputStream();</span><br><span class="line">        out.write(<span class="string">&quot;收到,谢谢!!&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4：资源释放</span></span><br><span class="line">        socket.close();</span><br><span class="line">        server.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-5-文件上传"><a href="#4-5-文件上传" class="headerlink" title="4.5 文件上传"></a>4.5 文件上传</h2><p><img src="/images/9.jpg"></p>
+<blockquote>
+<p>程序运行之后不停止的问题：造成原因是字节输入流的方法read()导致</p>
+<p>客户端read()方法读取图片，遇到文件结束符，循环结束不再读取</p>
+<p>服务器read()读取的不是文件，而是客户端发来的数组，永远不会读取-1，循环不结束</p>
+</blockquote>
+<ul>
+<li><p>Sun公司处理：</p>
+<ul>
+<li>Socket对象定义方法：void shutdownOutput()，向服务器发送终止符号</li>
+</ul>
+</li>
+<li><p>客户端程序</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * TCP协议，图片上传的客户端</span></span><br><span class="line"><span class="comment"> * 实现步骤：</span></span><br><span class="line"><span class="comment"> *  1：创建Socket对象，连接服务器</span></span><br><span class="line"><span class="comment"> *  2：创建FileInputStream流，读取数据源图片 ly.jpg</span></span><br><span class="line"><span class="comment"> *  3: Socket对象获取字节输出流 OutputStream 读取到的图片，写到服务器</span></span><br><span class="line"><span class="comment"> *  4：字节流读取图片，存储字节数组，字节输出流，字节数组写服务器</span></span><br><span class="line"><span class="comment"> *  5：Socket对象获取字节输入流 InputStream</span></span><br><span class="line"><span class="comment"> *  6: 读取服务器回来的上传成功</span></span><br><span class="line"><span class="comment"> *  7：释放资源</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TCPClient</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="comment">//1：创建Socket对象，连接服务器</span></span><br><span class="line">        <span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Socket</span>(<span class="string">&quot;127.0.0.1&quot;</span>,<span class="number">8888</span>);</span><br><span class="line">        <span class="comment">//2：创建FileInputStream流，读取数据源图片 ly.jpg</span></span><br><span class="line">        <span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;d:/ly.jpg&quot;</span>);</span><br><span class="line">        <span class="comment">//3: Socket对象获取字节输出流 OutputStream 读取到的图片，写到服务器</span></span><br><span class="line">        <span class="type">OutputStream</span> <span class="variable">out</span> <span class="operator">=</span> socket.getOutputStream();</span><br><span class="line">        <span class="comment">//4：字节流读取图片，存储字节数组，字节输出流，字节数组写服务器</span></span><br><span class="line">        <span class="type">byte</span>[] bytes = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> <span class="number">0</span> ;</span><br><span class="line">        <span class="keyword">while</span> ( (len = fis.read(bytes)) != -<span class="number">1</span>)&#123;</span><br><span class="line">            out.write(bytes,<span class="number">0</span>,len);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//socket对象方法，写终止序列</span></span><br><span class="line">        socket.shutdownOutput();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 5：Socket对象获取字节输入流 InputStream</span></span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> socket.getInputStream();</span><br><span class="line">        <span class="comment">//6: 读取服务器回来的上传成功</span></span><br><span class="line">        len = in.read(bytes);</span><br><span class="line">        System.out.println(<span class="string">&quot;服务器说：：&quot;</span>+<span class="keyword">new</span> <span class="title class_">String</span>(bytes,<span class="number">0</span>,len));</span><br><span class="line">        <span class="comment">//7：释放资源</span></span><br><span class="line">        fis.close();</span><br><span class="line">        socket.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>服务器程序</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 实现文件上传服务器端</span></span><br><span class="line"><span class="comment"> * 实现步骤：</span></span><br><span class="line"><span class="comment"> * 1： 创建ServerSocket对象，打开端口</span></span><br><span class="line"><span class="comment"> * 2： 调用方法accept() 等待客户端连接，获取客户端连接对象</span></span><br><span class="line"><span class="comment"> * 3： 客户端对象Socket获取字节输入流，读取客户端发送来的字节数组</span></span><br><span class="line"><span class="comment"> * 4： 服务器端创建文件夹 e:/myPicture</span></span><br><span class="line"><span class="comment"> * 5:  创建字节输出流 FileOutputStream</span></span><br><span class="line"><span class="comment"> * 6:  读取字节输出，FileOutputStream流数组保存在文件夹中</span></span><br><span class="line"><span class="comment"> * 7:  客户端对象获取字节输出流</span></span><br><span class="line"><span class="comment"> * 8： 上传成功写回客户端</span></span><br><span class="line"><span class="comment"> * 9： 释放资源</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TCPServer</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="comment">//1： 创建ServerSocket对象，打开端口</span></span><br><span class="line">        <span class="type">ServerSocket</span> <span class="variable">server</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ServerSocket</span>(<span class="number">8888</span>);</span><br><span class="line">        <span class="comment">//2： 调用方法accept() 等待客户端连接，获取客户端连接对象</span></span><br><span class="line">        <span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> server.accept();</span><br><span class="line">        <span class="comment">//3： 客户端对象Socket获取字节输入流，读取客户端发送来的字节数组</span></span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> socket.getInputStream();</span><br><span class="line">        <span class="comment">//4： 服务器端创建文件夹 e:/myPicture</span></span><br><span class="line">        <span class="type">File</span> <span class="variable">uploadDir</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;e:/myPicture&quot;</span>);</span><br><span class="line">        <span class="comment">//判断目录是否存在，不存在创建</span></span><br><span class="line">        <span class="keyword">if</span> (!uploadDir.exists())</span><br><span class="line">            uploadDir.mkdirs();</span><br><span class="line">        <span class="comment">//5:  创建字节输出流 FileOutputStream</span></span><br><span class="line">        <span class="comment">//写入图片（字节数组）数据，完整的路径和文件名</span></span><br><span class="line">        <span class="comment">//上传的目录e:/myPicture，文件名组成一个File对象</span></span><br><span class="line">        <span class="comment">//上传文件重命名+atguigu+随机数+毫秒值+随机数转十六进制</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">fileName</span> <span class="operator">=</span> <span class="string">&quot;atguigu&quot;</span>+<span class="keyword">new</span> <span class="title class_">Random</span>().nextInt(<span class="number">10000000</span>)</span><br><span class="line">                +System.currentTimeMillis()+Integer.toHexString(<span class="keyword">new</span> <span class="title class_">Random</span>().nextInt(<span class="number">10000000</span>))+<span class="string">&quot;.jpg&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="type">File</span> <span class="variable">uploadFile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(uploadDir,fileName);</span><br><span class="line">        <span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(uploadFile);</span><br><span class="line">        <span class="comment">//6:  读取字节输出，FileOutputStream流数组保存在文件夹中</span></span><br><span class="line">        <span class="type">byte</span>[] bytes = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> <span class="number">0</span> ;</span><br><span class="line">        <span class="keyword">while</span> ( (len = in.read(bytes)) != -<span class="number">1</span>)&#123;</span><br><span class="line">            fos.write(bytes,<span class="number">0</span>,len);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;!!!!!!!!!!!!!!!!!&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//7:  客户端对象获取字节输出流</span></span><br><span class="line">        <span class="type">OutputStream</span> <span class="variable">out</span> <span class="operator">=</span> socket.getOutputStream();</span><br><span class="line">        <span class="comment">// 8： 上传成功写回客户端</span></span><br><span class="line">        out.write(<span class="string">&quot;上传成功&quot;</span>.getBytes());</span><br><span class="line">        <span class="comment">//9： 释放资源</span></span><br><span class="line">        fos.close();</span><br><span class="line">        socket.close();</span><br><span class="line">        server.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/10.jpg"></p>
+<h2 id="4-6-文件上传多线程"><a href="#4-6-文件上传多线程" class="headerlink" title="4.6 文件上传多线程"></a>4.6 文件上传多线程</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public class TCPServer &#123;</span><br><span class="line">    public static void main(String[] args) throws IOException &#123;</span><br><span class="line">        //1： 创建ServerSocket对象，打开端口</span><br><span class="line">        ServerSocket server = new ServerSocket(8888);</span><br><span class="line">        while (true) &#123;</span><br><span class="line">            //2： 调用方法accept() 等待客户端连接，获取客户端连接对象</span><br><span class="line">            Socket socket = server.accept();</span><br><span class="line">            //accept()获取到客户端连接对象，启动线程</span><br><span class="line">            //一个用户，一个线程</span><br><span class="line">            MyRunnable my = new MyRunnable(socket);</span><br><span class="line">            new Thread(my).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line"> * TCP协议，图片上传的客户端</span><br><span class="line"> * 实现步骤：</span><br><span class="line"> *  1：创建Socket对象，连接服务器</span><br><span class="line"> *  2：创建FileInputStream流，读取数据源图片 ly.jpg</span><br><span class="line"> *  3: Socket对象获取字节输出流 OutputStream 读取到的图片，写到服务器</span><br><span class="line"> *  4：字节流读取图片，存储字节数组，字节输出流，字节数组写服务器</span><br><span class="line"> *  5：Socket对象获取字节输入流 InputStream</span><br><span class="line"> *  6: 读取服务器回来的上传成功</span><br><span class="line"> *  7：释放资源</span><br><span class="line"> */</span><br><span class="line">public class TCPClient &#123;</span><br><span class="line">    public static void main(String[] args) throws IOException &#123;</span><br><span class="line">        //1：创建Socket对象，连接服务器</span><br><span class="line">        Socket socket = new Socket(&quot;127.0.0.1&quot;,8888);</span><br><span class="line">        //2：创建FileInputStream流，读取数据源图片 ly.jpg</span><br><span class="line">        FileInputStream fis = new FileInputStream(&quot;d:/ly.jpg&quot;);</span><br><span class="line">        //3: Socket对象获取字节输出流 OutputStream 读取到的图片，写到服务器</span><br><span class="line">        OutputStream out = socket.getOutputStream();</span><br><span class="line">        //4：字节流读取图片，存储字节数组，字节输出流，字节数组写服务器</span><br><span class="line">        byte[] bytes = new byte[1024];</span><br><span class="line">        int len = 0 ;</span><br><span class="line">        while ( (len = fis.read(bytes)) != -1)&#123;</span><br><span class="line">            out.write(bytes,0,len);</span><br><span class="line">        &#125;</span><br><span class="line">        //socket对象方法，写终止序列</span><br><span class="line">        socket.shutdownOutput();</span><br><span class="line"></span><br><span class="line">        // 5：Socket对象获取字节输入流 InputStream</span><br><span class="line">        InputStream in = socket.getInputStream();</span><br><span class="line">        //6: 读取服务器回来的上传成功</span><br><span class="line">        len = in.read(bytes);</span><br><span class="line">        System.out.println(&quot;服务器说：：&quot;+new String(bytes,0,len));</span><br><span class="line">        //7：释放资源</span><br><span class="line">        fis.close();</span><br><span class="line">        socket.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>Atguigu</category>
+      </categories>
+      <tags>
+        <tag>网络编程</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>day20 IO流对象</title>
     <url>/2022/06/14/atguigu/day20_IO/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="day20-IO流对象"><a href="#day20-IO流对象" class="headerlink" title="day20 IO流对象"></a>day20 IO流对象</h1><ul>
@@ -1059,469 +1522,6 @@
       </tags>
   </entry>
   <entry>
-    <title>MySQL day3</title>
-    <url>/2022/06/15/atguigu/MySQL_Day3/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="MySQL-Day3"><a href="#MySQL-Day3" class="headerlink" title="MySQL_Day3"></a>MySQL_Day3</h1><ul>
-<li>学习目标<ul>
-<li><input disabled type="checkbox"> 能够使用DCL语言创建账户并授权</li>
-<li><input disabled type="checkbox"> 理解JDBC的概念</li>
-<li><input disabled type="checkbox"> 理解JDBC驱动的作用</li>
-<li><input disabled type="checkbox"> 使用JDBC技术实现CRUD</li>
-<li><input disabled type="checkbox"> 能够自定义JDBC连接工具类</li>
-<li><input disabled type="checkbox"> 能够防止SQL注入攻击</li>
-<li><input disabled type="checkbox"> 能够说出PreparedStatement接口的特点</li>
-</ul>
-</li>
-</ul>
-<h1 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h1><p>有两个查询语句A和B，B查询的查询结果，结果作为A查询的条件来使用，B就是A的子查询</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"># 先查询分类找，根据分类的名字，找分类对应的id值</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> category <span class="keyword">WHERE</span> cname <span class="operator">=</span> <span class="string">&#x27;食物&#x27;</span>;</span><br><span class="line"></span><br><span class="line">#查询商品，条件可以是分类表查询的结果   先执行()里面的查询，子查询</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> product <span class="keyword">WHERE</span> cno <span class="operator">=</span> (<span class="keyword">SELECT</span> cid <span class="keyword">FROM</span> category <span class="keyword">WHERE</span> cname <span class="operator">=</span> <span class="string">&#x27;食物&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  查询商品信息表</span></span><br><span class="line"><span class="comment">  查询所有食品类的和手机数码的</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> category <span class="keyword">WHERE</span> cname <span class="operator">=</span> <span class="string">&#x27;食物&#x27;</span> <span class="keyword">OR</span> cname <span class="operator">=</span> <span class="string">&#x27;手机数码&#x27;</span>;</span><br><span class="line"></span><br><span class="line">#当子查询的结果，多余一行，条件不能是<span class="operator">=</span>，应该使用<span class="keyword">in</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> product <span class="keyword">WHERE</span> cno  <span class="keyword">IN</span> </span><br><span class="line">(<span class="keyword">SELECT</span> cid <span class="keyword">FROM</span> category <span class="keyword">WHERE</span> cname <span class="operator">=</span> <span class="string">&#x27;食物&#x27;</span> <span class="keyword">OR</span> cname <span class="operator">=</span> <span class="string">&#x27;手机数码&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="第一章-DCL语句"><a href="#第一章-DCL语句" class="headerlink" title="第一章 DCL语句"></a>第一章 DCL语句</h1><p>我们现在默认使用的都是root用户，超级管理员，拥有全部的权限。但是，一个公司里面的数据库服务器上面可能同时运行着很多个项目的数据库。所以，我们应该可以根据不同的项目建立不同的用户，分配不同的权限来管理和维护数据库。</p>
-<h2 id="1-1-创建用户"><a href="#1-1-创建用户" class="headerlink" title="1.1 创建用户"></a>1.1 创建用户</h2><p><code>CREATE USER &#39;用户名&#39;@&#39;主机名&#39; IDENTIFIED BY &#39;密码&#39;;</code><br><strong>关键字说明：</strong></p>
-<ol>
-<li><p><code>用户名</code>：将创建的用户名</p>
-<pre><code>  2. `主机名`：指定该用户在哪个主机上可以登陆，如果是本地用户可用localhost，如果想让该用户可以从任意远程主机登陆，可以使用通配符%
-</code></pre>
-<ol start="3">
-<li><code>密码</code>：该用户的登陆密码，密码可以为空，如果为空则l该用户可以不需要密码登陆服务器</li>
-</ol>
-</li>
-</ol>
-<p><strong>具体操作：</strong></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- user1用户只能在localhost这个IP登录mysql服务器</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">&#x27;user1&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;123&#x27;</span>;</span><br><span class="line"><span class="comment">-- user2用户可以在任何电脑上登录mysql服务器</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">&#x27;user2&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;123&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<h2 id="1-2-授权用户"><a href="#1-2-授权用户" class="headerlink" title="1.2 授权用户"></a>1.2 授权用户</h2><p>用户创建之后，基本没什么权限！需要给用户授权<br><img src="/images/MySQL_Day3/imgs/DCL02.png"></p>
-<p><strong>授权格式</strong>：<br><code>GRANT 权限1, 权限2... ON 数据库名.表名 TO &#39;用户名&#39;@&#39;主机名&#39;;</code><br><strong>关键字说明</strong>：<br>​      1. <code>GRANT</code> 授权关键字<br>​      2. 授予用户的权限，如<code>SELECT</code>，<code>INSERT</code>，<code>UPDATE</code>等。如果要授予所的权限则使用<code>ALL</code><br>​      3. <code>数据库名.表名</code>：该用户可以操作哪个数据库的哪些表。如果要授予该用户对所有数据库和表的相应操作权限则可用*表示，如<code>*.*</code><br>​      4. <code>&#39;用户名&#39;@&#39;主机名&#39;</code>: 给哪个用户授权</p>
-<p><strong>具体操作：</strong></p>
-<ol>
-<li><p>给user1用户分配对test这个数据库操作的权限</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">CREATE</span>,<span class="keyword">ALTER</span>,<span class="keyword">DROP</span>,<span class="keyword">INSERT</span>,<span class="keyword">UPDATE</span>,<span class="keyword">DELETE</span>,<span class="keyword">SELECT</span> <span class="keyword">ON</span> test.<span class="operator">*</span> <span class="keyword">TO</span> <span class="string">&#x27;user1&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/MySQL_Day3/imgs/DCL03.png"></p>
-</li>
-<li><p>给user2用户分配对所有数据库操作的权限</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> <span class="keyword">ON</span> <span class="operator">*</span>.<span class="operator">*</span> <span class="keyword">TO</span> <span class="string">&#x27;user2&#x27;</span>@<span class="string">&#x27;%&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/MySQL_Day3/imgs/DCL04.png"></p>
-</li>
-</ol>
-<h2 id="1-3-撤销授权"><a href="#1-3-撤销授权" class="headerlink" title="1.3 撤销授权"></a>1.3 撤销授权</h2><p><code>REVOKE  权限1, 权限2... ON 数据库.表名 FROM &#39;用户名&#39;@&#39;主机名&#39;;</code></p>
-<p><strong>具体操作：</strong></p>
-<ul>
-<li><p>撤销user1用户对test操作的权限</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span> <span class="keyword">ALL</span> <span class="keyword">ON</span> test.<span class="operator">*</span> <span class="keyword">FROM</span> <span class="string">&#x27;user1&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/MySQL_Day3/imgs/DCL05.png"></p>
-</li>
-</ul>
-<h2 id="1-4-查看权限"><a href="#1-4-查看权限" class="headerlink" title="1.4 查看权限"></a>1.4 查看权限</h2><p><code>SHOW GRANTS FOR &#39;用户名&#39;@&#39;主机名&#39;;</code><br><strong>具体操作：</strong></p>
-<ul>
-<li><p>查看user1用户的权限</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> GRANTS <span class="keyword">FOR</span> <span class="string">&#x27;user1&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/MySQL_Day3/imgs/DCL06.png"></p>
-</li>
-</ul>
-<h2 id="1-5-删除用户"><a href="#1-5-删除用户" class="headerlink" title="1.5 删除用户"></a>1.5 删除用户</h2><p><code>DROP USER &#39;用户名&#39;@&#39;主机名&#39;;</code><br><strong>具体操作：</strong></p>
-<ul>
-<li><p>删除user2</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">USER</span> <span class="string">&#x27;user2&#x27;</span>@<span class="string">&#x27;%&#x27;</span>;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="1-6-修改普通用户密码"><a href="#1-6-修改普通用户密码" class="headerlink" title="1.6 修改普通用户密码"></a>1.6 修改普通用户密码</h2><p><code>set password for &#39;用户名&#39;@&#39;主机名&#39; = password(&#39;新密码&#39;);</code></p>
-<blockquote>
-<p>注意：需要在登陆MySQL的情况下操作。</p>
-</blockquote>
-<p><strong>具体操作：</strong></p>
-   <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">`<span class="keyword">set</span> password <span class="keyword">for</span> <span class="string">&#x27;user1&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> <span class="operator">=</span> password(<span class="string">&#x27;666666&#x27;</span>);`</span><br></pre></td></tr></table></figure>
-
-<h1 id="第二章-JDBC概述"><a href="#第二章-JDBC概述" class="headerlink" title="第二章  JDBC概述"></a>第二章  JDBC概述</h1><h2 id="2-1-JDBC概述"><a href="#2-1-JDBC概述" class="headerlink" title="2.1 JDBC概述"></a>2.1 JDBC概述</h2><p>Java DataBase Connectivity （Java对数据库的连接技术）。Java程序数据都是临时存储，保证数据不丢失，将数据存储在数据库。数据库是不可能让用户直接操作的，提供以Java的形态操作数据库了。必须要学习JDBC技术</p>
-<p><img src="/images/MySQL_Day3/imgs/1.png"></p>
-<ul>
-<li><p>数据库的驱动程序（Driver）</p>
-<ul>
-<li><p>sun公司推出数据库开发的API</p>
-</li>
-<li><p>API都是接口，就是称为规范</p>
-</li>
-<li><p>实现类都是数据库厂家提供，就是驱动程序</p>
-</li>
-<li><blockquote>
-<p>面向接口的编程思想：使用Sun的就接口，调用驱动的实现类</p>
-</blockquote>
-</li>
-<li><p>驱动程序提供jar包</p>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="/images/MySQL_Day3/imgs/2.png"></p>
-<h2 id="2-2-JDBC相关类和接口"><a href="#2-2-JDBC相关类和接口" class="headerlink" title="2.2 JDBC相关类和接口"></a>2.2 JDBC相关类和接口</h2><ul>
-<li><code>java.sql.DriverManager</code> 管理数据库驱动程序</li>
-<li><code>java.sql.Connection</code>接口：表示连接到数据库的对象</li>
-<li><code>java.sql.Statement</code>接口：用于执行SQL语句的对象</li>
-<li><code>java.sql.ResultSet</code>接口：接口对象表示查询数据的结果集</li>
-</ul>
-<blockquote>
-<p>接口的实现类，全部在数据库的驱动jar包中</p>
-</blockquote>
-<h2 id="2-3-JDBC使用步骤"><a href="#2-3-JDBC使用步骤" class="headerlink" title="2.3 JDBC使用步骤"></a>2.3 JDBC使用步骤</h2><ol>
-<li>注册驱动程序</li>
-<li>网络获取Java和数据库连接</li>
-<li>获取SQL语句的执行对象</li>
-<li>执行SQL语句–SQL语句是字符串形式</li>
-<li>处理查询的结果集</li>
-<li>释放资源</li>
-</ol>
-<h2 id="2-4-JDBC实现数据表CRUD操作"><a href="#2-4-JDBC实现数据表CRUD操作" class="headerlink" title="2.4 JDBC实现数据表CRUD操作"></a>2.4 JDBC实现数据表CRUD操作</h2><ul>
-<li>实现insert新增数据</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 新增product表的数据</span></span><br><span class="line"><span class="comment">   * 1. 注册驱动程序</span></span><br><span class="line"><span class="comment">   * 2. 网络获取Java和数据库连接</span></span><br><span class="line"><span class="comment">   * 3. 获取SQL语句的执行对象</span></span><br><span class="line"><span class="comment">   * 4. 执行SQL语句--SQL语句是字符串形式</span></span><br><span class="line"><span class="comment">   * 5. 处理查询的结果集</span></span><br><span class="line"><span class="comment">   * 6. 释放资源</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="meta">@Test</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">insertProduct</span><span class="params">()</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">      <span class="comment">//1. 注册驱动程序：告知JVM，使用哪个数据库的驱动程序</span></span><br><span class="line">      <span class="comment">//DriverManager类静态方法：static void registerDriver(Driver d)</span></span><br><span class="line">      <span class="comment">//参数Driver是接口，传递实现类对象，实现类在数据库的驱动jar包</span></span><br><span class="line">      DriverManager.registerDriver(<span class="keyword">new</span> <span class="title class_">Driver</span>());</span><br><span class="line">      <span class="comment">//2. 网络获取Java和数据库连接:DriverManager类静态方法 getConnection()</span></span><br><span class="line">      <span class="comment">//static Connection getConnection(String url,String user,String password)</span></span><br><span class="line">      <span class="comment">//返回值是Connection接口的实现类：代表数据库的连接对象</span></span><br><span class="line">      <span class="comment">//参数url:连接数据库的网络地址  连接方式:数据库厂商名://数据库服务器IP:端口号/要连接的数据库名</span></span><br><span class="line">      <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;jdbc:mysql://localhost:3306/mydb2&quot;</span>;</span><br><span class="line">      <span class="type">String</span> <span class="variable">user</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">      <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">      <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> DriverManager.getConnection(url,user,password);</span><br><span class="line"></span><br><span class="line">      <span class="comment">//3. 获取SQL语句的执行对象，获取接口Statement的实现类对象</span></span><br><span class="line">      <span class="comment">//连接对象con的方法Statement createStatement()获取接口实现类的对象</span></span><br><span class="line">      <span class="type">Statement</span> <span class="variable">stat</span> <span class="operator">=</span> con.createStatement();</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 4. 执行SQL语句--SQL语句是字符串形式</span></span><br><span class="line">      <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;insert into product values(null,&#x27;饼干&#x27;,3.99,199,2)&quot;</span>;</span><br><span class="line">      <span class="comment">//stat是负责执行SQL语句的对象</span></span><br><span class="line">      <span class="comment">//stat对象的方法 int executeUpdate(String sql) 执行SQL语句</span></span><br><span class="line">      <span class="type">int</span> <span class="variable">row</span> <span class="operator">=</span> stat.executeUpdate(sql);<span class="comment">//返回操作成功的行数</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">//5. 处理查询的结果集</span></span><br><span class="line">      System.out.println(<span class="string">&quot;row = &quot;</span> + row);</span><br><span class="line"></span><br><span class="line">      <span class="comment">//6. 释放资源</span></span><br><span class="line">      stat.close();</span><br><span class="line">      con.close();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>常见的错误</p>
-<ul>
-<li>连接地址错了</li>
-</ul>
-<p><img src="/images/MySQL_Day3/imgs/3.png"></p>
-<ul>
-<li>端口号和上面出现的错误是一样的</li>
-<li>数据库名写错</li>
-</ul>
-<p><img src="/images/MySQL_Day3/imgs/4.png"></p>
-<ul>
-<li>登录数据库用户名或者密码错误</li>
-</ul>
-<p><img src="/images/MySQL_Day3/imgs/5.png"></p>
-<ul>
-<li>SQL语句中的表名错误</li>
-</ul>
-<p><img src="/images/MySQL_Day3/imgs/6.png"></p>
-<ul>
-<li>SQL语句的语法错误</li>
-</ul>
-<p><img src="/images/MySQL_Day3/imgs/7.png"></p>
-<ul>
-<li>SQL语句中数据表的字段和值不对应</li>
-</ul>
-<p><img src="/images/MySQL_Day3/imgs/8.png"></p>
-<ul>
-<li>数据表字段名写错</li>
-</ul>
-<p><img src="/images/MySQL_Day3/imgs/9.png"></p>
-</li>
-<li><p>驱动程序的重复注册</p>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 数据库驱动注册，重复问题</span></span><br><span class="line"><span class="comment"> * 导致驱动重复被注册，浪费内存</span></span><br><span class="line"><span class="comment"> * 驱动包中 Driver类的源码</span></span><br><span class="line"><span class="comment"> * 自己new对象，源码中static代码块，也new对象</span></span><br><span class="line"><span class="comment"> * 避免驱动的重复注册问题，new一次</span></span><br><span class="line"><span class="comment"> * 使用反射技术实现，将Driver类加载到内存</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">register</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    Class.forName(<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);</span><br><span class="line">    <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;jdbc:mysql://localhost:3306/mydb2&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">user</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">    <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> DriverManager.getConnection(url,user,password);</span><br><span class="line">    System.out.println(<span class="string">&quot;con = &quot;</span> + con);</span><br><span class="line">    con.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>实现update更新数据</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 实现数据表的更新</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">updateProduct</span><span class="params">()</span><span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    <span class="comment">//注册驱动</span></span><br><span class="line">    Class.forName(<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);</span><br><span class="line">    <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;jdbc:mysql://localhost:3306/mydb2&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">user</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">    <span class="comment">//获取数据库连接对象</span></span><br><span class="line">    <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> DriverManager.getConnection(url,user,password);</span><br><span class="line">    <span class="comment">//获取SQL语句执行对象</span></span><br><span class="line">    <span class="type">Statement</span> <span class="variable">stat</span> <span class="operator">=</span> con.createStatement();</span><br><span class="line">    <span class="comment">//拼写update语句</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;update product set pname = &#x27;压缩饼干&#x27;,price = 10.99,num = 88 where pid = 14&quot;</span>;</span><br><span class="line">    <span class="comment">//执行SQL语句，stat对象的方法 executeUpdate</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">row</span> <span class="operator">=</span> stat.executeUpdate(sql);</span><br><span class="line">    System.out.println(<span class="string">&quot;row = &quot;</span> + row);</span><br><span class="line">    <span class="comment">//释放资源</span></span><br><span class="line">    stat.close();</span><br><span class="line">    con.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>实现update数据删除</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 实现数据表的删除</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deleteProduct</span><span class="params">()</span><span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    <span class="comment">//注册驱动</span></span><br><span class="line">    Class.forName(<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);</span><br><span class="line">    <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;jdbc:mysql://localhost:3306/mydb2&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">user</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">    <span class="comment">//获取数据库连接对象</span></span><br><span class="line">    <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> DriverManager.getConnection(url,user,password);</span><br><span class="line">    <span class="comment">//获取SQL语句执行对象</span></span><br><span class="line">    <span class="type">Statement</span> <span class="variable">stat</span> <span class="operator">=</span> con.createStatement();</span><br><span class="line">    <span class="comment">//拼写delete语句</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;delete from product where pid = 11&quot;</span>;</span><br><span class="line">    <span class="comment">//执行SQL语句，stat对象的方法 executeUpdate</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">row</span> <span class="operator">=</span> stat.executeUpdate(sql);</span><br><span class="line">    System.out.println(<span class="string">&quot;row = &quot;</span> + row);</span><br><span class="line">    <span class="comment">//释放资源</span></span><br><span class="line">    stat.close();</span><br><span class="line">    con.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>实现数据查询</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">selectProduct</span><span class="params">()</span><span class="keyword">throws</span> Exception&#123;</span><br><span class="line">       <span class="comment">//注册驱动</span></span><br><span class="line">       Class.forName(<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);</span><br><span class="line">       <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;jdbc:mysql://localhost:3306/mydb2&quot;</span>;</span><br><span class="line">       <span class="type">String</span> <span class="variable">user</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">       <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">       <span class="comment">//获取数据库连接对象</span></span><br><span class="line">       <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> DriverManager.getConnection(url,user,password);</span><br><span class="line">       <span class="comment">//获取SQL语句执行对象</span></span><br><span class="line">       <span class="type">Statement</span> <span class="variable">stat</span> <span class="operator">=</span> con.createStatement();</span><br><span class="line">       <span class="comment">//拼写查询语句</span></span><br><span class="line">       <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;select * from product &quot;</span>;</span><br><span class="line">       <span class="comment">//执行查询语句 stat执行SQL语句对象，方法 executeQuery(String sql);</span></span><br><span class="line">       <span class="comment">//方法 ResultSet executeQuery() 返回查询的结果集，是接口ResultSet的实现类</span></span><br><span class="line">       <span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> stat.executeQuery(sql);</span><br><span class="line">       <span class="comment">//rs查询结果集对象方法  boolean  next() 判断查询的结果是否有下一个</span></span><br><span class="line">       <span class="comment">//next()方法看成  集合迭代器的方法hasNext()</span></span><br><span class="line">       <span class="keyword">while</span> ( rs.next() )&#123;</span><br><span class="line">           <span class="comment">//rs结果集对象的方法 getXXX(String 字段名)获取字段的值</span></span><br><span class="line">           <span class="comment">//XXX数据类型</span></span><br><span class="line">           <span class="type">int</span> <span class="variable">pid</span> <span class="operator">=</span> rs.getInt(<span class="string">&quot;pid&quot;</span>);</span><br><span class="line">           <span class="type">String</span> <span class="variable">pname</span> <span class="operator">=</span> rs.getString(<span class="string">&quot;pname&quot;</span>);</span><br><span class="line">           <span class="type">double</span> <span class="variable">price</span> <span class="operator">=</span> rs.getDouble(<span class="string">&quot;price&quot;</span>);</span><br><span class="line">           <span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> rs.getInt(<span class="string">&quot;num&quot;</span>);</span><br><span class="line">           <span class="type">int</span> <span class="variable">cno</span> <span class="operator">=</span> rs.getInt(<span class="string">&quot;cno&quot;</span>);</span><br><span class="line">           System.out.println(pid+<span class="string">&quot;\t&quot;</span>+pname+<span class="string">&quot;\t&quot;</span>+price+<span class="string">&quot;\t&quot;</span>+num+<span class="string">&quot;\t&quot;</span>+cno);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">//资源释放</span></span><br><span class="line">       rs.close();</span><br><span class="line">       stat.close();</span><br><span class="line">       con.close();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="2-6-自定义JDBC工具类"><a href="#2-6-自定义JDBC工具类" class="headerlink" title="2.6 自定义JDBC工具类"></a>2.6 自定义JDBC工具类</h2><p>JDBC程序开发都是模板，出现大量的重复性程序，重复的程序建议写一次。共性抽取技术，将我们所有的重复性代码抽取到一个类的方法中，如果使用调用即可！</p>
-<ul>
-<li>最初的工具类</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 自定义的工具类：数据库操作的重复进行抽取</span></span><br><span class="line"><span class="comment"> * 抽取到方法中，直接调用即可</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JdbcUtils</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 定义方法：保存共性代码</span></span><br><span class="line"><span class="comment">     * 要求可以连接数据库</span></span><br><span class="line"><span class="comment">     * 返回数据库的连接对象Connection接口实现类</span></span><br><span class="line"><span class="comment">     * 方法没有调用过类中的非静态成员，可以定义为静态方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Connection <span class="title function_">getConnection</span><span class="params">()</span><span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="comment">//注册驱动</span></span><br><span class="line">        Class.forName(<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;jdbc:mysql://localhost:3306/mydb2&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">user</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">        <span class="comment">//获取数据库连接对象</span></span><br><span class="line">        <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> DriverManager.getConnection(url,user,password);</span><br><span class="line">        <span class="keyword">return</span> con;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//定义方法释放资源,连接对象，SQL执行对象，结果集对象</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">close</span><span class="params">(ResultSet rs, Statement stat,Connection con)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (rs != <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                rs.close();</span><br><span class="line">            &#125;<span class="keyword">catch</span> (SQLException ex)&#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (stat != <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                stat.close();</span><br><span class="line">            &#125;<span class="keyword">catch</span> (SQLException ex)&#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (con != <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                con.close();</span><br><span class="line">            &#125;<span class="keyword">catch</span> (SQLException ex)&#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>优化后的读取配置文件的工具类</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 自定义的工具类：数据库操作的重复进行抽取</span></span><br><span class="line"><span class="comment"> * 抽取到方法中，直接调用即可</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JdbcUtils</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span>  String driver;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span>  String url;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span>  String user;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span>  String password;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 工具类：获取数据库连接的四大基本信息，通过读取配置文件</span></span><br><span class="line"><span class="comment">     * 读取配置文件操作，就执行一次，静态代码块</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//获取当前类的加载器</span></span><br><span class="line">            <span class="type">ClassLoader</span> <span class="variable">classLoader</span> <span class="operator">=</span> JdbcUtils.class.getClassLoader();</span><br><span class="line">            <span class="comment">//类加载器获取IO流，输入流，自动从src下读取文件</span></span><br><span class="line">            <span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> classLoader.getResourceAsStream(<span class="string">&quot;db.properties&quot;</span>);</span><br><span class="line">            <span class="comment">//集合键值对</span></span><br><span class="line">            <span class="type">Properties</span> <span class="variable">prop</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">            prop.load(in);</span><br><span class="line">            <span class="comment">//取出集合中的键值对</span></span><br><span class="line">            driver = prop.getProperty(<span class="string">&quot;driver&quot;</span>);<span class="comment">//驱动类名</span></span><br><span class="line">            url = prop.getProperty(<span class="string">&quot;url&quot;</span>);<span class="comment">//数据库连接地址</span></span><br><span class="line">            user = prop.getProperty(<span class="string">&quot;user&quot;</span>);<span class="comment">//数据库登录用户名</span></span><br><span class="line">            password = prop.getProperty(<span class="string">&quot;password&quot;</span>);<span class="comment">//登录数据库密码</span></span><br><span class="line">            <span class="comment">//注册驱动程序</span></span><br><span class="line">            Class.forName(driver);</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception ex)&#123;</span><br><span class="line">            ex.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 定义方法：保存共性代码</span></span><br><span class="line"><span class="comment">     * 要求可以连接数据库</span></span><br><span class="line"><span class="comment">     * 返回数据库的连接对象Connection接口实现类</span></span><br><span class="line"><span class="comment">     * 方法没有调用过类中的非静态成员，可以定义为静态方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Connection <span class="title function_">getConnection</span><span class="params">()</span><span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="comment">//获取数据库连接对象</span></span><br><span class="line">        <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> DriverManager.getConnection(url,user,password);</span><br><span class="line">        <span class="keyword">return</span> con;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//定义方法释放资源,连接对象，SQL执行对象，结果集对象</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">close</span><span class="params">(ResultSet rs, Statement stat,Connection con)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (rs != <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                rs.close();</span><br><span class="line">            &#125;<span class="keyword">catch</span> (SQLException ex)&#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (stat != <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                stat.close();</span><br><span class="line">            &#125;<span class="keyword">catch</span> (SQLException ex)&#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (con != <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                con.close();</span><br><span class="line">            &#125;<span class="keyword">catch</span> (SQLException ex)&#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-7-lombok插件"><a href="#2-7-lombok插件" class="headerlink" title="2.7 lombok插件"></a>2.7 lombok插件</h2><p>lombok插件班助我们生成get&#x2F;set方法的</p>
-<ul>
-<li>安装插件 – 连接网络</li>
-</ul>
-<p><img src="/images/MySQL_Day3/imgs/10.png"></p>
-<p><img src="/images/MySQL_Day3/imgs/11.png" alt="11"></p>
-<ul>
-<li>添加lombok.jar包</li>
-<li>开启IDEA的注解编译开关</li>
-</ul>
-<p><img src="/images/MySQL_Day3/imgs/12.png"></p>
-<h2 id="2-8-查询数据表存储JavaBean"><a href="#2-8-查询数据表存储JavaBean" class="headerlink" title="2.8 查询数据表存储JavaBean"></a>2.8 查询数据表存储JavaBean</h2><p><img src="/images/MySQL_Day3/imgs/13.png"></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  查询数据表，每行数据存储JavaBean对象Product</span></span><br><span class="line"><span class="comment">     *  出现14个Product对象，存储List集合</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">selectJavaBean</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="comment">//定义需要的操作数据库的对象</span></span><br><span class="line">    <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">Statement</span> <span class="variable">stat</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="comment">//工具类获取连接对象</span></span><br><span class="line">        con = JdbcUtils.getConnection();</span><br><span class="line">        <span class="comment">//连接对象con，获取执行对象</span></span><br><span class="line">        stat = con.createStatement();</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;select * from product&quot;</span>;</span><br><span class="line">        <span class="comment">//执行查询语句，返回结果集对象</span></span><br><span class="line">        rs = stat.executeQuery(sql);</span><br><span class="line">        <span class="comment">//创建集合对象</span></span><br><span class="line">        List&lt;Product&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="comment">//循环遍历查询结果集</span></span><br><span class="line">        <span class="keyword">while</span> (rs.next())&#123;</span><br><span class="line">            <span class="comment">//rs.next()方法返回true，有一行结果集，对应一个JavaBean对象</span></span><br><span class="line">            <span class="type">Product</span> <span class="variable">product</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Product</span>();</span><br><span class="line">            <span class="comment">//取出查询结果集中的字段值，存储在javaBean对象中</span></span><br><span class="line">            product.setPid( rs.getInt(<span class="string">&quot;pid&quot;</span>) );</span><br><span class="line">            product.setPname( rs.getString(<span class="string">&quot;pname&quot;</span>) );</span><br><span class="line">            product.setPrice( rs.getDouble(<span class="string">&quot;price&quot;</span>) );</span><br><span class="line">            product.setNum( rs.getInt(<span class="string">&quot;num&quot;</span>) );</span><br><span class="line">            product.setCno( rs.getInt(<span class="string">&quot;cno&quot;</span>) );</span><br><span class="line">            <span class="comment">//JavaBean对象存储集合</span></span><br><span class="line">            list.add(product);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//遍历集合</span></span><br><span class="line">        <span class="keyword">for</span> (Product p : list)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;p = &quot;</span> + p);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">catch</span> (Exception ex)&#123;</span><br><span class="line">        ex.printStackTrace();</span><br><span class="line">    &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="comment">//释放资源</span></span><br><span class="line">        JdbcUtils.close(rs,stat,con);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="第三章-PreparedStatement接口"><a href="#第三章-PreparedStatement接口" class="headerlink" title="第三章 PreparedStatement接口"></a>第三章 PreparedStatement接口</h1><h2 id="3-1-SQL注入攻击"><a href="#3-1-SQL注入攻击" class="headerlink" title="3.1 SQL注入攻击"></a>3.1 SQL注入攻击</h2><p>利用数据库SQL语句（“漏洞”）的问题进行攻击，造成数据的丢失，数据的泄露。</p>
-<p>用户登录功能：数据库是查询功能</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    <span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">    <span class="type">String</span> <span class="variable">username</span> <span class="operator">=</span> sc.nextLine();</span><br><span class="line">    <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> sc.nextLine();</span><br><span class="line">    <span class="comment">//获取连接对象</span></span><br><span class="line">    <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> JdbcUtils.getConnection();</span><br><span class="line">    <span class="comment">//获取SQL语句执行对象</span></span><br><span class="line">    <span class="type">Statement</span> <span class="variable">stat</span> <span class="operator">=</span> con.createStatement();</span><br><span class="line">    <span class="comment">//拼写登录查询sql</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;select * from user where username=&#x27;&quot;</span>+username+<span class="string">&quot;&#x27; and password=&#x27;&quot;</span>+password+<span class="string">&quot;&#x27; &quot;</span>;</span><br><span class="line">    <span class="comment">//sql = select * from user where username=&#x27;fghjk&#x27; and password=&#x27;dtfytguhji or 1=1&#x27;</span></span><br><span class="line">    <span class="comment">//sql = select * from user where username=&#x27;dfghjk&#x27; and password=&#x27;fghj&#x27; or &#x27;1=1&#x27;</span></span><br><span class="line">    <span class="comment">//sql = select * from user where username=&#x27;dsfg&#x27; and password=&#x27;sdfg&#x27; or&#x27;1=1&#x27;</span></span><br><span class="line">    System.out.println(<span class="string">&quot;sql = &quot;</span> + sql);</span><br><span class="line">    <span class="comment">//执行查询语句，获取结果集对象</span></span><br><span class="line">    <span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> stat.executeQuery(sql);</span><br><span class="line">    <span class="keyword">while</span> (rs.next())&#123;</span><br><span class="line">        <span class="comment">//取出每个字段的值</span></span><br><span class="line">        System.out.println(rs.getString(<span class="string">&quot;username&quot;</span>)+<span class="string">&quot;  &quot;</span>+rs.getString(<span class="string">&quot;password&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    JdbcUtils.close(rs,stat,con);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-2-SQL语句预编译功能"><a href="#3-2-SQL语句预编译功能" class="headerlink" title="3.2 SQL语句预编译功能"></a>3.2 SQL语句预编译功能</h2><ul>
-<li><code>java.sql.PreparedStatement</code>接口<ul>
-<li>接口继承Statement接口</li>
-<li>PreparedStatement：将SQL语句预编译，并存储在自己的对象中，反复高效执行<ul>
-<li>高效的前提：SQL必须是select，多次执行的SQL语句必须是一个</li>
-<li>防止注入攻击</li>
-<li>执行SQL语句，推荐使用子接口：PreparedStatement</li>
-</ul>
-</li>
-<li>父接口Statement实现类对象: con.createStatement() 获取</li>
-<li>子接口PreparedStatement实现类对象：con.prepareStatement(String sql)</li>
-</ul>
-</li>
-<li>子接口PreparedStatement实现数据新增</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Jdbc添加数据</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">insertProduct</span><span class="params">()</span><span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    <span class="comment">//工具类，获取连接对象</span></span><br><span class="line">    <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> JdbcUtils.getConnection();</span><br><span class="line">    <span class="comment">//拼写新增的SQL语句</span></span><br><span class="line">    <span class="comment">//PreparedStatement接口执行SQL语句，所有的参数不能直接写出</span></span><br><span class="line">    <span class="comment">//所有的参数，写？占位符</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;insert into product values(?,?,?,?,?)&quot;</span>;</span><br><span class="line">    <span class="comment">//连接对象con的方法 prepareStatement(sql)返回接口PreparedStatement的实现类</span></span><br><span class="line">    <span class="type">PreparedStatement</span> <span class="variable">pst</span> <span class="operator">=</span>  con.prepareStatement(sql);</span><br><span class="line">    <span class="comment">//设置SQL语句问号占位符的实际参数</span></span><br><span class="line">    <span class="comment">//pst SQL语句的执行对象方法 setObject(int 第几个问号，Object 实际值)</span></span><br><span class="line">    pst.setObject(<span class="number">1</span>,<span class="literal">null</span>);</span><br><span class="line">    pst.setObject(<span class="number">2</span>,<span class="string">&quot;华为meta&quot;</span>);</span><br><span class="line">    pst.setObject(<span class="number">3</span>,<span class="number">19999.99</span>);</span><br><span class="line">    pst.setObject(<span class="number">4</span>,<span class="number">55</span>);</span><br><span class="line">    pst.setObject(<span class="number">5</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="comment">//执行SQL</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">row</span> <span class="operator">=</span> pst.executeUpdate();</span><br><span class="line">    System.out.println(<span class="string">&quot;row = &quot;</span> + row);</span><br><span class="line">    <span class="comment">//释放资源</span></span><br><span class="line">    JdbcUtils.close(<span class="literal">null</span>,pst,con);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>子接口PreparedStatement实现数据查询</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Jdbc数据查询，每行数据存储JavaBean对象</span></span><br><span class="line"><span class="comment"> * 多个JavaBean对象存储集合</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title function_">selectJavaBean</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//工具类，获取连接对象</span></span><br><span class="line">    <span class="type">Connection</span> <span class="variable">con</span> <span class="operator">=</span> JdbcUtils.getConnection();</span><br><span class="line">    <span class="comment">//拼写查询SQL语句，SQL语句中没有参数，不要写？站位符</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;select * from product&quot;</span>;</span><br><span class="line">    <span class="comment">//获取子接口实现类的对象</span></span><br><span class="line">    <span class="type">PreparedStatement</span> <span class="variable">pst</span> <span class="operator">=</span> con.prepareStatement(sql);</span><br><span class="line">    <span class="comment">//不需要设置？占位符的实际参数</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//执行SQL，查询获取结果集对象</span></span><br><span class="line">    <span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> pst.executeQuery();</span><br><span class="line">    List&lt;Product&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    <span class="comment">//循环遍历查询结果集</span></span><br><span class="line">    <span class="keyword">while</span> (rs.next())&#123;</span><br><span class="line">        <span class="comment">//rs.next()方法返回true，有一行结果集，对应一个JavaBean对象</span></span><br><span class="line">        <span class="type">Product</span> <span class="variable">product</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Product</span>();</span><br><span class="line">        <span class="comment">//取出查询结果集中的字段值，存储在javaBean对象中</span></span><br><span class="line">        product.setPid( rs.getInt(<span class="string">&quot;pid&quot;</span>) );</span><br><span class="line">        product.setPname( rs.getString(<span class="string">&quot;pname&quot;</span>) );</span><br><span class="line">        product.setPrice( rs.getDouble(<span class="string">&quot;price&quot;</span>) );</span><br><span class="line">        product.setNum( rs.getInt(<span class="string">&quot;num&quot;</span>) );</span><br><span class="line">        product.setCno( rs.getInt(<span class="string">&quot;cno&quot;</span>) );</span><br><span class="line">        <span class="comment">//JavaBean对象存储集合</span></span><br><span class="line">        list.add(product);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//遍历集合</span></span><br><span class="line">    <span class="keyword">for</span> (Product p : list)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;p = &quot;</span> + p);</span><br><span class="line">    &#125;</span><br><span class="line">    JdbcUtils.close(rs,pst,con);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="3-3-实现数据的批量写入"><a href="#3-3-实现数据的批量写入" class="headerlink" title="3.3 实现数据的批量写入"></a>3.3 实现数据的批量写入</h2>]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>day21 网络编程</title>
-    <url>/2022/06/14/atguigu/day21-network/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="day21-网络编程"><a href="#day21-网络编程" class="headerlink" title="day21 网络编程"></a>day21 网络编程</h1><ul>
-<li>教学目标<ul>
-<li><input disabled type="checkbox"> 软件架构CS／BS</li>
-<li><input disabled type="checkbox"> 了解网络通信协议参考模型</li>
-<li><input disabled type="checkbox"> 能够理解IP地址和端口号的作用</li>
-<li><input disabled type="checkbox"> 能够在程序中表示IP地址和端口号</li>
-<li><input disabled type="checkbox"> 能够说出TCP协议的特点</li>
-<li><input disabled type="checkbox"> 了解基于Socket的TCP网络编程</li>
-</ul>
-</li>
-</ul>
-<h1 id="第一章-Properties集合"><a href="#第一章-Properties集合" class="headerlink" title="第一章 Properties集合"></a>第一章 Properties集合</h1><h2 id="1-1-Properties类的回顾"><a href="#1-1-Properties类的回顾" class="headerlink" title="1.1 Properties类的回顾"></a>1.1 Properties类的回顾</h2><p>是集合，存储键值对的集合，继承父类Hashtable，是线程安全的集合。能够和IO流对象结合使用，实现数据的持久化。Properties设计失败的类：不能使用多态</p>
-<blockquote>
-<p>作用是配置文件(config)：本质上就是文本文件，保存数据，数据将会改变我们程序的执行结果！！</p>
-</blockquote>
-<h2 id="1-2-方法load"><a href="#1-2-方法load" class="headerlink" title="1.2 方法load"></a>1.2 方法load</h2><p>Properties类的方法load(输入流)，传递流对象必须是输入流，字节字符都可以。作用是从流中获取配置文件的数据，数据保存在集合中</p>
-<p>配置文件必须是键值对：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">k=v  数据不能是中文</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="comment">//字节输入流，读取配置文件</span></span><br><span class="line">    <span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;day21/config.properties&quot;</span>);</span><br><span class="line">    <span class="comment">//创建集合对象</span></span><br><span class="line">    <span class="type">Properties</span> <span class="variable">prop</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">    <span class="comment">//集合对象的方法load，传递字节输入流</span></span><br><span class="line">    prop.load(fis);</span><br><span class="line">    <span class="comment">//load方法执行后，文件中的键值对，达到集合！！</span></span><br><span class="line">    System.out.println(<span class="string">&quot;prop = &quot;</span> + prop);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">name</span>=<span class="string">zhangsan</span></span><br><span class="line"><span class="attr">age</span>=<span class="string">25</span></span><br><span class="line"><span class="attr">address</span>=<span class="string">shenzhenshi</span></span><br><span class="line"><span class="attr">email</span>=<span class="string">1234567@qq.com</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>后面的课程：数据库，JavaWeb 都使用配置文件</p>
-</blockquote>
-<h1 id="第二章-CommonsIO使用"><a href="#第二章-CommonsIO使用" class="headerlink" title="第二章 CommonsIO使用"></a>第二章 CommonsIO使用</h1><ul>
-<li><p>第三方软件公司</p>
-<ul>
-<li>第一方是Java技术的版权方法，Oracle</li>
-<li>第二方是我们开发人员自己</li>
-<li>除了第一和第二之外的都是第三方</li>
-</ul>
-</li>
-<li><p>美国的软件基金会（阿帕奇 Apache）</p>
-<ul>
-<li>全球的技术的顶尖高手</li>
-<li>开发了很多的软件，都是免费，开源码</li>
-<li>微软，Orale，IBM 赞助</li>
-<li><a href="http://www.apache.org/">www.apache.org</a></li>
-</ul>
-</li>
-<li><p>jar包- java Archive(归档)</p>
-<ul>
-<li>就是一种压缩包</li>
-<li>压缩包里面都是class文件</li>
-<li>commons-io-2.11.0.jar 应用文件</li>
-</ul>
-</li>
-<li><p>使用jar包三步</p>
-<ul>
-<li>模块中创建文件夹，名字必须是 lib</li>
-<li>jar文件复制到lib下</li>
-<li>lib目录上鼠标右键 – add as Lib  –&gt; OK</li>
-</ul>
-</li>
-<li><p>IOUtils类方法全静态</p>
-<ul>
-<li>closeQuietly(任意的流对象) 释放资源的方法，悄悄的释放，处理异常</li>
-<li>copy(字节输入流，字节输出流)</li>
-</ul>
-</li>
-<li><p>FileUtils类静态方法</p>
-<ul>
-<li>copyDirectoryToDirectory</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * FileUtils类，文件夹复制</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">testCopyDir</span><span class="params">()</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="type">File</span> <span class="variable">src</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;d:/a&quot;</span>);</span><br><span class="line">        <span class="type">File</span> <span class="variable">dest</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;e:/&quot;</span>);</span><br><span class="line">        FileUtils.copyDirectoryToDirectory(src,dest);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * IOUtils文件的复制</span></span><br><span class="line"><span class="comment">     * 处理异常</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">testCopy</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            fis = <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;d:/1.avi&quot;</span>);</span><br><span class="line">            fos = <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;e:/1.avi&quot;</span>);</span><br><span class="line">            <span class="comment">//调用IOUtils静态方法copyt</span></span><br><span class="line">            IOUtils.copy(fis,fos);</span><br><span class="line">        &#125;<span class="keyword">catch</span> (IOException ex)&#123;</span><br><span class="line">            ex.printStackTrace();</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="comment">//释放在资源悄悄的关闭</span></span><br><span class="line">            IOUtils.closeQuietly(fis);</span><br><span class="line">            IOUtils.closeQuietly(fos);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="第三章-计算机网络通信概述"><a href="#第三章-计算机网络通信概述" class="headerlink" title="第三章 计算机网络通信概述"></a>第三章 计算机网络通信概述</h1><h2 id="3-1-软件结构"><a href="#3-1-软件结构" class="headerlink" title="3.1 软件结构"></a>3.1 软件结构</h2><p>使用Java语言做软件开发的，软件 &#x3D; 数据 + 逻辑计算  </p>
-<p><img src="/images/1_cs.jpg"></p>
-<p><img src="/images/2_bs.jpg" alt="2_bs"></p>
-<h2 id="3-2-网络通信模型"><a href="#3-2-网络通信模型" class="headerlink" title="3.2 网络通信模型"></a>3.2 网络通信模型</h2><p><img src="/images/3_tcp_ip.jpg"></p>
-<ul>
-<li>TCP&#x2F;IP协议中的四层分别是应用层、传输层、网络层和链路层，每层分别负责不同的通信功能。<br>链路层：链路层是用于定义物理传输通道，通常是对某些网络连接设备的驱动协议，例如针对光纤、网线提供的驱动。</li>
-<li>网络层：网络层是整个TCP&#x2F;IP协议的核心，它主要用于将传输的数据进行分组，将分组数据发送到目标计算机或者网络。而IP协议是一种非常重要的协议。IP（internet protocal）又称为互联网协议。IP的责任就是把数据从源传送到目的地。它在源地址和目的地址之间传送一种称之为数据包的东西，它还提供对数据大小的重新组装功能，以适应不同网络对包大小的要求。</li>
-<li>传输层：主要使网络程序进行通信，在进行网络通信时，可以采用TCP协议，也可以采用UDP协议。TCP（Transmission Control Protocol）协议，即传输控制协议，是一种面向连接的、可靠的、基于字节流的传输层通信协议。UDP(User Datagram Protocol，用户数据报协议)：是一个无连接的传输层协议、提供面向事务的简单不可靠的信息传送服务。</li>
-<li>应用层：主要负责应用程序的协议，例如HTTP协议、FTP协议、SNMP（简单网络管理协议）、SMTP（简单邮件传输协议）和POP3（Post Office Protocol 3的简称,即邮局协议的第3个版）等。</li>
-</ul>
-<h2 id="3-3-网络通信三要素"><a href="#3-3-网络通信三要素" class="headerlink" title="3.3 网络通信三要素"></a>3.3 网络通信三要素</h2><h3 id="3-3-1-IP地址"><a href="#3-3-1-IP地址" class="headerlink" title="3.3.1 IP地址"></a>3.3.1 IP地址</h3><p>每个接入互联网的就计算机，就会自动获取到一个唯一的标识，就是IP地址。通过IP地址可以在互联网中准则定位到一台计算机。ipconfig</p>
-<ul>
-<li><p>IPV4：	</p>
-<ul>
-<li>采用4个数字段表示IP地址，每个数段的值0-255</li>
-<li>111.120.220.233  每个数字段大小是1个字节，最高位不是符号，是数字位</li>
-<li>192.168开头，局域网的专用IP地址</li>
-<li>127.0.0.1 本机回环地址，也可以写作单词 localhost</li>
-</ul>
-</li>
-<li><p>IPV6：</p>
-<ul>
-<li>采用8个数字段表示IP地址，每个数字段的值0-F</li>
-<li>2001:0DB8:0000:0023:0008:0800:200C:417A</li>
-<li>WindowsXP 不支持V6</li>
-</ul>
-</li>
-</ul>
-<h3 id="3-3-2-端口号port"><a href="#3-3-2-端口号port" class="headerlink" title="3.3.2 端口号port"></a>3.3.2 端口号port</h3><p>物理端口：电源，USB，Type-C</p>
-<p>逻辑端口：网络应用程序在操作系统中的逻辑数字标识（只能被占用一次），操作系统中的端口号是1-65535个</p>
-<ul>
-<li>常用的端口号<ul>
-<li>80  浏览器HTTP协议访问服务器的端口  <a href="http://www.baidu.com/">http://www.baidu.com:80</a></li>
-<li>443 浏览器HTTPS协议访问服务器的端口  <a href="https://www.baidu.com/">https://www.baidu.com:443</a></li>
-<li>1521 Oracle数据库端口号</li>
-<li>3306 MySQL数据库端口号</li>
-<li>8080 Tomcat 服务器端口号</li>
-<li>6379 Redis数据库端口号</li>
-<li>5672 RabbitMQ端口号</li>
-</ul>
-</li>
-</ul>
-<h3 id="3-3-3-通信协议"><a href="#3-3-3-通信协议" class="headerlink" title="3.3.3 通信协议"></a>3.3.3 通信协议</h3><p>计算机接入到互联网，对数据传递进行了规则。比喻为现在的交通法</p>
-<ul>
-<li><p>UDP协议</p>
-<ul>
-<li>用户数据报协议</li>
-<li>面向无连接协议，通信双方数据传递之前，不需要建立网络连接</li>
-<li>不安全的协议，丢失数据（丢包）</li>
-<li>每次发送的数据限制在64KB之内</li>
-</ul>
-</li>
-<li><p>TCP协议</p>
-<ul>
-<li>传输控制协议</li>
-<li>面向连接的协议，通信双方必须建立好网络连接</li>
-<li>安全的可靠协议，适合于大数据传输</li>
-<li>面向连接协议，网络连接的速度慢</li>
-<li>通信双方要三次握手确认连接</li>
-</ul>
-<p><img src="/images/4_tcp.jpg"></p>
-</li>
-</ul>
-<h1 id="第四章-TCP协议网络通信"><a href="#第四章-TCP协议网络通信" class="headerlink" title="第四章 TCP协议网络通信"></a>第四章 TCP协议网络通信</h1><h2 id="4-1-客户端和服务器"><a href="#4-1-客户端和服务器" class="headerlink" title="4.1 客户端和服务器"></a>4.1 客户端和服务器</h2><ul>
-<li>客户端Client：从其他的机器上获取数据</li>
-<li>服务端Server：可以为其他的机器提供共享数据</li>
-</ul>
-<p><img src="/images/6.jpg"></p>
-<ul>
-<li><code>java.net.Socket</code> 客户端的程序</li>
-<li><code>java.net.ServerSocket</code> 服务器端的程序</li>
-</ul>
-<h2 id="4-2-网络通信中的IO流对象"><a href="#4-2-网络通信中的IO流对象" class="headerlink" title="4.2 网络通信中的IO流对象"></a>4.2 网络通信中的IO流对象</h2><blockquote>
-<p>客户端程序和服务器程序通过网络连接成功。数据传输依靠IO流对象实现</p>
-</blockquote>
-<p><img src="/images/5_%E7%AE%80%E5%8D%95%E9%80%9A%E4%BF%A1.jpg"></p>
-<p><img src="/images/7.jpg" alt="7"></p>
-<h2 id="4-3-TCP协议客户端程序"><a href="#4-3-TCP协议客户端程序" class="headerlink" title="4.3 TCP协议客户端程序"></a>4.3 TCP协议客户端程序</h2><ul>
-<li><p><code>java.net.Socket</code></p>
-<ul>
-<li><p>客户端连接对象</p>
-</li>
-<li><p>构造方法：Socket(String 服务器端的IP,int 端口号)</p>
-</li>
-<li><blockquote>
-<p>只要new了，对象就会通过IP地址连接服务器，如果没有服务器程序，报错了</p>
-</blockquote>
-</li>
-<li><p>OutputStream getOutputStream() 获取字节输出流，将数据写向服务器</p>
-</li>
-<li><p>InputStream getInputStream() 获取字节输入流，读取服务器回来的数据</p>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 实现TCP协议的客户端</span></span><br><span class="line"><span class="comment"> * 实现步骤：</span></span><br><span class="line"><span class="comment"> *  1：new Socket() 连接服务器</span></span><br><span class="line"><span class="comment"> *  2：Socket对象获取字节输出流，写向服务器</span></span><br><span class="line"><span class="comment"> *  3: Socket对象获取字节输入流，读取服务器回来的数据</span></span><br><span class="line"><span class="comment"> *  4: 资源释放</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TCPClient</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="comment">//1：new Socket() 连接服务器</span></span><br><span class="line">        <span class="comment">//构造方法传递服务器的IP，端口号</span></span><br><span class="line">        <span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Socket</span>(<span class="string">&quot;127.0.0.1&quot;</span>,<span class="number">8888</span>);</span><br><span class="line">        <span class="comment">//2：Socket对象获取字节输出流，写向服务器</span></span><br><span class="line">        <span class="type">OutputStream</span> <span class="variable">out</span> <span class="operator">=</span>  socket.getOutputStream();</span><br><span class="line">        <span class="comment">//out流写数据  String类的方法getBytes() 字符串转成字节数组</span></span><br><span class="line">        out.write(<span class="string">&quot;你好服务器!&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3: Socket对象获取字节输入流，读取服务器回来的数据</span></span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> socket.getInputStream();</span><br><span class="line">        <span class="comment">//定义字节数组</span></span><br><span class="line">        <span class="type">byte</span>[] bytes = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">15</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> in.read(bytes);</span><br><span class="line">        System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(bytes,<span class="number">0</span>,len));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4释放资源</span></span><br><span class="line">        socket.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="4-4-TCP协议服务器程序"><a href="#4-4-TCP协议服务器程序" class="headerlink" title="4.4 TCP协议服务器程序"></a>4.4 TCP协议服务器程序</h2><ul>
-<li><code>java.net.ServerSocket</code><ul>
-<li>服务器连接对象</li>
-<li>构造方法：ServerSocket(int 端口号)</li>
-<li>accept() 获取客户端的连接对象Socket（客户端的信息，IP，机器名。。。）</li>
-<li>客户端的Socket对象获取IO流</li>
-</ul>
-</li>
-</ul>
-<p><img src="/images/8.jpg"></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 实现TCP服务器端</span></span><br><span class="line"><span class="comment"> * 实现步骤：</span></span><br><span class="line"><span class="comment"> *  1：创建服务器连接对象ServerSocket ，开的端口</span></span><br><span class="line"><span class="comment"> *  2：调用服务器连接对象的方法 accept() 等待客户端连接</span></span><br><span class="line"><span class="comment"> *      并获取客户端的连接对象Socket</span></span><br><span class="line"><span class="comment"> *  3：Socket对象获取IO流</span></span><br><span class="line"><span class="comment"> *     字节输入流：读取客户端的数据</span></span><br><span class="line"><span class="comment"> *     字节输出流：向客户端写入数据</span></span><br><span class="line"><span class="comment"> *  4：资源释放</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  192.168.19.39</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TCPServer</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="comment">//1：创建服务器连接对象ServerSocket ，开的端口</span></span><br><span class="line">        <span class="type">ServerSocket</span> <span class="variable">server</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ServerSocket</span>(<span class="number">8888</span>);</span><br><span class="line">        <span class="comment">// 2：调用服务器连接对象的方法 accept() 等待客户端连接</span></span><br><span class="line">        <span class="comment">//accept()方法返回Socket对象</span></span><br><span class="line">        <span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> server.accept();</span><br><span class="line">        <span class="comment">//获取客户端IP地址的方法</span></span><br><span class="line">        System.out.println(socket.getLocalAddress().getHostAddress());</span><br><span class="line">        <span class="comment">//3：Socket对象获取IO流</span></span><br><span class="line">        <span class="comment">//获取字节输入流，读取客户端的数据</span></span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> socket.getInputStream();</span><br><span class="line">        <span class="comment">//定义字节数组</span></span><br><span class="line">        <span class="type">byte</span>[] bytes = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">16</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> in.read(bytes);</span><br><span class="line">        <span class="comment">//数组转成字符串输出</span></span><br><span class="line">        System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(bytes,<span class="number">0</span>,len));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取字节输出流，数据写向客户端</span></span><br><span class="line">        <span class="type">OutputStream</span> <span class="variable">out</span> <span class="operator">=</span> socket.getOutputStream();</span><br><span class="line">        out.write(<span class="string">&quot;收到,谢谢!!&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4：资源释放</span></span><br><span class="line">        socket.close();</span><br><span class="line">        server.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-5-文件上传"><a href="#4-5-文件上传" class="headerlink" title="4.5 文件上传"></a>4.5 文件上传</h2><p><img src="/images/9.jpg"></p>
-<blockquote>
-<p>程序运行之后不停止的问题：造成原因是字节输入流的方法read()导致</p>
-<p>客户端read()方法读取图片，遇到文件结束符，循环结束不再读取</p>
-<p>服务器read()读取的不是文件，而是客户端发来的数组，永远不会读取-1，循环不结束</p>
-</blockquote>
-<ul>
-<li><p>Sun公司处理：</p>
-<ul>
-<li>Socket对象定义方法：void shutdownOutput()，向服务器发送终止符号</li>
-</ul>
-</li>
-<li><p>客户端程序</p>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * TCP协议，图片上传的客户端</span></span><br><span class="line"><span class="comment"> * 实现步骤：</span></span><br><span class="line"><span class="comment"> *  1：创建Socket对象，连接服务器</span></span><br><span class="line"><span class="comment"> *  2：创建FileInputStream流，读取数据源图片 ly.jpg</span></span><br><span class="line"><span class="comment"> *  3: Socket对象获取字节输出流 OutputStream 读取到的图片，写到服务器</span></span><br><span class="line"><span class="comment"> *  4：字节流读取图片，存储字节数组，字节输出流，字节数组写服务器</span></span><br><span class="line"><span class="comment"> *  5：Socket对象获取字节输入流 InputStream</span></span><br><span class="line"><span class="comment"> *  6: 读取服务器回来的上传成功</span></span><br><span class="line"><span class="comment"> *  7：释放资源</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TCPClient</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="comment">//1：创建Socket对象，连接服务器</span></span><br><span class="line">        <span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Socket</span>(<span class="string">&quot;127.0.0.1&quot;</span>,<span class="number">8888</span>);</span><br><span class="line">        <span class="comment">//2：创建FileInputStream流，读取数据源图片 ly.jpg</span></span><br><span class="line">        <span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;d:/ly.jpg&quot;</span>);</span><br><span class="line">        <span class="comment">//3: Socket对象获取字节输出流 OutputStream 读取到的图片，写到服务器</span></span><br><span class="line">        <span class="type">OutputStream</span> <span class="variable">out</span> <span class="operator">=</span> socket.getOutputStream();</span><br><span class="line">        <span class="comment">//4：字节流读取图片，存储字节数组，字节输出流，字节数组写服务器</span></span><br><span class="line">        <span class="type">byte</span>[] bytes = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> <span class="number">0</span> ;</span><br><span class="line">        <span class="keyword">while</span> ( (len = fis.read(bytes)) != -<span class="number">1</span>)&#123;</span><br><span class="line">            out.write(bytes,<span class="number">0</span>,len);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//socket对象方法，写终止序列</span></span><br><span class="line">        socket.shutdownOutput();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 5：Socket对象获取字节输入流 InputStream</span></span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> socket.getInputStream();</span><br><span class="line">        <span class="comment">//6: 读取服务器回来的上传成功</span></span><br><span class="line">        len = in.read(bytes);</span><br><span class="line">        System.out.println(<span class="string">&quot;服务器说：：&quot;</span>+<span class="keyword">new</span> <span class="title class_">String</span>(bytes,<span class="number">0</span>,len));</span><br><span class="line">        <span class="comment">//7：释放资源</span></span><br><span class="line">        fis.close();</span><br><span class="line">        socket.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>服务器程序</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 实现文件上传服务器端</span></span><br><span class="line"><span class="comment"> * 实现步骤：</span></span><br><span class="line"><span class="comment"> * 1： 创建ServerSocket对象，打开端口</span></span><br><span class="line"><span class="comment"> * 2： 调用方法accept() 等待客户端连接，获取客户端连接对象</span></span><br><span class="line"><span class="comment"> * 3： 客户端对象Socket获取字节输入流，读取客户端发送来的字节数组</span></span><br><span class="line"><span class="comment"> * 4： 服务器端创建文件夹 e:/myPicture</span></span><br><span class="line"><span class="comment"> * 5:  创建字节输出流 FileOutputStream</span></span><br><span class="line"><span class="comment"> * 6:  读取字节输出，FileOutputStream流数组保存在文件夹中</span></span><br><span class="line"><span class="comment"> * 7:  客户端对象获取字节输出流</span></span><br><span class="line"><span class="comment"> * 8： 上传成功写回客户端</span></span><br><span class="line"><span class="comment"> * 9： 释放资源</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TCPServer</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="comment">//1： 创建ServerSocket对象，打开端口</span></span><br><span class="line">        <span class="type">ServerSocket</span> <span class="variable">server</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ServerSocket</span>(<span class="number">8888</span>);</span><br><span class="line">        <span class="comment">//2： 调用方法accept() 等待客户端连接，获取客户端连接对象</span></span><br><span class="line">        <span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> server.accept();</span><br><span class="line">        <span class="comment">//3： 客户端对象Socket获取字节输入流，读取客户端发送来的字节数组</span></span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> socket.getInputStream();</span><br><span class="line">        <span class="comment">//4： 服务器端创建文件夹 e:/myPicture</span></span><br><span class="line">        <span class="type">File</span> <span class="variable">uploadDir</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;e:/myPicture&quot;</span>);</span><br><span class="line">        <span class="comment">//判断目录是否存在，不存在创建</span></span><br><span class="line">        <span class="keyword">if</span> (!uploadDir.exists())</span><br><span class="line">            uploadDir.mkdirs();</span><br><span class="line">        <span class="comment">//5:  创建字节输出流 FileOutputStream</span></span><br><span class="line">        <span class="comment">//写入图片（字节数组）数据，完整的路径和文件名</span></span><br><span class="line">        <span class="comment">//上传的目录e:/myPicture，文件名组成一个File对象</span></span><br><span class="line">        <span class="comment">//上传文件重命名+atguigu+随机数+毫秒值+随机数转十六进制</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">fileName</span> <span class="operator">=</span> <span class="string">&quot;atguigu&quot;</span>+<span class="keyword">new</span> <span class="title class_">Random</span>().nextInt(<span class="number">10000000</span>)</span><br><span class="line">                +System.currentTimeMillis()+Integer.toHexString(<span class="keyword">new</span> <span class="title class_">Random</span>().nextInt(<span class="number">10000000</span>))+<span class="string">&quot;.jpg&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="type">File</span> <span class="variable">uploadFile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(uploadDir,fileName);</span><br><span class="line">        <span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(uploadFile);</span><br><span class="line">        <span class="comment">//6:  读取字节输出，FileOutputStream流数组保存在文件夹中</span></span><br><span class="line">        <span class="type">byte</span>[] bytes = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> <span class="number">0</span> ;</span><br><span class="line">        <span class="keyword">while</span> ( (len = in.read(bytes)) != -<span class="number">1</span>)&#123;</span><br><span class="line">            fos.write(bytes,<span class="number">0</span>,len);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;!!!!!!!!!!!!!!!!!&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//7:  客户端对象获取字节输出流</span></span><br><span class="line">        <span class="type">OutputStream</span> <span class="variable">out</span> <span class="operator">=</span> socket.getOutputStream();</span><br><span class="line">        <span class="comment">// 8： 上传成功写回客户端</span></span><br><span class="line">        out.write(<span class="string">&quot;上传成功&quot;</span>.getBytes());</span><br><span class="line">        <span class="comment">//9： 释放资源</span></span><br><span class="line">        fos.close();</span><br><span class="line">        socket.close();</span><br><span class="line">        server.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/10.jpg"></p>
-<h2 id="4-6-文件上传多线程"><a href="#4-6-文件上传多线程" class="headerlink" title="4.6 文件上传多线程"></a>4.6 文件上传多线程</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public class TCPServer &#123;</span><br><span class="line">    public static void main(String[] args) throws IOException &#123;</span><br><span class="line">        //1： 创建ServerSocket对象，打开端口</span><br><span class="line">        ServerSocket server = new ServerSocket(8888);</span><br><span class="line">        while (true) &#123;</span><br><span class="line">            //2： 调用方法accept() 等待客户端连接，获取客户端连接对象</span><br><span class="line">            Socket socket = server.accept();</span><br><span class="line">            //accept()获取到客户端连接对象，启动线程</span><br><span class="line">            //一个用户，一个线程</span><br><span class="line">            MyRunnable my = new MyRunnable(socket);</span><br><span class="line">            new Thread(my).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line"> * TCP协议，图片上传的客户端</span><br><span class="line"> * 实现步骤：</span><br><span class="line"> *  1：创建Socket对象，连接服务器</span><br><span class="line"> *  2：创建FileInputStream流，读取数据源图片 ly.jpg</span><br><span class="line"> *  3: Socket对象获取字节输出流 OutputStream 读取到的图片，写到服务器</span><br><span class="line"> *  4：字节流读取图片，存储字节数组，字节输出流，字节数组写服务器</span><br><span class="line"> *  5：Socket对象获取字节输入流 InputStream</span><br><span class="line"> *  6: 读取服务器回来的上传成功</span><br><span class="line"> *  7：释放资源</span><br><span class="line"> */</span><br><span class="line">public class TCPClient &#123;</span><br><span class="line">    public static void main(String[] args) throws IOException &#123;</span><br><span class="line">        //1：创建Socket对象，连接服务器</span><br><span class="line">        Socket socket = new Socket(&quot;127.0.0.1&quot;,8888);</span><br><span class="line">        //2：创建FileInputStream流，读取数据源图片 ly.jpg</span><br><span class="line">        FileInputStream fis = new FileInputStream(&quot;d:/ly.jpg&quot;);</span><br><span class="line">        //3: Socket对象获取字节输出流 OutputStream 读取到的图片，写到服务器</span><br><span class="line">        OutputStream out = socket.getOutputStream();</span><br><span class="line">        //4：字节流读取图片，存储字节数组，字节输出流，字节数组写服务器</span><br><span class="line">        byte[] bytes = new byte[1024];</span><br><span class="line">        int len = 0 ;</span><br><span class="line">        while ( (len = fis.read(bytes)) != -1)&#123;</span><br><span class="line">            out.write(bytes,0,len);</span><br><span class="line">        &#125;</span><br><span class="line">        //socket对象方法，写终止序列</span><br><span class="line">        socket.shutdownOutput();</span><br><span class="line"></span><br><span class="line">        // 5：Socket对象获取字节输入流 InputStream</span><br><span class="line">        InputStream in = socket.getInputStream();</span><br><span class="line">        //6: 读取服务器回来的上传成功</span><br><span class="line">        len = in.read(bytes);</span><br><span class="line">        System.out.println(&quot;服务器说：：&quot;+new String(bytes,0,len));</span><br><span class="line">        //7：释放资源</span><br><span class="line">        fis.close();</span><br><span class="line">        socket.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-]]></content>
-      <categories>
-        <category>Atguigu</category>
-      </categories>
-      <tags>
-        <tag>网络编程</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>day22 反射</title>
     <url>/2022/06/14/atguigu/day22_reflect/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="day22-反射注解"><a href="#day22-反射注解" class="headerlink" title="day22 反射注解"></a>day22 反射注解</h1><ul>
@@ -1769,6 +1769,20 @@
       </categories>
   </entry>
   <entry>
+    <title>Git失败</title>
+    <url>/2022/06/15/2022/06/git_problem/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="Hexo-deploy-fail"><a href="#Hexo-deploy-fail" class="headerlink" title="Hexo deploy fail"></a>Hexo deploy fail</h1><ol>
+<li><p>进入姘居管理器，选择Windows凭据，讲里面的git删掉。</p>
+</li>
+<li><p>若1之后还不行，试一下下面命令后重新部署。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global http.sslVerify &quot;false&quot;</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>String的一些比较问题</title>
     <url>/2022/06/14/2022/06/String_intern_final/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="String与intern方法"><a href="#String与intern方法" class="headerlink" title="String与intern方法"></a>String与intern方法</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str1</span> <span class="operator">=</span> <span class="string">&quot;a&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="string">&quot;b&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str3</span> <span class="operator">=</span> <span class="string">&quot;ab&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str4</span> <span class="operator">=</span> str1 + str2;</span><br><span class="line"><span class="type">String</span> <span class="variable">str5</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;ab&quot;</span>);</span><br><span class="line"> </span><br><span class="line">System.out.println(str5.equals(str3));</span><br><span class="line">System.out.println(str5 == str3);</span><br><span class="line">System.out.println(str5.intern() == str3);</span><br><span class="line">System.out.println(str5.intern() == str4);</span><br></pre></td></tr></table></figure>
@@ -1854,20 +1868,6 @@
 </li>
 <li><p>若站内跳转页面会中断音乐，打开pjax即可。在主题_config.xml中将pjax设为true</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Easily enable fast Ajax navigation on your website.</span><br><span class="line"># For more information: https://github.com/next-theme/pjax</span><br><span class="line">pjax: true</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git失败</title>
-    <url>/2022/06/15/2022/06/git_problem/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="Hexo-deploy-fail"><a href="#Hexo-deploy-fail" class="headerlink" title="Hexo deploy fail"></a>Hexo deploy fail</h1><ol>
-<li><p>进入姘居管理器，选择Windows凭据，讲里面的git删掉。</p>
-</li>
-<li><p>若1之后还不行，试一下下面命令后重新部署。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global http.sslVerify &quot;false&quot;</span><br></pre></td></tr></table></figure></li>
 </ol>
 ]]></content>
       <tags>
