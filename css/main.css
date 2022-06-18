@@ -2821,22 +2821,22 @@ mark.search-keyword {
   top: 0;
 }
 .post-block {
-  background: rgba(255,255,255,0.9) none repeat scroll !important;
+  background: rgba(255,255,255,0.865) none repeat scroll !important;
 }
 .pagination {
-  background: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.865);
 }
 .header-inner {
-  background: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.865);
 }
 .sidebar-inner {
-  background: rgba(255,255,255,0.9) none repeat scroll !important;
+  background: rgba(255,255,255,0.865) none repeat scroll !important;
 }
 .popup {
   opacity: 0.9;
 }
 .comments {
-  background: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.865);
 }
 body {
   background: url("/images/bg.jpg");
