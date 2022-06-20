@@ -29,18 +29,18 @@
 <meta property="og:site_name" content="Alcander&#39;s Blog">
 <meta property="og:description" content="JavaScript 学习目标 了解JavaScript脚本语言的特性 掌握JavaScript语言的基本语法 能够定义各种数据类型的变量 能够使用JavaScript中的运算符 可以自定义函数 能够创建对象 能够理解JavaScript中的数组使用 了解DOM对象的概念 能够熟练使用DOM对象的方法 掌握JavaScript中的事件驱动    第一章 JavaScript介绍1.1 JavaSc">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/06/20/atguigu/day29_JavaScript/images/day29_JavaScript/img008.png">
+<meta property="og:image" content="http://example.com/images/day29_JavaScript/img008.png">
 <meta property="og:image" content="http://example.com/images/day29_JavaScript/img009.png">
 <meta property="og:image" content="http://example.com/images/day29_JavaScript/img003.png">
 <meta property="og:image" content="http://example.com/images/day29_JavaScript/img004.png">
 <meta property="og:image" content="http://example.com/images/day29_JavaScript/img005.png">
-<meta property="og:image" content="http://example.com/2022/06/20/atguigu/day29_JavaScript/images/day29_JavaScript/img006.png">
-<meta property="og:image" content="http://example.com/2022/06/20/atguigu/day29_JavaScript/images/day29_JavaScript/img007.png">
+<meta property="og:image" content="http://example.com/images/day29_JavaScript/img006.png">
+<meta property="og:image" content="http://example.com/images/day29_JavaScript/img007.png">
 <meta property="article:published_time" content="2022-06-20T10:06:11.105Z">
-<meta property="article:modified_time" content="2022-06-20T10:10:12.249Z">
+<meta property="article:modified_time" content="2022-06-20T11:07:52.548Z">
 <meta property="article:author" content="wfxt">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/06/20/atguigu/day29_JavaScript/images/day29_JavaScript/img008.png">
+<meta name="twitter:image" content="http://example.com/images/day29_JavaScript/img008.png">
 
 
 <link rel="canonical" href="http://example.com/2022/06/20/atguigu/day29_JavaScript/">
@@ -264,7 +264,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-06-20 18:06:11 / Modified: 18:10:12" itemprop="dateCreated datePublished" datetime="2022-06-20T18:06:11+08:00">2022-06-20</time>
+      <time title="Created: 2022-06-20 18:06:11 / Modified: 19:07:52" itemprop="dateCreated datePublished" datetime="2022-06-20T18:06:11+08:00">2022-06-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -336,7 +336,7 @@
 <ul>
 <li>引用外部JavaScript文件的script标签里面的js代码将失效</li>
 <li>先引入，再使用</li>
-<li>script标签不能写成单标签<img src="images/day29_JavaScript/img008.png" style="zoom:50%;"></li>
+<li>script标签不能写成单标签<img src="/images/day29_JavaScript/img008.png" style="zoom:50%;"></li>
 </ul>
 <p>引入方式如下：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>JS的引入方式<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">        建议在head中引入外部的js文件</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;../js/outer.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">        第一种引入方式: 内部引入方式，在HTML文档内部，通过script标签去编写js代码</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">        第二种引入方式: 外部引入方式，在当前项目中创建一个js文件，然后在需要引入的HTML里面使用script标签引入</span></span><br><span class="line"><span class="comment">        一个script标签要么负责编写内部的js代码，要么负责引入外部的js文件</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">alert</span>(<span class="string">&quot;hello world&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -515,9 +515,9 @@
 <td>Comment</td>
 </tr>
 </tbody></table>
-<h3 id="3-1-4-父子关系"><a href="#3-1-4-父子关系" class="headerlink" title="3.1.4 父子关系"></a>3.1.4 父子关系</h3><img src="images/day29_JavaScript/img006.png" alt="images" style="zoom:50%;">
+<h3 id="3-1-4-父子关系"><a href="#3-1-4-父子关系" class="headerlink" title="3.1.4 父子关系"></a>3.1.4 父子关系</h3><img src="/images/day29_JavaScript/img006.png" alt="images" style="zoom:50%;">
 
-<h3 id="3-1-5-先辈后代关系"><a href="#3-1-5-先辈后代关系" class="headerlink" title="3.1.5 先辈后代关系"></a>3.1.5 先辈后代关系</h3><img src="images/day29_JavaScript/img007.png" alt="images" style="zoom:50%;">
+<h3 id="3-1-5-先辈后代关系"><a href="#3-1-5-先辈后代关系" class="headerlink" title="3.1.5 先辈后代关系"></a>3.1.5 先辈后代关系</h3><img src="/images/day29_JavaScript/img007.png" alt="images" style="zoom:50%;">
 
 <h2 id="3-2-DOM操作"><a href="#3-2-DOM操作" class="headerlink" title="3.2  DOM操作"></a>3.2  DOM操作</h2><p>由于实际开发时基本上都是使用JavaScript的各种框架来操作，而框架中的操作方式和我们现在看到的原生操作完全不同，所以下面罗列的API仅供参考，不做要求。</p>
 <h3 id="3-2-1-在整个文档范围内查询元素节点"><a href="#3-2-1-在整个文档范围内查询元素节点" class="headerlink" title="3.2.1 在整个文档范围内查询元素节点"></a>3.2.1 在整个文档范围内查询元素节点</h3><table>
