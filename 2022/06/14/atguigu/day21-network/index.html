@@ -22,29 +22,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"bounceIn","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="day21 网络编程  教学目标  [ ] 软件架构CS／BS [ ] 了解网络通信协议参考模型 [ ] 能够理解IP地址和端口号的作用 [ ] 能够在程序中表示IP地址和端口号 [ ] 能够说出TCP协议的特点 [ ] 了解基于Socket的TCP网络编程    第一章 Properties集合 1.1 Properties类的回顾 是集合，存储键值对的集合，继承父类Hashtable，是线程安">
+    <meta name="description" content="day21 网络编程 教学目标   软件架构CS／BS  了解网络通信协议参考模型  能够理解IP地址和端口号的作用  能够在程序中表示IP地址和端口号  能够说出TCP协议的特点  了解基于Socket的TCP网络编程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="day21 网络编程">
 <meta property="og:url" content="http://example.com/2022/06/14/atguigu/day21-network/index.html">
 <meta property="og:site_name" content="Alcander&#39;s Blog">
-<meta property="og:description" content="day21 网络编程  教学目标  [ ] 软件架构CS／BS [ ] 了解网络通信协议参考模型 [ ] 能够理解IP地址和端口号的作用 [ ] 能够在程序中表示IP地址和端口号 [ ] 能够说出TCP协议的特点 [ ] 了解基于Socket的TCP网络编程    第一章 Properties集合 1.1 Properties类的回顾 是集合，存储键值对的集合，继承父类Hashtable，是线程安">
+<meta property="og:description" content="day21 网络编程 教学目标   软件架构CS／BS  了解网络通信协议参考模型  能够理解IP地址和端口号的作用  能够在程序中表示IP地址和端口号  能够说出TCP协议的特点  了解基于Socket的TCP网络编程">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/06/14/atguigu/day21-network/images/1_cs.jpg">
-<meta property="og:image" content="http://example.com/2022/06/14/atguigu/day21-network/images/2_bs.jpg">
-<meta property="og:image" content="http://example.com/2022/06/14/atguigu/day21-network/images/3_tcp_ip.jpg">
-<meta property="og:image" content="http://example.com/2022/06/14/atguigu/day21-network/images/4_tcp.jpg">
-<meta property="og:image" content="http://example.com/2022/06/14/atguigu/day21-network/images/6.jpg">
-<meta property="og:image" content="http://example.com/2022/06/14/atguigu/day21-network/images/5_%E7%AE%80%E5%8D%95%E9%80%9A%E4%BF%A1.jpg">
-<meta property="og:image" content="http://example.com/2022/06/14/atguigu/day21-network/images/7.jpg">
-<meta property="og:image" content="http://example.com/2022/06/14/atguigu/day21-network/images/8.jpg">
-<meta property="og:image" content="http://example.com/2022/06/14/atguigu/day21-network/images/9.jpg">
-<meta property="og:image" content="http://example.com/2022/06/14/atguigu/day21-network/images/10.jpg">
+<meta property="og:image" content="http://example.com/images/1_cs.jpg">
+<meta property="og:image" content="http://example.com/images/2_bs.jpg">
+<meta property="og:image" content="http://example.com/images/3_tcp_ip.jpg">
+<meta property="og:image" content="http://example.com/images/4_tcp.jpg">
+<meta property="og:image" content="http://example.com/images/6.jpg">
+<meta property="og:image" content="http://example.com/images/5_%E7%AE%80%E5%8D%95%E9%80%9A%E4%BF%A1.jpg">
+<meta property="og:image" content="http://example.com/images/7.jpg">
+<meta property="og:image" content="http://example.com/images/8.jpg">
+<meta property="og:image" content="http://example.com/images/9.jpg">
+<meta property="og:image" content="http://example.com/images/10.jpg">
 <meta property="article:published_time" content="2022-06-14T01:38:24.662Z">
-<meta property="article:modified_time" content="2022-06-14T12:42:36.080Z">
+<meta property="article:modified_time" content="2022-06-20T13:20:25.830Z">
 <meta property="article:author" content="wfxt">
 <meta property="article:tag" content="网络编程">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/06/14/atguigu/day21-network/images/1_cs.jpg">
+<meta name="twitter:image" content="http://example.com/images/1_cs.jpg">
 
 
 <link rel="canonical" href="http://example.com/2022/06/14/atguigu/day21-network/">
@@ -156,7 +156,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">day21 网络编程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">第一章 Properties集合</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Properties%E7%B1%BB%E7%9A%84%E5%9B%9E%E9%A1%BE"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 Properties类的回顾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E6%96%B9%E6%B3%95load"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 方法load</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">第二章 CommonsIO使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">第三章 计算机网络通信概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E8%BD%AF%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="nav-number">4.1.</span> <span class="nav-text">3.1 软件结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B"><span class="nav-number">4.2.</span> <span class="nav-text">3.2 网络通信模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E4%B8%89%E8%A6%81%E7%B4%A0"><span class="nav-number">4.3.</span> <span class="nav-text">3.3 网络通信三要素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-1-IP%E5%9C%B0%E5%9D%80"><span class="nav-number">4.3.1.</span> <span class="nav-text">3.3.1 IP地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-2-%E7%AB%AF%E5%8F%A3%E5%8F%B7port"><span class="nav-number">4.3.2.</span> <span class="nav-text">3.3.2 端口号port</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-3-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE"><span class="nav-number">4.3.3.</span> <span class="nav-text">3.3.3 通信协议</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">第四章 TCP协议网络通信</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">5.1.</span> <span class="nav-text">4.1 客户端和服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E4%B8%AD%E7%9A%84IO%E6%B5%81%E5%AF%B9%E8%B1%A1"><span class="nav-number">5.2.</span> <span class="nav-text">4.2 网络通信中的IO流对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-TCP%E5%8D%8F%E8%AE%AE%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%A8%8B%E5%BA%8F"><span class="nav-number">5.3.</span> <span class="nav-text">4.3 TCP协议客户端程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-TCP%E5%8D%8F%E8%AE%AE%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%A8%8B%E5%BA%8F"><span class="nav-number">5.4.</span> <span class="nav-text">4.4 TCP协议服务器程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="nav-number">5.5.</span> <span class="nav-text">4.5 文件上传</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="nav-number">5.6.</span> <span class="nav-text">4.6 文件上传多线程</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#day21-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">day21 网络编程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-Properties%E9%9B%86%E5%90%88"><span class="nav-number">2.</span> <span class="nav-text">第一章 Properties集合</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Properties%E7%B1%BB%E7%9A%84%E5%9B%9E%E9%A1%BE"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 Properties类的回顾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E6%96%B9%E6%B3%95load"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 方法load</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-CommonsIO%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">第二章 CommonsIO使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%A6%82%E8%BF%B0"><span class="nav-number">4.</span> <span class="nav-text">第三章 计算机网络通信概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E8%BD%AF%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="nav-number">4.1.</span> <span class="nav-text">3.1 软件结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B"><span class="nav-number">4.2.</span> <span class="nav-text">3.2 网络通信模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E4%B8%89%E8%A6%81%E7%B4%A0"><span class="nav-number">4.3.</span> <span class="nav-text">3.3 网络通信三要素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-1-IP%E5%9C%B0%E5%9D%80"><span class="nav-number">4.3.1.</span> <span class="nav-text">3.3.1 IP地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-2-%E7%AB%AF%E5%8F%A3%E5%8F%B7port"><span class="nav-number">4.3.2.</span> <span class="nav-text">3.3.2 端口号port</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-3-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE"><span class="nav-number">4.3.3.</span> <span class="nav-text">3.3.3 通信协议</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-TCP%E5%8D%8F%E8%AE%AE%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1"><span class="nav-number">5.</span> <span class="nav-text">第四章 TCP协议网络通信</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">5.1.</span> <span class="nav-text">4.1 客户端和服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E4%B8%AD%E7%9A%84IO%E6%B5%81%E5%AF%B9%E8%B1%A1"><span class="nav-number">5.2.</span> <span class="nav-text">4.2 网络通信中的IO流对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-TCP%E5%8D%8F%E8%AE%AE%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%A8%8B%E5%BA%8F"><span class="nav-number">5.3.</span> <span class="nav-text">4.3 TCP协议客户端程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-TCP%E5%8D%8F%E8%AE%AE%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%A8%8B%E5%BA%8F"><span class="nav-number">5.4.</span> <span class="nav-text">4.4 TCP协议服务器程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="nav-number">5.5.</span> <span class="nav-text">4.5 文件上传</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="nav-number">5.6.</span> <span class="nav-text">4.6 文件上传多线程</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -266,9 +266,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-06-14 09:38:24 / Modified: 20:42:36" itemprop="dateCreated datePublished" datetime="2022-06-14T09:38:24+08:00">2022-06-14</time>
+      <time title="Created: 2022-06-14 09:38:24" itemprop="dateCreated datePublished" datetime="2022-06-14T09:38:24+08:00">2022-06-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-06-20 21:20:25" itemprop="dateModified" datetime="2022-06-20T21:20:25+08:00">2022-06-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -297,104 +303,90 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1>day21 网络编程</h1>
+        <h1 id="day21-网络编程"><a href="#day21-网络编程" class="headerlink" title="day21 网络编程"></a>day21 网络编程</h1><ul>
+<li><p>教学目标</p>
 <ul>
-<li>教学目标
-<ul>
-<li>[ ] 软件架构CS／BS</li>
-<li>[ ] 了解网络通信协议参考模型</li>
-<li>[ ] 能够理解IP地址和端口号的作用</li>
-<li>[ ] 能够在程序中表示IP地址和端口号</li>
-<li>[ ] 能够说出TCP协议的特点</li>
-<li>[ ] 了解基于Socket的TCP网络编程</li>
+<li><input disabled type="checkbox"> 软件架构CS／BS</li>
+<li><input disabled type="checkbox"> 了解网络通信协议参考模型</li>
+<li><input disabled type="checkbox"> 能够理解IP地址和端口号的作用</li>
+<li><input disabled type="checkbox"> 能够在程序中表示IP地址和端口号</li>
+<li><input disabled type="checkbox"> 能够说出TCP协议的特点</li>
+<li><input disabled type="checkbox"> 了解基于Socket的TCP网络编程</li>
 </ul>
-</li>
+<span id="more"></span></li>
 </ul>
-<h1>第一章 Properties集合</h1>
-<h2 id="1-1-Properties类的回顾">1.1 Properties类的回顾</h2>
-<p>是集合，存储键值对的集合，继承父类Hashtable，是线程安全的集合。能够和IO流对象结合使用，实现数据的持久化。Properties设计失败的类：不能使用多态</p>
+<h1 id="第一章-Properties集合"><a href="#第一章-Properties集合" class="headerlink" title="第一章 Properties集合"></a>第一章 Properties集合</h1><h2 id="1-1-Properties类的回顾"><a href="#1-1-Properties类的回顾" class="headerlink" title="1.1 Properties类的回顾"></a>1.1 Properties类的回顾</h2><p>是集合，存储键值对的集合，继承父类Hashtable，是线程安全的集合。能够和IO流对象结合使用，实现数据的持久化。Properties设计失败的类：不能使用多态</p>
 <blockquote>
 <p>作用是配置文件(config)：本质上就是文本文件，保存数据，数据将会改变我们程序的执行结果！！</p>
 </blockquote>
-<h2 id="1-2-方法load">1.2 方法load</h2>
-<p>Properties类的方法load(输入流)，传递流对象必须是输入流，字节字符都可以。作用是从流中获取配置文件的数据，数据保存在集合中</p>
+<h2 id="1-2-方法load"><a href="#1-2-方法load" class="headerlink" title="1.2 方法load"></a>1.2 方法load</h2><p>Properties类的方法load(输入流)，传递流对象必须是输入流，字节字符都可以。作用是从流中获取配置文件的数据，数据保存在集合中</p>
 <p>配置文件必须是键值对：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">k=v  数据不能是中文</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="comment">//字节输入流，读取配置文件</span></span><br><span class="line">    <span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;day21/config.properties&quot;</span>);</span><br><span class="line">    <span class="comment">//创建集合对象</span></span><br><span class="line">    <span class="type">Properties</span> <span class="variable">prop</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">    <span class="comment">//集合对象的方法load，传递字节输入流</span></span><br><span class="line">    prop.load(fis);</span><br><span class="line">    <span class="comment">//load方法执行后，文件中的键值对，达到集合！！</span></span><br><span class="line">    System.out.println(<span class="string">&quot;prop = &quot;</span> + prop);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name</span>=<span class="string">zhangsan</span></span><br><span class="line"><span class="attr">age</span>=<span class="string">25</span></span><br><span class="line"><span class="attr">address</span>=<span class="string">shenzhenshi</span></span><br><span class="line"><span class="attr">email</span>=<span class="string">1234567@qq.com</span></span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>后面的课程：数据库，JavaWeb 都使用配置文件</p>
 </blockquote>
-<h1>第二章 CommonsIO使用</h1>
-<ul>
-<li>
-<p>第三方软件公司</p>
+<h1 id="第二章-CommonsIO使用"><a href="#第二章-CommonsIO使用" class="headerlink" title="第二章 CommonsIO使用"></a>第二章 CommonsIO使用</h1><ul>
+<li><p>第三方软件公司</p>
 <ul>
 <li>第一方是Java技术的版权方法，Oracle</li>
 <li>第二方是我们开发人员自己</li>
 <li>除了第一和第二之外的都是第三方</li>
 </ul>
 </li>
-<li>
-<p>美国的软件基金会（阿帕奇 Apache）</p>
+<li><p>美国的软件基金会（阿帕奇 Apache）</p>
 <ul>
 <li>全球的技术的顶尖高手</li>
 <li>开发了很多的软件，都是免费，开源码</li>
 <li>微软，Orale，IBM 赞助</li>
-<li><a target="_blank" rel="noopener" href="http://www.apache.org">www.apache.org</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.apache.org/">www.apache.org</a></li>
 </ul>
 </li>
-<li>
-<p>jar包- java Archive(归档)</p>
+<li><p>jar包- java Archive(归档)</p>
 <ul>
 <li>就是一种压缩包</li>
 <li>压缩包里面都是class文件</li>
 <li>commons-io-2.11.0.jar 应用文件</li>
 </ul>
 </li>
-<li>
-<p>使用jar包三步</p>
+<li><p>使用jar包三步</p>
 <ul>
 <li>模块中创建文件夹，名字必须是 lib</li>
 <li>jar文件复制到lib下</li>
-<li>lib目录上鼠标右键 – add as Lib  --&gt; OK</li>
+<li>lib目录上鼠标右键 – add as Lib  –&gt; OK</li>
 </ul>
 </li>
-<li>
-<p>IOUtils类方法全静态</p>
+<li><p>IOUtils类方法全静态</p>
 <ul>
 <li>closeQuietly(任意的流对象) 释放资源的方法，悄悄的释放，处理异常</li>
 <li>copy(字节输入流，字节输出流)</li>
 </ul>
 </li>
-<li>
-<p>FileUtils类静态方法</p>
+<li><p>FileUtils类静态方法</p>
 <ul>
 <li>copyDirectoryToDirectory</li>
 </ul>
 </li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * FileUtils类，文件夹复制</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">testCopyDir</span><span class="params">()</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="type">File</span> <span class="variable">src</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;d:/a&quot;</span>);</span><br><span class="line">        <span class="type">File</span> <span class="variable">dest</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;e:/&quot;</span>);</span><br><span class="line">        FileUtils.copyDirectoryToDirectory(src,dest);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * IOUtils文件的复制</span></span><br><span class="line"><span class="comment">     * 处理异常</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">testCopy</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            fis = <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;d:/1.avi&quot;</span>);</span><br><span class="line">            fos = <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;e:/1.avi&quot;</span>);</span><br><span class="line">            <span class="comment">//调用IOUtils静态方法copyt</span></span><br><span class="line">            IOUtils.copy(fis,fos);</span><br><span class="line">        &#125;<span class="keyword">catch</span> (IOException ex)&#123;</span><br><span class="line">            ex.printStackTrace();</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="comment">//释放在资源悄悄的关闭</span></span><br><span class="line">            IOUtils.closeQuietly(fis);</span><br><span class="line">            IOUtils.closeQuietly(fos);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h1>第三章 计算机网络通信概述</h1>
-<h2 id="3-1-软件结构">3.1 软件结构</h2>
-<p>使用Java语言做软件开发的，软件 = 数据 + 逻辑计算</p>
-<p><img src="images/1_cs.jpg" alt></p>
-<p><img src="images/2_bs.jpg" alt="2_bs"></p>
-<h2 id="3-2-网络通信模型">3.2 网络通信模型</h2>
-<p><img src="images/3_tcp_ip.jpg" alt></p>
+
+<h1 id="第三章-计算机网络通信概述"><a href="#第三章-计算机网络通信概述" class="headerlink" title="第三章 计算机网络通信概述"></a>第三章 计算机网络通信概述</h1><h2 id="3-1-软件结构"><a href="#3-1-软件结构" class="headerlink" title="3.1 软件结构"></a>3.1 软件结构</h2><p>使用Java语言做软件开发的，软件 &#x3D; 数据 + 逻辑计算  </p>
+<p><img src="/images/1_cs.jpg"></p>
+<p><img src="/images/2_bs.jpg" alt="2_bs"></p>
+<h2 id="3-2-网络通信模型"><a href="#3-2-网络通信模型" class="headerlink" title="3.2 网络通信模型"></a>3.2 网络通信模型</h2><p><img src="/images/3_tcp_ip.jpg"></p>
 <ul>
-<li>TCP/IP协议中的四层分别是应用层、传输层、网络层和链路层，每层分别负责不同的通信功能。<br>
-链路层：链路层是用于定义物理传输通道，通常是对某些网络连接设备的驱动协议，例如针对光纤、网线提供的驱动。</li>
-<li>网络层：网络层是整个TCP/IP协议的核心，它主要用于将传输的数据进行分组，将分组数据发送到目标计算机或者网络。而IP协议是一种非常重要的协议。IP（internet protocal）又称为互联网协议。IP的责任就是把数据从源传送到目的地。它在源地址和目的地址之间传送一种称之为数据包的东西，它还提供对数据大小的重新组装功能，以适应不同网络对包大小的要求。</li>
+<li>TCP&#x2F;IP协议中的四层分别是应用层、传输层、网络层和链路层，每层分别负责不同的通信功能。<br>链路层：链路层是用于定义物理传输通道，通常是对某些网络连接设备的驱动协议，例如针对光纤、网线提供的驱动。</li>
+<li>网络层：网络层是整个TCP&#x2F;IP协议的核心，它主要用于将传输的数据进行分组，将分组数据发送到目标计算机或者网络。而IP协议是一种非常重要的协议。IP（internet protocal）又称为互联网协议。IP的责任就是把数据从源传送到目的地。它在源地址和目的地址之间传送一种称之为数据包的东西，它还提供对数据大小的重新组装功能，以适应不同网络对包大小的要求。</li>
 <li>传输层：主要使网络程序进行通信，在进行网络通信时，可以采用TCP协议，也可以采用UDP协议。TCP（Transmission Control Protocol）协议，即传输控制协议，是一种面向连接的、可靠的、基于字节流的传输层通信协议。UDP(User Datagram Protocol，用户数据报协议)：是一个无连接的传输层协议、提供面向事务的简单不可靠的信息传送服务。</li>
 <li>应用层：主要负责应用程序的协议，例如HTTP协议、FTP协议、SNMP（简单网络管理协议）、SMTP（简单邮件传输协议）和POP3（Post Office Protocol 3的简称,即邮局协议的第3个版）等。</li>
 </ul>
-<h2 id="3-3-网络通信三要素">3.3 网络通信三要素</h2>
-<h3 id="3-3-1-IP地址">3.3.1 IP地址</h3>
-<p>每个接入互联网的就计算机，就会自动获取到一个唯一的标识，就是IP地址。通过IP地址可以在互联网中准则定位到一台计算机。ipconfig</p>
+<h2 id="3-3-网络通信三要素"><a href="#3-3-网络通信三要素" class="headerlink" title="3.3 网络通信三要素"></a>3.3 网络通信三要素</h2><h3 id="3-3-1-IP地址"><a href="#3-3-1-IP地址" class="headerlink" title="3.3.1 IP地址"></a>3.3.1 IP地址</h3><p>每个接入互联网的就计算机，就会自动获取到一个唯一的标识，就是IP地址。通过IP地址可以在互联网中准则定位到一台计算机。ipconfig</p>
 <ul>
-<li>
-<p>IPV4：</p>
+<li><p>IPV4：	</p>
 <ul>
 <li>采用4个数字段表示IP地址，每个数段的值0-255</li>
 <li>111.120.220.233  每个数字段大小是1个字节，最高位不是符号，是数字位</li>
@@ -402,8 +394,7 @@
 <li>127.0.0.1 本机回环地址，也可以写作单词 localhost</li>
 </ul>
 </li>
-<li>
-<p>IPV6：</p>
+<li><p>IPV6：</p>
 <ul>
 <li>采用8个数字段表示IP地址，每个数字段的值0-F</li>
 <li>2001:0DB8:0000:0023:0008:0800:200C:417A</li>
@@ -411,14 +402,12 @@
 </ul>
 </li>
 </ul>
-<h3 id="3-3-2-端口号port">3.3.2 端口号port</h3>
-<p>物理端口：电源，USB，Type-C</p>
+<h3 id="3-3-2-端口号port"><a href="#3-3-2-端口号port" class="headerlink" title="3.3.2 端口号port"></a>3.3.2 端口号port</h3><p>物理端口：电源，USB，Type-C</p>
 <p>逻辑端口：网络应用程序在操作系统中的逻辑数字标识（只能被占用一次），操作系统中的端口号是1-65535个</p>
 <ul>
-<li>常用的端口号
-<ul>
-<li>80  浏览器HTTP协议访问服务器的端口  <a target="_blank" rel="noopener" href="http://www.baidu.com:80">http://www.baidu.com:80</a></li>
-<li>443 浏览器HTTPS协议访问服务器的端口  <a target="_blank" rel="noopener" href="https://www.baidu.com:443">https://www.baidu.com:443</a></li>
+<li>常用的端口号<ul>
+<li>80  浏览器HTTP协议访问服务器的端口  <a target="_blank" rel="noopener" href="http://www.baidu.com/">http://www.baidu.com:80</a></li>
+<li>443 浏览器HTTPS协议访问服务器的端口  <a target="_blank" rel="noopener" href="https://www.baidu.com/">https://www.baidu.com:443</a></li>
 <li>1521 Oracle数据库端口号</li>
 <li>3306 MySQL数据库端口号</li>
 <li>8080 Tomcat 服务器端口号</li>
@@ -427,11 +416,9 @@
 </ul>
 </li>
 </ul>
-<h3 id="3-3-3-通信协议">3.3.3 通信协议</h3>
-<p>计算机接入到互联网，对数据传递进行了规则。比喻为现在的交通法</p>
+<h3 id="3-3-3-通信协议"><a href="#3-3-3-通信协议" class="headerlink" title="3.3.3 通信协议"></a>3.3.3 通信协议</h3><p>计算机接入到互联网，对数据传递进行了规则。比喻为现在的交通法</p>
 <ul>
-<li>
-<p>UDP协议</p>
+<li><p>UDP协议</p>
 <ul>
 <li>用户数据报协议</li>
 <li>面向无连接协议，通信双方数据传递之前，不需要建立网络连接</li>
@@ -439,8 +426,7 @@
 <li>每次发送的数据限制在64KB之内</li>
 </ul>
 </li>
-<li>
-<p>TCP协议</p>
+<li><p>TCP协议</p>
 <ul>
 <li>传输控制协议</li>
 <li>面向连接的协议，通信双方必须建立好网络连接</li>
@@ -448,56 +434,47 @@
 <li>面向连接协议，网络连接的速度慢</li>
 <li>通信双方要三次握手确认连接</li>
 </ul>
-<p><img src="images/4_tcp.jpg" alt></p>
+<p><img src="/images/4_tcp.jpg"></p>
 </li>
 </ul>
-<h1>第四章 TCP协议网络通信</h1>
-<h2 id="4-1-客户端和服务器">4.1 客户端和服务器</h2>
-<ul>
+<h1 id="第四章-TCP协议网络通信"><a href="#第四章-TCP协议网络通信" class="headerlink" title="第四章 TCP协议网络通信"></a>第四章 TCP协议网络通信</h1><h2 id="4-1-客户端和服务器"><a href="#4-1-客户端和服务器" class="headerlink" title="4.1 客户端和服务器"></a>4.1 客户端和服务器</h2><ul>
 <li>客户端Client：从其他的机器上获取数据</li>
 <li>服务端Server：可以为其他的机器提供共享数据</li>
 </ul>
-<p><img src="images/6.jpg" alt></p>
+<p><img src="/images/6.jpg"></p>
 <ul>
 <li><code>java.net.Socket</code> 客户端的程序</li>
 <li><code>java.net.ServerSocket</code> 服务器端的程序</li>
 </ul>
-<h2 id="4-2-网络通信中的IO流对象">4.2 网络通信中的IO流对象</h2>
-<blockquote>
+<h2 id="4-2-网络通信中的IO流对象"><a href="#4-2-网络通信中的IO流对象" class="headerlink" title="4.2 网络通信中的IO流对象"></a>4.2 网络通信中的IO流对象</h2><blockquote>
 <p>客户端程序和服务器程序通过网络连接成功。数据传输依靠IO流对象实现</p>
 </blockquote>
-<p><img src="images/5_%E7%AE%80%E5%8D%95%E9%80%9A%E4%BF%A1.jpg" alt></p>
-<p><img src="images/7.jpg" alt="7"></p>
-<h2 id="4-3-TCP协议客户端程序">4.3 TCP协议客户端程序</h2>
+<p><img src="/images/5_%E7%AE%80%E5%8D%95%E9%80%9A%E4%BF%A1.jpg"></p>
+<p><img src="/images/7.jpg" alt="7"></p>
+<h2 id="4-3-TCP协议客户端程序"><a href="#4-3-TCP协议客户端程序" class="headerlink" title="4.3 TCP协议客户端程序"></a>4.3 TCP协议客户端程序</h2><ul>
+<li><p><code>java.net.Socket</code></p>
 <ul>
-<li>
-<p><code>java.net.Socket</code></p>
-<ul>
-<li>
-<p>客户端连接对象</p>
+<li><p>客户端连接对象</p>
 </li>
-<li>
-<p>构造方法：Socket(String 服务器端的IP,int 端口号)</p>
+<li><p>构造方法：Socket(String 服务器端的IP,int 端口号)</p>
 </li>
-<li>
-<blockquote>
+<li><blockquote>
 <p>只要new了，对象就会通过IP地址连接服务器，如果没有服务器程序，报错了</p>
 </blockquote>
 </li>
-<li>
-<p>OutputStream getOutputStream() 获取字节输出流，将数据写向服务器</p>
+<li><p>OutputStream getOutputStream() 获取字节输出流，将数据写向服务器</p>
 </li>
-<li>
-<p>InputStream getInputStream() 获取字节输入流，读取服务器回来的数据</p>
+<li><p>InputStream getInputStream() 获取字节输入流，读取服务器回来的数据</p>
 </li>
 </ul>
 </li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 实现TCP协议的客户端</span></span><br><span class="line"><span class="comment"> * 实现步骤：</span></span><br><span class="line"><span class="comment"> *  1：new Socket() 连接服务器</span></span><br><span class="line"><span class="comment"> *  2：Socket对象获取字节输出流，写向服务器</span></span><br><span class="line"><span class="comment"> *  3: Socket对象获取字节输入流，读取服务器回来的数据</span></span><br><span class="line"><span class="comment"> *  4: 资源释放</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TCPClient</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="comment">//1：new Socket() 连接服务器</span></span><br><span class="line">        <span class="comment">//构造方法传递服务器的IP，端口号</span></span><br><span class="line">        <span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Socket</span>(<span class="string">&quot;127.0.0.1&quot;</span>,<span class="number">8888</span>);</span><br><span class="line">        <span class="comment">//2：Socket对象获取字节输出流，写向服务器</span></span><br><span class="line">        <span class="type">OutputStream</span> <span class="variable">out</span> <span class="operator">=</span>  socket.getOutputStream();</span><br><span class="line">        <span class="comment">//out流写数据  String类的方法getBytes() 字符串转成字节数组</span></span><br><span class="line">        out.write(<span class="string">&quot;你好服务器!&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3: Socket对象获取字节输入流，读取服务器回来的数据</span></span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> socket.getInputStream();</span><br><span class="line">        <span class="comment">//定义字节数组</span></span><br><span class="line">        <span class="type">byte</span>[] bytes = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">15</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> in.read(bytes);</span><br><span class="line">        System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(bytes,<span class="number">0</span>,len));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4释放资源</span></span><br><span class="line">        socket.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="4-4-TCP协议服务器程序">4.4 TCP协议服务器程序</h2>
-<ul>
-<li><code>java.net.ServerSocket</code>
-<ul>
+
+
+
+<h2 id="4-4-TCP协议服务器程序"><a href="#4-4-TCP协议服务器程序" class="headerlink" title="4.4 TCP协议服务器程序"></a>4.4 TCP协议服务器程序</h2><ul>
+<li><code>java.net.ServerSocket</code><ul>
 <li>服务器连接对象</li>
 <li>构造方法：ServerSocket(int 端口号)</li>
 <li>accept() 获取客户端的连接对象Socket（客户端的信息，IP，机器名。。。）</li>
@@ -505,35 +482,42 @@
 </ul>
 </li>
 </ul>
-<p><img src="images/8.jpg" alt></p>
+<p><img src="/images/8.jpg"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 实现TCP服务器端</span></span><br><span class="line"><span class="comment"> * 实现步骤：</span></span><br><span class="line"><span class="comment"> *  1：创建服务器连接对象ServerSocket ，开的端口</span></span><br><span class="line"><span class="comment"> *  2：调用服务器连接对象的方法 accept() 等待客户端连接</span></span><br><span class="line"><span class="comment"> *      并获取客户端的连接对象Socket</span></span><br><span class="line"><span class="comment"> *  3：Socket对象获取IO流</span></span><br><span class="line"><span class="comment"> *     字节输入流：读取客户端的数据</span></span><br><span class="line"><span class="comment"> *     字节输出流：向客户端写入数据</span></span><br><span class="line"><span class="comment"> *  4：资源释放</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  192.168.19.39</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TCPServer</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="comment">//1：创建服务器连接对象ServerSocket ，开的端口</span></span><br><span class="line">        <span class="type">ServerSocket</span> <span class="variable">server</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ServerSocket</span>(<span class="number">8888</span>);</span><br><span class="line">        <span class="comment">// 2：调用服务器连接对象的方法 accept() 等待客户端连接</span></span><br><span class="line">        <span class="comment">//accept()方法返回Socket对象</span></span><br><span class="line">        <span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> server.accept();</span><br><span class="line">        <span class="comment">//获取客户端IP地址的方法</span></span><br><span class="line">        System.out.println(socket.getLocalAddress().getHostAddress());</span><br><span class="line">        <span class="comment">//3：Socket对象获取IO流</span></span><br><span class="line">        <span class="comment">//获取字节输入流，读取客户端的数据</span></span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> socket.getInputStream();</span><br><span class="line">        <span class="comment">//定义字节数组</span></span><br><span class="line">        <span class="type">byte</span>[] bytes = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">16</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> in.read(bytes);</span><br><span class="line">        <span class="comment">//数组转成字符串输出</span></span><br><span class="line">        System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(bytes,<span class="number">0</span>,len));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取字节输出流，数据写向客户端</span></span><br><span class="line">        <span class="type">OutputStream</span> <span class="variable">out</span> <span class="operator">=</span> socket.getOutputStream();</span><br><span class="line">        out.write(<span class="string">&quot;收到,谢谢!!&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4：资源释放</span></span><br><span class="line">        socket.close();</span><br><span class="line">        server.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="4-5-文件上传">4.5 文件上传</h2>
-<p><img src="images/9.jpg" alt></p>
+
+<h2 id="4-5-文件上传"><a href="#4-5-文件上传" class="headerlink" title="4.5 文件上传"></a>4.5 文件上传</h2><p><img src="/images/9.jpg"></p>
 <blockquote>
 <p>程序运行之后不停止的问题：造成原因是字节输入流的方法read()导致</p>
 <p>客户端read()方法读取图片，遇到文件结束符，循环结束不再读取</p>
 <p>服务器read()读取的不是文件，而是客户端发来的数组，永远不会读取-1，循环不结束</p>
 </blockquote>
 <ul>
-<li>
-<p>Sun公司处理：</p>
+<li><p>Sun公司处理：</p>
 <ul>
 <li>Socket对象定义方法：void shutdownOutput()，向服务器发送终止符号</li>
 </ul>
 </li>
-<li>
-<p>客户端程序</p>
+<li><p>客户端程序</p>
 </li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * TCP协议，图片上传的客户端</span></span><br><span class="line"><span class="comment"> * 实现步骤：</span></span><br><span class="line"><span class="comment"> *  1：创建Socket对象，连接服务器</span></span><br><span class="line"><span class="comment"> *  2：创建FileInputStream流，读取数据源图片 ly.jpg</span></span><br><span class="line"><span class="comment"> *  3: Socket对象获取字节输出流 OutputStream 读取到的图片，写到服务器</span></span><br><span class="line"><span class="comment"> *  4：字节流读取图片，存储字节数组，字节输出流，字节数组写服务器</span></span><br><span class="line"><span class="comment"> *  5：Socket对象获取字节输入流 InputStream</span></span><br><span class="line"><span class="comment"> *  6: 读取服务器回来的上传成功</span></span><br><span class="line"><span class="comment"> *  7：释放资源</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TCPClient</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="comment">//1：创建Socket对象，连接服务器</span></span><br><span class="line">        <span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Socket</span>(<span class="string">&quot;127.0.0.1&quot;</span>,<span class="number">8888</span>);</span><br><span class="line">        <span class="comment">//2：创建FileInputStream流，读取数据源图片 ly.jpg</span></span><br><span class="line">        <span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;d:/ly.jpg&quot;</span>);</span><br><span class="line">        <span class="comment">//3: Socket对象获取字节输出流 OutputStream 读取到的图片，写到服务器</span></span><br><span class="line">        <span class="type">OutputStream</span> <span class="variable">out</span> <span class="operator">=</span> socket.getOutputStream();</span><br><span class="line">        <span class="comment">//4：字节流读取图片，存储字节数组，字节输出流，字节数组写服务器</span></span><br><span class="line">        <span class="type">byte</span>[] bytes = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> <span class="number">0</span> ;</span><br><span class="line">        <span class="keyword">while</span> ( (len = fis.read(bytes)) != -<span class="number">1</span>)&#123;</span><br><span class="line">            out.write(bytes,<span class="number">0</span>,len);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//socket对象方法，写终止序列</span></span><br><span class="line">        socket.shutdownOutput();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 5：Socket对象获取字节输入流 InputStream</span></span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> socket.getInputStream();</span><br><span class="line">        <span class="comment">//6: 读取服务器回来的上传成功</span></span><br><span class="line">        len = in.read(bytes);</span><br><span class="line">        System.out.println(<span class="string">&quot;服务器说：：&quot;</span>+<span class="keyword">new</span> <span class="title class_">String</span>(bytes,<span class="number">0</span>,len));</span><br><span class="line">        <span class="comment">//7：释放资源</span></span><br><span class="line">        fis.close();</span><br><span class="line">        socket.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>服务器程序</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 实现文件上传服务器端</span></span><br><span class="line"><span class="comment"> * 实现步骤：</span></span><br><span class="line"><span class="comment"> * 1： 创建ServerSocket对象，打开端口</span></span><br><span class="line"><span class="comment"> * 2： 调用方法accept() 等待客户端连接，获取客户端连接对象</span></span><br><span class="line"><span class="comment"> * 3： 客户端对象Socket获取字节输入流，读取客户端发送来的字节数组</span></span><br><span class="line"><span class="comment"> * 4： 服务器端创建文件夹 e:/myPicture</span></span><br><span class="line"><span class="comment"> * 5:  创建字节输出流 FileOutputStream</span></span><br><span class="line"><span class="comment"> * 6:  读取字节输出，FileOutputStream流数组保存在文件夹中</span></span><br><span class="line"><span class="comment"> * 7:  客户端对象获取字节输出流</span></span><br><span class="line"><span class="comment"> * 8： 上传成功写回客户端</span></span><br><span class="line"><span class="comment"> * 9： 释放资源</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TCPServer</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="comment">//1： 创建ServerSocket对象，打开端口</span></span><br><span class="line">        <span class="type">ServerSocket</span> <span class="variable">server</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ServerSocket</span>(<span class="number">8888</span>);</span><br><span class="line">        <span class="comment">//2： 调用方法accept() 等待客户端连接，获取客户端连接对象</span></span><br><span class="line">        <span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> server.accept();</span><br><span class="line">        <span class="comment">//3： 客户端对象Socket获取字节输入流，读取客户端发送来的字节数组</span></span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> socket.getInputStream();</span><br><span class="line">        <span class="comment">//4： 服务器端创建文件夹 e:/myPicture</span></span><br><span class="line">        <span class="type">File</span> <span class="variable">uploadDir</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;e:/myPicture&quot;</span>);</span><br><span class="line">        <span class="comment">//判断目录是否存在，不存在创建</span></span><br><span class="line">        <span class="keyword">if</span> (!uploadDir.exists())</span><br><span class="line">            uploadDir.mkdirs();</span><br><span class="line">        <span class="comment">//5:  创建字节输出流 FileOutputStream</span></span><br><span class="line">        <span class="comment">//写入图片（字节数组）数据，完整的路径和文件名</span></span><br><span class="line">        <span class="comment">//上传的目录e:/myPicture，文件名组成一个File对象</span></span><br><span class="line">        <span class="comment">//上传文件重命名+atguigu+随机数+毫秒值+随机数转十六进制</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">fileName</span> <span class="operator">=</span> <span class="string">&quot;atguigu&quot;</span>+<span class="keyword">new</span> <span class="title class_">Random</span>().nextInt(<span class="number">10000000</span>)</span><br><span class="line">                +System.currentTimeMillis()+Integer.toHexString(<span class="keyword">new</span> <span class="title class_">Random</span>().nextInt(<span class="number">10000000</span>))+<span class="string">&quot;.jpg&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="type">File</span> <span class="variable">uploadFile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(uploadDir,fileName);</span><br><span class="line">        <span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(uploadFile);</span><br><span class="line">        <span class="comment">//6:  读取字节输出，FileOutputStream流数组保存在文件夹中</span></span><br><span class="line">        <span class="type">byte</span>[] bytes = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> <span class="number">0</span> ;</span><br><span class="line">        <span class="keyword">while</span> ( (len = in.read(bytes)) != -<span class="number">1</span>)&#123;</span><br><span class="line">            fos.write(bytes,<span class="number">0</span>,len);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;!!!!!!!!!!!!!!!!!&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//7:  客户端对象获取字节输出流</span></span><br><span class="line">        <span class="type">OutputStream</span> <span class="variable">out</span> <span class="operator">=</span> socket.getOutputStream();</span><br><span class="line">        <span class="comment">// 8： 上传成功写回客户端</span></span><br><span class="line">        out.write(<span class="string">&quot;上传成功&quot;</span>.getBytes());</span><br><span class="line">        <span class="comment">//9： 释放资源</span></span><br><span class="line">        fos.close();</span><br><span class="line">        socket.close();</span><br><span class="line">        server.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="images/10.jpg" alt></p>
-<h2 id="4-6-文件上传多线程">4.6 文件上传多线程</h2>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class TCPServer &#123;</span><br><span class="line">    public static void main(String[] args) throws IOException &#123;</span><br><span class="line">        //1： 创建ServerSocket对象，打开端口</span><br><span class="line">        ServerSocket server = new ServerSocket(8888);</span><br><span class="line">        while (true) &#123;</span><br><span class="line">            //2： 调用方法accept() 等待客户端连接，获取客户端连接对象</span><br><span class="line">            Socket socket = server.accept();</span><br><span class="line">            //accept()获取到客户端连接对象，启动线程</span><br><span class="line">            //一个用户，一个线程</span><br><span class="line">            MyRunnable my = new MyRunnable(socket);</span><br><span class="line">            new Thread(my).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/10.jpg"></p>
+<h2 id="4-6-文件上传多线程"><a href="#4-6-文件上传多线程" class="headerlink" title="4.6 文件上传多线程"></a>4.6 文件上传多线程</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class TCPServer &#123;</span><br><span class="line">    public static void main(String[] args) throws IOException &#123;</span><br><span class="line">        //1： 创建ServerSocket对象，打开端口</span><br><span class="line">        ServerSocket server = new ServerSocket(8888);</span><br><span class="line">        while (true) &#123;</span><br><span class="line">            //2： 调用方法accept() 等待客户端连接，获取客户端连接对象</span><br><span class="line">            Socket socket = server.accept();</span><br><span class="line">            //accept()获取到客户端连接对象，启动线程</span><br><span class="line">            //一个用户，一个线程</span><br><span class="line">            MyRunnable my = new MyRunnable(socket);</span><br><span class="line">            new Thread(my).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * TCP协议，图片上传的客户端</span><br><span class="line"> * 实现步骤：</span><br><span class="line"> *  1：创建Socket对象，连接服务器</span><br><span class="line"> *  2：创建FileInputStream流，读取数据源图片 ly.jpg</span><br><span class="line"> *  3: Socket对象获取字节输出流 OutputStream 读取到的图片，写到服务器</span><br><span class="line"> *  4：字节流读取图片，存储字节数组，字节输出流，字节数组写服务器</span><br><span class="line"> *  5：Socket对象获取字节输入流 InputStream</span><br><span class="line"> *  6: 读取服务器回来的上传成功</span><br><span class="line"> *  7：释放资源</span><br><span class="line"> */</span><br><span class="line">public class TCPClient &#123;</span><br><span class="line">    public static void main(String[] args) throws IOException &#123;</span><br><span class="line">        //1：创建Socket对象，连接服务器</span><br><span class="line">        Socket socket = new Socket(&quot;127.0.0.1&quot;,8888);</span><br><span class="line">        //2：创建FileInputStream流，读取数据源图片 ly.jpg</span><br><span class="line">        FileInputStream fis = new FileInputStream(&quot;d:/ly.jpg&quot;);</span><br><span class="line">        //3: Socket对象获取字节输出流 OutputStream 读取到的图片，写到服务器</span><br><span class="line">        OutputStream out = socket.getOutputStream();</span><br><span class="line">        //4：字节流读取图片，存储字节数组，字节输出流，字节数组写服务器</span><br><span class="line">        byte[] bytes = new byte[1024];</span><br><span class="line">        int len = 0 ;</span><br><span class="line">        while ( (len = fis.read(bytes)) != -1)&#123;</span><br><span class="line">            out.write(bytes,0,len);</span><br><span class="line">        &#125;</span><br><span class="line">        //socket对象方法，写终止序列</span><br><span class="line">        socket.shutdownOutput();</span><br><span class="line"></span><br><span class="line">        // 5：Socket对象获取字节输入流 InputStream</span><br><span class="line">        InputStream in = socket.getInputStream();</span><br><span class="line">        //6: 读取服务器回来的上传成功</span><br><span class="line">        len = in.read(bytes);</span><br><span class="line">        System.out.println(&quot;服务器说：：&quot;+new String(bytes,0,len));</span><br><span class="line">        //7：释放资源</span><br><span class="line">        fis.close();</span><br><span class="line">        socket.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
 
     </div>
 
