@@ -23,23 +23,33 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"bounceIn","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Alcander&#39;s Blog">
-<meta property="og:url" content="http://example.com/index.html">
+    <meta name="description" content="正则表达式&amp;Vue&amp;书城项目第一阶段  学习目标  掌握正则表达式作用 能够创建正则表达式 可以使用正则表达式的匹配方法 能够掌握常用的正则表达式 能够熟练运用Json格式数据 能够搭建Vue框架的开发环境 可以熟练编写Vue的入门案例 能够掌握数据的双向绑定 能够进行Vue的事件处理 了解Vue对象的生命周期 能够编写出书城项目的表单验证案例    第一章 正则表达式 1.1 正">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day30 JavaScript和书城项目第一步">
+<meta property="og:url" content="http://example.com/2022/06/21/atguigu/day30_JavaScript/index.html">
 <meta property="og:site_name" content="Alcander&#39;s Blog">
+<meta property="og:description" content="正则表达式&amp;Vue&amp;书城项目第一阶段  学习目标  掌握正则表达式作用 能够创建正则表达式 可以使用正则表达式的匹配方法 能够掌握常用的正则表达式 能够熟练运用Json格式数据 能够搭建Vue框架的开发环境 可以熟练编写Vue的入门案例 能够掌握数据的双向绑定 能够进行Vue的事件处理 了解Vue对象的生命周期 能够编写出书城项目的表单验证案例    第一章 正则表达式 1.1 正">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2022/06/21/atguigu/day30_JavaScript/images/day30_JavaScript/img006.png">
+<meta property="og:image" content="http://example.com/2022/06/21/atguigu/day30_JavaScript/images/day30_JavaScript/img007.png">
+<meta property="og:image" content="http://example.com/2022/06/21/atguigu/day30_JavaScript/images/day30_JavaScript/img014.png">
+<meta property="og:image" content="http://example.com/2022/06/21/atguigu/day30_JavaScript/images/day30_JavaScript/img008.png">
+<meta property="og:image" content="http://example.com/2022/06/21/atguigu/day30_JavaScript/images/day30_JavaScript/img015.png">
+<meta property="article:published_time" content="2022-06-21T09:56:56.419Z">
+<meta property="article:modified_time" content="2022-06-21T10:07:05.292Z">
 <meta property="article:author" content="wfxt">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/06/21/atguigu/day30_JavaScript/images/day30_JavaScript/img006.png">
 
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2022/06/21/atguigu/day30_JavaScript/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"en","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/06/21/atguigu/day30_JavaScript/","path":"2022/06/21/atguigu/day30_JavaScript/","title":"day30 JavaScript和书城项目第一步"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Alcander's Blog</title>
+<title>day30 JavaScript和书城项目第一步 | Alcander's Blog</title>
   
 
 
@@ -69,7 +79,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Alcander's Blog</h1>
+      <p class="site-title">Alcander's Blog</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -128,7 +138,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -141,6 +151,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">正则表达式&amp;Vue&amp;书城项目第一阶段</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">第一章 正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%88Regex%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 正则表达式（Regex）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E5%AD%97%E7%AC%A6%E7%B1%BB"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 字符类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E9%A2%84%E5%AE%9A%E4%B9%89%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">2.3.</span> <span class="nav-text">1.3 预定义字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0"><span class="nav-number">2.4.</span> <span class="nav-text">1.4 出现次数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="nav-number">2.5.</span> <span class="nav-text">1.5 正则表达式的创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%BB%83%E4%B9%A0"><span class="nav-number">2.6.</span> <span class="nav-text">1.6 正则表达式练习</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">第二章 Json数据格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Json%E4%BB%8B%E7%BB%8D"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 Json介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Json%E7%9A%84%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 Json的数据格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-Json%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90"><span class="nav-number">3.3.</span> <span class="nav-text">2.3 Json数据解析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">第三章 Vue框架 frame</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E4%BB%80%E4%B9%88%E6%98%AF%E6%A1%86%E6%9E%B6"><span class="nav-number">4.1.</span> <span class="nav-text">3.1 什么是框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-Vue%E7%9A%84%E7%AE%80%E4%BB%8B"><span class="nav-number">4.2.</span> <span class="nav-text">3.2 Vue的简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-Vue%E7%9A%84%E4%BD%9C%E8%80%85%E4%BB%8B%E7%BB%8D"><span class="nav-number">4.2.1.</span> <span class="nav-text">3.2.1 Vue的作者介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-Vue%E7%9A%84%E5%AE%98%E7%BD%91%E4%BB%8B%E7%BB%8D"><span class="nav-number">4.2.2.</span> <span class="nav-text">3.2.2 Vue的官网介绍</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E5%87%86%E5%A4%87Vue-js%E7%8E%AF%E5%A2%83"><span class="nav-number">4.3.</span> <span class="nav-text">3.3 准备Vue.js环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-Vue%E7%9A%84%E5%85%A5%E9%97%A8%E6%A1%88%E4%BE%8B"><span class="nav-number">4.4.</span> <span class="nav-text">3.4 Vue的入门案例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-Vue%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="nav-number">4.5.</span> <span class="nav-text">3.5 Vue常用指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-1-%E7%BB%91%E5%AE%9A%E6%96%87%E6%9C%AC-v-text"><span class="nav-number">4.5.1.</span> <span class="nav-text">3.5.1 绑定文本 v-text</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-2-%E7%BB%91%E5%AE%9A%E5%85%83%E7%B4%A0%E5%B1%9E%E6%80%A7-v-bind"><span class="nav-number">4.5.2.</span> <span class="nav-text">3.5.2 绑定元素属性 v-bind</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-3-%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A-v-model"><span class="nav-number">4.5.3.</span> <span class="nav-text">3.5.3 双向数据绑定 v-model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-4-%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD-v-if-v-else"><span class="nav-number">4.5.4.</span> <span class="nav-text">3.5.4 条件判断 v-if v-else</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-5-%E6%9D%A1%E4%BB%B6%E6%98%BE%E7%A4%BA-v-show"><span class="nav-number">4.5.5.</span> <span class="nav-text">3.5.5 条件显示 v-show</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-6-%E5%BE%AA%E7%8E%AF-v-for"><span class="nav-number">4.5.6.</span> <span class="nav-text">3.5.6 循环 v-for</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-7-Vue%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86"><span class="nav-number">4.6.</span> <span class="nav-text">3.7 Vue事件处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-7-1-%E5%8D%95%E5%87%BB%E4%BA%8B%E4%BB%B6v-on-click"><span class="nav-number">4.6.1.</span> <span class="nav-text">3.7.1 单击事件v-on:click</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-7-2-%E9%BC%A0%E6%A0%87%E7%A7%BB%E5%8A%A8%E4%BA%8B%E4%BB%B6v-on-mouseover-mouseout"><span class="nav-number">4.6.2.</span> <span class="nav-text">3.7.2 鼠标移动事件v-on:mouseover|mouseout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-7-3-%E9%98%BB%E6%AD%A2%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1"><span class="nav-number">4.6.3.</span> <span class="nav-text">3.7.3 阻止事件冒泡</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-8-Vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">4.7.</span> <span class="nav-text">3.8 Vue的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-8-1-%E6%A6%82%E5%BF%B5"><span class="nav-number">4.7.1.</span> <span class="nav-text">3.8.1 概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-8-2-Vue%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">4.7.2.</span> <span class="nav-text">3.8.2 Vue对象的生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-8-3-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0"><span class="nav-number">4.7.3.</span> <span class="nav-text">3.8.3 生命周期钩子函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">第四章 书城项目第一阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">5.1.</span> <span class="nav-text">4.1 准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81"><span class="nav-number">5.2.</span> <span class="nav-text">4.2 登录页面的表单验证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1-%E5%9C%A8login-html%E9%A1%B5%E9%9D%A2%E4%B8%AD%E5%8A%A0%E5%85%A5Vue%E7%9A%84%E7%8E%AF%E5%A2%83"><span class="nav-number">5.2.1.</span> <span class="nav-text">4.2.1 在login.html页面中加入Vue的环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-%E6%A1%88%E4%BE%8B%E6%80%9D%E8%B7%AF"><span class="nav-number">5.2.2.</span> <span class="nav-text">4.2.2 案例思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-3-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">5.2.3.</span> <span class="nav-text">4.2.3 代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-%E6%B3%A8%E5%86%8C%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81"><span class="nav-number">5.3.</span> <span class="nav-text">4.3 注册页面的表单验证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-1-%E5%9C%A8%E6%B3%A8%E5%86%8C%E9%A1%B5%E9%9D%A2-register-html-%E4%B8%AD%E5%BC%95%E5%85%A5vue"><span class="nav-number">5.3.1.</span> <span class="nav-text">4.3.1 在注册页面(register.html)中引入vue</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -211,16 +222,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/21/atguigu/day30_JavaScript/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -234,13 +246,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Alcander's Blog">
+      <meta itemprop="name" content="day30 JavaScript和书城项目第一步 | Alcander's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/21/atguigu/day30_JavaScript/" class="post-title-link" itemprop="url">day30 JavaScript和书城项目第一步</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          day30 JavaScript和书城项目第一步
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -264,6 +276,13 @@
     </span>
 
   
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
 </div>
 
         </div>
@@ -273,7 +292,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1>正则表达式&amp;Vue&amp;书城项目第一阶段</h1>
+        <h1>正则表达式&amp;Vue&amp;书城项目第一阶段</h1>
 <ul>
 <li>学习目标
 <ul>
@@ -503,7 +522,6 @@
 <p><strong>Vue代码</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vue = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">    <span class="string">&quot;el&quot;</span>:<span class="string">&quot;#app&quot;</span>,</span><br><span class="line">    <span class="string">&quot;data&quot;</span>:&#123;</span><br><span class="line">        <span class="string">&quot;user&quot;</span>:&#123;</span><br><span class="line">            <span class="string">&quot;username&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;password&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;passwordConfirm&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;email&quot;</span>:<span class="string">&quot;&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;usernameError&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line">        <span class="string">&quot;passwordError&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line">        <span class="string">&quot;passwordConfirmError&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line">        <span class="string">&quot;emailError&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line">        <span class="string">&quot;flag&quot;</span>:<span class="literal">false</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;methods&quot;</span>:&#123;</span><br><span class="line">        <span class="title function_">checkUsername</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="comment">//校验用户名是否符合要求</span></span><br><span class="line">            <span class="comment">//用户名应为6~16位数字和字母组成</span></span><br><span class="line">            <span class="comment">//声明一个正则表达式</span></span><br><span class="line">            <span class="keyword">var</span> reg = <span class="regexp">/^[0-9a-zA-Z]&#123;6,16&#125;$/</span></span><br><span class="line">            <span class="comment">//使用正则表达式校验用户名</span></span><br><span class="line">            <span class="keyword">if</span> (!reg.<span class="title function_">test</span>(<span class="variable language_">this</span>.<span class="property">user</span>.<span class="property">username</span>)) &#123;</span><br><span class="line">                <span class="comment">//用户名不符合规则</span></span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">usernameError</span> = <span class="string">&quot;用户名必须是6~16位数字和字母组成&quot;</span></span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">flag</span> = <span class="literal">false</span></span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">//用户名符合规则</span></span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">usernameError</span> = <span class="string">&quot;&quot;</span></span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">flag</span> = <span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title function_">checkPassword</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="comment">//密码是8-16位的数字、字母、_</span></span><br><span class="line">            <span class="keyword">var</span> reg = <span class="regexp">/^[0-9a-zA-Z_]&#123;8,16&#125;$/</span></span><br><span class="line">            <span class="comment">//使用正则表达式校验密码的规则</span></span><br><span class="line">            <span class="keyword">if</span> (!reg.<span class="title function_">test</span>(<span class="variable language_">this</span>.<span class="property">user</span>.<span class="property">password</span>)) &#123;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">passwordError</span> = <span class="string">&quot;密码必须是8-16位的数字、字母、_&quot;</span></span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">flag</span> = <span class="literal">false</span></span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">passwordError</span> = <span class="string">&quot;&quot;</span></span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">flag</span> = <span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title function_">checkPasswordConfirm</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="comment">//确认密码的校验就是校验确认密码和密码是否相同</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">user</span>.<span class="property">passwordConfirm</span> != <span class="variable language_">this</span>.<span class="property">user</span>.<span class="property">password</span>) &#123;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">passwordConfirmError</span> = <span class="string">&quot;两次输入的密码必须一致&quot;</span></span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">flag</span> = <span class="literal">false</span></span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">passwordConfirmError</span> = <span class="string">&quot;&quot;</span></span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">flag</span> = <span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title function_">checkEmail</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="comment">//编写一个正则表达式来校验邮箱格式</span></span><br><span class="line">            <span class="keyword">var</span> reg = <span class="regexp">/^[a-zA-Z0-9_\.-]+@([a-zA-Z0-9-]+[\.]&#123;1&#125;)+[a-zA-Z]+$/</span></span><br><span class="line">            <span class="comment">//使用正则表达式校验邮箱</span></span><br><span class="line">            <span class="keyword">if</span> (!reg.<span class="title function_">test</span>(<span class="variable language_">this</span>.<span class="property">user</span>.<span class="property">email</span>)) &#123;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">emailError</span> = <span class="string">&quot;请输入正确的邮箱格式&quot;</span></span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">flag</span> = <span class="literal">false</span></span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">emailError</span> = <span class="string">&quot;&quot;</span></span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">flag</span> = <span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title function_">checkRegister</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="comment">//校验用户名、密码、确认密码、邮箱</span></span><br><span class="line">            <span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="property">flag</span>) &#123;</span><br><span class="line">                <span class="comment">//至少有一个校验未通过:则不能提交表单</span></span><br><span class="line">                <span class="comment">//阻止默认</span></span><br><span class="line">                event.<span class="title function_">preventDefault</span>()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-      
     </div>
 
     
@@ -511,415 +529,36 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat.png" alt="wfxt WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="wfxt Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
 </div>
 
 
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/20/2022/06/back2top/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Alcander-2.jpg">
-      <meta itemprop="name" content="wfxt">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/20/2022/06/back2top/" class="post-title-link" itemprop="url">自定义back2top</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-06-20 20:17:44" itemprop="dateCreated datePublished" datetime="2022-06-20T20:17:44+08:00">2022-06-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-06-21 09:46:45" itemprop="dateModified" datetime="2022-06-21T09:46:45+08:00">2022-06-21</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1>自定义back-to-top</h1>
-<p>首先，找到自己喜欢的图片素材放到 source\images\ 目录下。你可以点击下方按钮下载本博客所使用的小猫上吊素材。</p>
-<p><a class="btn" onclick="window.open('/images/scroll.png')">
-  <i class="fa fa-download fa-fw"></i>
-  下载图片
-</a></p>
-<p>然后在自定样式文件中添加如下代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// Hexo8.0后建议在hexo/source/_data/styles.styl中进行，若无此文件则手动创建</span><br><span class="line">//自定义回到顶部样式</span><br><span class="line">.back-to-top &#123;</span><br><span class="line">  right: 60px;</span><br><span class="line">  width: 70px;  //图片素材宽度</span><br><span class="line">  height: 900px;  //图片素材高度</span><br><span class="line">  top: -900px;</span><br><span class="line">  bottom: unset;</span><br><span class="line">  transition: all .5s ease-in-out;</span><br><span class="line">  background: url(&quot;/images/scroll.png&quot;);</span><br><span class="line"></span><br><span class="line">  //隐藏箭头图标</span><br><span class="line">  &gt; i &#123;</span><br><span class="line">    display: none;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &amp;.back-to-top-on &#123;</span><br><span class="line">    bottom: unset;</span><br><span class="line">    top: 100vh &lt; (900px + 200px) ? calc( 100vh - 900px - 200px ) : 0px;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/20/atguigu/day29_JavaScript/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Alcander-2.jpg">
-      <meta itemprop="name" content="wfxt">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/20/atguigu/day29_JavaScript/" class="post-title-link" itemprop="url">day29 JavaScript</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-06-20 18:06:11" itemprop="dateCreated datePublished" datetime="2022-06-20T18:06:11+08:00">2022-06-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-06-21 09:55:17" itemprop="dateModified" datetime="2022-06-21T09:55:17+08:00">2022-06-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Atguigu/" itemprop="url" rel="index"><span itemprop="name">Atguigu</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1>JavaScript</h1>
-<ul>
-<li>
-<p>学习目标</p>
-<ul>
-<li>了解JavaScript脚本语言的特性</li>
-<li>掌握JavaScript语言的基本语法</li>
-<li>能够定义各种数据类型的变量</li>
-<li>能够使用JavaScript中的运算符</li>
-<li>可以自定义函数</li>
-<li>能够创建对象</li>
-<li>能够理解JavaScript中的数组使用</li>
-<li>了解DOM对象的概念</li>
-<li>能够熟练使用DOM对象的方法</li>
-<li>掌握JavaScript中的事件驱动</li>
-</ul></li></ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/06/20/atguigu/day29_JavaScript/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/20/atguigu/day28_HTML&CSS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Alcander-2.jpg">
-      <meta itemprop="name" content="wfxt">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/20/atguigu/day28_HTML&CSS/" class="post-title-link" itemprop="url">day28  HTML&CSS</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-06-20 17:59:28 / Modified: 21:20:03" itemprop="dateCreated datePublished" datetime="2022-06-20T17:59:28+08:00">2022-06-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Atguigu/" itemprop="url" rel="index"><span itemprop="name">Atguigu</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1>HTML&amp;CSS</h1>
-<h3 id="学习目标-3">学习目标</h3>
-<ul>
-<li>掌握服务器和客户端的概念</li>
-<li>了解常见的服务器分类和软件</li>
-<li>掌握HTML语言语法规则</li>
-<li>能够熟练运用常用的标签</li>
-<li>能够完全掌握表单标签的使用</li>
-<li>理解CSS的作用</li>
-<li>掌握CSS的选择器</li>
-<li>了解CSS的常用属性</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/06/20/atguigu/day28_HTML&CSS/#more" rel="contents">
-                Read more &raquo;
-              </a>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/06/20/2022/06/back2top/" rel="prev" title="自定义back2top">
+                  <i class="fa fa-chevron-left"></i> 自定义back2top
+                </a>
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/17/atguigu/MySQL_Day4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Alcander-2.jpg">
-      <meta itemprop="name" content="wfxt">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/17/atguigu/MySQL_Day4/" class="post-title-link" itemprop="url">MySQL day4</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-06-17 18:03:34" itemprop="dateCreated datePublished" datetime="2022-06-17T18:03:34+08:00">2022-06-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-06-20 21:19:12" itemprop="dateModified" datetime="2022-06-20T21:19:12+08:00">2022-06-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1>连接池&amp;DBUtils&amp;事务</h1>
-<p>学习目标</p>
-<ul>
-<li>
-<p>[ ] 了解连接池实现原理</p>
-</li>
-<li>
-<p>[ ] 能够自定义连接池工具类</p>
-</li>
-<li>
-<p>[ ] 能够使用QueryRunner实现增删改</p>
-</li>
-<li>
-<p>[ ] 能够使用QueryRunner实现查询</p>
-</li>
-<li>
-<p>[ ] 理解事务的概念</p>
-</li>
-<li>
-<p>[ ] 能够使用原生态JDBC事务</p>
-</li>
-<li>
-<p>[ ] 掌握QueryRunner事务操作</p>
-</li>
-<li>
-<p>[ ] 了解经典三层架构</p>
-</li>
-<li>
-<p>[ ] 嫩能够使用三层架构完成转账案例</p></li></ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/06/17/atguigu/MySQL_Day4/#more" rel="contents">
-                Read more &raquo;
-              </a>
+            <div class="post-nav-item">
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          </div>
     </footer>
   </article>
 </div>
@@ -927,551 +566,9 @@
 
 
 
-    
 
 
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/16/2022/06/hexo_aplayer/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Alcander-2.jpg">
-      <meta itemprop="name" content="wfxt">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/16/2022/06/hexo_aplayer/" class="post-title-link" itemprop="url">Hexo的nexT主题使用aplayer</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-06-16 16:07:12" itemprop="dateCreated datePublished" datetime="2022-06-16T16:07:12+08:00">2022-06-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-06-21 10:17:57" itemprop="dateModified" datetime="2022-06-21T10:17:57+08:00">2022-06-21</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1>Hexo使用aPlayer</h1>
-<h2 id="安装-hexo-tag-aplayer-插件">安装 hexo-tag-aplayer 插件</h2>
-<p>1.在node_modules中找到aplayer文件夹即为安装成功</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-tag-aplayer</span><br></pre></td></tr></table></figure>
-<p>2.最新版的 hexo-tag-aplayer 已经支持了MetingJS的使用，可以直接解析网络平台的歌曲（但是不稳定），首先要在站点配置文件中开启meting模式，添加以下代码在配置文件的最后：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">aplayer:</span><br><span class="line">  meting: true</span><br></pre></td></tr></table></figure>
-<p>3.在hexo-theme-next\layout中找到_layout.swig（在新版本中叫做_layout.njk，不过本质都是一样的），在其body中添加以下代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--音乐--&gt;</span><br><span class="line">  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css&quot;&gt;</span><br><span class="line">  &lt;script src=&quot;https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;script src=&quot;https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;div id=&quot;player&quot; class=&quot;aplayer aplayer-withlist aplayer-fixed&quot; data-id=&quot;7490247800&quot; data-server=&quot;netease&quot; data-type=&quot;playlist&quot; data-order=&quot;random&quot; data-fixed=&quot;true&quot; data-listfolded=&quot;true&quot; data-theme=&quot;#2D8CF0&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p>其中data-id为歌单的外链，注意不是id，且歌单中不能有vip歌曲。生成外链有两种方法：</p>
-<ul>
-<li>将歌单分享到动态里再查看动态，就可以复制了。</li>
-</ul>
-<p><img src="/images/hexo_aplayer/1.png" alt="3"></p>
-<ul>
-<li>将歌单的id替换此链接里的https://music.163.com/#/outchain/0/id/</li>
-</ul>
-<p>这是几种方法里最简单而且稳定的了，缺点在于不能听vip歌曲。两外两种分别是写music.js和和使用MetingJS新功能，但是前者麻烦而且中文会产生乱码问题，故不多做介绍。</p>
-<h3 id="MeingJS-支持-3-0-新功能">MeingJS 支持 (3.0 新功能)</h3>
-<ol>
-<li>
-<p>改方法简单好看，但是不实用。首先安装hexo-tag-aplayer插件并将meting设为true，与上文相同不再赘述。</p>
-</li>
-<li>
-<p>新建页面为playlist</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page playlist</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>这时候在 /Hexo/source 文件夹下会生成一个playlist文件夹，<a target="_blank" rel="noopener" href="http://xn--index-hr2j95qs50c4k3cuxl.md">打开里面的index.md</a>，修改如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: playlist</span><br><span class="line">date: 2022-06-16 17:02:30</span><br><span class="line">type: &quot;playlist&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>打开主题的 _config.yml文件，在menu下新建一个名为playlist的类（注意这里使用的图标是图标库中的图标，网址为 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=http%3A%2F%2Fwww.fontawesome.com.cn%2Ffaicons%2F">http://www.fontawesome.com.cn/faicons/</a> 。可以选择自己喜欢的图标，参考：playlist: /playlist/ || fa fa-music）。完成后如下所示：</p>
-</li>
-</ol>
-<img src="/images/hexo_aplayer/2.png" alt="2" style="zoom:80%;">
-<ol start="5">
-<li>
-<p>复制歌单的链接，然后复制歌单的id，例如 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https%3A%2F%2Fmusic.163.com%2Fplaylist%3Fid%3D523845661%26userid%3D46562117">https://music.163.com/playlist?id=523845661&amp;userid=46562117</a> ，这个歌单的id就是523845661，公司名可以是tencent、netease或是其他公司，下面给出一个例子，打开 /Hexo/source/playlist/<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=http%3A%2F%2Findex.md">index.md</a>文件，输入：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% meting &quot;7490247800&quot; &quot;netease&quot; &quot;playlist&quot; &quot;theme:#FF4081&quot; &quot;mode:circulation&quot; &quot;mutex:true&quot; &quot;listmaxheight:340px&quot; &quot;preload:auto&quot; %&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>效果如下<img src="/images/hexo_aplayer/3.png" alt="3"></p>
-</li>
-<li>
-<p>若站内跳转页面会中断音乐，打开pjax即可。在主题_config.xml中将pjax设为true</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Easily enable fast Ajax navigation on your website.</span><br><span class="line"># For more information: https://github.com/next-theme/pjax</span><br><span class="line">pjax: true</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/15/2022/06/git_problem/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Alcander-2.jpg">
-      <meta itemprop="name" content="wfxt">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/15/2022/06/git_problem/" class="post-title-link" itemprop="url">Git失败</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-06-15 19:31:17" itemprop="dateCreated datePublished" datetime="2022-06-15T19:31:17+08:00">2022-06-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-06-16 10:50:44" itemprop="dateModified" datetime="2022-06-16T10:50:44+08:00">2022-06-16</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1>Hexo deploy fail</h1>
-<ol>
-<li>
-<p>进入姘居管理器，选择Windows凭据，讲里面的git删掉。</p>
-</li>
-<li>
-<p>若1之后还不行，试一下下面命令后重新部署。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.sslVerify &quot;false&quot;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/15/atguigu/MySQL_Day3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Alcander-2.jpg">
-      <meta itemprop="name" content="wfxt">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/15/atguigu/MySQL_Day3/" class="post-title-link" itemprop="url">MySQL day3</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-06-15 17:44:10" itemprop="dateCreated datePublished" datetime="2022-06-15T17:44:10+08:00">2022-06-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-06-20 21:19:26" itemprop="dateModified" datetime="2022-06-20T21:19:26+08:00">2022-06-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1>MySQL_Day3</h1>
-<ul>
-<li>
-<p>学习目标</p>
-<ul>
-<li>[ ] 能够使用DCL语言创建账户并授权</li>
-<li>[ ] 理解JDBC的概念</li>
-<li>[ ] 理解JDBC驱动的作用</li>
-<li>[ ] 使用JDBC技术实现CRUD</li>
-<li>[ ] 能够自定义JDBC连接工具类</li>
-<li>[ ] 能够防止SQL注入攻击</li>
-<li>[ ] 能够说出PreparedStatement接口的特点</li>
-</ul></li></ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/06/15/atguigu/MySQL_Day3/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/14/2022/06/String_intern_final/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Alcander-2.jpg">
-      <meta itemprop="name" content="wfxt">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/14/2022/06/String_intern_final/" class="post-title-link" itemprop="url">String的一些比较问题</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-06-14 20:06:11" itemprop="dateCreated datePublished" datetime="2022-06-14T20:06:11+08:00">2022-06-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-06-20 21:21:28" itemprop="dateModified" datetime="2022-06-20T21:21:28+08:00">2022-06-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="String与intern方法">String与intern方法</h2>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str1</span> <span class="operator">=</span> <span class="string">&quot;a&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="string">&quot;b&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str3</span> <span class="operator">=</span> <span class="string">&quot;ab&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str4</span> <span class="operator">=</span> str1 + str2;</span><br><span class="line"><span class="type">String</span> <span class="variable">str5</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;ab&quot;</span>);</span><br><span class="line"> </span><br><span class="line">System.out.println(str5.equals(str3));</span><br><span class="line">System.out.println(str5 == str3);</span><br><span class="line">System.out.println(str5.intern() == str3);</span><br><span class="line">System.out.println(str5.intern() == str4);</span><br></pre></td></tr></table></figure>
-<p>得到的结果是</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">true</span></span><br><span class="line"><span class="literal">false</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line"><span class="literal">false</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>
-<p>一、因为字符串内容i相等。</p>
-</li>
-<li>
-<p>二、对比的是引用值，因为str5采用的是new定义，地址可能不一样。</p>
-</li>
-<li>
-<p>三、当str5调用intern的时候，会检查字符串池中是否含有该字符串。由于之前定义的str3已经进入字符串池中，所以会得到相同的引用。</p>
-</li>
-<li>
-<p>四、请看下段代码进一步分析。</p></li></ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/06/14/2022/06/String_intern_final/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/14/atguigu/MySQL_day2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Alcander-2.jpg">
-      <meta itemprop="name" content="wfxt">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/14/atguigu/MySQL_day2/" class="post-title-link" itemprop="url">MySQL day2</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-06-14 18:13:08" itemprop="dateCreated datePublished" datetime="2022-06-14T18:13:08+08:00">2022-06-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-06-20 21:19:37" itemprop="dateModified" datetime="2022-06-20T21:19:37+08:00">2022-06-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="学习目标-2">学习目标</h2>
-<ul>
-<li>
-<p>[ ] 了解数据表设计三范式</p>
-</li>
-<li>
-<p>[ ] 能够创建主键约束</p>
-</li>
-<li>
-<p>[ ] 能够创建唯一约束</p>
-</li>
-<li>
-<p>[ ] 能够创建外键约束</p>
-</li>
-<li>
-<p>[ ] 建立一对多关系</p>
-</li>
-<li>
-<p>[ ] 能够建立多对多关系</p>
-</li>
-<li>
-<p>[ ] 能够使用内连接查询</p>
-</li>
-<li>
-<p>[ ] 能够使用左外连接查询</p>
-</li>
-<li>
-<p>[ ] 能够使用右外连接查询</p>
-</li>
-<li>
-<p>[ ] 能够使用子查询</p></li></ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/06/14/atguigu/MySQL_day2/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
-  </nav>
-
+    <div class="comments gitalk-container"></div>
 </div>
   </main>
 
@@ -1535,11 +632,11 @@
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.2.0/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
-  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://example.com/"}</script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://example.com/2022/06/21/atguigu/day30_JavaScript/"}</script>
   <script src="/js/third-party/quicklink.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wfxt","repo":"Hexo-Comment","client_id":"9571f738aa8205b6319e","client_secret":"b956a9a1348b28f9c848905778cd299e9d1da68a","admin_user":"wfxt","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"d1546d731a9f30cc80127d57142a482b"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wfxt","repo":"Hexo-Comment","client_id":"9571f738aa8205b6319e","client_secret":"b956a9a1348b28f9c848905778cd299e9d1da68a","admin_user":"wfxt","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"f426f987f1aae85a3563d9f7472b69d2"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 
