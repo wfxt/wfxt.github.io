@@ -270,14 +270,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1>自定义back-to-top</h1>
-<p>首先，找到自己喜欢的图片素材放到 source\images\ 目录下。你可以点击下方按钮下载本博客所使用的小猫上吊素材。</p>
+          <h1 id="自定义back-to-top"><a href="#自定义back-to-top" class="headerlink" title="自定义back-to-top"></a>自定义back-to-top</h1><p>首先，找到自己喜欢的图片素材放到 source\images\ 目录下。你可以点击下方按钮下载本博客所使用的小猫上吊素材。</p>
 <p><a class="btn" onclick="window.open('/images/scroll.png')">
   <i class="fa fa-download fa-fw"></i>
   下载图片
 </a></p>
+
 <p>然后在自定样式文件中添加如下代码：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// Hexo8.0后建议在hexo/source/_data/styles.styl中进行，若无此文件则手动创建</span><br><span class="line">//自定义回到顶部样式</span><br><span class="line">.back-to-top &#123;</span><br><span class="line">  right: 60px;</span><br><span class="line">  width: 70px;  //图片素材宽度</span><br><span class="line">  height: 900px;  //图片素材高度</span><br><span class="line">  top: -900px;</span><br><span class="line">  bottom: unset;</span><br><span class="line">  transition: all .5s ease-in-out;</span><br><span class="line">  background: url(&quot;/images/scroll.png&quot;);</span><br><span class="line"></span><br><span class="line">  //隐藏箭头图标</span><br><span class="line">  &gt; i &#123;</span><br><span class="line">    display: none;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &amp;.back-to-top-on &#123;</span><br><span class="line">    bottom: unset;</span><br><span class="line">    top: 100vh &lt; (900px + 200px) ? calc( 100vh - 900px - 200px ) : 0px;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -362,10 +363,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1>JavaScript</h1>
-<ul>
-<li>
-<p>学习目标</p>
+          <h1 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h1><ul>
+<li><p>学习目标</p>
 <ul>
 <li>了解JavaScript脚本语言的特性</li>
 <li>掌握JavaScript语言的基本语法</li>
@@ -463,9 +462,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1>HTML&amp;CSS</h1>
-<h3 id="学习目标-3">学习目标</h3>
-<ul>
+          <h1 id="HTML-amp-CSS"><a href="#HTML-amp-CSS" class="headerlink" title="HTML&amp;CSS"></a>HTML&amp;CSS</h1><h3 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h3><ul>
 <li>掌握服务器和客户端的概念</li>
 <li>了解常见的服务器分类和软件</li>
 <li>掌握HTML语言语法规则</li>
@@ -566,35 +563,34 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1>连接池&amp;DBUtils&amp;事务</h1>
-<p>学习目标</p>
+          <h1 id="连接池-amp-DBUtils-amp-事务"><a href="#连接池-amp-DBUtils-amp-事务" class="headerlink" title="连接池&amp;DBUtils&amp;事务"></a>连接池&amp;DBUtils&amp;事务</h1><p>学习目标</p>
 <ul>
-<li>
-<p>[ ] 了解连接池实现原理</p>
+<li><p><input disabled type="checkbox"> 
+了解连接池实现原理</p>
 </li>
-<li>
-<p>[ ] 能够自定义连接池工具类</p>
+<li><p><input disabled type="checkbox"> 
+能够自定义连接池工具类</p>
 </li>
-<li>
-<p>[ ] 能够使用QueryRunner实现增删改</p>
+<li><p><input disabled type="checkbox"> 
+能够使用QueryRunner实现增删改</p>
 </li>
-<li>
-<p>[ ] 能够使用QueryRunner实现查询</p>
+<li><p><input disabled type="checkbox"> 
+能够使用QueryRunner实现查询</p>
 </li>
-<li>
-<p>[ ] 理解事务的概念</p>
+<li><p><input disabled type="checkbox"> 
+理解事务的概念</p>
 </li>
-<li>
-<p>[ ] 能够使用原生态JDBC事务</p>
+<li><p><input disabled type="checkbox"> 
+能够使用原生态JDBC事务</p>
 </li>
-<li>
-<p>[ ] 掌握QueryRunner事务操作</p>
+<li><p><input disabled type="checkbox"> 
+掌握QueryRunner事务操作</p>
 </li>
-<li>
-<p>[ ] 了解经典三层架构</p>
+<li><p><input disabled type="checkbox"> 
+了解经典三层架构</p>
 </li>
-<li>
-<p>[ ] 嫩能够使用三层架构完成转账案例</p></li></ul>
+<li><p><input disabled type="checkbox"> 
+嫩能够使用三层架构完成转账案例</p></li></ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/06/17/atguigu/MySQL_Day4/#more" rel="contents">
@@ -677,53 +673,46 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1>Hexo使用aPlayer</h1>
-<h2 id="安装-hexo-tag-aplayer-插件">安装 hexo-tag-aplayer 插件</h2>
-<p>1.在node_modules中找到aplayer文件夹即为安装成功</p>
+          <h1 id="Hexo使用aPlayer"><a href="#Hexo使用aPlayer" class="headerlink" title="Hexo使用aPlayer"></a>Hexo使用aPlayer</h1><h2 id="安装-hexo-tag-aplayer-插件"><a href="#安装-hexo-tag-aplayer-插件" class="headerlink" title="安装 hexo-tag-aplayer 插件"></a>安装 hexo-tag-aplayer 插件</h2><p>1.在node_modules中找到aplayer文件夹即为安装成功</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-tag-aplayer</span><br></pre></td></tr></table></figure>
+
 <p>2.最新版的 hexo-tag-aplayer 已经支持了MetingJS的使用，可以直接解析网络平台的歌曲（但是不稳定），首先要在站点配置文件中开启meting模式，添加以下代码在配置文件的最后：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">aplayer:</span><br><span class="line">  meting: true</span><br></pre></td></tr></table></figure>
-<p>3.在hexo-theme-next\layout中找到_layout.swig（在新版本中叫做_layout.njk，不过本质都是一样的），在其body中添加以下代码：</p>
+
+<p>  3.在hexo-theme-next\layout中找到_layout.swig（在新版本中叫做_layout.njk，不过本质都是一样的），在其body中添加以下代码：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--音乐--&gt;</span><br><span class="line">  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css&quot;&gt;</span><br><span class="line">  &lt;script src=&quot;https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;script src=&quot;https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;div id=&quot;player&quot; class=&quot;aplayer aplayer-withlist aplayer-fixed&quot; data-id=&quot;7490247800&quot; data-server=&quot;netease&quot; data-type=&quot;playlist&quot; data-order=&quot;random&quot; data-fixed=&quot;true&quot; data-listfolded=&quot;true&quot; data-theme=&quot;#2D8CF0&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
 <p>其中data-id为歌单的外链，注意不是id，且歌单中不能有vip歌曲。生成外链有两种方法：</p>
 <ul>
 <li>将歌单分享到动态里再查看动态，就可以复制了。</li>
 </ul>
 <p><img src="/images/hexo_aplayer/1.png" alt="3"></p>
 <ul>
-<li>将歌单的id替换此链接里的https://music.163.com/#/outchain/0/id/</li>
+<li>将歌单的id替换此链接里的<a target="_blank" rel="noopener" href="https://music.163.com/#/outchain/0/id/">https://music.163.com/#/outchain/0/id/</a></li>
 </ul>
 <p>这是几种方法里最简单而且稳定的了，缺点在于不能听vip歌曲。两外两种分别是写music.js和和使用MetingJS新功能，但是前者麻烦而且中文会产生乱码问题，故不多做介绍。</p>
-<h3 id="MeingJS-支持-3-0-新功能">MeingJS 支持 (3.0 新功能)</h3>
-<ol>
-<li>
-<p>改方法简单好看，但是不实用。首先安装hexo-tag-aplayer插件并将meting设为true，与上文相同不再赘述。</p>
+<h3 id="MeingJS-支持-3-0-新功能"><a href="#MeingJS-支持-3-0-新功能" class="headerlink" title="MeingJS 支持 (3.0 新功能)"></a>MeingJS 支持 (3.0 新功能)</h3><ol>
+<li><p>改方法简单好看，但是不实用。首先安装hexo-tag-aplayer插件并将meting设为true，与上文相同不再赘述。</p>
 </li>
-<li>
-<p>新建页面为playlist</p>
+<li><p>新建页面为playlist</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page playlist</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>这时候在 /Hexo/source 文件夹下会生成一个playlist文件夹，<a target="_blank" rel="noopener" href="http://xn--index-hr2j95qs50c4k3cuxl.md">打开里面的index.md</a>，修改如下：</p>
+<li><p>这时候在 &#x2F;Hexo&#x2F;source 文件夹下会生成一个playlist文件夹，打开里面的index.md，修改如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: playlist</span><br><span class="line">date: 2022-06-16 17:02:30</span><br><span class="line">type: &quot;playlist&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>打开主题的 _config.yml文件，在menu下新建一个名为playlist的类（注意这里使用的图标是图标库中的图标，网址为 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=http%3A%2F%2Fwww.fontawesome.com.cn%2Ffaicons%2F">http://www.fontawesome.com.cn/faicons/</a> 。可以选择自己喜欢的图标，参考：playlist: /playlist/ || fa fa-music）。完成后如下所示：</p>
+<li><p>打开主题的 _config.yml文件，在menu下新建一个名为playlist的类（注意这里使用的图标是图标库中的图标，网址为 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=http://www.fontawesome.com.cn/faicons/">http://www.fontawesome.com.cn/faicons/</a> 。可以选择自己喜欢的图标，参考：playlist: &#x2F;playlist&#x2F; || fa fa-music）。完成后如下所示：</p>
 </li>
 </ol>
 <img src="/images/hexo_aplayer/2.png" alt="2" style="zoom:80%;">
+
 <ol start="5">
-<li>
-<p>复制歌单的链接，然后复制歌单的id，例如 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https%3A%2F%2Fmusic.163.com%2Fplaylist%3Fid%3D523845661%26userid%3D46562117">https://music.163.com/playlist?id=523845661&amp;userid=46562117</a> ，这个歌单的id就是523845661，公司名可以是tencent、netease或是其他公司，下面给出一个例子，打开 /Hexo/source/playlist/<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=http%3A%2F%2Findex.md">index.md</a>文件，输入：</p>
+<li><p>复制歌单的链接，然后复制歌单的id，例如 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://music.163.com/playlist?id=523845661&userid=46562117">https://music.163.com/playlist?id=523845661&userid=46562117</a> ，这个歌单的id就是523845661，公司名可以是tencent、netease或是其他公司，下面给出一个例子，打开 &#x2F;Hexo&#x2F;source&#x2F;playlist&#x2F;<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=http://index.md">index.md</a>文件，输入：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% meting &quot;7490247800&quot; &quot;netease&quot; &quot;playlist&quot; &quot;theme:#FF4081&quot; &quot;mode:circulation&quot; &quot;mutex:true&quot; &quot;listmaxheight:340px&quot; &quot;preload:auto&quot; %&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>效果如下<img src="/images/hexo_aplayer/3.png" alt="3"></p>
+<li><p>效果如下<img src="/images/hexo_aplayer/3.png" alt="3"></p>
 </li>
-<li>
-<p>若站内跳转页面会中断音乐，打开pjax即可。在主题_config.xml中将pjax设为true</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Easily enable fast Ajax navigation on your website.</span><br><span class="line"># For more information: https://github.com/next-theme/pjax</span><br><span class="line">pjax: true</span><br></pre></td></tr></table></figure>
-</li>
+<li><p>若站内跳转页面会中断音乐，打开pjax即可。在主题_config.xml中将pjax设为true</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Easily enable fast Ajax navigation on your website.</span><br><span class="line"># For more information: https://github.com/next-theme/pjax</span><br><span class="line">pjax: true</span><br></pre></td></tr></table></figure></li>
 </ol>
 
       
@@ -800,15 +789,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1>Hexo deploy fail</h1>
-<ol>
-<li>
-<p>进入姘居管理器，选择Windows凭据，讲里面的git删掉。</p>
+          <h1 id="Hexo-deploy-fail"><a href="#Hexo-deploy-fail" class="headerlink" title="Hexo deploy fail"></a>Hexo deploy fail</h1><ol>
+<li><p>进入姘居管理器，选择Windows凭据，讲里面的git删掉。</p>
 </li>
-<li>
-<p>若1之后还不行，试一下下面命令后重新部署。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.sslVerify &quot;false&quot;</span><br></pre></td></tr></table></figure>
-</li>
+<li><p>若1之后还不行，试一下下面命令后重新部署。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.sslVerify &quot;false&quot;</span><br></pre></td></tr></table></figure></li>
 </ol>
 
       
@@ -894,18 +879,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1>MySQL_Day3</h1>
+          <h1 id="MySQL-Day3"><a href="#MySQL-Day3" class="headerlink" title="MySQL_Day3"></a>MySQL_Day3</h1><ul>
+<li><p>学习目标</p>
 <ul>
-<li>
-<p>学习目标</p>
-<ul>
-<li>[ ] 能够使用DCL语言创建账户并授权</li>
-<li>[ ] 理解JDBC的概念</li>
-<li>[ ] 理解JDBC驱动的作用</li>
-<li>[ ] 使用JDBC技术实现CRUD</li>
-<li>[ ] 能够自定义JDBC连接工具类</li>
-<li>[ ] 能够防止SQL注入攻击</li>
-<li>[ ] 能够说出PreparedStatement接口的特点</li>
+<li><input disabled type="checkbox"> 能够使用DCL语言创建账户并授权</li>
+<li><input disabled type="checkbox"> 理解JDBC的概念</li>
+<li><input disabled type="checkbox"> 理解JDBC驱动的作用</li>
+<li><input disabled type="checkbox"> 使用JDBC技术实现CRUD</li>
+<li><input disabled type="checkbox"> 能够自定义JDBC连接工具类</li>
+<li><input disabled type="checkbox"> 能够防止SQL注入攻击</li>
+<li><input disabled type="checkbox"> 能够说出PreparedStatement接口的特点</li>
 </ul></li></ul>
           <!--noindex-->
             <div class="post-button">
@@ -998,22 +981,19 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="String与intern方法">String与intern方法</h2>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str1</span> <span class="operator">=</span> <span class="string">&quot;a&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="string">&quot;b&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str3</span> <span class="operator">=</span> <span class="string">&quot;ab&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str4</span> <span class="operator">=</span> str1 + str2;</span><br><span class="line"><span class="type">String</span> <span class="variable">str5</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;ab&quot;</span>);</span><br><span class="line"> </span><br><span class="line">System.out.println(str5.equals(str3));</span><br><span class="line">System.out.println(str5 == str3);</span><br><span class="line">System.out.println(str5.intern() == str3);</span><br><span class="line">System.out.println(str5.intern() == str4);</span><br></pre></td></tr></table></figure>
+          <h2 id="String与intern方法"><a href="#String与intern方法" class="headerlink" title="String与intern方法"></a>String与intern方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str1</span> <span class="operator">=</span> <span class="string">&quot;a&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="string">&quot;b&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str3</span> <span class="operator">=</span> <span class="string">&quot;ab&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str4</span> <span class="operator">=</span> str1 + str2;</span><br><span class="line"><span class="type">String</span> <span class="variable">str5</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;ab&quot;</span>);</span><br><span class="line"> </span><br><span class="line">System.out.println(str5.equals(str3));</span><br><span class="line">System.out.println(str5 == str3);</span><br><span class="line">System.out.println(str5.intern() == str3);</span><br><span class="line">System.out.println(str5.intern() == str4);</span><br></pre></td></tr></table></figure>
+
 <p>得到的结果是</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">true</span></span><br><span class="line"><span class="literal">false</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line"><span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>
-<p>一、因为字符串内容i相等。</p>
+<li><p>一、因为字符串内容i相等。</p>
 </li>
-<li>
-<p>二、对比的是引用值，因为str5采用的是new定义，地址可能不一样。</p>
+<li><p>二、对比的是引用值，因为str5采用的是new定义，地址可能不一样。</p>
 </li>
-<li>
-<p>三、当str5调用intern的时候，会检查字符串池中是否含有该字符串。由于之前定义的str3已经进入字符串池中，所以会得到相同的引用。</p>
+<li><p>三、当str5调用intern的时候，会检查字符串池中是否含有该字符串。由于之前定义的str3已经进入字符串池中，所以会得到相同的引用。</p>
 </li>
-<li>
-<p>四、请看下段代码进一步分析。</p></li></ul>
+<li><p>四、请看下段代码进一步分析。</p></li></ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/06/14/2022/06/String_intern_final/#more" rel="contents">
@@ -1105,37 +1085,36 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="学习目标">学习目标</h2>
-<ul>
-<li>
-<p>[ ] 了解数据表设计三范式</p>
+          <h2 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h2><ul>
+<li><p><input disabled type="checkbox"> 
+了解数据表设计三范式</p>
 </li>
-<li>
-<p>[ ] 能够创建主键约束</p>
+<li><p><input disabled type="checkbox"> 
+能够创建主键约束</p>
 </li>
-<li>
-<p>[ ] 能够创建唯一约束</p>
+<li><p><input disabled type="checkbox"> 
+能够创建唯一约束</p>
 </li>
-<li>
-<p>[ ] 能够创建外键约束</p>
+<li><p><input disabled type="checkbox"> 
+能够创建外键约束</p>
 </li>
-<li>
-<p>[ ] 建立一对多关系</p>
+<li><p><input disabled type="checkbox"> 
+建立一对多关系</p>
 </li>
-<li>
-<p>[ ] 能够建立多对多关系</p>
+<li><p><input disabled type="checkbox"> 
+能够建立多对多关系</p>
 </li>
-<li>
-<p>[ ] 能够使用内连接查询</p>
+<li><p><input disabled type="checkbox"> 
+能够使用内连接查询</p>
 </li>
-<li>
-<p>[ ] 能够使用左外连接查询</p>
+<li><p><input disabled type="checkbox"> 
+能够使用左外连接查询</p>
 </li>
-<li>
-<p>[ ] 能够使用右外连接查询</p>
+<li><p><input disabled type="checkbox"> 
+能够使用右外连接查询</p>
 </li>
-<li>
-<p>[ ] 能够使用子查询</p></li></ul>
+<li><p><input disabled type="checkbox"> 
+能够使用子查询</p></li></ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/06/14/atguigu/MySQL_day2/#more" rel="contents">
@@ -1227,31 +1206,30 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="学习目标-2">学习目标</h2>
-<ul>
-<li>
-<p>[ ] 能够理解数据库的概念</p>
+          <h2 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h2><ul>
+<li><p><input disabled type="checkbox"> 
+能够理解数据库的概念</p>
 </li>
-<li>
-<p>[ ] 能够安装MySQL数据库</p>
+<li><p><input disabled type="checkbox"> 
+能够安装MySQL数据库</p>
 </li>
-<li>
-<p>[ ] 能够启动,关闭及登录MySQL</p>
+<li><p><input disabled type="checkbox"> 
+能够启动,关闭及登录MySQL</p>
 </li>
-<li>
-<p>[ ] 能够使用SQL语句操作数据库</p>
+<li><p><input disabled type="checkbox"> 
+能够使用SQL语句操作数据库</p>
 </li>
-<li>
-<p>[ ] 能够使用SQL语句操作表结构</p>
+<li><p><input disabled type="checkbox"> 
+能够使用SQL语句操作表结构</p>
 </li>
-<li>
-<p>[ ] 能够使用SQL语句进行数据的添加修改和删除的操作</p>
+<li><p><input disabled type="checkbox"> 
+能够使用SQL语句进行数据的添加修改和删除的操作</p>
 </li>
-<li>
-<p>[ ] 能够使用SQL语句添加约束</p>
+<li><p><input disabled type="checkbox"> 
+能够使用SQL语句添加约束</p>
 </li>
-<li>
-<p>[ ] 使用select语句进行数据查询</p></li></ul>
+<li><p><input disabled type="checkbox"> 
+使用select语句进行数据查询</p></li></ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/06/14/atguigu/MySQL_day1/#more" rel="contents">
