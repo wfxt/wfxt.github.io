@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -212,6 +212,113 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/28/atguigu/day34%20Thymeleaf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Alcander-2.jpg">
+      <meta itemprop="name" content="wfxt">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alcander's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Alcander's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/06/28/atguigu/day34%20Thymeleaf/" class="post-title-link" itemprop="url">Thymeleaf入门</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-06-28 09:16:26 / Modified: 09:20:47" itemprop="dateCreated datePublished" datetime="2022-06-28T09:16:26+08:00">2022-06-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Atguigu/" itemprop="url" rel="index"><span itemprop="name">Atguigu</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>Thmeleaf</h1>
+<h1>第一章 Thymeleaf入门</h1>
+<h2 id="1-1-MVC设计模式">1.1 MVC设计模式</h2>
+<h3 id="1-1-1-为什么需要MVC">1.1.1 为什么需要MVC</h3>
+<p>我们之前在书城项目第二阶段做登录的时候，曾经提出过<strong>优化登录失败后的处理</strong>，曾经编写过下面这段代码</p>
+<p>![](/images/day34 Thymeleaf/img002.png)</p>
+<p>这段代码虽然说可以实现在登录失败之后跳转回到登录页面，并且展示失败信息，但是代码实在是太恶心了，根本没法维护，所以我们需要将视图展示抽取出来，单独作为一个View视图层</p>
+<p>但是我们如果只使用HTML作为视图的话，它是无法展示动态数据的，所以我们对HTML的新的期待：既能够正常显示页面，又能在页面中包含动态数据部分。而动态数据单靠HTML本身是无法做到的，所以此时我们需要引入服务器端动态视图模板技术。</p>
+<h3 id="1-1-2-MVC概念">1.1.2 MVC概念</h3>
+<p>M：Model模型</p>
+<p>V：View视图</p>
+<p>C：Controller控制器</p>
+<p>MVC是在表述层开发中运用的一种设计理念。主张把<strong>封装数据的『模型』</strong>、<strong>显示用户界面的『视图』</strong>、**协调调度的『控制器』**分开。</p>
+<p>好处：</p>
+<ul>
+<li>进一步实现各个组件之间的解耦</li>
+<li>让各个组件可以单独维护</li>
+<li>将视图分离出来以后，我们后端工程师和前端工程师的对接更方便</li>
+</ul>
+<h2 id="1-2-Thymeleaf的简介">1.2 Thymeleaf的简介</h2>
+<h3 id="1-2-1-Thymeleaf的概念">1.2.1 Thymeleaf的概念</h3>
+<p>Thymeleaf是一款用于渲染XML/XHTML/HTML5内容的模板引擎。类似JSP，Velocity，FreeMaker等， 它也可以轻易的与Spring MVC等Web框架进行集成作为Web应用的模板引擎。它的主要作用是在静态页面上渲染显示动态数据</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/06/28/atguigu/day34%20Thymeleaf/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1053,103 +1160,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/06/20/atguigu/day29_JavaScript/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/20/atguigu/day28_HTML&CSS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Alcander-2.jpg">
-      <meta itemprop="name" content="wfxt">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/20/atguigu/day28_HTML&CSS/" class="post-title-link" itemprop="url">day28  HTML&CSS</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-06-20 17:59:28 / Modified: 21:20:03" itemprop="dateCreated datePublished" datetime="2022-06-20T17:59:28+08:00">2022-06-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Atguigu/" itemprop="url" rel="index"><span itemprop="name">Atguigu</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1>HTML&amp;CSS</h1>
-<h3 id="学习目标-3">学习目标</h3>
-<ul>
-<li>掌握服务器和客户端的概念</li>
-<li>了解常见的服务器分类和软件</li>
-<li>掌握HTML语言语法规则</li>
-<li>能够熟练运用常用的标签</li>
-<li>能够完全掌握表单标签的使用</li>
-<li>理解CSS的作用</li>
-<li>掌握CSS的选择器</li>
-<li>了解CSS的常用属性</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/06/20/atguigu/day28_HTML&CSS/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
