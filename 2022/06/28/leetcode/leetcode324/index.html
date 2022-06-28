@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/16.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"bounceIn","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="324.摆动排序II  题目描述： 给你一个整数数组 nums，将它重新排列成 nums[0] &lt; nums[1] &gt; nums[2] &lt; nums[3]... 的顺序。  示例一： 123输入：nums &#x3D; [1,5,1,1,6,4]输出：[1,6,1,5,1,4]解释：[1,4,1,5,1,6] 同样是符合题目要求的结果，可以被判题程序接受。 示例二： 12输入：nums &#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode324 摆动排序II">
+<meta property="og:url" content="http://example.com/2022/06/28/leetcode/leetcode324/index.html">
+<meta property="og:site_name" content="Alcander&#39;s Blog">
+<meta property="og:description" content="324.摆动排序II  题目描述： 给你一个整数数组 nums，将它重新排列成 nums[0] &lt; nums[1] &gt; nums[2] &lt; nums[3]... 的顺序。  示例一： 123输入：nums &#x3D; [1,5,1,1,6,4]输出：[1,6,1,5,1,4]解释：[1,4,1,5,1,6] 同样是符合题目要求的结果，可以被判题程序接受。 示例二： 12输入：nums &#x3D;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-28T02:49:34.294Z">
+<meta property="article:modified_time" content="2022-06-28T07:12:18.614Z">
+<meta property="article:author" content="wfxt">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2022/06/28/leetcode/leetcode324/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/06/28/leetcode/leetcode324/","path":"2022/06/28/leetcode/leetcode324/","title":"leetcode324 摆动排序II"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>leetcode324 摆动排序II | Alcander's Blog</title>
+  
+
+
+
+
+<script src="/lib/fireworks.js"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion" >
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alcander's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-playlist"><a href="/playlist/" rel="section"><i class="fa fa-music fa-fw"></i>playlist</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">324.摆动排序II</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E6%8E%92%E5%BA%8F"><span class="nav-number">1.1.</span> <span class="nav-text">方法一：排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E4%B8%89%E5%90%91%E5%88%87%E5%88%86%EF%BC%883-way-partition%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">方法二：三向切分（3-way-partition）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%89%EF%BC%9A%E7%B4%A2%E5%BC%95%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.3.</span> <span class="nav-text">方法三：索引转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E5%9B%9B%EF%BC%9A%E9%80%92%E5%BD%92%E4%BC%98%E5%8C%96"><span class="nav-number">1.4.</span> <span class="nav-text">方法四：递归优化</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="wfxt"
+      src="/images/Alcander-2.jpg">
+  <p class="site-author-name" itemprop="name">wfxt</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wfxt" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wfxt" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:z812552849@gmail.com" title="E-Mail → mailto:z812552849@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/wwfxt" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;wwfxt" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/HallLee71350824" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;HallLee71350824" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/z812552849" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;z812552849" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/28/leetcode/leetcode324/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Alcander-2.jpg">
+      <meta itemprop="name" content="wfxt">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alcander's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="leetcode324 摆动排序II | Alcander's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          leetcode324 摆动排序II<a href="https://github.com/wfxt/wfxt.github.io_posts/leetcode/leetcode324.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-06-28 10:49:34 / Modified: 15:12:18" itemprop="dateCreated datePublished" datetime="2022-06-28T10:49:34+08:00">2022-06-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1>324.摆动排序II</h1>
+<blockquote>
+<p>题目描述：</p>
+<p>给你一个整数数组 <code>nums</code>，将它重新排列成 <code>nums[0] &lt; nums[1] &gt; nums[2] &lt; nums[3]...</code> 的顺序。</p>
+</blockquote>
+<p><strong>示例一：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [1,5,1,1,6,4]</span><br><span class="line">输出：[1,6,1,5,1,4]</span><br><span class="line">解释：[1,4,1,5,1,6] 同样是符合题目要求的结果，可以被判题程序接受。</span><br></pre></td></tr></table></figure>
+<p><strong>示例二：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [1,3,2,2,3,1]</span><br><span class="line">输出：[2,3,1,3,1,2]</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 5 * 104</code></li>
+<li><code>0 &lt;= nums[i] &lt;= 5000</code></li>
+<li>题目数据保证，对于给定的输入 <code>nums</code> ，总能产生满足题目要求的结果</li>
+</ul>
+<span id="more"></span>
+<h2 id="方法一：排序">方法一：排序</h2>
+<p>首先，我们可以很容易想到一种简单的解法：将数组进行排序，然后从中间位置进行等分（如果数组长度为奇数，则将中间的元素分到前面），然后将两个数组进行穿插。<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/wiggle-sort-ii/solution/yi-bu-yi-bu-jiang-shi-jian-fu-za-du-cong-onlognjia/">参考HexCat的题解</a></p>
+<blockquote>
+<p>例如：<br>
+对于数组[1, 5, 2, 4, 3]，我们将其排序，得到[1, 2, 3, 4, 5]，然后将其分割为[1, 2, 3]和[4, 5]，对两个数组进行穿插，得到[1, 4, 2, 5, 3]。</p>
+</blockquote>
+<p>但是这一解法有一个问题，例如，对于数组<code>[1, 2, 2, 3]</code>，按照这种做法求得的结果仍为<code>[1, 2, 2, 3]</code>。如果题目不要求各元素严格大于或小于相邻元素，即，只要求<code>nums[0] &lt;= nums[1] &gt;= nums[2] &lt;= nums[3]...</code>，那么这一解法是符合要求的，但题目要求元素相互严格大于或小于，那么需要稍微做一点改进。</p>
+<p>为了方便阅读，我们在下文中定义较小的子数组为数组A，较大的子数组为数组B。显然，出现上述现象是因为<code>nums</code>中存在重复元素。实际上，由于穿插之后，相邻元素必来自不同子数组，所以A或B内部出现重复元素是不会出现上述现象的。所以，出现上述情况其实是因为数组A和数组B出现了相同元素，我们用r来表示这一元素。而且我们可以很容易发现，如果A和B都存在r，那么r一定是A的最大值，B的最小值，这意味着r一定出现在A的尾部，B的头部。其实，如果这一数字的个数较少，不会出现这一现象，只有当这一数字个数达到原数组元素总数的一半，才会在穿插后的出现在相邻位置。以下举几个例子进行形象地说明：</p>
+<p>例如，对于数组<code>[1,1,2,2,3,3]</code>,分割为<code>[1,1,2]</code>和<code>[2,3,3]</code>，虽然A和B都出现了2，但穿插后为<code>[1,2,1,3,2,3]</code>，满足要求。<br>
+而如果2的个数再多一些，即<code>[1,1,2,2,2,3]</code>，分割为[1,1,2]和[2,2,3]，最终结果为<code>[1,2,1,2,2,3]</code>，来自A的2和来自B的2出现在了相邻位置。</p>
+<p>出现这一问题是因为重复数在A和B中的位置决定的，因为r在A尾部，B头部，所以如果r个数太多（大于等于<code>(length(nums) + 1)/2）</code>，就可能在穿插后相邻。要解决这一问题，我们需要使A的r和B的r在穿插后尽可能分开。一种可行的办法是将A和B反序：</p>
+<p>例如，对于数组<code>[1,1,2,2,2,3]</code>，分割为<code>[1,1,2]</code>和<code>[2,2,3]</code>，分别反序后得到<code>[2, 1, 1]</code>和<code>[3, 2, 2]</code>，此时2在A头部，B尾部，穿插后就不会发生相邻了。</p>
+<p>当然，这只能解决r的个数等于<code>(length(nums) + 1)/2</code>的情况，如果r的个数大于<code>(length(nums) + 1)/2</code>，还是会出现相邻。但实际上，这种情况是不存在有效解的，也就是说，这种数组对于本题来说是非法的。</p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">wiggleSort</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[] tmp = Arrays.copyOf(nums, nums.length);</span><br><span class="line">        Arrays.sort(tmp);</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> tmp.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> (n + <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">p</span> <span class="operator">=</span> <span class="number">0</span>, i = mid - <span class="number">1</span>, j = n - <span class="number">1</span>; <span class="comment">// 双指针,mid在B数组里</span></span><br><span class="line">        <span class="keyword">while</span>(i &gt;=<span class="number">0</span> || j &gt;= mid)&#123;</span><br><span class="line">            <span class="keyword">if</span>(j &gt;= <span class="number">0</span>) nums[p++] = tmp[i--];  <span class="comment">// 先放A数组</span></span><br><span class="line">            <span class="keyword">if</span>(j &gt;= mid) nums[p++] = tmp[j--];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于<code>mid</code>为什么选做<code>(n + 1) / 2</code>而不是 <code>n / 2</code>，我们可以做如下考虑。若<code>mid = n / 2</code>，则当<code>n = 1</code>时，<code>i = -1</code>，数组越界。</p>
+<p>实际上，A、B数组个数必须相同或相差1.当n为偶数时，如<code>[0,1,2,3,4,5]</code>，两边各占一半。当n为奇数时，如<code>[0,1,2,3,4,5,6]</code>，最好为A数组元素略多更好。当<code>mid = (n + 1) / 2</code>时有<code>A = [4,3,2,1,0]</code>，<code>B = [8,7,6,5]</code>,穿插为<code>[4,8,3,7,2,6,1,5,0]</code>。若<code>mid=n/2</code>，则有<code>A = [3,2,1,0]</code>，<code>B = [8,7,6,5,4]</code>，按照先A后B的穿插为<code>[3,8,2,7,1,6,0,5,4]</code>，不符合题意，若先B后A的穿插，则为<code>[8,3,7,2,6,1,5,0,4]</code>，因此还需要一次额外的反转。所以，为了代码书写的便捷，我们考虑设<code>mid = (n + 1) / 2</code>，且mid元素在B数组中。</p>
+<p><strong>复杂度分析：</strong></p>
+<ul>
+<li>时间复杂度：进行了排序和一次遍历，复杂度为<em>O</em>(<em>nlogn</em>)</li>
+<li>空间复杂度：需要对元素组进行一次拷贝，复杂度为<em>O</em>(<em>n</em>)</li>
+</ul>
+<h2 id="方法二：三向切分（3-way-partition）">方法二：三向切分（3-way-partition）</h2>
+<p>在上一解中复杂度为<em>O</em>(<em>nlogn</em>)因为用到了排序，但我们发现，我们实际上对A、B内部的顺序并不感兴趣，只有满足上面所述的大小及长度关系即可。因此我们可以采用快速选择法找到中间数，具体可以参考<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/kth-largest-element-in-an-array/">215. 数组中的第K个最大元素</a>中的快速排序的选择算法，该算法可以在<em>O</em>(<em>n</em>)内完成排序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="type">Random</span> <span class="variable">random</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">wiggleSort</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> nums.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> (n + <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> x - <span class="number">1</span>; <span class="comment">// mid在左半边</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">target</span> <span class="operator">=</span> findKthLargest(nums, n - mid);</span><br><span class="line">        <span class="type">int</span> <span class="variable">p</span> <span class="operator">=</span> <span class="number">0</span>, l = <span class="number">0</span>, r = n - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (p &lt;= r) &#123;  <span class="comment">// 类似快排，分成了&#123;比target小的&#125;&#123;target及相等的&#125;&#123;比Target大的&#125;</span></span><br><span class="line">            <span class="keyword">if</span> (nums[p] &gt; target) &#123;</span><br><span class="line">                <span class="keyword">while</span> (r &gt; p &amp;&amp; nums[r] &gt; target) &#123;</span><br><span class="line">                    r--;</span><br><span class="line">                &#125;</span><br><span class="line">                swap(nums, p, r--);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (nums[p] &lt; target) &#123;</span><br><span class="line">                swap(nums, p, l++);</span><br><span class="line">            &#125;</span><br><span class="line">            p++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span>[] arr = nums.clone();</span><br><span class="line">        <span class="comment">// for (int i = 0, j = mid, k = n - 1; i &lt; n; i += 2, j--, k--) &#123;</span></span><br><span class="line">        <span class="comment">//     nums[i] = arr[j];</span></span><br><span class="line">        <span class="comment">//     if (i + 1 &lt; n) &#123;</span></span><br><span class="line">        <span class="comment">//         nums[i + 1] = arr[k];</span></span><br><span class="line">        <span class="comment">//     &#125;</span></span><br><span class="line">        <span class="comment">// &#125;</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">q</span> <span class="operator">=</span> <span class="number">0</span>, i = mid, j = n - <span class="number">1</span>; </span><br><span class="line">        <span class="keyword">while</span>(i &gt;= <span class="number">0</span> || q &lt; n)&#123;</span><br><span class="line">            <span class="keyword">if</span>(j &gt;= <span class="number">0</span>) nums[q++] = arr[i--]; <span class="comment">// 先存小的</span></span><br><span class="line">            <span class="keyword">if</span>(q &lt; n) nums[q++] = arr[j--];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">findKthLargest</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> quickSelect(nums, <span class="number">0</span>, nums.length - <span class="number">1</span>, nums.length - k);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">quickSelect</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> index)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">q</span> <span class="operator">=</span> randomPartition(a, l, r);</span><br><span class="line">        <span class="keyword">if</span> (q == index) &#123;</span><br><span class="line">            <span class="keyword">return</span> a[q];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> q &lt; index ? quickSelect(a, q + <span class="number">1</span>, r, index) : quickSelect(a, l, q - <span class="number">1</span>, index);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">randomPartition</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> l, <span class="type">int</span> r)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> random.nextInt(r - l + <span class="number">1</span>) + l;</span><br><span class="line">        swap(a, i, r);</span><br><span class="line">        <span class="keyword">return</span> partition(a, l, r);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">partition</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> l, <span class="type">int</span> r)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> a[r], i = l - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> l; j &lt; r; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[j] &lt;= x) &#123;</span><br><span class="line">                swap(a, ++i, j);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        swap(a, i + <span class="number">1</span>, r);</span><br><span class="line">        <span class="keyword">return</span> i + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> i, <span class="type">int</span> j)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> a[i];</span><br><span class="line">        a[i] = a[j];</span><br><span class="line">        a[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析：</strong></p>
+<ul>
+<li>时间复杂度：<em>O</em>(<em>n</em>)，其中 <em>n</em> 为数组的长度。找到数组中排序为 <em>k</em> 的数需要的时间复杂度为<em>O</em>(<em>n</em>)，对数组进行三向切分需要的时间复杂度为 <em>O</em>(<em>n</em>)，对数组进行摆放的时间的复杂度为 <em>O</em>(<em>n</em>)，总的时间复杂度为<em>O</em>(<em>n</em>)。</li>
+<li>空间复杂度：因为对数组进行了拷贝，因此复杂度为<em>O</em>(<em>n</em>)。</li>
+</ul>
+<h2 id="方法三：索引转换">方法三：索引转换</h2>
+<p>此解法为方法一或者方法二的基础上的优化（数学组大胜利）。假设当前数组进行 <em>partition</em> 后的顺序为：<br>
+<code>nums[0],⋯,nums[i]⋯,nums[mid],⋯,nums[i],⋯,nums[n−1]</code></p>
+<p>设数组长度 <em>n</em> ，令 <code>x = (n + 1) / 2</code>，我们分为两种情况来讨论：</p>
+<p>当 <em>n</em> 为偶数时，此时我们已知摆动排序后的顺序为：<br>
+<code>nums[mid]&lt;nums[n−1]&gt;nums[mid−1]⋯nums[1]&lt;nums[mid+2]&gt;nums[0]&lt;nums[mid+1]</code></p>
+<p>我们可以观察到原数组的元素索引 <em>[0,1,2,⋯,n−1]</em> 在新数组中的索引分别为：<br>
+<code>n−2,n−4,⋯,0,n−1,n−3,⋯,1</code></p>
+<p>根据观察我们可以发现，如下转换关系：</p>
+<p>当原数组的索引 <em>i&lt;x</em> 时：其在新数组中对应的索引为<em>n−2×(i+1)</em>。</p>
+<p>当 <em>i≥x</em> 时：其在新数组中对应的索引为<code>n−2×(i−x)−1=n−2×i+2×x−1=n−2×(i+1)+n+1</code>。</p>
+<p>我们可以将上述式子进行合并可以得到：对于原数组的第 <em>i</em> 个元素，在新数组中对应的元素索引为<code>(n+1)(n−2×(i+1)+n+1)mod(n+1)=(2×n−2×i−1)mod(n+1)</code></p>
+<p>当 <em>n</em> 为奇数时，此时我们已知摆动排序后的顺序为：<br>
+<code>nums[mid]&lt;nums[n−1]&gt;nums[mid−1]⋯nums[1]&lt;nums[mid+1]&gt;nums[0]</code></p>
+<p>我们可以观察到原数组的元素索引[0,1,2,⋯,n−1] 在新数组中的索引分别为：<br>
+<code>n−1,n−3,⋯,0,n−2,n−4,⋯,1</code></p>
+<p>根据观察我们可以发现如下转换关系：</p>
+<p>当原数组的索引 <code>i&lt;x </code>时：其在新数组中对应的索引为 <code>n−1−2×i</code></p>
+<p>当 <em>i≥x</em> 时：其在新数组中对应的索引为<code>n−2×(i−x)−2=n−2×i+2×x−2=n−1−2×i+n</code>。</p>
+<p>我们可以将上述式子进行合并可以得到：对于原数组的第 <em>i</em>个元素，在新数组中对应的元素索引为<code>(n-1-2*i+n)%n=(2*n-2*i-1)%n</code></p>
+<p>综上我们可以对上述进行合并，当 <em>n</em> 为偶数时，<code>(2×n−2×i−1)</code> 需要对 <code>n + 1</code> 进行取模，我们可以将索引<em>i</em>的转换进行合并为<code>(2×n−2×i−1)%(n∣1)</code>，此时我们直接对摆动排序后的数组进行 <code>partition</code> 操作即可，我们按照 <code>partition </code>后的数组顺序进行遍历，然后依次进行比较交换即可，这样就避免了再次将数组进行拷贝复制。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    Random random = new Random();</span><br><span class="line"></span><br><span class="line">    public void wiggleSort(int[] nums) &#123;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        int x = (n + 1) / 2;</span><br><span class="line">        int mid = x - 1;</span><br><span class="line">        int target = findKthLargest(nums, n - mid);</span><br><span class="line">        for (int k = 0, i = 0, j = n - 1; k &lt;= j; k++) &#123;</span><br><span class="line">            if (nums[transAddress(k, n)] &gt; target) &#123;</span><br><span class="line">                while (j &gt; k &amp;&amp; nums[transAddress(j, n)] &gt; target) &#123;</span><br><span class="line">                    j--;</span><br><span class="line">                &#125;</span><br><span class="line">                swap(nums, transAddress(k, n), transAddress(j--, n));</span><br><span class="line">            &#125;</span><br><span class="line">            if (nums[transAddress(k, n)] &lt; target) &#123;</span><br><span class="line">                swap(nums, transAddress(k, n), transAddress(i++, n));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int transAddress(int i, int n) &#123;</span><br><span class="line">        return (2 * n - 2 * i - 1) % (n | 1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int findKthLargest(int[] nums, int k) &#123;</span><br><span class="line">        return quickSelect(nums, 0, nums.length - 1, nums.length - k);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int quickSelect(int[] a, int l, int r, int index) &#123;</span><br><span class="line">        int q = randomPartition(a, l, r);</span><br><span class="line">        if (q == index) &#123;</span><br><span class="line">            return a[q];</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return q &lt; index ? quickSelect(a, q + 1, r, index) : quickSelect(a, l, q - 1, index);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int randomPartition(int[] a, int l, int r) &#123;</span><br><span class="line">        int i = random.nextInt(r - l + 1) + l;</span><br><span class="line">        swap(a, i, r);</span><br><span class="line">        return partition(a, l, r);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int partition(int[] a, int l, int r) &#123;</span><br><span class="line">        int x = a[r], i = l - 1;</span><br><span class="line">        for (int j = l; j &lt; r; ++j) &#123;</span><br><span class="line">            if (a[j] &lt;= x) &#123;</span><br><span class="line">                swap(a, ++i, j);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        swap(a, i + 1, r);</span><br><span class="line">        return i + 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void swap(int[] a, int i, int j) &#123;</span><br><span class="line">        int temp = a[i];</span><br><span class="line">        a[i] = a[j];</span><br><span class="line">        a[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="方法四：递归优化">方法四：递归优化</h2>
+<p>在方法的基础上对查找第K大元素函数数进行优化，用非递归的方式实现查找第K大元素。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    Random random = new Random();</span><br><span class="line"></span><br><span class="line">    public void wiggleSort(int[] nums) &#123;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        int x = (n + 1) / 2;</span><br><span class="line">        int mid = x - 1;</span><br><span class="line">        int target = findKthLargest(nums, n - mid);</span><br><span class="line">        for (int k = 0, i = 0, j = n - 1; k &lt;= j; k++) &#123;</span><br><span class="line">            if (nums[transAddress(k, n)] &gt; target) &#123;</span><br><span class="line">                while (j &gt; k &amp;&amp; nums[transAddress(j, n)] &gt; target) &#123;</span><br><span class="line">                    j--;</span><br><span class="line">                &#125;</span><br><span class="line">                swap(nums, transAddress(k, n), transAddress(j--, n));</span><br><span class="line">            &#125;</span><br><span class="line">            if (nums[transAddress(k, n)] &lt; target) &#123;</span><br><span class="line">                swap(nums, transAddress(k, n), transAddress(i++, n));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int findKthLargest(int[] nums, int k) &#123;</span><br><span class="line">        int left = 0, right = nums.length - 1;</span><br><span class="line">        while (left &lt;= right) &#123;</span><br><span class="line">            int pivot = random.nextInt(right - left + 1) + left;</span><br><span class="line">            int newPivot = partitionAroundPivot(left, right, pivot, nums);</span><br><span class="line">            if (newPivot == k - 1) &#123;</span><br><span class="line">                return nums[newPivot];</span><br><span class="line">            &#125; else if (newPivot &gt; k - 1) &#123;</span><br><span class="line">                right = newPivot - 1;</span><br><span class="line">            &#125; else &#123; </span><br><span class="line">                left = newPivot + 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return nums[k - 1];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int transAddress(int i, int n) &#123;</span><br><span class="line">        return (2 * n - 2 * i - 1) % (n | 1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int partitionAroundPivot(int left, int right, int pivot, int[] nums) &#123;</span><br><span class="line">        int pivotValue = nums[pivot];</span><br><span class="line">        int newPivot = left;</span><br><span class="line">        swap(nums, pivot, right);</span><br><span class="line">        for (int i = left; i &lt; right; ++i) &#123;</span><br><span class="line">            if (nums[i] &gt; pivotValue) &#123;</span><br><span class="line">                swap(nums, i, newPivot++);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        swap(nums, right, newPivot);</span><br><span class="line">        return newPivot;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void swap(int[] a, int i, int j) &#123;</span><br><span class="line">        int temp = a[i];</span><br><span class="line">        a[i] = a[j];</span><br><span class="line">        a[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat.png" alt="wfxt WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="wfxt Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/06/28/atguigu/day34%20Thymeleaf/" rel="prev" title="Thymeleaf入门">
+                  <i class="fa fa-chevron-left"></i> Thymeleaf入门
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wfxt</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.2.0/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://example.com/2022/06/28/leetcode/leetcode324/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wfxt","repo":"Hexo-Comment","client_id":"9571f738aa8205b6319e","client_secret":"b956a9a1348b28f9c848905778cd299e9d1da68a","admin_user":"wfxt","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"78aec1b3ca399755f89a13c313c07e95"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+
+ <!--音乐-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
+  <div id="player" class="aplayer aplayer-withlist aplayer-fixed" data-id="7490247800" data-server="netease" data-type="playlist" data-order="random" data-fixed="true" data-listfolded="true" data-theme="#2D8CF0"></div>
+ 
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
+
+<!--崩溃欺骗-->
+<script type="text/javascript" src="/js/src/crash_cheat.js"></script>
