@@ -23,16 +23,18 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"bounceIn","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="871. 最低加油次数 871. 最低加油次数  题目描述： 汽车从起点出发驶向目的地，该目的地位于出发位置东面 target 英里处。 沿途有加油站，每个 station[i] 代表一个加油站，它位于出发位置东面 station[i][0] 英里处，并且有 station[i][1] 升汽油。 假设汽车油箱的容量是无限的，其中最初有 startFuel 升燃料。它每行驶 1 英里就会用掉 1 升">
+    <meta name="description" content="871. 最低加油次数871. 最低加油次数 题目描述： 汽车从起点出发驶向目的地，该目的地位于出发位置东面 target 英里处。 沿途有加油站，每个 station[i] 代表一个加油站，它位于出发位置东面 station[i][0] 英里处，并且有 station[i][1] 升汽油。 假设汽车油箱的容量是无限的，其中最初有 startFuel 升燃料。它每行驶 1 英里就会用掉 1 升汽油">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode871. 最低加油次数">
 <meta property="og:url" content="http://example.com/2022/07/02/leetcode/leetcode871/index.html">
 <meta property="og:site_name" content="Alcander&#39;s Blog">
-<meta property="og:description" content="871. 最低加油次数 871. 最低加油次数  题目描述： 汽车从起点出发驶向目的地，该目的地位于出发位置东面 target 英里处。 沿途有加油站，每个 station[i] 代表一个加油站，它位于出发位置东面 station[i][0] 英里处，并且有 station[i][1] 升汽油。 假设汽车油箱的容量是无限的，其中最初有 startFuel 升燃料。它每行驶 1 英里就会用掉 1 升">
+<meta property="og:description" content="871. 最低加油次数871. 最低加油次数 题目描述： 汽车从起点出发驶向目的地，该目的地位于出发位置东面 target 英里处。 沿途有加油站，每个 station[i] 代表一个加油站，它位于出发位置东面 station[i][0] 英里处，并且有 station[i][1] 升汽油。 假设汽车油箱的容量是无限的，其中最初有 startFuel 升燃料。它每行驶 1 英里就会用掉 1 升汽油">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-07-02T01:02:30.835Z">
-<meta property="article:modified_time" content="2022-07-02T05:49:55.281Z">
+<meta property="article:modified_time" content="2022-07-07T06:19:46.856Z">
 <meta property="article:author" content="wfxt">
+<meta property="article:tag" content="贪心">
+<meta property="article:tag" content="dp">
 <meta name="twitter:card" content="summary">
 
 
@@ -145,7 +147,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">871. 最低加油次数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#871-%E6%9C%80%E4%BD%8E%E5%8A%A0%E6%B2%B9%E6%AC%A1%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">871. 最低加油次数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A-%E8%B4%AA%E5%BF%83%EF%BC%88%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%EF%BC%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">方法一： 贪心（优先队列）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">1.1.2.</span> <span class="nav-text">方法二： 动态规划</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#871-%E6%9C%80%E4%BD%8E%E5%8A%A0%E6%B2%B9%E6%AC%A1%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">871. 最低加油次数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#871-%E6%9C%80%E4%BD%8E%E5%8A%A0%E6%B2%B9%E6%AC%A1%E6%95%B0-1"><span class="nav-number">1.1.</span> <span class="nav-text">871. 最低加油次数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A-%E8%B4%AA%E5%BF%83%EF%BC%88%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%EF%BC%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">方法一： 贪心（优先队列）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">1.1.2.</span> <span class="nav-text">方法二： 动态规划</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -160,18 +162,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -255,9 +257,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-07-02 09:02:30 / Modified: 13:49:55" itemprop="dateCreated datePublished" datetime="2022-07-02T09:02:30+08:00">2022-07-02</time>
+      <time title="Created: 2022-07-02 09:02:30" itemprop="dateCreated datePublished" datetime="2022-07-02T09:02:30+08:00">2022-07-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-07-07 14:19:46" itemprop="dateModified" datetime="2022-07-07T14:19:46+08:00">2022-07-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -266,14 +274,6 @@
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/leetcode/%E8%B4%AA%E5%BF%83/" itemprop="url" rel="index"><span itemprop="name">贪心</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/leetcode/%E8%B4%AA%E5%BF%83/dp/" itemprop="url" rel="index"><span itemprop="name">dp</span></a>
         </span>
     </span>
 
@@ -294,9 +294,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1>871. 最低加油次数</h1>
-<h2 id="871-最低加油次数">871. 最低加油次数</h2>
-<blockquote>
+        <h1 id="871-最低加油次数"><a href="#871-最低加油次数" class="headerlink" title="871. 最低加油次数"></a>871. 最低加油次数</h1><h2 id="871-最低加油次数-1"><a href="#871-最低加油次数-1" class="headerlink" title="871. 最低加油次数"></a>871. 最低加油次数</h2><blockquote>
 <p>题目描述：</p>
 <p>汽车从起点出发驶向目的地，该目的地位于出发位置东面 target 英里处。</p>
 <p>沿途有加油站，每个 station[i] 代表一个加油站，它位于出发位置东面 station[i][0] 英里处，并且有 station[i][1] 升汽油。</p>
@@ -306,46 +304,34 @@
 <p>注意：如果汽车到达加油站时剩余燃料为 0，它仍然可以在那里加油。如果汽车到达目的地时剩余燃料为 0，仍然认为它已经到达目的地。</p>
 </blockquote>
 <span id="more"></span>
+
 <p><strong>示例1：</strong></p>
 <blockquote>
-<p>输入：target = 1, startFuel = 1, stations = []<br>
-输出：0<br>
-解释：我们可以在不加油的情况下到达目的地。</p>
+<p>输入：target &#x3D; 1, startFuel &#x3D; 1, stations &#x3D; []<br>输出：0<br>解释：我们可以在不加油的情况下到达目的地。</p>
 </blockquote>
 <p><strong>示例2：</strong></p>
 <blockquote>
-<p>输入：target = 100, startFuel = 1, stations = [[10,100]]<br>
-输出：-1<br>
-解释：我们无法抵达目的地，甚至无法到达第一个加油站。</p>
+<p>输入：target &#x3D; 100, startFuel &#x3D; 1, stations &#x3D; [[10,100]]<br>输出：-1<br>解释：我们无法抵达目的地，甚至无法到达第一个加油站。</p>
 </blockquote>
 <p><strong>示例3：</strong></p>
 <blockquote>
-<p>输入：target = 100, startFuel = 10, stations = [[10,60],[20,30],[30,30],[60,40]]<br>
-输出：2<br>
-解释：<br>
-我们出发时有 10 升燃料。<br>
-我们开车来到距起点 10 英里处的加油站，消耗 10 升燃料。将汽油从 0 升加到 60 升。<br>
-然后，我们从 10 英里处的加油站开到 60 英里处的加油站（消耗 50 升燃料），<br>
-并将汽油从 10 升加到 50 升。然后我们开车抵达目的地。<br>
-我们沿途在1两个加油站停靠，所以返回 2 。</p>
+<p>输入：target &#x3D; 100, startFuel &#x3D; 10, stations &#x3D; [[10,60],[20,30],[30,30],[60,40]]<br>输出：2<br>解释：<br>我们出发时有 10 升燃料。<br>我们开车来到距起点 10 英里处的加油站，消耗 10 升燃料。将汽油从 0 升加到 60 升。<br>然后，我们从 10 英里处的加油站开到 60 英里处的加油站（消耗 50 升燃料），<br>并将汽油从 10 升加到 50 升。然后我们开车抵达目的地。<br>我们沿途在1两个加油站停靠，所以返回 2 。</p>
 </blockquote>
 <p><strong>提示：</strong></p>
 <blockquote>
-<p><code>1 &lt;= target, startFuel, stations[i][1] &lt;= 10^9</code><br>
-<code>0 &lt;= stations.length &lt;= 500</code><br>
-<code>0 &lt; stations[0][0] &lt; stations[1][0] &lt; ... &lt; stations[stations.length-1][0] &lt; target</code></p>
+<p><code>1 &lt;= target, startFuel, stations[i][1] &lt;= 10^9</code><br><code>0 &lt;= stations.length &lt;= 500</code><br><code>0 &lt; stations[0][0] &lt; stations[1][0] &lt; ... &lt; stations[stations.length-1][0] &lt; target</code></p>
 </blockquote>
-<h3 id="方法一：-贪心（优先队列）">方法一： 贪心（优先队列）</h3>
-<p>我们可以先想象，只要之前经过加油站，我们可以在任意地方加油。当没油的时候，只要我们确保每次加的油最多，那么加的次数肯定最少，这一题明显就可以用贪心算法+优先队列。在算法实现上我们可以用下一次加油站来代替任意时刻（我们只要确保能到达下一加油站，那么在到达下一个加油站之前的任意时刻都可以到达）</p>
+<h3 id="方法一：-贪心（优先队列）"><a href="#方法一：-贪心（优先队列）" class="headerlink" title="方法一： 贪心（优先队列）"></a>方法一： 贪心（优先队列）</h3><p>我们可以先想象，只要之前经过加油站，我们可以在任意地方加油。当没油的时候，只要我们确保每次加的油最多，那么加的次数肯定最少，这一题明显就可以用贪心算法+优先队列。在算法实现上我们可以用下一次加油站来代替任意时刻（我们只要确保能到达下一加油站，那么在到达下一个加油站之前的任意时刻都可以到达）</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minRefuelStops</span><span class="params">(<span class="type">int</span> target, <span class="type">int</span> startFuel, <span class="type">int</span>[][] stations)</span> &#123;</span><br><span class="line">        PriorityQueue&lt;Integer&gt; heap = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;(((o1, o2) -&gt; o2 - o1));</span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">curGas</span> <span class="operator">=</span> startFuel;</span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(curGas &lt; target)&#123;</span><br><span class="line">            <span class="comment">// 能到达下一个加油站</span></span><br><span class="line">            <span class="keyword">if</span>(i &lt; stations.length &amp;&amp; curGas &gt;= stations[i][<span class="number">0</span>])&#123;</span><br><span class="line">                heap.add(stations[i++][<span class="number">1</span>]); <span class="comment">// 将路过的加油站放入优先队列里进行维护</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;  <span class="comment">// 不能到达下一加油站</span></span><br><span class="line">                <span class="keyword">if</span>(!heap.isEmpty())&#123;  <span class="comment">// 如果之前有可用的加油站</span></span><br><span class="line">                    <span class="comment">// 这里不需要while若油还不够，会再次进入这个else</span></span><br><span class="line">                    <span class="comment">// poll() method is used to return the first element with removing an element from this PriorityQueue.</span></span><br><span class="line">                    curGas += heap.poll();</span><br><span class="line">                    ans++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123; <span class="comment">// 若无则不能到达</span></span><br><span class="line">                    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p><strong>复杂度分析：</strong></p>
 <ul>
 <li>时间复杂度：<em>O</em>(<em>nlogn</em>),遍历<em>O</em>(<em>n</em>),优先队列操作<em>O</em>(<em>logn</em>)</li>
 <li>空间复杂度：<em>O</em>(<em>n</em>)，优先队列需要n个空间</li>
 </ul>
-<h3 id="方法二：-动态规划">方法二： 动态规划</h3>
-<p>设dp[i]为加 <em>i</em> 次油最多可以走的里程数，则第一个大于target的dp[i]的索引值即为所求。因此，我们可以用动态规划，动态的维护dp数组。</p>
+<h3 id="方法二：-动态规划"><a href="#方法二：-动态规划" class="headerlink" title="方法二： 动态规划"></a>方法二： 动态规划</h3><p>设dp[i]为加 <em>i</em> 次油最多可以走的里程数，则第一个大于target的dp[i]的索引值即为所求。因此，我们可以用动态规划，动态的维护dp数组。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minRefuelStops</span><span class="params">(<span class="type">int</span> target, <span class="type">int</span> startFuel, <span class="type">int</span>[][] stations)</span> &#123;</span><br><span class="line">    <span class="type">int</span>[] dp = <span class="keyword">new</span> <span class="title class_">int</span>[stations.length + <span class="number">1</span>];</span><br><span class="line">    dp[<span class="number">0</span>] = startFuel;</span><br><span class="line">    <span class="comment">//遍历加油站</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; stations.length; i++) &#123;</span><br><span class="line">        <span class="comment">//更新dp</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">            <span class="comment">//必须能达到此加油站才能更新dp[j]</span></span><br><span class="line">            <span class="keyword">if</span> (dp[j] &gt;= stations[i][<span class="number">0</span>]) &#123;</span><br><span class="line">                <span class="comment">//判断加j+1次油（也就是加了j次+当前路过的这次油量）</span></span><br><span class="line">                dp[j + <span class="number">1</span>] = Math.max(dp[j + <span class="number">1</span>], dp[j] + stations[i][<span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//找到第一个大于等于target的 i，也就是加油次数</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt;= stations.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (dp[i] &gt;= target) &#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -372,6 +358,10 @@
   </div>
 </div>
 
+          <div class="post-tags">
+              <a href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag"># 贪心</a>
+              <a href="/tags/dp/" rel="tag"># dp</a>
+          </div>
 
         
 
