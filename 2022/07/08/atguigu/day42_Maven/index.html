@@ -23,23 +23,50 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"bounceIn","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
+    <meta name="description" content="Maven第1章 Maven概述1.1 Maven的概念Maven是项目进行模型抽象，充分运用的面向对象的思想，Maven可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目管理工具。Maven 除了以程序构建能力为特色之外，还提供高级项目管理工具。由于 Maven 的缺省构建规则有较高的可重用性，所以常常用两三行 Maven 构建脚本就可以构建简单的项目。 1.2 Maven的作用 ma">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Alcander&#39;s Blog">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:url" content="http://example.com/2022/07/08/atguigu/day42_maven/index.html">
 <meta property="og:site_name" content="Alcander&#39;s Blog">
+<meta property="og:description" content="Maven第1章 Maven概述1.1 Maven的概念Maven是项目进行模型抽象，充分运用的面向对象的思想，Maven可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目管理工具。Maven 除了以程序构建能力为特色之外，还提供高级项目管理工具。由于 Maven 的缺省构建规则有较高的可重用性，所以常常用两三行 Maven 构建脚本就可以构建简单的项目。 1.2 Maven的作用 ma">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/day42_maven%5C1.png">
+<meta property="og:image" content="http://example.com/images/day42_maven/2.png">
+<meta property="og:image" content="http://example.com/images/day42_maven/3.png">
+<meta property="og:image" content="http://example.com/images/day42_maven/4.png">
+<meta property="og:image" content="http://example.com/images/day42_maven/5.png">
+<meta property="og:image" content="http://example.com/images/day42_maven/6.png">
+<meta property="og:image" content="http://example.com/images/day42_maven/7.png">
+<meta property="og:image" content="http://example.com/images/day42_maven/8.png">
+<meta property="og:image" content="http://example.com/images/day42_maven/9.png">
+<meta property="og:image" content="http://example.com/images/day42_maven/10.png">
+<meta property="og:image" content="http://example.com/images/day42_maven/11.png">
+<meta property="og:image" content="http://example.com/images/day42_maven/12.png">
+<meta property="og:image" content="http://example.com/images/day42_maven/13.png">
+<meta property="og:image" content="http://example.com/images/day42_maven/14.png">
+<meta property="og:image" content="http://example.com/images/day42_maven/15.png">
+<meta property="og:image" content="http://example.com/images/day42_maven/16.png">
+<meta property="og:image" content="http://example.com/images/day42_maven/18.png">
+<meta property="og:image" content="http://example.com/images/day42_maven/17.png">
+<meta property="og:image" content="http://example.com/images/day42_maven/19.png">
+<meta property="og:image" content="http://example.com/images/day42_maven/20.png">
+<meta property="og:image" content="http://example.com/images/day42_maven/27.png">
+<meta property="og:image" content="http://example.com/images/day42_maven/21.png">
+<meta property="article:published_time" content="2022-07-08T11:26:49.909Z">
+<meta property="article:modified_time" content="2022-07-08T11:27:59.232Z">
 <meta property="article:author" content="wfxt">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/day42_maven%5C1.png">
 
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2022/07/08/atguigu/day42_maven/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"en","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/07/08/atguigu/day42_maven/","path":"2022/07/08/atguigu/day42_maven/","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Alcander's Blog</title>
+<title> | Alcander's Blog</title>
   
 
 
@@ -69,7 +96,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Alcander's Blog</h1>
+      <p class="site-title">Alcander's Blog</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -128,7 +155,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -141,6 +168,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Maven"><span class="nav-number">1.</span> <span class="nav-text">Maven</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC1%E7%AB%A0-Maven%E6%A6%82%E8%BF%B0"><span class="nav-number">2.</span> <span class="nav-text">第1章 Maven概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Maven%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 Maven的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Maven%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 Maven的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-Maven%E7%9A%84%E6%A6%82%E5%BF%B5%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.3.</span> <span class="nav-text">1.3 Maven的概念模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-Maven%E7%9A%84%E4%BB%93%E5%BA%93%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">2.4.</span> <span class="nav-text">1.4 Maven的仓库文件夹</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC2%E7%AB%A0-Maven%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">第2章 Maven的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E4%B8%8B%E8%BD%BDMaven"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 下载Maven</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E5%AE%89%E8%A3%85Maven"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 安装Maven</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-Maven%E7%9B%AE%E5%BD%95%E4%BB%8B%E7%BB%8D"><span class="nav-number">3.3.</span> <span class="nav-text">2.3 Maven目录介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">3.4.</span> <span class="nav-text">2.4 配置环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-%E9%85%8D%E7%BD%AE%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E5%92%8C%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="nav-number">3.5.</span> <span class="nav-text">2.5 配置本地仓库和远程仓库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC3%E7%AB%A0-IDEA%E5%88%9B%E5%BB%BAMaven%E5%B7%A5%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">第3章 IDEA创建Maven工程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-IDEA%E6%8C%87%E5%AE%9A%E6%9C%AC%E5%9C%B0Maven"><span class="nav-number">4.1.</span> <span class="nav-text">3.1 IDEA指定本地Maven</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E5%88%9B%E5%BB%BAjava%E5%B7%A5%E7%A8%8B-DarchetypeCatalog-x3D-local"><span class="nav-number">4.2.</span> <span class="nav-text">3.2 创建java工程   -DarchetypeCatalog&#x3D;local</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E5%88%9B%E5%BB%BAjavaweb%E5%B7%A5%E7%A8%8B"><span class="nav-number">4.3.</span> <span class="nav-text">3.3 创建javaweb工程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-%E5%88%9B%E5%BB%BA%E6%97%A0%E9%AA%A8%E6%9E%B6%E9%A1%B9%E7%9B%AE"><span class="nav-number">4.4.</span> <span class="nav-text">3.4 创建无骨架项目</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC4%E7%AB%A0-jar%E5%8C%85%E7%AE%A1%E7%90%86"><span class="nav-number">5.</span> <span class="nav-text">第4章 jar包管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-jar%E5%8C%85%E4%BE%9D%E8%B5%96"><span class="nav-number">5.1.</span> <span class="nav-text">4.1 jar包依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-jar%E5%8C%85%E4%B8%8D%E5%AD%98%E5%9C%A8"><span class="nav-number">5.2.</span> <span class="nav-text">4.2 jar包不存在</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-Maven%E7%9A%84%E4%BE%9D%E8%B5%96%E4%BC%A0%E9%80%92"><span class="nav-number">5.3.</span> <span class="nav-text">4.3 Maven的依赖传递</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-jar%E5%8C%85%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">5.4.</span> <span class="nav-text">4.4 jar包作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-properties%E6%A0%87%E7%AD%BE"><span class="nav-number">5.5.</span> <span class="nav-text">4.5 properties标签</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC5%E7%AB%A0-Maven%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">6.</span> <span class="nav-text">第5章 Maven的常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-clean%E5%91%BD%E4%BB%A4"><span class="nav-number">6.1.</span> <span class="nav-text">5.1 clean命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-complie%E5%91%BD%E4%BB%A4"><span class="nav-number">6.2.</span> <span class="nav-text">5.2 complie命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-test%E5%91%BD%E4%BB%A4"><span class="nav-number">6.3.</span> <span class="nav-text">5.3 test命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-package%E5%91%BD%E4%BB%A4"><span class="nav-number">6.4.</span> <span class="nav-text">5.4 package命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5-install%E5%91%BD%E4%BB%A4"><span class="nav-number">6.5.</span> <span class="nav-text">5.5 install命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC6%E7%AB%A0-%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86"><span class="nav-number">7.</span> <span class="nav-text">第6章 依赖管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-Maven%E6%8F%92%E4%BB%B6"><span class="nav-number">7.1.</span> <span class="nav-text">6.1 Maven插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-1-JDK%E7%BC%96%E8%AF%91%E7%89%88%E6%9C%AC%E7%9A%84%E6%8F%92%E4%BB%B6"><span class="nav-number">7.1.1.</span> <span class="nav-text">6.1.1 JDK编译版本的插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-2-Tomcat7%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%9A%84%E6%8F%92%E4%BB%B6"><span class="nav-number">7.1.2.</span> <span class="nav-text">6.1.2 Tomcat7服务端的插件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC7%E7%AB%A0-Maven%E6%A1%88%E4%BE%8B%EF%BC%9A%E4%BD%BF%E7%94%A8Maven%E6%90%AD%E5%BB%BAServlet-HTML-dbutils"><span class="nav-number">8.</span> <span class="nav-text">第7章 Maven案例：使用Maven搭建Servlet+HTML+dbutils</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0-%E6%8F%92%E4%BB%B6"><span class="nav-number">9.</span> <span class="nav-text">第八章 插件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat%E6%8F%92%E4%BB%B6"><span class="nav-number">9.1.</span> <span class="nav-text">Tomcat插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK%E7%BC%96%E8%AF%91%E6%8F%92%E4%BB%B6"><span class="nav-number">9.2.</span> <span class="nav-text">JDK编译插件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E5%AD%90%E7%88%B6%E9%A1%B9%E7%9B%AE"><span class="nav-number">10.</span> <span class="nav-text">第九章 子父项目</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -211,16 +239,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/08/atguigu/day42_maven/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -234,13 +263,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Alcander's Blog">
+      <meta itemprop="name" content=" | Alcander's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/08/atguigu/day42_maven/" class="post-title-link" itemprop="url">Untitled</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          <a href="https://github.com/wfxt/wfxt.github.io_posts/atguigu/day42_maven.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -255,6 +284,13 @@
     </span>
 
   
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
 </div>
 
         </div>
@@ -264,7 +300,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><h1 id="第1章-Maven概述"><a href="#第1章-Maven概述" class="headerlink" title="第1章 Maven概述"></a>第1章 Maven概述</h1><h2 id="1-1-Maven的概念"><a href="#1-1-Maven的概念" class="headerlink" title="1.1 Maven的概念"></a>1.1 Maven的概念</h2><p>Maven是项目进行模型抽象，充分运用的面向对象的思想，Maven可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目管理工具。Maven 除了以程序构建能力为特色之外，还提供高级项目管理工具。由于 Maven 的缺省构建规则有较高的可重用性，所以常常用两三行 Maven 构建脚本就可以构建简单的项目。</p>
+        <h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><h1 id="第1章-Maven概述"><a href="#第1章-Maven概述" class="headerlink" title="第1章 Maven概述"></a>第1章 Maven概述</h1><h2 id="1-1-Maven的概念"><a href="#1-1-Maven的概念" class="headerlink" title="1.1 Maven的概念"></a>1.1 Maven的概念</h2><p>Maven是项目进行模型抽象，充分运用的面向对象的思想，Maven可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目管理工具。Maven 除了以程序构建能力为特色之外，还提供高级项目管理工具。由于 Maven 的缺省构建规则有较高的可重用性，所以常常用两三行 Maven 构建脚本就可以构建简单的项目。</p>
 <h2 id="1-2-Maven的作用"><a href="#1-2-Maven的作用" class="headerlink" title="1.2 Maven的作用"></a>1.2 Maven的作用</h2><ul>
 <li><p>maven对项目的第三方构件（jar包）进行统一管理。向工程中加入jar包不要手工从其它地方拷贝，通过maven定义jar包的坐标，自动从maven仓库中去下载到工程中。</p>
 </li>
@@ -433,7 +469,6 @@
 <li>安装父项目-Maven聚合</li>
 </ul>
 
-      
     </div>
 
     
@@ -441,317 +476,36 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat.png" alt="wfxt WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="wfxt Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
 </div>
 
 
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/07/leetcode/letcode648/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Alcander-2.jpg">
-      <meta itemprop="name" content="wfxt">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/07/leetcode/letcode648/" class="post-title-link" itemprop="url">leetcode948.单词替换</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-07-07 14:16:55 / Modified: 14:53:48" itemprop="dateCreated datePublished" datetime="2022-07-07T14:16:55+08:00">2022-07-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="648-单词替换"><a href="#648-单词替换" class="headerlink" title="648.单词替换"></a>648.单词替换</h1><h2 id="648-单词替换-1"><a href="#648-单词替换-1" class="headerlink" title="648.单词替换"></a>648.单词替换</h2><blockquote>
-<p>题目描述：</p>
-<p>在英语中，我们有一个叫做 词根(root) 的概念，可以词根后面添加其他一些词组成另一个较长的单词——我们称这个词为 继承词(successor)。例如，词根an，跟随着单词 other(其他)，可以形成新的单词 another(另一个)。</p>
-<p>现在，给定一个由许多词根组成的词典 dictionary 和一个用空格分隔单词形成的句子 sentence。你需要将句子中的所有继承词用词根替换掉。如果继承词有许多可以形成它的词根，则用最短的词根替换它。</p>
-<p>你需要输出替换之后的句子。</p>
-</blockquote>
-<p><strong>示例1：</strong></p>
-<blockquote>
-<p>输入：dictionary &#x3D; [“cat”,”bat”,”rat”], sentence &#x3D; “the cattle was rattled by the battery”<br>输出：”the cat was rat by the bat”</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/07/07/leetcode/letcode648/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/06/atguigu/day41_bookstore6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Alcander-2.jpg">
-      <meta itemprop="name" content="wfxt">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/06/atguigu/day41_bookstore6/" class="post-title-link" itemprop="url">书城项目第六阶段</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-07-06 19:23:00 / Modified: 19:26:01" itemprop="dateCreated datePublished" datetime="2022-07-06T19:23:00+08:00">2022-07-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Atguigu/" itemprop="url" rel="index"><span itemprop="name">Atguigu</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="书城项目第六阶段"><a href="#书城项目第六阶段" class="headerlink" title="书城项目第六阶段"></a>书城项目第六阶段</h1><h2 id="功能-结账"><a href="#功能-结账" class="headerlink" title="功能 结账"></a>功能 结账</h2><h3 id="1-创建订单模型"><a href="#1-创建订单模型" class="headerlink" title="1. 创建订单模型"></a>1. 创建订单模型</h3><h4 id="1-1-物理建模"><a href="#1-1-物理建模" class="headerlink" title="1.1 物理建模"></a>1.1 物理建模</h4><h5 id="1-1-1-t-order表"><a href="#1-1-1-t-order表" class="headerlink" title="1.1.1 t_order表"></a>1.1.1 t_order表</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> t_order(</span><br><span class="line">	order_id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">	order_sequence <span class="type">VARCHAR</span>(<span class="number">200</span>),</span><br><span class="line">	create_time <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">	total_count <span class="type">INT</span>,</span><br><span class="line">	total_amount <span class="keyword">DOUBLE</span>,</span><br><span class="line">	order_status <span class="type">INT</span>,</span><br><span class="line">	user_id <span class="type">INT</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>字段名</th>
-<th>字段作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>order_id</td>
-<td>主键</td>
-</tr>
-<tr>
-<td>order_sequence</td>
-<td>订单号</td>
-</tr>
-<tr>
-<td>create_time</td>
-<td>订单创建时间</td>
-</tr>
-<tr>
-<td>total_count</td>
-<td>订单的总数量</td>
-</tr>
-<tr>
-<td>total_amount</td>
-<td>订单的总金额</td>
-</tr>
-<tr>
-<td>order_status</td>
-<td>订单的状态</td>
-</tr>
-<tr>
-<td>user_id</td>
-<td>下单的用户的id</td>
-</tr>
-</tbody></table>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/07/06/atguigu/day41_bookstore6/#more" rel="contents">
-                Read more &raquo;
-              </a>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/07/leetcode/letcode648/" rel="prev" title="leetcode948.单词替换">
+                  <i class="fa fa-chevron-left"></i> leetcode948.单词替换
+                </a>
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/05/atguigu/day40_bookstore6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Alcander-2.jpg">
-      <meta itemprop="name" content="wfxt">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/05/atguigu/day40_bookstore6/" class="post-title-link" itemprop="url">Filter与Listener和书城项目第六阶段</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-07-05 16:31:07 / Modified: 18:29:09" itemprop="dateCreated datePublished" datetime="2022-07-05T16:31:07+08:00">2022-07-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Atguigu/" itemprop="url" rel="index"><span itemprop="name">Atguigu</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Filter-amp-Listener-amp-书城项目第六阶段"><a href="#Filter-amp-Listener-amp-书城项目第六阶段" class="headerlink" title="Filter&amp;Listener&amp;书城项目第六阶段"></a>Filter&amp;Listener&amp;书城项目第六阶段</h1><h1 id="第一章-Filter过滤器"><a href="#第一章-Filter过滤器" class="headerlink" title="第一章 Filter过滤器"></a>第一章 Filter过滤器</h1><h2 id="1-1-Filter的概念"><a href="#1-1-Filter的概念" class="headerlink" title="1.1 Filter的概念"></a>1.1 Filter的概念</h2><p>现在的生活中到处都是过滤器：比喻坐火车，一般情况下要过安检的。通过2个安检，一个是进站时，一个是进入候车室，进入站台上车。</p>
-<p>第一个安检过不去，不会到达第二个安检。第一个过了，第二个没过，依然不能进站上车。安全检查就是<strong>过滤器</strong>，安全检查可以拦截旅客。</p>
-<p>过安检是排在前面的人先安检，先进站，是数据结构中的队列，数据先进先出。</p>
-<blockquote>
-<p>所谓的过滤：就是程序中的一个安检，拦截客户端，运行通过，客户端才能访问到服务器程序</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/07/05/atguigu/day40_bookstore6/#more" rel="contents">
-                Read more &raquo;
-              </a>
+            <div class="post-nav-item">
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          </div>
     </footer>
   </article>
 </div>
@@ -759,548 +513,9 @@
 
 
 
-    
 
 
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/05/atguigu/day39_bookstore5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Alcander-2.jpg">
-      <meta itemprop="name" content="wfxt">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/05/atguigu/day39_bookstore5/" class="post-title-link" itemprop="url">书城项目第五阶段</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-07-05 08:33:49 / Modified: 08:57:02" itemprop="dateCreated datePublished" datetime="2022-07-05T08:33:49+08:00">2022-07-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Atguigu/" itemprop="url" rel="index"><span itemprop="name">Atguigu</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="day39-书城项目第五阶段"><a href="#day39-书城项目第五阶段" class="headerlink" title="day39 书城项目第五阶段"></a>day39 书城项目第五阶段</h1><h1 id="第一章-显示购物车页面"><a href="#第一章-显示购物车页面" class="headerlink" title="第一章 显示购物车页面"></a>第一章 显示购物车页面</h1><h2 id="1-1目标"><a href="#1-1目标" class="headerlink" title="1.1目标"></a>1.1目标</h2><p>把购物车信息在专门的页面显示出来</p>
-<h2 id="1-2思路"><a href="#1-2思路" class="headerlink" title="1.2思路"></a>1.2思路</h2><p><img src="/images/day39_bookstore5/img001.png"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/07/05/atguigu/day39_bookstore5/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/05/atguigu/day38_Ajax_bookstore5_1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Alcander-2.jpg">
-      <meta itemprop="name" content="wfxt">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/05/atguigu/day38_Ajax_bookstore5_1/" class="post-title-link" itemprop="url">Ajax和书城项目第五阶段</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-07-05 08:29:11 / Modified: 08:56:24" itemprop="dateCreated datePublished" datetime="2022-07-05T08:29:11+08:00">2022-07-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Atguigu/" itemprop="url" rel="index"><span itemprop="name">Atguigu</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Ajax-amp-Axios-amp-书城项目第五阶段"><a href="#Ajax-amp-Axios-amp-书城项目第五阶段" class="headerlink" title="Ajax&amp;Axios&amp;书城项目第五阶段"></a>Ajax&amp;Axios&amp;书城项目第五阶段</h1><h1 id="第一章-Ajax异步请求"><a href="#第一章-Ajax异步请求" class="headerlink" title="第一章 Ajax异步请求"></a>第一章 Ajax异步请求</h1><h2 id="1-1-什么是异步请求"><a href="#1-1-什么是异步请求" class="headerlink" title="1.1 什么是异步请求"></a>1.1 什么是异步请求</h2><p>Ajax本身就是Asynchronous JavaScript And XML的缩写，本身就是使用JavaScript技术实现异步请求效果。</p>
-<p>Ajax就是发送请求的，接收服务器响应数据</p>
-<h2 id="1-2-异步请求和同步请求区别"><a href="#1-2-异步请求和同步请求区别" class="headerlink" title="1.2 异步请求和同步请求区别"></a>1.2 异步请求和同步请求区别</h2><ul>
-<li>同步：标签form action 按钮subit，超链接，浏览器地址</li>
-<li>异步：JS来完成的</li>
-</ul>
-<p><img src="/images/day38_Ajax_bookstore5_1/1.JPG"></p>
-<h2 id="1-3-异步请求原理"><a href="#1-3-异步请求原理" class="headerlink" title="1.3 异步请求原理"></a>1.3 异步请求原理</h2><p><img src="/images/day38_Ajax_bookstore5_1/2.png"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/07/05/atguigu/day38_Ajax_bookstore5_1/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/02/leetcode/leetcode871/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Alcander-2.jpg">
-      <meta itemprop="name" content="wfxt">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/02/leetcode/leetcode871/" class="post-title-link" itemprop="url">leetcode871. 最低加油次数</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-07-02 09:02:30" itemprop="dateCreated datePublished" datetime="2022-07-02T09:02:30+08:00">2022-07-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-07 14:19:46" itemprop="dateModified" datetime="2022-07-07T14:19:46+08:00">2022-07-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="871-最低加油次数"><a href="#871-最低加油次数" class="headerlink" title="871. 最低加油次数"></a>871. 最低加油次数</h1><h2 id="871-最低加油次数-1"><a href="#871-最低加油次数-1" class="headerlink" title="871. 最低加油次数"></a>871. 最低加油次数</h2><blockquote>
-<p>题目描述：</p>
-<p>汽车从起点出发驶向目的地，该目的地位于出发位置东面 target 英里处。</p>
-<p>沿途有加油站，每个 station[i] 代表一个加油站，它位于出发位置东面 station[i][0] 英里处，并且有 station[i][1] 升汽油。</p>
-<p>假设汽车油箱的容量是无限的，其中最初有 startFuel 升燃料。它每行驶 1 英里就会用掉 1 升汽油。</p>
-<p>当汽车到达加油站时，它可能停下来加油，将所有汽油从加油站转移到汽车中。</p>
-<p>为了到达目的地，汽车所必要的最低加油次数是多少？如果无法到达目的地，则返回 -1 。</p>
-<p>注意：如果汽车到达加油站时剩余燃料为 0，它仍然可以在那里加油。如果汽车到达目的地时剩余燃料为 0，仍然认为它已经到达目的地。</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/07/02/leetcode/leetcode871/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/02/leetcode/leetcode241%E5%BE%85%E5%86%99/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Alcander-2.jpg">
-      <meta itemprop="name" content="wfxt">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/02/leetcode/leetcode241%E5%BE%85%E5%86%99/" class="post-title-link" itemprop="url">Untitled</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-07-02 08:22:02" itemprop="dateCreated datePublished" datetime="2022-07-02T08:22:02+08:00">2022-07-02</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/01/atguigu/day37_bookstore4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Alcander-2.jpg">
-      <meta itemprop="name" content="wfxt">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/01/atguigu/day37_bookstore4/" class="post-title-link" itemprop="url">会话&书城项目第四阶段</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-07-01 16:40:32 / Modified: 16:43:04" itemprop="dateCreated datePublished" datetime="2022-07-01T16:40:32+08:00">2022-07-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Atguigu/" itemprop="url" rel="index"><span itemprop="name">Atguigu</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="会话-amp-书城项目第四阶段"><a href="#会话-amp-书城项目第四阶段" class="headerlink" title="会话&amp;书城项目第四阶段"></a>会话&amp;书城项目第四阶段</h1><h1 id="第一章-会话"><a href="#第一章-会话" class="headerlink" title="第一章 会话"></a>第一章 会话</h1><h2 id="1-1-什么是会话"><a href="#1-1-什么是会话" class="headerlink" title="1.1 什么是会话"></a>1.1 什么是会话</h2><ul>
-<li>生活中：打电话拨通，对方接听了，只要不去挂断可以永远在通话中。一次通话</li>
-<li>程序中：浏览器访问服务器，进行正常的请求和响应，只要浏览器不关闭（不是浏览器的标签页，而是整个浏览器），一次会话</li>
-<li>JavaWeb技术中会话的两个对象：<ul>
-<li>Cookie：可客户端手里的条形码</li>
-<li>Session：超市存储包的容器</li>
-</ul>
-</li>
-</ul>
-<h2 id="1-2-Cookie技术"><a href="#1-2-Cookie技术" class="headerlink" title="1.2 Cookie技术"></a>1.2 Cookie技术</h2><h3 id="1-2-1-Cookie的概念"><a href="#1-2-1-Cookie的概念" class="headerlink" title="1.2.1 Cookie的概念"></a>1.2.1 Cookie的概念</h3><p>Cookie（小蛋糕），对象存储的数据量比较小，数据在服务器端产生（服务器自己不保存），对象放在在浏览器中保存，Cookie对象中的数据是键值对。</p>
-<p>浏览器会限制保存的Cookie对象的数据的大小，一个网站可以最多放64个Cookie对象</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/07/01/atguigu/day37_bookstore4/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/30/atguigu/day36_bookstore3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Alcander-2.jpg">
-      <meta itemprop="name" content="wfxt">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/30/atguigu/day36_bookstore3/" class="post-title-link" itemprop="url">书城项目第三阶段</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-06-30 16:22:14 / Modified: 16:25:56" itemprop="dateCreated datePublished" datetime="2022-06-30T16:22:14+08:00">2022-06-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Atguigu/" itemprop="url" rel="index"><span itemprop="name">Atguigu</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="书城项目第三阶段"><a href="#书城项目第三阶段" class="headerlink" title="书城项目第三阶段"></a>书城项目第三阶段</h1><h2 id="第一章-项目准备工作"><a href="#第一章-项目准备工作" class="headerlink" title="第一章 项目准备工作"></a>第一章 项目准备工作</h2><h3 id="1-将bookstore-v2项目复制一份改名为bookstore-v3"><a href="#1-将bookstore-v2项目复制一份改名为bookstore-v3" class="headerlink" title="1. 将bookstore-v2项目复制一份改名为bookstore-v3"></a>1. 将bookstore-v2项目复制一份改名为bookstore-v3</h3><ol>
-<li>选中bookstore-v2然后Ctrl+C复制</li>
-<li>然后Ctrl+V粘贴，粘贴的时候改名为bookstore-v3</li>
-</ol>
-<img src="/images/day36_bookstore3/img001.png" style="zoom:67%;">
-
-<ol start="3">
-<li>将刚刚复制粘贴的bookstore-v3这个Module导入到当前项目中(具体导入项目的流程之前已经讲过了)</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/06/30/atguigu/day36_bookstore3/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
-  </nav>
-
+    <div class="comments gitalk-container"></div>
 </div>
   </main>
 
@@ -1364,11 +579,11 @@
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.2.0/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
-  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://example.com/"}</script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://example.com/2022/07/08/atguigu/day42_maven/"}</script>
   <script src="/js/third-party/quicklink.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wfxt","repo":"Hexo-Comment","client_id":"9571f738aa8205b6319e","client_secret":"b956a9a1348b28f9c848905778cd299e9d1da68a","admin_user":"wfxt","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"d1546d731a9f30cc80127d57142a482b"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wfxt","repo":"Hexo-Comment","client_id":"9571f738aa8205b6319e","client_secret":"b956a9a1348b28f9c848905778cd299e9d1da68a","admin_user":"wfxt","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"0c4bfe60b02c4e9139d1b8056fdc26f5"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 
