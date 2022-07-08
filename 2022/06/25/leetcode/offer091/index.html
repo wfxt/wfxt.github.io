@@ -23,12 +23,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"bounceIn","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Offer II 0.91 粉刷房子 题目描述： 假如有一排房子，共 n 个，每个房子可以被粉刷成红色、蓝色或者绿色这三种颜色中的一种，你需要粉刷所有的房子并且使其相邻的两个房子颜色不能相同。 当然，因为市场上不同颜色油漆的价格不同，所以房子粉刷成不同颜色的花费成本也是不同的。每个房子粉刷成不同颜色的花费是以一个 n x 3 的正整数矩阵 costs 来表示的。 例如，costs[0][0] 表示">
+    <meta name="description" content="Offer II 0.91 粉刷房子  题目描述： 假如有一排房子，共 n 个，每个房子可以被粉刷成红色、蓝色或者绿色这三种颜色中的一种，你需要粉刷所有的房子并且使其相邻的两个房子颜色不能相同。 当然，因为市场上不同颜色油漆的价格不同，所以房子粉刷成不同颜色的花费成本也是不同的。每个房子粉刷成不同颜色的花费是以一个 n x 3 的正整数矩阵 costs 来表示的。 例如，costs[0][0] 表">
 <meta property="og:type" content="article">
 <meta property="og:title" content="剑指Offer II 091. 粉刷房子">
 <meta property="og:url" content="http://example.com/2022/06/25/leetcode/offer091/index.html">
 <meta property="og:site_name" content="Alcander&#39;s Blog">
-<meta property="og:description" content="Offer II 0.91 粉刷房子 题目描述： 假如有一排房子，共 n 个，每个房子可以被粉刷成红色、蓝色或者绿色这三种颜色中的一种，你需要粉刷所有的房子并且使其相邻的两个房子颜色不能相同。 当然，因为市场上不同颜色油漆的价格不同，所以房子粉刷成不同颜色的花费成本也是不同的。每个房子粉刷成不同颜色的花费是以一个 n x 3 的正整数矩阵 costs 来表示的。 例如，costs[0][0] 表示">
+<meta property="og:description" content="Offer II 0.91 粉刷房子  题目描述： 假如有一排房子，共 n 个，每个房子可以被粉刷成红色、蓝色或者绿色这三种颜色中的一种，你需要粉刷所有的房子并且使其相邻的两个房子颜色不能相同。 当然，因为市场上不同颜色油漆的价格不同，所以房子粉刷成不同颜色的花费成本也是不同的。每个房子粉刷成不同颜色的花费是以一个 n x 3 的正整数矩阵 costs 来表示的。 例如，costs[0][0] 表">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/leetcode/Offer_91.png">
 <meta property="article:published_time" content="2022-06-25T02:59:09.357Z">
@@ -148,7 +148,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Offer-II-0-91-%E7%B2%89%E5%88%B7%E6%88%BF%E5%AD%90"><span class="nav-number">1.</span> <span class="nav-text">Offer II 0.91 粉刷房子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DP"><span class="nav-number">1.1.</span> <span class="nav-text">DP</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Offer II 0.91 粉刷房子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DP"><span class="nav-number">1.1.</span> <span class="nav-text">DP</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -289,7 +289,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="Offer-II-0-91-粉刷房子"><a href="#Offer-II-0-91-粉刷房子" class="headerlink" title="Offer II 0.91 粉刷房子"></a>Offer II 0.91 粉刷房子</h1><blockquote>
+        <h1>Offer II 0.91 粉刷房子</h1>
+<blockquote>
 <p>题目描述：</p>
 <p>假如有一排房子，共 n 个，每个房子可以被粉刷成红色、蓝色或者绿色这三种颜色中的一种，你需要粉刷所有的房子并且使其相邻的两个房子颜色不能相同。</p>
 <p>当然，因为市场上不同颜色油漆的价格不同，所以房子粉刷成不同颜色的花费成本也是不同的。每个房子粉刷成不同颜色的花费是以一个 n x 3 的正整数矩阵 costs 来表示的。</p>
@@ -297,13 +298,10 @@
 <p>请计算出粉刷完所有房子最少的花费成本。</p>
 </blockquote>
 <span id="more"></span>
-
 <p><strong>示例一：</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: costs = [[17,2,17],[16,16,5],[14,3,19]]</span><br><span class="line">输出: 10</span><br><span class="line">解释: 将 0 号房子粉刷成蓝色，1 号房子粉刷成绿色，2 号房子粉刷成蓝色。</span><br><span class="line">     最少花费: 2 + 5 + 3 = 10。</span><br></pre></td></tr></table></figure>
-
 <p><strong>示例二：</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: costs = [[7,6,2]]</span><br><span class="line">输出: 2</span><br></pre></td></tr></table></figure>
-
 <p><strong>提示：</strong></p>
 <ul>
 <li><code>costs.length == n</code></li>
@@ -311,12 +309,12 @@
 <li><code>1 &lt;= n &lt;= 100</code></li>
 <li><code>1 &lt;= costs[i][j] &lt;= 20</code></li>
 </ul>
-<h2 id="DP"><a href="#DP" class="headerlink" title="DP"></a>DP</h2><p>每个房子可以被刷成三种颜色，需要计算满足题目条件下的最小花费。若已知粉刷第i间房子的最小花费，那粉刷第i+1间房子的最小花费也可以算出。由于每个房子可以被粉刷成三种颜色，因此需要考虑分别粉刷成三种颜色的最小花费。</p>
+<h2 id="DP">DP</h2>
+<p>每个房子可以被刷成三种颜色，需要计算满足题目条件下的最小花费。若已知粉刷第i间房子的最小花费，那粉刷第i+1间房子的最小花费也可以算出。由于每个房子可以被粉刷成三种颜色，因此需要考虑分别粉刷成三种颜色的最小花费。</p>
 <p>状态转移方程如下：</p>
-<p><img src="/images/leetcode/Offer_91.png"></p>
+<p><img src="/images/leetcode/Offer_91.png" alt></p>
 <p>分析易知，dp[i]只与dp[i - 1]有关，故可以利用滚动数组进行优化，参考代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minCost</span><span class="params">(<span class="type">int</span>[][] costs)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[][] dp = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">2</span>][<span class="number">3</span>];</span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">0</span>] = costs[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">1</span>] = costs[<span class="number">0</span>][<span class="number">1</span>];</span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">2</span>] = costs[<span class="number">0</span>][<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; costs.length; i++)&#123;</span><br><span class="line">            dp[<span class="number">1</span>][<span class="number">0</span>] = Math.min(dp[<span class="number">0</span>][<span class="number">1</span>], dp[<span class="number">0</span>][<span class="number">2</span>]) + costs[i][<span class="number">0</span>];</span><br><span class="line">            dp[<span class="number">1</span>][<span class="number">1</span>] = Math.min(dp[<span class="number">0</span>][<span class="number">0</span>], dp[<span class="number">0</span>][<span class="number">2</span>]) + costs[i][<span class="number">1</span>];</span><br><span class="line">            dp[<span class="number">1</span>][<span class="number">2</span>] = Math.min(dp[<span class="number">0</span>][<span class="number">0</span>], dp[<span class="number">0</span>][<span class="number">1</span>]) + costs[i][<span class="number">2</span>];</span><br><span class="line">            dp[<span class="number">0</span>][<span class="number">0</span>] = dp[<span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">            dp[<span class="number">0</span>][<span class="number">1</span>] = dp[<span class="number">1</span>][<span class="number">1</span>];</span><br><span class="line">            dp[<span class="number">0</span>][<span class="number">2</span>] = dp[<span class="number">1</span>][<span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Math.min(Math.min(dp[<span class="number">0</span>][<span class="number">0</span>], dp[<span class="number">0</span>][<span class="number">1</span>]), dp[<span class="number">0</span>][<span class="number">2</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
     </div>
 

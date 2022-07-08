@@ -273,16 +273,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="324-摆动排序II"><a href="#324-摆动排序II" class="headerlink" title="324.摆动排序II"></a>324.摆动排序II</h1><blockquote>
+          <h1>324.摆动排序II</h1>
+<blockquote>
 <p>题目描述：</p>
 <p>给你一个整数数组 <code>nums</code>，将它重新排列成 <code>nums[0] &lt; nums[1] &gt; nums[2] &lt; nums[3]...</code> 的顺序。</p>
 </blockquote>
 <p><strong>示例一：</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [1,5,1,1,6,4]</span><br><span class="line">输出：[1,6,1,5,1,4]</span><br><span class="line">解释：[1,4,1,5,1,6] 同样是符合题目要求的结果，可以被判题程序接受。</span><br></pre></td></tr></table></figure>
-
 <p><strong>示例二：</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [1,3,2,2,3,1]</span><br><span class="line">输出：[2,3,1,3,1,2]</span><br></pre></td></tr></table></figure>
-
 <p><strong>提示：</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 5 * 104</code></li>
@@ -374,21 +373,28 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="Thmeleaf"><a href="#Thmeleaf" class="headerlink" title="Thmeleaf"></a>Thmeleaf</h1><h1 id="第一章-Thymeleaf入门"><a href="#第一章-Thymeleaf入门" class="headerlink" title="第一章 Thymeleaf入门"></a>第一章 Thymeleaf入门</h1><h2 id="1-1-MVC设计模式"><a href="#1-1-MVC设计模式" class="headerlink" title="1.1 MVC设计模式"></a>1.1 MVC设计模式</h2><h3 id="1-1-1-为什么需要MVC"><a href="#1-1-1-为什么需要MVC" class="headerlink" title="1.1.1 为什么需要MVC"></a>1.1.1 为什么需要MVC</h3><p>我们之前在书城项目第二阶段做登录的时候，曾经提出过<strong>优化登录失败后的处理</strong>，曾经编写过下面这段代码</p>
-<p><img src="/images/day34_Thymeleaf/img002.png"></p>
+          <h1>Thmeleaf</h1>
+<h1>第一章 Thymeleaf入门</h1>
+<h2 id="1-1-MVC设计模式">1.1 MVC设计模式</h2>
+<h3 id="1-1-1-为什么需要MVC">1.1.1 为什么需要MVC</h3>
+<p>我们之前在书城项目第二阶段做登录的时候，曾经提出过<strong>优化登录失败后的处理</strong>，曾经编写过下面这段代码</p>
+<p><img src="/images/day34_Thymeleaf/img002.png" alt></p>
 <p>这段代码虽然说可以实现在登录失败之后跳转回到登录页面，并且展示失败信息，但是代码实在是太恶心了，根本没法维护，所以我们需要将视图展示抽取出来，单独作为一个View视图层</p>
 <p>但是我们如果只使用HTML作为视图的话，它是无法展示动态数据的，所以我们对HTML的新的期待：既能够正常显示页面，又能在页面中包含动态数据部分。而动态数据单靠HTML本身是无法做到的，所以此时我们需要引入服务器端动态视图模板技术。</p>
-<h3 id="1-1-2-MVC概念"><a href="#1-1-2-MVC概念" class="headerlink" title="1.1.2 MVC概念"></a>1.1.2 MVC概念</h3><p>M：Model模型</p>
+<h3 id="1-1-2-MVC概念">1.1.2 MVC概念</h3>
+<p>M：Model模型</p>
 <p>V：View视图</p>
 <p>C：Controller控制器</p>
-<p>MVC是在表述层开发中运用的一种设计理念。主张把<strong>封装数据的『模型』</strong>、<strong>显示用户界面的『视图』</strong>、<strong>协调调度的『控制器』</strong>分开。</p>
+<p>MVC是在表述层开发中运用的一种设计理念。主张把<strong>封装数据的『模型』</strong>、<strong>显示用户界面的『视图』</strong>、**协调调度的『控制器』**分开。</p>
 <p>好处：</p>
 <ul>
 <li>进一步实现各个组件之间的解耦</li>
 <li>让各个组件可以单独维护</li>
 <li>将视图分离出来以后，我们后端工程师和前端工程师的对接更方便</li>
 </ul>
-<h2 id="1-2-Thymeleaf的简介"><a href="#1-2-Thymeleaf的简介" class="headerlink" title="1.2 Thymeleaf的简介"></a>1.2 Thymeleaf的简介</h2><h3 id="1-2-1-Thymeleaf的概念"><a href="#1-2-1-Thymeleaf的概念" class="headerlink" title="1.2.1 Thymeleaf的概念"></a>1.2.1 Thymeleaf的概念</h3><p>Thymeleaf是一款用于渲染XML&#x2F;XHTML&#x2F;HTML5内容的模板引擎。类似JSP，Velocity，FreeMaker等， 它也可以轻易的与Spring MVC等Web框架进行集成作为Web应用的模板引擎。它的主要作用是在静态页面上渲染显示动态数据</p>
+<h2 id="1-2-Thymeleaf的简介">1.2 Thymeleaf的简介</h2>
+<h3 id="1-2-1-Thymeleaf的概念">1.2.1 Thymeleaf的概念</h3>
+<p>Thymeleaf是一款用于渲染XML/XHTML/HTML5内容的模板引擎。类似JSP，Velocity，FreeMaker等， 它也可以轻易的与Spring MVC等Web框架进行集成作为Web应用的模板引擎。它的主要作用是在静态页面上渲染显示动态数据</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/06/28/atguigu/day34%20Thymeleaf/#more" rel="contents">
@@ -474,7 +480,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="day07-书城项目第二阶段"><a href="#day07-书城项目第二阶段" class="headerlink" title="day07 书城项目第二阶段"></a>day07 书城项目第二阶段</h1><h1 id="第一章-JSP技术"><a href="#第一章-JSP技术" class="headerlink" title="第一章 JSP技术"></a>第一章 JSP技术</h1><h2 id="1-1-什么是jsp"><a href="#1-1-什么是jsp" class="headerlink" title="1.1 什么是jsp"></a>1.1 什么是jsp</h2><p>jsp全名（Java Server Page）Java服务器端页面，运行在Web服务器上的一种动态网页技术（页面根据用户的需求而改变）。在Tomcat里面运行通过浏览器进行访问。</p>
+          <h1>day07 书城项目第二阶段</h1>
+<h1>第一章 JSP技术</h1>
+<h2 id="1-1-什么是jsp">1.1 什么是jsp</h2>
+<p>jsp全名（Java Server Page）Java服务器端页面，运行在Web服务器上的一种动态网页技术（页面根据用户的需求而改变）。在Tomcat里面运行通过浏览器进行访问。</p>
 <blockquote>
 <p>JSP本质上：Java代码嵌入HTML</p>
 </blockquote>
@@ -563,15 +572,22 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="Request-amp-Response"><a href="#Request-amp-Response" class="headerlink" title="Request&amp;Response"></a>Request&amp;Response</h1><h1 id="第一章-Request对象"><a href="#第一章-Request对象" class="headerlink" title="第一章 Request对象"></a>第一章 Request对象</h1><h2 id="1-1-Request概述"><a href="#1-1-Request概述" class="headerlink" title="1.1 Request概述"></a>1.1 Request概述</h2><p>Request对象封装客户端浏览器的所有请求数据。请求数据在HTTP协议中分为了三个部分</p>
+          <h1>Request&amp;Response</h1>
+<h1>第一章 Request对象</h1>
+<h2 id="1-1-Request概述">1.1 Request概述</h2>
+<p>Request对象封装客户端浏览器的所有请求数据。请求数据在HTTP协议中分为了三个部分</p>
 <ul>
-<li><p>请求行</p>
+<li>
+<p>请求行</p>
 </li>
-<li><p>请求头</p>
+<li>
+<p>请求头</p>
 </li>
-<li><p>请求体</p>
+<li>
+<p>请求体</p>
 </li>
-<li><p><code>javax.servlet.ServletRequest</code>接口：</p>
+<li>
+<p><code>javax.servlet.ServletRequest</code>接口：</p>
 <ul>
 <li>Sun公司设计接口，做一个与协议无关的接口</li>
 <li>客户端和服务器之间基本上都是HTTP协议，设计了一个接口，满足Http协议</li>
@@ -666,7 +682,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="Offer-II-0-91-粉刷房子"><a href="#Offer-II-0-91-粉刷房子" class="headerlink" title="Offer II 0.91 粉刷房子"></a>Offer II 0.91 粉刷房子</h1><blockquote>
+          <h1>Offer II 0.91 粉刷房子</h1>
+<blockquote>
 <p>题目描述：</p>
 <p>假如有一排房子，共 n 个，每个房子可以被粉刷成红色、蓝色或者绿色这三种颜色中的一种，你需要粉刷所有的房子并且使其相邻的两个房子颜色不能相同。</p>
 <p>当然，因为市场上不同颜色油漆的价格不同，所以房子粉刷成不同颜色的花费成本也是不同的。每个房子粉刷成不同颜色的花费是以一个 n x 3 的正整数矩阵 costs 来表示的。</p>
@@ -758,8 +775,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="Servlet服务器程序"><a href="#Servlet服务器程序" class="headerlink" title="Servlet服务器程序"></a>Servlet服务器程序</h1><h1 id="第一章-Web项目部署Tomcat"><a href="#第一章-Web项目部署Tomcat" class="headerlink" title="第一章 Web项目部署Tomcat"></a>第一章 Web项目部署Tomcat</h1><h2 id="1-1-Web项目配置与访问"><a href="#1-1-Web项目配置与访问" class="headerlink" title="1.1 Web项目配置与访问"></a>1.1 Web项目配置与访问</h2><p>项目创建IDEA中，项目运行在Tomcat服务器中！</p>
-<p><img src="/images/day32_Servlet/1.png"></p>
+          <h1>Servlet服务器程序</h1>
+<h1>第一章 Web项目部署Tomcat</h1>
+<h2 id="1-1-Web项目配置与访问">1.1 Web项目配置与访问</h2>
+<p>项目创建IDEA中，项目运行在Tomcat服务器中！</p>
+<p><img src="/images/day32_Servlet/1.png" alt></p>
 <p><img src="/images/day32_Servlet/2.png" alt="2"></p>
 <blockquote>
 <p>启动Web项目的按钮：将我们写好的Web项目，复制到Tomcat服务器中，并启动Tomcat服务器，等待客户端浏览器进行访问！！</p>
@@ -850,18 +870,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="515-在每个数行中找最大值"><a href="#515-在每个数行中找最大值" class="headerlink" title="515.在每个数行中找最大值"></a>515.在每个数行中找最大值</h1><blockquote>
+          <h1>515.在每个数行中找最大值</h1>
+<blockquote>
 <p>题目描述：</p>
 <p>​	给定一棵二叉树的根节点 <code>root</code> ，请找出该二叉树中每一层的最大值。</p>
 </blockquote>
 <p><strong>示例一：</strong></p>
 <img src="/images/leetcode/515_1.jpg" style="zoom:67%;">
-
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: root = [1,3,2,5,3,null,9]</span><br><span class="line">输出: [1,3,9]</span><br></pre></td></tr></table></figure>
-
 <p><strong>示例二：</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: root = [1,2,3]</span><br><span class="line">输出: [1,3]</span><br></pre></td></tr></table></figure>
-
 <p><strong>提示：</strong></p>
 <ul>
 <li>二叉树的节点个数的范围是 <code>[0,104]</code></li>
@@ -952,7 +970,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="XML-amp-Tomcat-amp-Http协议"><a href="#XML-amp-Tomcat-amp-Http协议" class="headerlink" title="XML&amp;Tomcat&amp;Http协议"></a>XML&amp;Tomcat&amp;Http协议</h1><p>在程序的世界里，有着这么一群人，我们称他们为“程序员”或“工程师”。他们可以不会流利的英语，却可以华丽的使用26字母和字符。他们可以不精通高等数学，却可以玩转众多逻辑和算法。他们赋予了冷血的机器以生命，他们改变了五彩的世界更多彩。</p>
+          <h1>XML&amp;Tomcat&amp;Http协议</h1>
+<p>在程序的世界里，有着这么一群人，我们称他们为“程序员”或“工程师”。他们可以不会流利的英语，却可以华丽的使用26字母和字符。他们可以不精通高等数学，却可以玩转众多逻辑和算法。他们赋予了冷血的机器以生命，他们改变了五彩的世界更多彩。</p>
 <p>​     年轻人，从今天开始，你将加入程序员大家族。使用自己的五指敲出自己的摩天大楼。世界因你而改变，你因今天而腾飞。不惧艰难，勇往直前，如此优秀的你，还有什么可以阻挡你成功的脚步。披荆斩棘，所向披靡，才华横逆的你，正走在辉煌人生的大道上。</p>
 <p>​     从现在开始，大家已进入程序圈，就业生活已拉开序幕。接下来的4个月，将是你人生中一次挑战，也将是你人生中一个起跳板。看那个高中生10k的offer，看那个大专生12k的offer….有点小兴奋，有点小激动，你，就你，还在等什么！！！</p>
           <!--noindex-->
@@ -1040,8 +1059,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="正则表达式-amp-Vue-amp-书城项目第一阶段"><a href="#正则表达式-amp-Vue-amp-书城项目第一阶段" class="headerlink" title="正则表达式&amp;Vue&amp;书城项目第一阶段"></a>正则表达式&amp;Vue&amp;书城项目第一阶段</h1><ul>
-<li>学习目标<ul>
+          <h1>正则表达式&amp;Vue&amp;书城项目第一阶段</h1>
+<ul>
+<li>学习目标
+<ul>
 <li>掌握正则表达式作用</li>
 <li>能够创建正则表达式</li>
 <li>可以使用正则表达式的匹配方法</li>
@@ -1138,15 +1159,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="自定义back-to-top"><a href="#自定义back-to-top" class="headerlink" title="自定义back-to-top"></a>自定义back-to-top</h1><p>首先，找到自己喜欢的图片素材放到 source\images\ 目录下。你可以点击下方按钮下载本博客所使用的小猫上吊素材。</p>
+          <h1>自定义back-to-top</h1>
+<p>首先，找到自己喜欢的图片素材放到 source\images\ 目录下。你可以点击下方按钮下载本博客所使用的小猫上吊素材。</p>
 <p><a class="btn" onclick="window.open('/images/scroll.png')">
   <i class="fa fa-download fa-fw"></i>
   下载图片
 </a></p>
-
 <p>然后在自定样式文件中添加如下代码：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// Hexo8.0后建议在hexo/source/_data/styles.styl中进行，若无此文件则手动创建</span><br><span class="line">//自定义回到顶部样式</span><br><span class="line">.back-to-top &#123;</span><br><span class="line">  right: 60px;</span><br><span class="line">  width: 70px;  //图片素材宽度</span><br><span class="line">  height: 900px;  //图片素材高度</span><br><span class="line">  top: -900px;</span><br><span class="line">  bottom: unset;</span><br><span class="line">  transition: all .5s ease-in-out;</span><br><span class="line">  background: url(&quot;/images/scroll.png&quot;);</span><br><span class="line"></span><br><span class="line">  //隐藏箭头图标</span><br><span class="line">  &gt; i &#123;</span><br><span class="line">    display: none;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &amp;.back-to-top-on &#123;</span><br><span class="line">    bottom: unset;</span><br><span class="line">    top: 100vh &lt; (900px + 200px) ? calc( 100vh - 900px - 200px ) : 0px;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
       
     </div>
