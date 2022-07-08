@@ -23,12 +23,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"bounceIn","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="XML&amp;Tomcat&amp;Http协议 在程序的世界里，有着这么一群人，我们称他们为“程序员”或“工程师”。他们可以不会流利的英语，却可以华丽的使用26字母和字符。他们可以不精通高等数学，却可以玩转众多逻辑和算法。他们赋予了冷血的机器以生命，他们改变了五彩的世界更多彩。 ​     年轻人，从今天开始，你将加入程序员大家族。使用自己的五指敲出自己的摩天大楼。世界因你而改变，你因今天而腾">
+    <meta name="description" content="XML&amp;Tomcat&amp;Http协议在程序的世界里，有着这么一群人，我们称他们为“程序员”或“工程师”。他们可以不会流利的英语，却可以华丽的使用26字母和字符。他们可以不精通高等数学，却可以玩转众多逻辑和算法。他们赋予了冷血的机器以生命，他们改变了五彩的世界更多彩。 ​     年轻人，从今天开始，你将加入程序员大家族。使用自己的五指敲出自己的摩天大楼。世界因你而改变，你因今天而腾飞">
 <meta property="og:type" content="article">
 <meta property="og:title" content="day31 XML、HTTP协议和Tomcat安装">
 <meta property="og:url" content="http://example.com/2022/06/22/atguigu/day31_XML_Tomcat_Http/index.html">
 <meta property="og:site_name" content="Alcander&#39;s Blog">
-<meta property="og:description" content="XML&amp;Tomcat&amp;Http协议 在程序的世界里，有着这么一群人，我们称他们为“程序员”或“工程师”。他们可以不会流利的英语，却可以华丽的使用26字母和字符。他们可以不精通高等数学，却可以玩转众多逻辑和算法。他们赋予了冷血的机器以生命，他们改变了五彩的世界更多彩。 ​     年轻人，从今天开始，你将加入程序员大家族。使用自己的五指敲出自己的摩天大楼。世界因你而改变，你因今天而腾">
+<meta property="og:description" content="XML&amp;Tomcat&amp;Http协议在程序的世界里，有着这么一群人，我们称他们为“程序员”或“工程师”。他们可以不会流利的英语，却可以华丽的使用26字母和字符。他们可以不精通高等数学，却可以玩转众多逻辑和算法。他们赋予了冷血的机器以生命，他们改变了五彩的世界更多彩。 ​     年轻人，从今天开始，你将加入程序员大家族。使用自己的五指敲出自己的摩天大楼。世界因你而改变，你因今天而腾飞">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/day31_XML_Tomcat_Http/1.png">
 <meta property="og:image" content="http://example.com/images/day31_XML_Tomcat_Http/2.png">
@@ -162,7 +162,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">XML&amp;Tomcat&amp;Http协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">第一章 XML</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-xml%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 xml介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-%E4%BB%80%E4%B9%88%E6%98%AFxml"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.1.1 什么是xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-xml%E4%BD%9C%E7%94%A8"><span class="nav-number">2.1.2.</span> <span class="nav-text">1.1.2 xml作用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-xml%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 xml基本语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-XML%E6%96%87%E6%A1%A3%E7%BB%84%E6%88%90"><span class="nav-number">2.3.</span> <span class="nav-text">1.3 XML文档组成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-1-%E6%96%87%E6%A1%A3%E5%A3%B0%E6%98%8E"><span class="nav-number">2.3.1.</span> <span class="nav-text">1.3.1 文档声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-2-%E6%A0%87%E7%AD%BE%E5%85%83%E7%B4%A0"><span class="nav-number">2.3.2.</span> <span class="nav-text">1.3.2 标签元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-3-%E5%B1%9E%E6%80%A7%E5%92%8C%E5%B1%9E%E6%80%A7%E5%80%BC"><span class="nav-number">2.3.3.</span> <span class="nav-text">1.3.3 属性和属性值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-XML%E7%9A%84%E7%BA%A6%E6%9D%9F"><span class="nav-number">2.4.</span> <span class="nav-text">1.4 XML的约束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-XML%E8%A7%A3%E6%9E%90"><span class="nav-number">2.5.</span> <span class="nav-text">1.5 XML解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-DOM%E6%80%9D%E6%83%B3%E8%A7%A3%E6%9E%90XML"><span class="nav-number">2.6.</span> <span class="nav-text">1.6 DOM思想解析XML</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-xpath%E6%8A%80%E6%9C%AF"><span class="nav-number">2.7.</span> <span class="nav-text">1.7 xpath技术</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">第二章 Tomcat服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Tomcat-%E7%9A%84%E7%AE%80%E4%BB%8B"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 Tomcat 的简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Tomcat%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 Tomcat的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-Tomcat%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%90%AF%E5%8A%A8"><span class="nav-number">3.3.</span> <span class="nav-text">2.3 Tomcat的安装和启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-Tomcat%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-number">3.4.</span> <span class="nav-text">2.4 Tomcat的目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-%E5%9C%A8Idea%E4%B8%AD%E9%9B%86%E6%88%90Tomcat"><span class="nav-number">3.5.</span> <span class="nav-text">2.5 在Idea中集成Tomcat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-%E5%88%9B%E5%BB%BA%E5%8A%A8%E6%80%81Web%E5%B7%A5%E7%A8%8B-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="nav-number">3.6.</span> <span class="nav-text">2.6 创建动态Web工程(服务器端应用程序)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-7-%E5%8A%A8%E6%80%81%E5%B7%A5%E7%A8%8B%E7%9B%AE%E5%BD%95"><span class="nav-number">3.7.</span> <span class="nav-text">2.7 动态工程目录</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">第三章 HTTP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-HTTP%E5%8D%8F%E8%AE%AE%E6%A6%82%E5%BF%B5"><span class="nav-number">4.1.</span> <span class="nav-text">3.1 HTTP协议概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-HTTP-%E8%AF%B7%E6%B1%82%E4%BF%A1%E6%81%AFGET"><span class="nav-number">4.2.</span> <span class="nav-text">3.2 HTTP 请求信息GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E8%AF%B7%E6%B1%82%E4%BF%A1%E6%81%AFPOST"><span class="nav-number">4.3.</span> <span class="nav-text">3.3 请求信息POST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%93%8D%E5%BA%94"><span class="nav-number">4.4.</span> <span class="nav-text">3.4 服务器响应</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#XML-amp-Tomcat-amp-Http%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.</span> <span class="nav-text">XML&amp;Tomcat&amp;Http协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-XML"><span class="nav-number">2.</span> <span class="nav-text">第一章 XML</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-xml%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 xml介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-%E4%BB%80%E4%B9%88%E6%98%AFxml"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.1.1 什么是xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-xml%E4%BD%9C%E7%94%A8"><span class="nav-number">2.1.2.</span> <span class="nav-text">1.1.2 xml作用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-xml%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 xml基本语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-XML%E6%96%87%E6%A1%A3%E7%BB%84%E6%88%90"><span class="nav-number">2.3.</span> <span class="nav-text">1.3 XML文档组成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-1-%E6%96%87%E6%A1%A3%E5%A3%B0%E6%98%8E"><span class="nav-number">2.3.1.</span> <span class="nav-text">1.3.1 文档声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-2-%E6%A0%87%E7%AD%BE%E5%85%83%E7%B4%A0"><span class="nav-number">2.3.2.</span> <span class="nav-text">1.3.2 标签元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-3-%E5%B1%9E%E6%80%A7%E5%92%8C%E5%B1%9E%E6%80%A7%E5%80%BC"><span class="nav-number">2.3.3.</span> <span class="nav-text">1.3.3 属性和属性值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-XML%E7%9A%84%E7%BA%A6%E6%9D%9F"><span class="nav-number">2.4.</span> <span class="nav-text">1.4 XML的约束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-XML%E8%A7%A3%E6%9E%90"><span class="nav-number">2.5.</span> <span class="nav-text">1.5 XML解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-DOM%E6%80%9D%E6%83%B3%E8%A7%A3%E6%9E%90XML"><span class="nav-number">2.6.</span> <span class="nav-text">1.6 DOM思想解析XML</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-xpath%E6%8A%80%E6%9C%AF"><span class="nav-number">2.7.</span> <span class="nav-text">1.7 xpath技术</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-Tomcat%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">3.</span> <span class="nav-text">第二章 Tomcat服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Tomcat-%E7%9A%84%E7%AE%80%E4%BB%8B"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 Tomcat 的简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Tomcat%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 Tomcat的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-Tomcat%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%90%AF%E5%8A%A8"><span class="nav-number">3.3.</span> <span class="nav-text">2.3 Tomcat的安装和启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-Tomcat%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-number">3.4.</span> <span class="nav-text">2.4 Tomcat的目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-%E5%9C%A8Idea%E4%B8%AD%E9%9B%86%E6%88%90Tomcat"><span class="nav-number">3.5.</span> <span class="nav-text">2.5 在Idea中集成Tomcat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-%E5%88%9B%E5%BB%BA%E5%8A%A8%E6%80%81Web%E5%B7%A5%E7%A8%8B-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="nav-number">3.6.</span> <span class="nav-text">2.6 创建动态Web工程(服务器端应用程序)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-7-%E5%8A%A8%E6%80%81%E5%B7%A5%E7%A8%8B%E7%9B%AE%E5%BD%95"><span class="nav-number">3.7.</span> <span class="nav-text">2.7 动态工程目录</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-HTTP%E5%8D%8F%E8%AE%AE"><span class="nav-number">4.</span> <span class="nav-text">第三章 HTTP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-HTTP%E5%8D%8F%E8%AE%AE%E6%A6%82%E5%BF%B5"><span class="nav-number">4.1.</span> <span class="nav-text">3.1 HTTP协议概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-HTTP-%E8%AF%B7%E6%B1%82%E4%BF%A1%E6%81%AFGET"><span class="nav-number">4.2.</span> <span class="nav-text">3.2 HTTP 请求信息GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E8%AF%B7%E6%B1%82%E4%BF%A1%E6%81%AFPOST"><span class="nav-number">4.3.</span> <span class="nav-text">3.3 请求信息POST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%93%8D%E5%BA%94"><span class="nav-number">4.4.</span> <span class="nav-text">3.4 服务器响应</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -303,76 +303,64 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1>XML&amp;Tomcat&amp;Http协议</h1>
-<p>在程序的世界里，有着这么一群人，我们称他们为“程序员”或“工程师”。他们可以不会流利的英语，却可以华丽的使用26字母和字符。他们可以不精通高等数学，却可以玩转众多逻辑和算法。他们赋予了冷血的机器以生命，他们改变了五彩的世界更多彩。</p>
+        <h1 id="XML-amp-Tomcat-amp-Http协议"><a href="#XML-amp-Tomcat-amp-Http协议" class="headerlink" title="XML&amp;Tomcat&amp;Http协议"></a>XML&amp;Tomcat&amp;Http协议</h1><p>在程序的世界里，有着这么一群人，我们称他们为“程序员”或“工程师”。他们可以不会流利的英语，却可以华丽的使用26字母和字符。他们可以不精通高等数学，却可以玩转众多逻辑和算法。他们赋予了冷血的机器以生命，他们改变了五彩的世界更多彩。</p>
 <p>​     年轻人，从今天开始，你将加入程序员大家族。使用自己的五指敲出自己的摩天大楼。世界因你而改变，你因今天而腾飞。不惧艰难，勇往直前，如此优秀的你，还有什么可以阻挡你成功的脚步。披荆斩棘，所向披靡，才华横逆的你，正走在辉煌人生的大道上。</p>
 <p>​     从现在开始，大家已进入程序圈，就业生活已拉开序幕。接下来的4个月，将是你人生中一次挑战，也将是你人生中一个起跳板。看那个高中生10k的offer，看那个大专生12k的offer….有点小兴奋，有点小激动，你，就你，还在等什么！！！</p>
 <span id="more"></span>
-<h1>第一章 XML</h1>
-<h2 id="1-1-xml介绍">1.1 xml介绍</h2>
-<h3 id="1-1-1-什么是xml">1.1.1 什么是xml</h3>
-<p>XML是eXtensible Markup language的缩写，可扩展标记语言。语言的结构就是由标签组成，语法形式和HTML基本一致的。</p>
+
+<h1 id="第一章-XML"><a href="#第一章-XML" class="headerlink" title="第一章 XML"></a>第一章 XML</h1><h2 id="1-1-xml介绍"><a href="#1-1-xml介绍" class="headerlink" title="1.1 xml介绍"></a>1.1 xml介绍</h2><h3 id="1-1-1-什么是xml"><a href="#1-1-1-什么是xml" class="headerlink" title="1.1.1 什么是xml"></a>1.1.1 什么是xml</h3><p>XML是eXtensible Markup language的缩写，可扩展标记语言。语言的结构就是由标签组成，语法形式和HTML基本一致的。</p>
 <p>XML标签是可以自定义的，标签的中属性也是自定义，属性值都是自定义的。</p>
 <p>XML是由万维网联盟（W3C）在1998年推出的xml版本的1.0标准，2004年推出1.1版本标准，两个版本根本就不兼容，1.1没人用</p>
-<h3 id="1-1-2-xml作用">1.1.2 xml作用</h3>
-<ul>
+<h3 id="1-1-2-xml作用"><a href="#1-1-2-xml作用" class="headerlink" title="1.1.2 xml作用"></a>1.1.2 xml作用</h3><ul>
 <li>HTML标记语言（5.0），最长久的版本HTML4.01，做网页，浏览器呈现画面。</li>
 <li>XML扩展标记语言(1.0)，不是做网页，不给用户看，保存数据使用，用于配置文件</li>
 <li>properties配置文件，配置形式简单，数据结构单一，仅仅适合Java技术开发</li>
-<li>XML可以提供更加丰富数据形式，灵活的配置结构，适合任何语言开发
-<ul>
+<li>XML可以提供更加丰富数据形式，灵活的配置结构，适合任何语言开发<ul>
 <li>JavaWeb程序，核心配置文件就是xml</li>
 <li>框架Spring，SpringMVC，MyBatis核心配置文件都是xml</li>
 <li>SpringBoot,SpringCloud 配置 yml</li>
 </ul>
 </li>
 </ul>
-<h2 id="1-2-xml基本语法">1.2 xml基本语法</h2>
-<ul>
-<li>标签&lt;标签名&gt; &lt;/标签名&gt; 开始标签和结束标签</li>
-<li>属性跟随开始标签，属性不同名，属性值必须有&quot;&quot;</li>
+<h2 id="1-2-xml基本语法"><a href="#1-2-xml基本语法" class="headerlink" title="1.2 xml基本语法"></a>1.2 xml基本语法</h2><ul>
+<li>标签&lt;标签名&gt; &lt;&#x2F;标签名&gt; 开始标签和结束标签</li>
+<li>属性跟随开始标签，属性不同名，属性值必须有””</li>
 <li>严格区分大小写</li>
 </ul>
-<h2 id="1-3-XML文档组成">1.3 XML文档组成</h2>
-<h3 id="1-3-1-文档声明">1.3.1 文档声明</h3>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- xml文档声明，固定写法 --&gt;</span></span><br><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="1-3-XML文档组成"><a href="#1-3-XML文档组成" class="headerlink" title="1.3 XML文档组成"></a>1.3 XML文档组成</h2><h3 id="1-3-1-文档声明"><a href="#1-3-1-文档声明" class="headerlink" title="1.3.1 文档声明"></a>1.3.1 文档声明</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- xml文档声明，固定写法 --&gt;</span></span><br><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>文档声明，W3C标准：必须写在文件的0行0列位置</p>
 </blockquote>
-<h3 id="1-3-2-标签元素">1.3.2 标签元素</h3>
-<p>标签元素:Element，写法形式和HTML一样，自己定义</p>
+<h3 id="1-3-2-标签元素"><a href="#1-3-2-标签元素" class="headerlink" title="1.3.2 标签元素"></a>1.3.2 标签元素</h3><p>标签元素:Element，写法形式和HTML一样，自己定义</p>
 <blockquote>
 <p>一个格式良好的xml文档，应该有一个根标签  RootElement</p>
 </blockquote>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">  自定义标签</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">students</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--students的子标签--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">student</span>&gt;</span><span class="tag">&lt;/<span class="name">student</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">student</span>&gt;</span><span class="tag">&lt;/<span class="name">student</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">class</span>&gt;</span><span class="tag">&lt;/<span class="name">class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">students</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="1-3-3-属性和属性值">1.3.3 属性和属性值</h3>
-<p>属性必须写在开始标签里面，多个属性之间空格分开，同一个标签中，属性不能同名，属性必须有值，必须有双引号。</p>
+
+<h3 id="1-3-3-属性和属性值"><a href="#1-3-3-属性和属性值" class="headerlink" title="1.3.3 属性和属性值"></a>1.3.3 属性和属性值</h3><p>属性必须写在开始标签里面，多个属性之间空格分开，同一个标签中，属性不能同名，属性必须有值，必须有双引号。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">  自定义标签</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">students</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--students的子标签--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">student</span> <span class="attr">name</span>=<span class="string">&quot;张三&quot;</span> <span class="attr">age</span>=<span class="string">&quot;20&quot;</span> <span class="attr">gender</span>=<span class="string">&quot;男&quot;</span>&gt;</span>这个人毕业了<span class="tag">&lt;/<span class="name">student</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">student</span> <span class="attr">name</span>=<span class="string">&quot;张三&quot;</span> <span class="attr">age</span>=<span class="string">&quot;20&quot;</span> <span class="attr">gender</span>=<span class="string">&quot;男&quot;</span>&gt;</span>这个人肄业了<span class="tag">&lt;/<span class="name">student</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">class</span>&gt;</span><span class="tag">&lt;/<span class="name">class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">students</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="1-4-XML的约束">1.4 XML的约束</h2>
-<p>将来我们主要就是根据XML约束中的规定来编写XML配置文件，而且会在我们编写XML的时候根据约束来提示我们编写, 而XML约束主要包括DTD和Schema两种。</p>
+
+<h2 id="1-4-XML的约束"><a href="#1-4-XML的约束" class="headerlink" title="1.4 XML的约束"></a>1.4 XML的约束</h2><p>将来我们主要就是根据XML约束中的规定来编写XML配置文件，而且会在我们编写XML的时候根据约束来提示我们编写, 而XML约束主要包括DTD和Schema两种。</p>
 <p><strong>什么是DTD</strong></p>
 <p>DTD（Document Type Definition），文档类型定义，用来约束XML文档。规定XML文档中元素的名称，子元素的名称及顺序，元素的属性等。</p>
 <p><strong>DTD重点要求</strong></p>
 <p>开发中，我们很少自己编写DTD约束文档，通常情况我们都是通过框架提供的DTD约束文档，编写对应的XML文档。常见框架使用DTD约束有：mybatis、struts2、hibernate等。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">	如果开发人员需要在xml使用当前DTD约束，必须包括DOCTYPE。</span><br><span class="line">	格式如下：</span><br><span class="line">	&lt;!DOCTYPE beans SYSTEM &quot;bean.dtd&quot;&gt;</span><br><span class="line">--&gt;</span><br><span class="line">&lt;!ELEMENT beans (bean*,import*) &gt;</span><br><span class="line">&lt;!ELEMENT bean (property*)&gt;</span><br><span class="line">&lt;!ELEMENT property (#PCDATA)&gt;</span><br><span class="line"></span><br><span class="line">&lt;!ELEMENT import (#PCDATA)&gt;</span><br><span class="line"></span><br><span class="line">&lt;!ATTLIST bean id CDATA #REQUIRED</span><br><span class="line">			   className CDATA #REQUIRED</span><br><span class="line">&gt;</span><br><span class="line"></span><br><span class="line">&lt;!ATTLIST property name CDATA #REQUIRED</span><br><span class="line">				   value CDATA #REQUIRED</span><br><span class="line">&gt;</span><br><span class="line"></span><br><span class="line">&lt;!ATTLIST import resource CDATA #REQUIRED&gt;</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>Schema</li>
 </ul>
-<p>Schema是新的XML文档约束；<br>
-Schema要比DTD强大很多，是DTD 替代者；<br>
-Schema本身也是XML文档，但Schema文档的扩展名为xsd，而不是xml。<br>
-Schema 功能更强大，数据类型更完善<br>
-Schema 支持名称空间</p>
-<p><img src="/images/day31_XML_Tomcat_Http/1.png" alt></p>
+<p>Schema是新的XML文档约束；<br>Schema要比DTD强大很多，是DTD 替代者；<br>Schema本身也是XML文档，但Schema文档的扩展名为xsd，而不是xml。<br>Schema 功能更强大，数据类型更完善<br>Schema 支持名称空间</p>
+<p><img src="/images/day31_XML_Tomcat_Http/1.png"></p>
 <p>我们将来使用SSM框架中的Spring、SpringMVC框架时，会涉及到一点点对Schema约束的设置。不过不必紧张，有IDEA的支持操作会非常简单，我们现在只需要理解基本概念即可。</p>
-<p><img src="/images/day31_XML_Tomcat_Http/2.png" alt></p>
+<p><img src="/images/day31_XML_Tomcat_Http/2.png"></p>
 <p>首先我们要理解一个概念：名称空间，英文：name space：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">	模拟spring规范，如果开发人员需要在xml使用当前Schema约束，必须包括指定命名空间。</span></span><br><span class="line"><span class="comment">	格式如下：</span></span><br><span class="line"><span class="comment">	&lt;beans xmlns=&quot;http://www.atguigu.cn/bean&quot;</span></span><br><span class="line"><span class="comment">	   xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="line"><span class="comment">	   xsi:schemaLocation=&quot;http://www.atguigu.cn/bean bean-schema.xsd&quot;</span></span><br><span class="line"><span class="comment">	&gt;</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">schema</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema&quot;</span></span></span><br><span class="line"><span class="tag">		<span class="attr">targetNamespace</span>=<span class="string">&quot;http://www.atguigu.cn/bean&quot;</span></span></span><br><span class="line"><span class="tag">		<span class="attr">xmlns:xsd</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema&quot;</span></span></span><br><span class="line"><span class="tag">		<span class="attr">xmlns:tns</span>=<span class="string">&quot;http://www.atguigu.cn/bean&quot;</span></span></span><br><span class="line"><span class="tag">		<span class="attr">elementFormDefault</span>=<span class="string">&quot;qualified&quot;</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 声明根标签 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">element</span> <span class="attr">name</span>=<span class="string">&quot;beans&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">complexType</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">choice</span> <span class="attr">minOccurs</span>=<span class="string">&quot;0&quot;</span> <span class="attr">maxOccurs</span>=<span class="string">&quot;unbounded&quot;</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">element</span> <span class="attr">name</span>=<span class="string">&quot;bean&quot;</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">complexType</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">sequence</span> <span class="attr">minOccurs</span>=<span class="string">&quot;0&quot;</span> <span class="attr">maxOccurs</span>=<span class="string">&quot;unbounded&quot;</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">element</span> <span class="attr">name</span>=<span class="string">&quot;property&quot;</span>&gt;</span></span><br><span class="line">								<span class="tag">&lt;<span class="name">complexType</span>&gt;</span></span><br><span class="line">									<span class="tag">&lt;<span class="name">attribute</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">use</span>=<span class="string">&quot;required&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">attribute</span>&gt;</span></span><br><span class="line">									<span class="tag">&lt;<span class="name">attribute</span> <span class="attr">name</span>=<span class="string">&quot;value&quot;</span> <span class="attr">use</span>=<span class="string">&quot;required&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">attribute</span>&gt;</span></span><br><span class="line">								<span class="tag">&lt;/<span class="name">complexType</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;/<span class="name">element</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">sequence</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">attribute</span> <span class="attr">name</span>=<span class="string">&quot;id&quot;</span> <span class="attr">use</span>=<span class="string">&quot;required&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">attribute</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">attribute</span> <span class="attr">name</span>=<span class="string">&quot;className&quot;</span> <span class="attr">use</span>=<span class="string">&quot;required&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">attribute</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;/<span class="name">complexType</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">element</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">element</span> <span class="attr">name</span>=<span class="string">&quot;import&quot;</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">complexType</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">attribute</span> <span class="attr">name</span>=<span class="string">&quot;resource&quot;</span> <span class="attr">use</span>=<span class="string">&quot;required&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">attribute</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;/<span class="name">complexType</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">element</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">choice</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">complexType</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">element</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">schema</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="1-5-XML解析">1.5 XML解析</h2>
-<p>读取xml文件就是解析，人们提出了解析思想，如何来读取xml文件</p>
+
+<h2 id="1-5-XML解析"><a href="#1-5-XML解析" class="headerlink" title="1.5 XML解析"></a>1.5 XML解析</h2><p>读取xml文件就是解析，人们提出了解析思想，如何来读取xml文件</p>
 <ul>
-<li>dom思想
-<ul>
+<li>dom思想<ul>
 <li>文档对象模型,dom思想</li>
 <li>将整个文档全部读取出，放在内存中，就是一个对象document</li>
 <li>document对象获取xml的具体内容</li>
@@ -380,8 +368,7 @@ Schema 支持名称空间</p>
 <li>弊端：读取速度慢，占内存</li>
 </ul>
 </li>
-<li>sax思想
-<ul>
+<li>sax思想<ul>
 <li>文档比作大山，推山的方式读取</li>
 <li>以事件驱动的方式，读取文件</li>
 <li>读取一行，问开发人员，要不要</li>
@@ -392,10 +379,8 @@ Schema 支持名称空间</p>
 </li>
 <li>解析器：按照解析思想，实现的程序</li>
 </ul>
-<h2 id="1-6-DOM思想解析XML">1.6 DOM思想解析XML</h2>
-<ul>
-<li>dom4j.jar包中的核心API：
-<ul>
+<h2 id="1-6-DOM思想解析XML"><a href="#1-6-DOM思想解析XML" class="headerlink" title="1.6 DOM思想解析XML"></a>1.6 DOM思想解析XML</h2><ul>
+<li>dom4j.jar包中的核心API：<ul>
 <li>SaxReader类：读取xml文件，创建文档对象document</li>
 <li>Document接口：表示整个xml文档</li>
 <li>Element接口：表示文档的标签元素</li>
@@ -403,81 +388,68 @@ Schema 支持名称空间</p>
 </li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="comment">//创建对象SaxReader，直接new</span></span><br><span class="line">    <span class="type">SAXReader</span> <span class="variable">sax</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SAXReader</span>();</span><br><span class="line">    <span class="comment">//sax对象的方法read(字节输入流)读取xml文件，放在内存中，返回文档对象Document</span></span><br><span class="line">    <span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span></span><br><span class="line">            ReadXml.class.getClassLoader().getResourceAsStream(<span class="string">&quot;my.xml&quot;</span>);</span><br><span class="line">    <span class="comment">//获取到了文档对象</span></span><br><span class="line">    <span class="type">Document</span> <span class="variable">document</span> <span class="operator">=</span> sax.read(in);</span><br><span class="line">    in.close();</span><br><span class="line">    <span class="comment">//document对象方法 getRootElement()获取文档根标签</span></span><br><span class="line">    <span class="comment">//返回标签元素对象：Element接口实现类</span></span><br><span class="line">    <span class="type">Element</span> <span class="variable">rootElement</span> <span class="operator">=</span> document.getRootElement();</span><br><span class="line">    <span class="comment">//获取根标签的子标签：标签名student</span></span><br><span class="line">    <span class="comment">//根标签对象的方法：elements() 获取所有的子标签</span></span><br><span class="line">    <span class="comment">// 返回 List&lt;Element&gt; elements()</span></span><br><span class="line">    List&lt;Element&gt; studentElementList = rootElement.elements();</span><br><span class="line">    <span class="keyword">for</span> (Element studentElement : studentElementList)&#123;</span><br><span class="line">        <span class="comment">//studentElement集合元素，是student标签对象</span></span><br><span class="line">        <span class="comment">//student标签的属性，标签对象的方法 attributeValue(属性名)</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> studentElement.attributeValue(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">age</span> <span class="operator">=</span> studentElement.attributeValue(<span class="string">&quot;age&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;name = &quot;</span> + name);</span><br><span class="line">        System.out.println(<span class="string">&quot;age = &quot;</span> + age);</span><br><span class="line">        <span class="comment">//获取Student标签的子标签score</span></span><br><span class="line">        List&lt;Element&gt; scoreElementList = studentElement.elements();</span><br><span class="line">        <span class="keyword">for</span> (Element scoreElement:scoreElementList)&#123;</span><br><span class="line">            <span class="comment">//集合元素scoreElement，子标签score</span></span><br><span class="line">            <span class="comment">//标签属性score的属性</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">n</span> <span class="operator">=</span> scoreElement.attributeValue(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">            <span class="comment">//score标签的文本，标签体，标签对象的方法getText()</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">text</span> <span class="operator">=</span> scoreElement.getText();</span><br><span class="line">            System.out.println(<span class="string">&quot;n = &quot;</span> + n);</span><br><span class="line">            System.out.println(<span class="string">&quot;text = &quot;</span> + text);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="1-7-xpath技术">1.7 xpath技术</h2>
-<p>Xpath技术，基于DOM思想建立，精准定位到你想要的标签，不需要层层读取</p>
+
+<h2 id="1-7-xpath技术"><a href="#1-7-xpath技术" class="headerlink" title="1.7 xpath技术"></a>1.7 xpath技术</h2><p>Xpath技术，基于DOM思想建立，精准定位到你想要的标签，不需要层层读取</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    <span class="comment">//创建对象SaxReader，直接new</span></span><br><span class="line">    <span class="type">SAXReader</span> <span class="variable">sax</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SAXReader</span>();</span><br><span class="line">    <span class="comment">//sax对象的方法read(字节输入流)读取xml文件，放在内存中，返回文档对象Document</span></span><br><span class="line">    <span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span></span><br><span class="line">            ReadXml.class.getClassLoader().getResourceAsStream(<span class="string">&quot;my.xml&quot;</span>);</span><br><span class="line">    <span class="comment">//获取到了文档对象</span></span><br><span class="line">    <span class="type">Document</span> <span class="variable">document</span> <span class="operator">=</span> sax.read(in);</span><br><span class="line">    in.close();</span><br><span class="line">    <span class="comment">//快速定位到score标签</span></span><br><span class="line">    <span class="comment">//document对象方法 selectSingleNode</span></span><br><span class="line">    <span class="comment">//返回节点对象Node接口类型</span></span><br><span class="line">    <span class="comment">//Element标签元素接口，继承Node接口</span></span><br><span class="line">    <span class="type">Element</span> <span class="variable">node</span> <span class="operator">=</span> (Element)document.selectSingleNode(<span class="string">&quot;//score&quot;</span>);</span><br><span class="line">    <span class="type">String</span> <span class="variable">text</span> <span class="operator">=</span> node.getText();</span><br><span class="line">    <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> node.attributeValue(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;text = &quot;</span> + text);</span><br><span class="line">    System.out.println(<span class="string">&quot;name = &quot;</span> + name);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">     <span class="comment">//创建对象SaxReader，直接new</span></span><br><span class="line">     <span class="type">SAXReader</span> <span class="variable">sax</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SAXReader</span>();</span><br><span class="line">     <span class="comment">//sax对象的方法read(字节输入流)读取xml文件，放在内存中，返回文档对象Document</span></span><br><span class="line">     <span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span></span><br><span class="line">             ReadXml.class.getClassLoader().getResourceAsStream(<span class="string">&quot;my.xml&quot;</span>);</span><br><span class="line">     <span class="comment">//获取到了文档对象</span></span><br><span class="line">     <span class="type">Document</span> <span class="variable">document</span> <span class="operator">=</span> sax.read(in);</span><br><span class="line">     in.close();</span><br><span class="line">     <span class="comment">//document对象的方法selectNodes(//标签) 所有同名的标签</span></span><br><span class="line">     List&lt;Node&gt; list = document.selectNodes(<span class="string">&quot;//score&quot;</span>);</span><br><span class="line">     <span class="keyword">for</span> (Node node : list)&#123;</span><br><span class="line">         <span class="comment">//Node接口，子接口Element接口</span></span><br><span class="line">         <span class="type">Element</span> <span class="variable">element</span> <span class="operator">=</span> (Element)node;</span><br><span class="line">         <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> element.attributeValue(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">         <span class="type">String</span> <span class="variable">text</span> <span class="operator">=</span> element.getText();</span><br><span class="line">         System.out.println(<span class="string">&quot;name = &quot;</span> + name);</span><br><span class="line">         System.out.println(<span class="string">&quot;text = &quot;</span> + text);</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<h1>第二章 Tomcat服务器</h1>
-<h2 id="2-1-Tomcat-的简介">2.1 Tomcat 的简介</h2>
-<p>Tomcat 服务器是一个开源免费的轻量级Web应用服务器，由Sun公司和Apache软件基金会联合发起的。在中小型系统和并发量小的场合下被普遍使用，是开发和调试Servlet、JSP 程序的首选。也是绝大多数JavaEE开发工程师所必用的</p>
-<h2 id="2-2-Tomcat的作用">2.2 Tomcat的作用</h2>
-<p>Apache Tomcat，是一个免费的，Java语言编写，Web应用程序服务器。Tomcat从现在开始，作为我们开发的程序的<strong>运行环境</strong>，IDEA中编写程序，复制到Tomcat中执行，客户端浏览器可以直接访问我们写的程序。</p>
-<h2 id="2-3-Tomcat的安装和启动">2.3 Tomcat的安装和启动</h2>
-<p>apache-tomcat-9.0.63.zip解压缩，任意目录都是可以的，记住位置</p>
+
+
+
+<h1 id="第二章-Tomcat服务器"><a href="#第二章-Tomcat服务器" class="headerlink" title="第二章 Tomcat服务器"></a>第二章 Tomcat服务器</h1><h2 id="2-1-Tomcat-的简介"><a href="#2-1-Tomcat-的简介" class="headerlink" title="2.1 Tomcat 的简介"></a>2.1 Tomcat 的简介</h2><p>Tomcat 服务器是一个开源免费的轻量级Web应用服务器，由Sun公司和Apache软件基金会联合发起的。在中小型系统和并发量小的场合下被普遍使用，是开发和调试Servlet、JSP 程序的首选。也是绝大多数JavaEE开发工程师所必用的</p>
+<h2 id="2-2-Tomcat的作用"><a href="#2-2-Tomcat的作用" class="headerlink" title="2.2 Tomcat的作用"></a>2.2 Tomcat的作用</h2><p>Apache Tomcat，是一个免费的，Java语言编写，Web应用程序服务器。Tomcat从现在开始，作为我们开发的程序的<strong>运行环境</strong>，IDEA中编写程序，复制到Tomcat中执行，客户端浏览器可以直接访问我们写的程序。</p>
+<h2 id="2-3-Tomcat的安装和启动"><a href="#2-3-Tomcat的安装和启动" class="headerlink" title="2.3 Tomcat的安装和启动"></a>2.3 Tomcat的安装和启动</h2><p>apache-tomcat-9.0.63.zip解压缩，任意目录都是可以的，记住位置</p>
 <blockquote>
 <p><strong>启动Tomcat服务器之前，必须配置JAVA_HOME</strong></p>
 </blockquote>
 <p>Tomcat的bin目录下启动文件：startup.bat，开启服务器，占用机器端口8080,等待客户端浏览器访问。</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">输入地址：http</span>:<span class="string">//localhost:8080</span></span><br><span class="line"><span class="attr">浏览器看见一只猫，Tomcat服务器正常工作了</span></span><br></pre></td></tr></table></figure>
+
 <blockquote>
-<p>Tomcat页面的位置：tomcat解压目录下/webapps/ROOT/index.jsp</p>
+<p>Tomcat页面的位置：tomcat解压目录下&#x2F;webapps&#x2F;ROOT&#x2F;index.jsp</p>
 </blockquote>
 <p>Tomcat的bin目录下关闭文件：shutdown.bat</p>
 <ul>
-<li>
-<p>处理Tomcat服务器启动时，控制台乱码</p>
+<li><p>处理Tomcat服务器启动时，控制台乱码</p>
 <ul>
-<li>Tomcat解压目录下/conf/logging.properties 修改此文件</li>
+<li>Tomcat解压目录下&#x2F;conf&#x2F;logging.properties 修改此文件</li>
 </ul>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">java.util.logging.ConsoleHandler.encoding</span> = <span class="string">GBK</span></span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">java.util.logging.ConsoleHandler.encoding</span> = <span class="string">GBK</span></span><br></pre></td></tr></table></figure></li>
 </ul>
-<h2 id="2-4-Tomcat的目录结构">2.4 Tomcat的目录结构</h2>
-<p><img src="/images/day31_XML_Tomcat_Http/7.png" alt></p>
-<h2 id="2-5-在Idea中集成Tomcat">2.5 在Idea中集成Tomcat</h2>
-<p><img src="/images/day31_XML_Tomcat_Http/8.png" alt></p>
+<h2 id="2-4-Tomcat的目录结构"><a href="#2-4-Tomcat的目录结构" class="headerlink" title="2.4 Tomcat的目录结构"></a>2.4 Tomcat的目录结构</h2><p><img src="/images/day31_XML_Tomcat_Http/7.png"></p>
+<h2 id="2-5-在Idea中集成Tomcat"><a href="#2-5-在Idea中集成Tomcat" class="headerlink" title="2.5 在Idea中集成Tomcat"></a>2.5 在Idea中集成Tomcat</h2><p><img src="/images/day31_XML_Tomcat_Http/8.png"></p>
 <p><img src="/images/day31_XML_Tomcat_Http/9.png" alt="9"></p>
 <p><img src="/images/day31_XML_Tomcat_Http/10.png" alt="10"></p>
 <p><img src="/images/day31_XML_Tomcat_Http/11.png" alt="11"></p>
 <p><img src="/images/day31_XML_Tomcat_Http/12.png" alt="12"></p>
 <p><img src="/images/day31_XML_Tomcat_Http/13.png" alt="13"></p>
 <p><img src="/images/day31_XML_Tomcat_Http/14.png" alt="14"></p>
-<h2 id="2-6-创建动态Web工程-服务器端应用程序">2.6 创建动态Web工程(服务器端应用程序)</h2>
-<ul>
-<li>JDK版本和JavaEE技术平台对应的版本
-<ul>
+<h2 id="2-6-创建动态Web工程-服务器端应用程序"><a href="#2-6-创建动态Web工程-服务器端应用程序" class="headerlink" title="2.6 创建动态Web工程(服务器端应用程序)"></a>2.6 创建动态Web工程(服务器端应用程序)</h2><ul>
+<li>JDK版本和JavaEE技术平台对应的版本<ul>
 <li>JDK5，对应是JavaEE的2.5版本</li>
 <li>JDK6，对应是JavaEE的3.0版本</li>
 <li><strong>JDK7，对应是JavaEE的3.1版本</strong></li>
 <li>JDK8，对应是JavaEE的4.0版本</li>
 </ul>
 </li>
-<li>创建JavaEE项目的时候，create web.xml选项，要勾上
-<ul>
+<li>创建JavaEE项目的时候，create web.xml选项，要勾上<ul>
 <li>JDK5，JavaEE是2.5，web.xml必须有</li>
 <li>JDK6以上，JavaEE是3.0，web.xml文件，可以有，也可以没有</li>
 </ul>
 </li>
 </ul>
-<p><img src="/images/day31_XML_Tomcat_Http/15.png" alt></p>
-<h2 id="2-7-动态工程目录">2.7 动态工程目录</h2>
-<p><img src="/images/day31_XML_Tomcat_Http/16.png" alt></p>
-<h1>第三章 HTTP协议</h1>
-<h2 id="3-1-HTTP协议概念">3.1 HTTP协议概念</h2>
-<p>HTTP协议（超文本传输协议 Hyper Text Transfer Protocol），是开发JavaWeb程序的基石，非常重要。HTTP协议是网络通信模型（TCP/IP）传输层的协议，是TCP协议的子协议。规定的是客户端浏览器和服务器之间的通信规则。HTTPS：HTTP协议的加密传递</p>
+<p><img src="/images/day31_XML_Tomcat_Http/15.png"></p>
+<h2 id="2-7-动态工程目录"><a href="#2-7-动态工程目录" class="headerlink" title="2.7 动态工程目录"></a>2.7 动态工程目录</h2><p><img src="/images/day31_XML_Tomcat_Http/16.png"></p>
+<h1 id="第三章-HTTP协议"><a href="#第三章-HTTP协议" class="headerlink" title="第三章 HTTP协议"></a>第三章 HTTP协议</h1><h2 id="3-1-HTTP协议概念"><a href="#3-1-HTTP协议概念" class="headerlink" title="3.1 HTTP协议概念"></a>3.1 HTTP协议概念</h2><p>HTTP协议（超文本传输协议 Hyper Text Transfer Protocol），是开发JavaWeb程序的基石，非常重要。HTTP协议是网络通信模型（TCP&#x2F;IP）传输层的协议，是TCP协议的子协议。规定的是客户端浏览器和服务器之间的通信规则。HTTPS：HTTP协议的加密传递</p>
 <ul>
 <li>浏览器访问服务器的流程</li>
 </ul>
-<p><img src="/images/day31_XML_Tomcat_Http/3.png" alt></p>
-<h2 id="3-2-HTTP-请求信息GET">3.2 HTTP 请求信息GET</h2>
-<p><img src="/images/day31_XML_Tomcat_Http/4.png" alt></p>
-<h2 id="3-3-请求信息POST">3.3 请求信息POST</h2>
-<p><img src="/images/day31_XML_Tomcat_Http/5.png" alt></p>
-<h2 id="3-4-服务器响应">3.4 服务器响应</h2>
-<p><img src="/images/day31_XML_Tomcat_Http/6.png" alt></p>
+<p><img src="/images/day31_XML_Tomcat_Http/3.png"></p>
+<h2 id="3-2-HTTP-请求信息GET"><a href="#3-2-HTTP-请求信息GET" class="headerlink" title="3.2 HTTP 请求信息GET"></a>3.2 HTTP 请求信息GET</h2><p><img src="/images/day31_XML_Tomcat_Http/4.png"></p>
+<h2 id="3-3-请求信息POST"><a href="#3-3-请求信息POST" class="headerlink" title="3.3 请求信息POST"></a>3.3 请求信息POST</h2><p><img src="/images/day31_XML_Tomcat_Http/5.png"></p>
+<h2 id="3-4-服务器响应"><a href="#3-4-服务器响应" class="headerlink" title="3.4 服务器响应"></a>3.4 服务器响应</h2><p><img src="/images/day31_XML_Tomcat_Http/6.png"></p>
 <ul>
-<li>常见的HTTP协议的响应状态码
-<ul>
+<li>常见的HTTP协议的响应状态码<ul>
 <li>200 响应成功</li>
 <li>302 浏览器重定向</li>
 <li>304 查找本机缓存</li>
@@ -489,6 +461,7 @@ Schema 支持名称空间</p>
 </li>
 </ul>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Java技术分为三个技术平台</span></span><br><span class="line"><span class="attr">JavaSE：Java技术标准版（其他</span> <span class="string">技术平台的基础，面向对象，基本语法，集合，IO，反射）</span></span><br><span class="line"><span class="attr">JavaME：Java小型设备平台（死在摇篮）IOS，Android</span></span><br><span class="line"><span class="attr">JavaEE：Java企业级平台（开发互联网技术的）</span></span><br></pre></td></tr></table></figure>
+
 
     </div>
 
