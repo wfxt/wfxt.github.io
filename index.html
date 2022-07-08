@@ -273,20 +273,13 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1>Maven</h1>
-<h1>第1章 Maven概述</h1>
-<h2 id="1-1-Maven的概念">1.1 Maven的概念</h2>
-<p>Maven是项目进行模型抽象，充分运用的面向对象的思想，Maven可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目管理工具。Maven 除了以程序构建能力为特色之外，还提供高级项目管理工具。由于 Maven 的缺省构建规则有较高的可重用性，所以常常用两三行 Maven 构建脚本就可以构建简单的项目。</p>
-<h2 id="1-2-Maven的作用">1.2 Maven的作用</h2>
-<ul>
-<li>
-<p>maven对项目的第三方构件（jar包）进行统一管理。向工程中加入jar包不要手工从其它地方拷贝，通过maven定义jar包的坐标，自动从maven仓库中去下载到工程中。</p>
+          <h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><h1 id="第1章-Maven概述"><a href="#第1章-Maven概述" class="headerlink" title="第1章 Maven概述"></a>第1章 Maven概述</h1><h2 id="1-1-Maven的概念"><a href="#1-1-Maven的概念" class="headerlink" title="1.1 Maven的概念"></a>1.1 Maven的概念</h2><p>Maven是项目进行模型抽象，充分运用的面向对象的思想，Maven可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目管理工具。Maven 除了以程序构建能力为特色之外，还提供高级项目管理工具。由于 Maven 的缺省构建规则有较高的可重用性，所以常常用两三行 Maven 构建脚本就可以构建简单的项目。</p>
+<h2 id="1-2-Maven的作用"><a href="#1-2-Maven的作用" class="headerlink" title="1.2 Maven的作用"></a>1.2 Maven的作用</h2><ul>
+<li><p>maven对项目的第三方构件（jar包）进行统一管理。向工程中加入jar包不要手工从其它地方拷贝，通过maven定义jar包的坐标，自动从maven仓库中去下载到工程中。</p>
 </li>
-<li>
-<p>maven提供一套对项目生命周期管理的标准，开发人员、和测试人员统一使用maven进行项目构建。项目生命周期管理：编译、测试、打包、部署 、运行。</p>
+<li><p>maven提供一套对项目生命周期管理的标准，开发人员、和测试人员统一使用maven进行项目构建。项目生命周期管理：编译、测试、打包、部署 、运行。</p>
 </li>
-<li>
-<p>maven对工程分模块构建，提高开发效率。</p>
+<li><p>maven对工程分模块构建，提高开发效率。</p>
 </li>
 </ul>
           <!--noindex-->
@@ -374,9 +367,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1>648.单词替换</h1>
-<h2 id="648-单词替换">648.单词替换</h2>
-<blockquote>
+          <h1 id="648-单词替换"><a href="#648-单词替换" class="headerlink" title="648.单词替换"></a>648.单词替换</h1><h2 id="648-单词替换-1"><a href="#648-单词替换-1" class="headerlink" title="648.单词替换"></a>648.单词替换</h2><blockquote>
 <p>题目描述：</p>
 <p>在英语中，我们有一个叫做 词根(root) 的概念，可以词根后面添加其他一些词组成另一个较长的单词——我们称这个词为 继承词(successor)。例如，词根an，跟随着单词 other(其他)，可以形成新的单词 another(另一个)。</p>
 <p>现在，给定一个由许多词根组成的词典 dictionary 和一个用空格分隔单词形成的句子 sentence。你需要将句子中的所有继承词用词根替换掉。如果继承词有许多可以形成它的词根，则用最短的词根替换它。</p>
@@ -384,8 +375,7 @@
 </blockquote>
 <p><strong>示例1：</strong></p>
 <blockquote>
-<p>输入：dictionary = [“cat”,“bat”,“rat”], sentence = “the cattle was rattled by the battery”<br>
-输出：“the cat was rat by the bat”</p>
+<p>输入：dictionary &#x3D; [“cat”,”bat”,”rat”], sentence &#x3D; “the cattle was rattled by the battery”<br>输出：”the cat was rat by the bat”</p>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
@@ -472,12 +462,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1>书城项目第六阶段</h1>
-<h2 id="功能-结账">功能 结账</h2>
-<h3 id="1-创建订单模型">1. 创建订单模型</h3>
-<h4 id="1-1-物理建模">1.1 物理建模</h4>
-<h5 id="1-1-1-t-order表">1.1.1 t_order表</h5>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> t_order(</span><br><span class="line">	order_id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">	order_sequence <span class="type">VARCHAR</span>(<span class="number">200</span>),</span><br><span class="line">	create_time <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">	total_count <span class="type">INT</span>,</span><br><span class="line">	total_amount <span class="keyword">DOUBLE</span>,</span><br><span class="line">	order_status <span class="type">INT</span>,</span><br><span class="line">	user_id <span class="type">INT</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+          <h1 id="书城项目第六阶段"><a href="#书城项目第六阶段" class="headerlink" title="书城项目第六阶段"></a>书城项目第六阶段</h1><h2 id="功能-结账"><a href="#功能-结账" class="headerlink" title="功能 结账"></a>功能 结账</h2><h3 id="1-创建订单模型"><a href="#1-创建订单模型" class="headerlink" title="1. 创建订单模型"></a>1. 创建订单模型</h3><h4 id="1-1-物理建模"><a href="#1-1-物理建模" class="headerlink" title="1.1 物理建模"></a>1.1 物理建模</h4><h5 id="1-1-1-t-order表"><a href="#1-1-1-t-order表" class="headerlink" title="1.1.1 t_order表"></a>1.1.1 t_order表</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> t_order(</span><br><span class="line">	order_id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">	order_sequence <span class="type">VARCHAR</span>(<span class="number">200</span>),</span><br><span class="line">	create_time <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">	total_count <span class="type">INT</span>,</span><br><span class="line">	total_amount <span class="keyword">DOUBLE</span>,</span><br><span class="line">	order_status <span class="type">INT</span>,</span><br><span class="line">	user_id <span class="type">INT</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
 <table>
 <thead>
 <tr>
@@ -485,8 +471,7 @@
 <th>字段作用</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>order_id</td>
 <td>主键</td>
 </tr>
@@ -514,8 +499,7 @@
 <td>user_id</td>
 <td>下单的用户的id</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/07/06/atguigu/day41_bookstore6/#more" rel="contents">
@@ -601,10 +585,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1>Filter&amp;Listener&amp;书城项目第六阶段</h1>
-<h1>第一章 Filter过滤器</h1>
-<h2 id="1-1-Filter的概念">1.1 Filter的概念</h2>
-<p>现在的生活中到处都是过滤器：比喻坐火车，一般情况下要过安检的。通过2个安检，一个是进站时，一个是进入候车室，进入站台上车。</p>
+          <h1 id="Filter-amp-Listener-amp-书城项目第六阶段"><a href="#Filter-amp-Listener-amp-书城项目第六阶段" class="headerlink" title="Filter&amp;Listener&amp;书城项目第六阶段"></a>Filter&amp;Listener&amp;书城项目第六阶段</h1><h1 id="第一章-Filter过滤器"><a href="#第一章-Filter过滤器" class="headerlink" title="第一章 Filter过滤器"></a>第一章 Filter过滤器</h1><h2 id="1-1-Filter的概念"><a href="#1-1-Filter的概念" class="headerlink" title="1.1 Filter的概念"></a>1.1 Filter的概念</h2><p>现在的生活中到处都是过滤器：比喻坐火车，一般情况下要过安检的。通过2个安检，一个是进站时，一个是进入候车室，进入站台上车。</p>
 <p>第一个安检过不去，不会到达第二个安检。第一个过了，第二个没过，依然不能进站上车。安全检查就是<strong>过滤器</strong>，安全检查可以拦截旅客。</p>
 <p>过安检是排在前面的人先安检，先进站，是数据结构中的队列，数据先进先出。</p>
 <blockquote>
@@ -695,12 +676,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1>day39 书城项目第五阶段</h1>
-<h1>第一章 显示购物车页面</h1>
-<h2 id="1-1目标">1.1目标</h2>
-<p>把购物车信息在专门的页面显示出来</p>
-<h2 id="1-2思路">1.2思路</h2>
-<p><img src="/images/day39_bookstore5/img001.png" alt></p>
+          <h1 id="day39-书城项目第五阶段"><a href="#day39-书城项目第五阶段" class="headerlink" title="day39 书城项目第五阶段"></a>day39 书城项目第五阶段</h1><h1 id="第一章-显示购物车页面"><a href="#第一章-显示购物车页面" class="headerlink" title="第一章 显示购物车页面"></a>第一章 显示购物车页面</h1><h2 id="1-1目标"><a href="#1-1目标" class="headerlink" title="1.1目标"></a>1.1目标</h2><p>把购物车信息在专门的页面显示出来</p>
+<h2 id="1-2思路"><a href="#1-2思路" class="headerlink" title="1.2思路"></a>1.2思路</h2><p><img src="/images/day39_bookstore5/img001.png"></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/07/05/atguigu/day39_bookstore5/#more" rel="contents">
@@ -786,19 +763,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1>Ajax&amp;Axios&amp;书城项目第五阶段</h1>
-<h1>第一章 Ajax异步请求</h1>
-<h2 id="1-1-什么是异步请求">1.1 什么是异步请求</h2>
-<p>Ajax本身就是Asynchronous JavaScript And XML的缩写，本身就是使用JavaScript技术实现异步请求效果。</p>
+          <h1 id="Ajax-amp-Axios-amp-书城项目第五阶段"><a href="#Ajax-amp-Axios-amp-书城项目第五阶段" class="headerlink" title="Ajax&amp;Axios&amp;书城项目第五阶段"></a>Ajax&amp;Axios&amp;书城项目第五阶段</h1><h1 id="第一章-Ajax异步请求"><a href="#第一章-Ajax异步请求" class="headerlink" title="第一章 Ajax异步请求"></a>第一章 Ajax异步请求</h1><h2 id="1-1-什么是异步请求"><a href="#1-1-什么是异步请求" class="headerlink" title="1.1 什么是异步请求"></a>1.1 什么是异步请求</h2><p>Ajax本身就是Asynchronous JavaScript And XML的缩写，本身就是使用JavaScript技术实现异步请求效果。</p>
 <p>Ajax就是发送请求的，接收服务器响应数据</p>
-<h2 id="1-2-异步请求和同步请求区别">1.2 异步请求和同步请求区别</h2>
-<ul>
+<h2 id="1-2-异步请求和同步请求区别"><a href="#1-2-异步请求和同步请求区别" class="headerlink" title="1.2 异步请求和同步请求区别"></a>1.2 异步请求和同步请求区别</h2><ul>
 <li>同步：标签form action 按钮subit，超链接，浏览器地址</li>
 <li>异步：JS来完成的</li>
 </ul>
-<p><img src="/images/day38_Ajax_bookstore5_1/1.JPG" alt></p>
-<h2 id="1-3-异步请求原理">1.3 异步请求原理</h2>
-<p><img src="/images/day38_Ajax_bookstore5_1/2.png" alt></p>
+<p><img src="/images/day38_Ajax_bookstore5_1/1.JPG"></p>
+<h2 id="1-3-异步请求原理"><a href="#1-3-异步请求原理" class="headerlink" title="1.3 异步请求原理"></a>1.3 异步请求原理</h2><p><img src="/images/day38_Ajax_bookstore5_1/2.png"></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/07/05/atguigu/day38_Ajax_bookstore5_1/#more" rel="contents">
@@ -890,9 +862,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1>871. 最低加油次数</h1>
-<h2 id="871-最低加油次数">871. 最低加油次数</h2>
-<blockquote>
+          <h1 id="871-最低加油次数"><a href="#871-最低加油次数" class="headerlink" title="871. 最低加油次数"></a>871. 最低加油次数</h1><h2 id="871-最低加油次数-1"><a href="#871-最低加油次数-1" class="headerlink" title="871. 最低加油次数"></a>871. 最低加油次数</h2><blockquote>
 <p>题目描述：</p>
 <p>汽车从起点出发驶向目的地，该目的地位于出发位置东面 target 英里处。</p>
 <p>沿途有加油站，每个 station[i] 代表一个加油站，它位于出发位置东面 station[i][0] 英里处，并且有 station[i][1] 升汽油。</p>
@@ -1054,22 +1024,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1>会话&amp;书城项目第四阶段</h1>
-<h1>第一章 会话</h1>
-<h2 id="1-1-什么是会话">1.1 什么是会话</h2>
-<ul>
+          <h1 id="会话-amp-书城项目第四阶段"><a href="#会话-amp-书城项目第四阶段" class="headerlink" title="会话&amp;书城项目第四阶段"></a>会话&amp;书城项目第四阶段</h1><h1 id="第一章-会话"><a href="#第一章-会话" class="headerlink" title="第一章 会话"></a>第一章 会话</h1><h2 id="1-1-什么是会话"><a href="#1-1-什么是会话" class="headerlink" title="1.1 什么是会话"></a>1.1 什么是会话</h2><ul>
 <li>生活中：打电话拨通，对方接听了，只要不去挂断可以永远在通话中。一次通话</li>
 <li>程序中：浏览器访问服务器，进行正常的请求和响应，只要浏览器不关闭（不是浏览器的标签页，而是整个浏览器），一次会话</li>
-<li>JavaWeb技术中会话的两个对象：
-<ul>
+<li>JavaWeb技术中会话的两个对象：<ul>
 <li>Cookie：可客户端手里的条形码</li>
 <li>Session：超市存储包的容器</li>
 </ul>
 </li>
 </ul>
-<h2 id="1-2-Cookie技术">1.2 Cookie技术</h2>
-<h3 id="1-2-1-Cookie的概念">1.2.1 Cookie的概念</h3>
-<p>Cookie（小蛋糕），对象存储的数据量比较小，数据在服务器端产生（服务器自己不保存），对象放在在浏览器中保存，Cookie对象中的数据是键值对。</p>
+<h2 id="1-2-Cookie技术"><a href="#1-2-Cookie技术" class="headerlink" title="1.2 Cookie技术"></a>1.2 Cookie技术</h2><h3 id="1-2-1-Cookie的概念"><a href="#1-2-1-Cookie的概念" class="headerlink" title="1.2.1 Cookie的概念"></a>1.2.1 Cookie的概念</h3><p>Cookie（小蛋糕），对象存储的数据量比较小，数据在服务器端产生（服务器自己不保存），对象放在在浏览器中保存，Cookie对象中的数据是键值对。</p>
 <p>浏览器会限制保存的Cookie对象的数据的大小，一个网站可以最多放64个Cookie对象</p>
           <!--noindex-->
             <div class="post-button">
@@ -1156,14 +1120,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1>书城项目第三阶段</h1>
-<h2 id="第一章-项目准备工作">第一章 项目准备工作</h2>
-<h3 id="1-将bookstore-v2项目复制一份改名为bookstore-v3">1. 将bookstore-v2项目复制一份改名为bookstore-v3</h3>
-<ol>
+          <h1 id="书城项目第三阶段"><a href="#书城项目第三阶段" class="headerlink" title="书城项目第三阶段"></a>书城项目第三阶段</h1><h2 id="第一章-项目准备工作"><a href="#第一章-项目准备工作" class="headerlink" title="第一章 项目准备工作"></a>第一章 项目准备工作</h2><h3 id="1-将bookstore-v2项目复制一份改名为bookstore-v3"><a href="#1-将bookstore-v2项目复制一份改名为bookstore-v3" class="headerlink" title="1. 将bookstore-v2项目复制一份改名为bookstore-v3"></a>1. 将bookstore-v2项目复制一份改名为bookstore-v3</h3><ol>
 <li>选中bookstore-v2然后Ctrl+C复制</li>
 <li>然后Ctrl+V粘贴，粘贴的时候改名为bookstore-v3</li>
 </ol>
 <img src="/images/day36_bookstore3/img001.png" style="zoom:67%;">
+
 <ol start="3">
 <li>将刚刚复制粘贴的bookstore-v3这个Module导入到当前项目中(具体导入项目的流程之前已经讲过了)</li>
 </ol>
