@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-count">42</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -212,6 +212,129 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/06/atguigu/day41_bookstore6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Alcander-2.jpg">
+      <meta itemprop="name" content="wfxt">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alcander's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Alcander's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/06/atguigu/day41_bookstore6/" class="post-title-link" itemprop="url">书城项目第六阶段</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-07-06 19:23:00 / Modified: 19:26:01" itemprop="dateCreated datePublished" datetime="2022-07-06T19:23:00+08:00">2022-07-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Atguigu/" itemprop="url" rel="index"><span itemprop="name">Atguigu</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="书城项目第六阶段"><a href="#书城项目第六阶段" class="headerlink" title="书城项目第六阶段"></a>书城项目第六阶段</h1><h2 id="功能-结账"><a href="#功能-结账" class="headerlink" title="功能 结账"></a>功能 结账</h2><h3 id="1-创建订单模型"><a href="#1-创建订单模型" class="headerlink" title="1. 创建订单模型"></a>1. 创建订单模型</h3><h4 id="1-1-物理建模"><a href="#1-1-物理建模" class="headerlink" title="1.1 物理建模"></a>1.1 物理建模</h4><h5 id="1-1-1-t-order表"><a href="#1-1-1-t-order表" class="headerlink" title="1.1.1 t_order表"></a>1.1.1 t_order表</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> t_order(</span><br><span class="line">	order_id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">	order_sequence <span class="type">VARCHAR</span>(<span class="number">200</span>),</span><br><span class="line">	create_time <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">	total_count <span class="type">INT</span>,</span><br><span class="line">	total_amount <span class="keyword">DOUBLE</span>,</span><br><span class="line">	order_status <span class="type">INT</span>,</span><br><span class="line">	user_id <span class="type">INT</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>字段作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>order_id</td>
+<td>主键</td>
+</tr>
+<tr>
+<td>order_sequence</td>
+<td>订单号</td>
+</tr>
+<tr>
+<td>create_time</td>
+<td>订单创建时间</td>
+</tr>
+<tr>
+<td>total_count</td>
+<td>订单的总数量</td>
+</tr>
+<tr>
+<td>total_amount</td>
+<td>订单的总金额</td>
+</tr>
+<tr>
+<td>order_status</td>
+<td>订单的状态</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>下单的用户的id</td>
+</tr>
+</tbody></table>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/07/06/atguigu/day41_bookstore6/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1021,95 +1144,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/06/28/atguigu/day34%20Thymeleaf/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/27/atguigu/bookstore2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Alcander-2.jpg">
-      <meta itemprop="name" content="wfxt">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Alcander's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/27/atguigu/bookstore2/" class="post-title-link" itemprop="url">书城项目第二阶段</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-06-27 16:17:42 / Modified: 16:23:44" itemprop="dateCreated datePublished" datetime="2022-06-27T16:17:42+08:00">2022-06-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Atguigu/" itemprop="url" rel="index"><span itemprop="name">Atguigu</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="day07-书城项目第二阶段"><a href="#day07-书城项目第二阶段" class="headerlink" title="day07 书城项目第二阶段"></a>day07 书城项目第二阶段</h1><h1 id="第一章-JSP技术"><a href="#第一章-JSP技术" class="headerlink" title="第一章 JSP技术"></a>第一章 JSP技术</h1><h2 id="1-1-什么是jsp"><a href="#1-1-什么是jsp" class="headerlink" title="1.1 什么是jsp"></a>1.1 什么是jsp</h2><p>jsp全名（Java Server Page）Java服务器端页面，运行在Web服务器上的一种动态网页技术（页面根据用户的需求而改变）。在Tomcat里面运行通过浏览器进行访问。</p>
-<blockquote>
-<p>JSP本质上：Java代码嵌入HTML</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/06/27/atguigu/bookstore2/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
