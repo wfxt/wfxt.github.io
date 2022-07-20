@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/16.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"bounceIn","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="SpringMVC第一章 自定义类型转换器1.1 请求参数错误1.2 自定义数据类型转换器 自定义数据类型转换器 定义类实现接口 重写抽象方法：实现类型转换 配置文件     日期类型转换器实用价值不高，功能局限性比较大，必须配置文件 公司里面有现成的日期工具.jar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringMVC 02">
+<meta property="og:url" content="http://example.com/2022/07/20/atguigu/day51_springmvc/index.html">
+<meta property="og:site_name" content="Alcander&#39;s Blog">
+<meta property="og:description" content="SpringMVC第一章 自定义类型转换器1.1 请求参数错误1.2 自定义数据类型转换器 自定义数据类型转换器 定义类实现接口 重写抽象方法：实现类型转换 配置文件     日期类型转换器实用价值不高，功能局限性比较大，必须配置文件 公司里面有现成的日期工具.jar">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/day51_springmvc/1.png">
+<meta property="og:image" content="http://example.com/images/day51_springmvc/2.png">
+<meta property="og:image" content="http://example.com/images/day51_springmvc/3.png">
+<meta property="article:published_time" content="2022-07-20T10:06:34.489Z">
+<meta property="article:modified_time" content="2022-07-20T10:08:08.568Z">
+<meta property="article:author" content="wfxt">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/day51_springmvc/1.png">
+
+
+<link rel="canonical" href="http://example.com/2022/07/20/atguigu/day51_springmvc/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/07/20/atguigu/day51_springmvc/","path":"2022/07/20/atguigu/day51_springmvc/","title":"SpringMVC 02"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>SpringMVC 02 | Alcander's Blog</title>
+  
+
+
+
+
+<script src="/lib/fireworks.js"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion" >
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alcander's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-playlist"><a href="/playlist/" rel="section"><i class="fa fa-music fa-fw"></i>playlist</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringMVC"><span class="nav-number">1.</span> <span class="nav-text">SpringMVC</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E5%99%A8"><span class="nav-number">2.</span> <span class="nav-text">第一章 自定义类型转换器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E9%94%99%E8%AF%AF"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 请求参数错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E5%99%A8"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 自定义数据类型转换器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-Controller%E7%B1%BB%E7%9A%84%E6%96%B9%E6%B3%95%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-number">3.</span> <span class="nav-text">第二章 Controller类的方法返回值</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E8%BF%94%E5%9B%9E%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 返回字符串类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E6%96%B9%E6%B3%95%E6%97%A0%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 方法无返回值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E8%BD%AC%E5%8F%91%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91%E7%AE%80%E5%8C%96%E5%86%99%E6%B3%95"><span class="nav-number">3.3.</span> <span class="nav-text">2.3 转发和重定向简化写法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-RestFul%E9%A3%8E%E6%A0%BCURL"><span class="nav-number">4.</span> <span class="nav-text">第三章 RestFul风格URL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-RestFul%E6%A6%82%E5%BF%B5"><span class="nav-number">4.1.</span> <span class="nav-text">3.1 RestFul概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E5%8A%9F%E8%83%BD%E8%BF%98%E6%98%AF%E8%B5%84%E6%BA%90"><span class="nav-number">4.2.</span> <span class="nav-text">3.2 功能还是资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-RestFul%E8%A7%84%E8%8C%83%E8%A6%81%E6%B1%82"><span class="nav-number">4.3.</span> <span class="nav-text">3.3 RestFul规范要求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E7%BB%9F%E6%96%B9%E5%BC%8F%E6%93%8D%E4%BD%9C%E8%B5%84%E6%BA%90"><span class="nav-number">4.3.1.</span> <span class="nav-text">传统方式操作资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8RESTful%E6%93%8D%E4%BD%9C%E8%B5%84%E6%BA%90"><span class="nav-number">4.3.2.</span> <span class="nav-text">使用RESTful操作资源</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-RestFul%E4%BC%98%E5%8A%BF"><span class="nav-number">4.4.</span> <span class="nav-text">3.4 RestFul优势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E5%85%A8"><span class="nav-number">4.4.1.</span> <span class="nav-text">安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A3%8E%E6%A0%BC%E7%BB%9F%E4%B8%80"><span class="nav-number">4.4.2.</span> <span class="nav-text">风格统一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E6%B4%81%EF%BC%8C%E4%BC%98%E9%9B%85"><span class="nav-number">4.4.3.</span> <span class="nav-text">简洁，优雅</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-HiddentHttpMethodFilter"><span class="nav-number">4.5.</span> <span class="nav-text">3.5 HiddentHttpMethodFilter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-%E5%90%8C%E4%B8%80%E8%AF%B7%E6%B1%82%E5%9C%B0%E5%9D%80"><span class="nav-number">4.6.</span> <span class="nav-text">3.6 同一请求地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-7-PathVariable%E6%B3%A8%E8%A7%A3"><span class="nav-number">4.7.</span> <span class="nav-text">3.7 @PathVariable注解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-SpringMVC-Thymeleaf%E5%AE%9E%E7%8E%B0%E5%88%86%E9%A1%B5%E6%A1%88%E4%BE%8B"><span class="nav-number">5.</span> <span class="nav-text">第四章 SpringMVC+Thymeleaf实现分页案例</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="wfxt"
+      src="/images/Alcander-2.jpg">
+  <p class="site-author-name" itemprop="name">wfxt</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wfxt" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wfxt" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:z812552849@gmail.com" title="E-Mail → mailto:z812552849@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/wwfxt" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;wwfxt" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/HallLee71350824" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;HallLee71350824" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/z812552849" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;z812552849" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/20/atguigu/day51_springmvc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Alcander-2.jpg">
+      <meta itemprop="name" content="wfxt">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alcander's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="SpringMVC 02 | Alcander's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SpringMVC 02<a href="https://github.com/wfxt/wfxt.github.io_posts/atguigu/day51_springmvc.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-07-20 18:06:34 / Modified: 18:08:08" itemprop="dateCreated datePublished" datetime="2022-07-20T18:06:34+08:00">2022-07-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Atguigu/" itemprop="url" rel="index"><span itemprop="name">Atguigu</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h1><h1 id="第一章-自定义类型转换器"><a href="#第一章-自定义类型转换器" class="headerlink" title="第一章 自定义类型转换器"></a>第一章 自定义类型转换器</h1><h2 id="1-1-请求参数错误"><a href="#1-1-请求参数错误" class="headerlink" title="1.1 请求参数错误"></a>1.1 请求参数错误</h2><h2 id="1-2-自定义数据类型转换器"><a href="#1-2-自定义数据类型转换器" class="headerlink" title="1.2 自定义数据类型转换器"></a>1.2 自定义数据类型转换器</h2><ul>
+<li>自定义数据类型转换器<ul>
+<li>定义类实现接口</li>
+<li>重写抽象方法：实现类型转换</li>
+<li>配置文件</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>日期类型转换器实用价值不高，功能局限性比较大，必须配置文件</p>
+<p>公司里面有现成的日期工具.jar</p>
+</blockquote>
+<span id="more"></span>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 自定义的转换器：字符串转成Date对象</span></span><br><span class="line"><span class="comment"> * 实现接口：Convert</span></span><br><span class="line"><span class="comment"> * 泛型：S 数据源类型</span></span><br><span class="line"><span class="comment"> * 泛型：T 转换后的类型</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StringToDateConvert</span> <span class="keyword">implements</span> <span class="title class_">Converter</span>&lt;String, Date&gt; &#123;</span><br><span class="line">    <span class="comment">//重写抽象方法</span></span><br><span class="line">    <span class="keyword">public</span> Date <span class="title function_">convert</span><span class="params">(String date)</span>&#123;</span><br><span class="line">        <span class="type">Date</span> <span class="variable">d</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="type">SimpleDateFormat</span> <span class="variable">sdf</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;yyyy-MM-dd&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            d =sdf.parse(date);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ParseException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> d;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;com.atguigu&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--注解驱动，配置类型的转换器--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span> <span class="attr">conversion-service</span>=<span class="string">&quot;conversionService&quot;</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">  配置类型转换器</span></span><br><span class="line"><span class="comment">  会有多个，统一管理，SpringMVC提供对象，类型转换器的管理</span></span><br><span class="line"><span class="comment">  FormattingConversionServiceFactoryBean</span></span><br><span class="line"><span class="comment">  格式化  转换器  服务器对象工厂</span></span><br><span class="line"><span class="comment">  工厂对象有个集合，保存我们自定义的类型转换器</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.format.support.FormattingConversionServiceFactoryBean&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">id</span>=<span class="string">&quot;conversionService&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--Set方法注入set集合--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;converters&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;com.atguigu.utils.StringToDateConvert&quot;</span> <span class="attr">id</span>=<span class="string">&quot;dateConvert&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="第二章-Controller类的方法返回值"><a href="#第二章-Controller类的方法返回值" class="headerlink" title="第二章 Controller类的方法返回值"></a>第二章 Controller类的方法返回值</h1><p>昨天的内容返回值：ModelAndView &#x3D; 数据模型 + 视图</p>
+<p>作用：存储键值对，存储在请求request域对象，直接写视图名（文件名），页面的跳转，取出request域对象的数据</p>
+<p>SpringMVC框架提供接口：Model &#x3D; 数据模型，直接在方法返回要跳转的文件名！</p>
+<h2 id="2-1-返回字符串类型"><a href="#2-1-返回字符串类型" class="headerlink" title="2.1 返回字符串类型"></a>2.1 返回字符串类型</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 方法的返回值是String对象</span></span><br><span class="line"><span class="comment">  * 返回值就是页面的文件名</span></span><br><span class="line"><span class="comment">  * 方法的参数Model接口，实现类SpringMVC创建</span></span><br><span class="line"><span class="comment">  * 保存数据request域对象</span></span><br><span class="line"><span class="comment">  * 返回是null值，SpringMVC，将请求地址作为页面文件名跳转</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"> <span class="meta">@RequestMapping(&quot;returnString&quot;)</span></span><br><span class="line"> <span class="keyword">public</span> String <span class="title function_">returnString</span><span class="params">(Model model)</span>&#123;</span><br><span class="line">     <span class="comment">//键值对，存储request域对象</span></span><br><span class="line">     model.addAttribute(<span class="string">&quot;key&quot;</span>,<span class="string">&quot;方法返回值是String&quot;</span>);</span><br><span class="line">     <span class="keyword">return</span> <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2-方法无返回值"><a href="#2-2-方法无返回值" class="headerlink" title="2.2 方法无返回值"></a>2.2 方法无返回值</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 方法的返回值 void</span></span><br><span class="line"><span class="comment"> * 即使返回值是void，同样也可以实现转发</span></span><br><span class="line"><span class="comment"> * request 实现转发</span></span><br><span class="line"><span class="comment"> * response 实现重定向</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;returnVoid&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">returnVoid</span><span class="params">(Model model, HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">   <span class="comment">// request.setAttribute(&quot;key&quot;,&quot;方法返回值void&quot;);</span></span><br><span class="line">   <span class="comment">// request.getRequestDispatcher(&quot;/WEB-INF/jsp/hello.jsp&quot;).forward(request,response);</span></span><br><span class="line">    <span class="comment">//response.sendRedirect(request.getContextPath()+&quot;/index.jsp&quot;);</span></span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3-转发和重定向简化写法"><a href="#2-3-转发和重定向简化写法" class="headerlink" title="2.3 转发和重定向简化写法"></a>2.3 转发和重定向简化写法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  实现转发和重定向的简化写法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;returnForwardRedirect&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">returnForwardRedirect</span><span class="params">(HttpServletRequest request)</span>&#123;</span><br><span class="line">        <span class="comment">//request.getRequestDispatcher(&quot;/WEB-INF/jsp/hello.jsp&quot;).forward(request,response);</span></span><br><span class="line"><span class="comment">//        return &quot;forward:/WEB-INF/jsp/hello.jsp&quot;;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//response.sendRedirect(request.getContextPath()+&quot;/index.jsp&quot;);</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;redirect:&quot;</span>+request.getContextPath()+<span class="string">&quot;/index.jsp&quot;</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="第三章-RestFul风格URL"><a href="#第三章-RestFul风格URL" class="headerlink" title="第三章 RestFul风格URL"></a>第三章 RestFul风格URL</h1><h2 id="3-1-RestFul概念"><a href="#3-1-RestFul概念" class="headerlink" title="3.1 RestFul概念"></a>3.1 RestFul概念</h2><p>RESTFul就是一个资源定位及资源操作的风格。不是标准也不是协议，只是一种风格。基于这个风格设计的软件可以更简洁，更有层次。</p>
+<p>REST：Representational State Transfer，表现层资源状态转移。</p>
+<ul>
+<li>定位：互联网软件架构风格</li>
+<li>倡导者：Roy Thomas Fielding</li>
+<li>文献：Roy Thomas Fielding的博士论文</li>
+</ul>
+<h2 id="3-2-功能还是资源"><a href="#3-2-功能还是资源" class="headerlink" title="3.2 功能还是资源"></a>3.2 功能还是资源</h2><p>传统的软件系统仅在本地工作，但随着项目规模的扩大和复杂化，不但整个项目会拓展为分布式架构，很多功能也会通过网络访问第三方接口来实现。在通过网络访问一个功能的情况下，我们不能轻易假设网络状况文档可靠。所以当一个请求发出后没有接收到对方的回应，那我们该如何判定本次操作成功与否？</p>
+<p>下面以保存操作为例来说明一下针对功能和针对资源进行操作的区别：</p>
+<ul>
+<li><p>针对功能设计系统</p>
+<p>保存一个 Employee 对象，没有接收到返回结果，判定操作失败，再保存一次。但是其实在服务器端保存操作已经成功了，只是返回结果在网络传输过程中丢失了。而第二次的补救行为则保存了重复、冗余但 id 不同的数据，这对整个系统数据来说是一种破坏。</p>
+</li>
+<li><p>针对资源设计系统</p>
+<p>针对 id 为 1000 的资源执行操作，服务器端会判断指定 id 的资源是否存在。如果不存在，则执行保存操作新建数据；如果存在，则执行更新操作。所以这个操作不论执行几次，对系统的影响都是一样的。在网络状态不可靠的情况下可以多次重试，不会破坏系统数据。</p>
+</li>
+</ul>
+<h2 id="3-3-RestFul规范要求"><a href="#3-3-RestFul规范要求" class="headerlink" title="3.3 RestFul规范要求"></a>3.3 RestFul规范要求</h2><h3 id="传统方式操作资源"><a href="#传统方式操作资源" class="headerlink" title="传统方式操作资源"></a>传统方式操作资源</h3><p>操作啥（原来url）？操作谁（传入的参数）</p>
+<p>url中先定义动作，然后传递的参数表明这个动作操作的是哪个对象（数据）</p>
+<p>先定位动作，然后定位对象</p>
+<p><code>http://localhost:8080/user/queryUserById.action?id=1</code>查询</p>
+<p><code>http://localhost:8080/user/saveUser.action </code>            新增</p>
+<p><code>http://localhost:8080/user/updateUser.action</code>          更新</p>
+<p><code>http://localhost:8080/user/deleteUserById.action?id=1</code>   删除</p>
+<h3 id="使用RESTful操作资源"><a href="#使用RESTful操作资源" class="headerlink" title="使用RESTful操作资源"></a>使用RESTful操作资源</h3><p><strong>先定义对象</strong></p>
+<p><code>http://localhost:8080/user/1</code>   (操作的对象）  查询,GET</p>
+<p><code>http://localhost:8080/user</code>       新增,POST</p>
+<p><code>http://localhost:8080/user</code>       更新,PUT</p>
+<p><code>http://localhost:8080/user/1</code>   删除,DELETE</p>
+<p>REST 风格主张在项目设计、开发过程中，具体的操作符合 HTTP 协议定义的请求方式的语义。</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>请求方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>查询操作</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>保存操作</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>删除操作</td>
+<td>DELETE</td>
+</tr>
+<tr>
+<td>更新操作</td>
+<td>PUT</td>
+</tr>
+</tbody></table>
+<h2 id="3-4-RestFul优势"><a href="#3-4-RestFul优势" class="headerlink" title="3.4 RestFul优势"></a>3.4 RestFul优势</h2><h3 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h3><p>使用问号键值对的方式给服务器传递数据太明显，容易被人利用来对系统进行破坏。使用 REST 风格携带数据不再需要明显的暴露数据的名称。</p>
+<h3 id="风格统一"><a href="#风格统一" class="headerlink" title="风格统一"></a>风格统一</h3><p>URL 地址整体格式统一，从前到后始终都使用斜杠划分各个内容部分，用简单一致的格式表达语义。</p>
+<h3 id="简洁，优雅"><a href="#简洁，优雅" class="headerlink" title="简洁，优雅"></a>简洁，优雅</h3><p>过去做增删改查操作需要设计4个不同的URL，现在一个就够了。</p>
+<h2 id="3-5-HiddentHttpMethodFilter"><a href="#3-5-HiddentHttpMethodFilter" class="headerlink" title="3.5 HiddentHttpMethodFilter"></a>3.5 HiddentHttpMethodFilter</h2><p>浏览器不支持PUT或者DELETE，通过浏览器发请求不行。SpringMVC框架设计过滤器，浏览器的所有请求走过滤器，又过滤器将请求方法改变，再发到Controller类</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    配置过滤器，将浏览器的请求方式改变</span></span><br><span class="line"><span class="comment">  --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>hiddenHttpMethodFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.HiddenHttpMethodFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>hiddenHttpMethodFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.do<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/day51_springmvc/1.png"></p>
+<ul>
+<li>过滤器转发为PUT请求</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h4</span>&gt;</span>发送PUT请求<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">      表单的请求方式必须是写 post</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;/restFul/requestPut.do&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">            添加表单参数，告诉顾虑器，要转成什么请求</span></span><br><span class="line"><span class="comment">            表单的name属性值必须是 _method</span></span><br><span class="line"><span class="comment">        --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;_method&quot;</span> <span class="attr">value</span>=<span class="string">&quot;put&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;sendPUT&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 方法接收put请求</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@RequestMapping</span>(value = &quot;requestPut&quot;,method = RequestMethod.PUT)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@PutMapping(&quot;requestPut&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">requestPut</span><span class="params">()</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;接收到PUT请求&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>发送DELETE请求</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h4</span>&gt;</span>发送DELETE请求<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">      表单的请求方式必须是写 post</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;/restFul/requestDelete.do&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">            添加表单参数，告诉顾虑器，要转成什么请求</span></span><br><span class="line"><span class="comment">            表单的name属性值必须是 _method</span></span><br><span class="line"><span class="comment">        --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;_method&quot;</span> <span class="attr">value</span>=<span class="string">&quot;DELETE&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;sendDelete&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 方法接收Delete请求</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@DeleteMapping(&quot;requestDelete&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">requestDelete</span><span class="params">()</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;接收delete请求&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-6-同一请求地址"><a href="#3-6-同一请求地址" class="headerlink" title="3.6 同一请求地址"></a>3.6 同一请求地址</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h4</span>&gt;</span>发送POST请求<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">action</span>=<span class="string">&quot;/restFulParam.do&quot;</span>&gt;</span></span><br><span class="line">        名字：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">        密码：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;sendPost&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h4</span>&gt;</span>发送PUT请求<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">action</span>=<span class="string">&quot;/restFulParam.do&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;_method&quot;</span> <span class="attr">value</span>=<span class="string">&quot;put&quot;</span>&gt;</span></span><br><span class="line">        名字：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">        密码：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;sendPut&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h4</span>&gt;</span>发送DELETE请求<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">action</span>=<span class="string">&quot;/restFulParam.do&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;_method&quot;</span> <span class="attr">value</span>=<span class="string">&quot;delete&quot;</span>&gt;</span></span><br><span class="line">        名字：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">        密码：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;sendDelete&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;restFulParam&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RestFulParamController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 接收delete请求</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@DeleteMapping</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">requestDelete</span><span class="params">(User user)</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;user Delete= &quot;</span> + user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 接收put请求</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@PutMapping</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">requestPut</span><span class="params">(User user)</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;user put= &quot;</span> + user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 接收post请求</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@PostMapping</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">requestPost</span><span class="params">(User user)</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;user post= &quot;</span> + user);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-7-PathVariable注解"><a href="#3-7-PathVariable注解" class="headerlink" title="3.7 @PathVariable注解"></a>3.7 @PathVariable注解</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--超链接地址传递参数 http://localhost:8080/user/1--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;/restFulParam/1/true/abc.do&quot;</span>&gt;</span>点击GET请求<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 接收get请求</span></span><br><span class="line"><span class="comment"> * &lt;a href=&quot;/restFulParam/1.do&quot;&gt;</span></span><br><span class="line"><span class="comment"> *     添加参数的占位符</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  注解：<span class="doctag">@PathVariable</span> 写在方法的参数上</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  &lt;a href=&quot;/restFulParam/1/true/abc.do&quot;&gt;点击GET请求&lt;/a&gt;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@GetMapping(&quot;&#123;ids&#125;/&#123;bool&#125;/&#123;str&#125;&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">requestGet</span><span class="params">(<span class="meta">@PathVariable(&quot;ids&quot;)</span> String id,<span class="meta">@PathVariable(&quot;bool&quot;)</span> Boolean bool ,</span></span><br><span class="line"><span class="params">                       <span class="meta">@PathVariable(&quot;str&quot;)</span> String str)</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;GET请求&quot;</span>+id +<span class="string">&quot;  &quot;</span>+bool+<span class="string">&quot;  &quot;</span>+str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="第四章-SpringMVC-Thymeleaf实现分页案例"><a href="#第四章-SpringMVC-Thymeleaf实现分页案例" class="headerlink" title="第四章 SpringMVC+Thymeleaf实现分页案例"></a>第四章 SpringMVC+Thymeleaf实现分页案例</h1><ul>
+<li>分页查询的SQL语句 – limit</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">   数据的分页查询</span></span><br><span class="line"><span class="comment">   MySQL使用关键字 limit 查询数据的限制条数</span></span><br><span class="line"><span class="comment">   limit m参数,n参数</span></span><br><span class="line"><span class="comment">   n页面中，每个页面显示的条数 = 10</span></span><br><span class="line"><span class="comment">   m数据表的索引0开始 公式 (当前页数-1)*n</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> book LIMIT <span class="number">0</span>,<span class="number">1000</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 第一页显示10本书，查询10条数据  杂货店--平凡的世界</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> book LIMIT <span class="number">0</span>,<span class="number">10</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 第二页显示10本书，查询10条数据  悟空传--皮囊</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> book LIMIT <span class="number">10</span>,<span class="number">10</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 第三页显示10本书，查询10条数据 恰到好处--教父</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> book LIMIT <span class="number">20</span>,<span class="number">10</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 第四页显示10本书，查询10条数据 西游记</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> book LIMIT <span class="number">30</span>,<span class="number">10</span> </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>分页中的数据分析</li>
+</ul>
+<p><img src="/images/day51_springmvc/2.png"></p>
+<ul>
+<li>分页功能实现流程</li>
+</ul>
+<p><img src="/images/day51_springmvc/3.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.thymeleaf&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;thymeleaf&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;3.0.11.RELEASE&lt;/version&gt;</span><br><span class="line">      &lt;/dependency&gt;</span><br><span class="line">  &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.thymeleaf&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;thymeleaf-spring5&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;3.0.11.RELEASE&lt;/version&gt;</span><br><span class="line">      &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean class=&quot;org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver&quot; id=&quot;resolver&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;suffix&quot; value=&quot;.html&quot;/&gt;</span><br><span class="line">        &lt;property name=&quot;prefix&quot; value=&quot;/&quot;/&gt;</span><br><span class="line">        &lt;property name=&quot;templateMode&quot; value=&quot;HTML&quot;/&gt;</span><br><span class="line">        &lt;property name=&quot;cacheable&quot; value=&quot;false&quot;/&gt;</span><br><span class="line">        &lt;property name=&quot;characterEncoding&quot; value=&quot;utf-8&quot;/&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">    &lt;bean class=&quot;org.thymeleaf.spring5.SpringTemplateEngine&quot; id=&quot;springTemplateEngine&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;templateResolver&quot; ref=&quot;resolver&quot;/&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">    &lt;bean class=&quot;org.thymeleaf.spring5.view.ThymeleafViewResolver&quot; id=&quot;thymeleafViewResolver&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;templateEngine&quot; ref=&quot;springTemplateEngine&quot;/&gt;</span><br><span class="line">        &lt;property name=&quot;characterEncoding&quot; value=&quot;utf-8&quot;/&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat.png" alt="wfxt WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="wfxt Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/19/atguigu/day50_springmvc/" rel="prev" title="SpringMVC">
+                  <i class="fa fa-chevron-left"></i> SpringMVC
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wfxt</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.2.0/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://example.com/2022/07/20/atguigu/day51_springmvc/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wfxt","repo":"Hexo-Comment","client_id":"9571f738aa8205b6319e","client_secret":"b956a9a1348b28f9c848905778cd299e9d1da68a","admin_user":"wfxt","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"d8365482b1b386b8e89a2944055dc0dc"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+
+ <!--音乐-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
+  <div id="player" class="aplayer aplayer-withlist aplayer-fixed" data-id="7490247800" data-server="netease" data-type="playlist" data-order="random" data-fixed="true" data-listfolded="true" data-theme="#2D8CF0"></div>
+ 
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
+
+<!--崩溃欺骗-->
+<script type="text/javascript" src="/js/src/crash_cheat.js"></script>
